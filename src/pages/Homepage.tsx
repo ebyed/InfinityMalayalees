@@ -132,13 +132,58 @@ const Homepage: React.FC = () => {
               delicious Sadya, vibrant cultural programs, and the warmth of our community. 🎭🍛
             </p>
             
+            {/* Onam 2025 Hero CTA */}
+            <div className="bg-gradient-to-r from-orange-100 via-yellow-100 to-red-100 dark:from-orange-900/30 dark:via-yellow-900/30 dark:to-red-900/30 rounded-3xl p-8 mb-8 border-4 border-gradient-to-r from-orange-400 via-yellow-400 to-red-400 dark:border-amber-500 shadow-2xl backdrop-blur-sm">
+              <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 dark:from-amber-400 dark:to-orange-400 text-orange-900 dark:text-gray-900 text-sm font-bold mb-4 shadow-lg border-2 border-yellow-400 dark:border-amber-300">
+                <Sparkles size={18} className="mr-2 text-red-600 dark:text-red-700" />
+                🌺 September 13-14, 2025 🌺
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 dark:from-amber-400 dark:via-orange-400 dark:to-red-400">
+                  🎉 Onam 2025 Grand Celebration 🎉
+                </span>
+              </h2>
+              
+              <p className="text-lg text-gray-800 dark:text-gray-200 mb-6 font-medium max-w-2xl mx-auto">
+                Experience the grandest Malayalam festival with authentic Sadya, spectacular cultural programs, 
+                Mega Thiruvathira, and traditional games. Two days of pure celebration!
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-orange-300 dark:border-amber-500">
+                  <div className="text-2xl mb-2">🍛</div>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-200">Traditional Sadya</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">₹350 per person</p>
+                </div>
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-orange-300 dark:border-amber-500">
+                  <div className="text-2xl mb-2">🎭</div>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-200">Cultural Programs</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Dance, Music & More</p>
+                </div>
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-orange-300 dark:border-amber-500">
+                  <div className="text-2xl mb-2">💃</div>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-200">Mega Thiruvathira</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Ladies Only Event</p>
+                </div>
+              </div>
+              
+              <Link
+                to="/onam-2025"
+                className="inline-flex items-center px-10 py-5 rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 dark:from-amber-500 dark:via-orange-500 dark:to-red-500 text-white font-bold text-xl hover:from-red-600 hover:via-orange-600 hover:to-yellow-600 dark:hover:from-amber-600 dark:hover:via-orange-600 dark:hover:to-red-600 transform hover:scale-110 transition-all duration-300 shadow-2xl border-3 border-yellow-400 dark:border-amber-300"
+              >
+                🎊 Join Onam 2025 Celebration 🎊
+                <ArrowRight className="ml-3" size={24} />
+              </Link>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 to="/events"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 dark:from-amber-500 dark:via-orange-500 dark:to-red-500 text-white font-bold text-lg hover:from-red-600 hover:via-orange-600 hover:to-yellow-600 dark:hover:from-amber-600 dark:hover:via-orange-600 dark:hover:to-red-600 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-yellow-400 dark:border-amber-300"
+                className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 text-white font-bold text-lg hover:from-blue-600 hover:to-cyan-600 dark:hover:from-blue-500 dark:hover:to-cyan-500 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-blue-300 dark:border-cyan-300"
               >
-                🎉 Explore Our Events 🎉
-                <ArrowRight className="ml-2" size={20} />
+                📅 Explore All Events
+                <Calendar className="ml-2" size={20} />
               </Link>
               
               <Link
@@ -263,10 +308,10 @@ const Homepage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/events"
+              to="/onam-2025"
               className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-green-700 dark:text-amber-400 font-bold text-lg hover:bg-green-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-yellow-300 dark:border-amber-400"
             >
-              View All Events
+              🎉 Join Onam 2025
               <ArrowRight className="ml-2" size={20} />
             </Link>
             <Link

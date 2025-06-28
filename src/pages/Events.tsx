@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, Utensils, Music, Heart, Award, ArrowRight } from 'lucide-react';
+import { Calendar, Users, Utensils, Music, Heart, ArrowRight } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -17,33 +17,6 @@ const Events: React.FC = () => {
       bgColor: 'from-orange-100 to-red-200 dark:from-orange-900/30 dark:to-red-900/30',
       borderColor: 'border-orange-400 dark:border-orange-500',
       features: ['Traditional Sadya', 'Cultural Programs', 'Pookalam Competition', 'Mega Thiruvathira']
-    }
-  ];
-
-  const pastEvents = [
-    {
-      title: 'Onam 2024 Celebration',
-      date: 'September 15-16, 2024',
-      description: 'Successful celebration with 200+ participants, featuring authentic Sadya and spectacular cultural programs',
-      image: '🌺',
-      participants: '200+',
-      highlights: ['Grand Sadya', 'Cultural Showcase', 'Community Bonding']
-    },
-    {
-      title: 'Vishu 2024',
-      date: 'April 14, 2024',
-      description: 'Traditional Vishu celebration with Vishu Kani, Sadya, and cultural activities',
-      image: '🌸',
-      participants: '150+',
-      highlights: ['Vishu Kani', 'Traditional Games', 'Community Feast']
-    },
-    {
-      title: 'Christmas & New Year 2023',
-      date: 'December 25, 2023',
-      description: 'Year-end celebration bringing together families for festive joy and cultural exchange',
-      image: '🎄',
-      participants: '120+',
-      highlights: ['Cultural Exchange', 'Family Activities', 'Community Dinner']
     }
   ];
 
@@ -209,52 +182,34 @@ const Events: React.FC = () => {
         </div>
       </section>
 
-      {/* Past Events */}
+      {/* Community Vision */}
       <section className="py-16 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-700 to-teal-700 dark:from-green-400 dark:to-teal-400 bg-clip-text text-transparent mb-4">
-              📸 Past Celebrations
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-              Relive the memories of our wonderful community gatherings
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pastEvents.map((event, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border-2 border-green-200 dark:border-green-600 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                <div className="text-center mb-4">
-                  <div className="text-6xl mb-4">{event.image}</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{event.title}</h3>
-                  <div className="flex items-center justify-center space-x-2 mb-3">
-                    <Calendar size={16} className="text-green-600 dark:text-green-400" />
-                    <span className="text-green-700 dark:text-green-400 font-semibold">{event.date}</span>
-                  </div>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-300 font-medium mb-4 text-center">
-                  {event.description}
-                </p>
-                
-                <div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-4 mb-4">
-                  <div className="flex items-center justify-center space-x-2 mb-2">
-                    <Users size={16} className="text-green-600 dark:text-green-400" />
-                    <span className="font-bold text-green-800 dark:text-green-300">{event.participants} Participants</span>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-gray-800 dark:text-gray-200 text-center">Highlights:</h4>
-                  {event.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center justify-center space-x-2">
-                      <Award size={14} className="text-green-600 dark:text-green-400" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-700 to-teal-700 dark:from-green-400 dark:to-teal-400 bg-clip-text text-transparent mb-6">
+            🌟 Our Vision
+          </h2>
+          <p className="text-xl text-gray-700 dark:text-gray-300 font-medium leading-relaxed mb-8">
+            Infinity Malayalees is dedicated to preserving and celebrating our rich Malayalam heritage 
+            through authentic cultural events, traditional festivals, and community bonding activities. 
+            We bring the warmth of Kerala to Bangalore, creating a home away from home for all Malayalam families.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-600">
+              <div className="text-3xl mb-3">🎭</div>
+              <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Cultural Preservation</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Keeping Malayalam traditions alive through authentic celebrations</p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-600">
+              <div className="text-3xl mb-3">🤝</div>
+              <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Community Building</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Fostering connections among Malayalam families in Bangalore</p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-600">
+              <div className="text-3xl mb-3">🌱</div>
+              <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Future Generations</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Teaching children about their Malayalam heritage and culture</p>
+            </div>
           </div>
         </div>
       </section>

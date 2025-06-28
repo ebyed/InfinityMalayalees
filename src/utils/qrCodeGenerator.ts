@@ -1,3 +1,5 @@
+import QRCode from 'qrcode';
+
 // Utility functions for generating unique QR codes and IDs for Sadya coupons
 
 export const generateUniqueId = (): string => {
@@ -32,6 +34,45 @@ export const generateTransactionId = (): string => {
   const timestamp = Date.now().toString();
   const random = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
   return `${prefix}${timestamp.slice(-6)}${random}`;
+};
+
+// Generate actual QR code as data URL
+export const generateQRCodeDataURL = async (data: string): Promise<string> => {
+  try {
+    const qrCodeDataURL = await QRCode.toDataURL(data, {
+      width: 200,
+      margin: 2,
+      color: {
+        dark: '#000000',
+        light: '#FFFFFF'
+      },
+      errorCorrectionLevel: 'M'
+    });
+    return qrCodeDataURL;
+  } catch (error) {
+    console.error('Error generating QR code:', error);
+    return '';
+  }
+};
+
+// Generate QR code as SVG string
+export const generateQRCodeSVG = async (data: string): Promise<string> => {
+  try {
+    const qrCodeSVG = await QRCode.toString(data, {
+      type: 'svg',
+      width: 200,
+      margin: 2,
+      color: {
+        dark: '#000000',
+        light: '#FFFFFF'
+      },
+      errorCorrectionLevel: 'M'
+    });
+    return qrCodeSVG;
+  } catch (error) {
+    console.error('Error generating QR code SVG:', error);
+    return '';
+  }
 };
 
 // Function to create a simple QR code pattern (for display purposes)

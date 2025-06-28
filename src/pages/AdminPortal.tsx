@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import { generateCouponId, generateQRCodeData } from '../utils/qrCodeGenerator';
+import { generateCouponId, generateQRCodeData, generateQRCodeDataURL } from '../utils/qrCodeGenerator';
 
 const AdminPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('sadya');
@@ -193,25 +193,28 @@ const AdminPortal: React.FC = () => {
     console.log(`Updated ${type} ID ${id} to status: ${newStatus}`);
   };
 
-  const sendSadyaCoupons = (registration: any) => {
-    // Generate unique coupons for each Sadya
-    const coupons = Array.from({ length: registration.sadyaCount }, (_, index) => {
-      const couponId = generateCouponId(registration.id, index);
-      const qrData = generateQRCodeData(couponId, {
-        name: registration.name,
-        flat: registration.flat
-      });
-      return { couponId, qrData };
-    });
+  const sendSadyaCoupons = async (registration: any) => {
+    // Generate unique coupons for each Sadya with real QR codes
+    const coupons = await Promise.all(
+      Array.from({ length: registration.sadyaCount }, async (_, index) => {
+        const couponId = generateCouponId(registration.id, index);
+        const qrData = generateQRCodeData(couponId, {
+          name: registration.name,
+          flat: registration.flat
+        });
+        const qrCodeDataURL = await generateQRCodeDataURL(qrData);
+        return { couponId, qrData, qrCodeDataURL };
+      })
+    );
 
     console.log(`Generating and sending ${registration.sadyaCount} Sadya coupons to ${registration.email}`);
-    console.log(`Coupons:`, coupons);
+    console.log(`Coupons with real QR codes:`, coupons);
     console.log(`Using email: ${emailSettings.emailAddress}`);
     // Here you would:
-    // 1. Generate QR codes for each coupon
+    // 1. Generate QR codes for each coupon (now done with real QR codes)
     // 2. Create PDF with coupons
     // 3. Send email with attachments using the configured Gmail credentials
-    alert(`✅ ${registration.sadyaCount} unique Sadya coupons with QR codes sent to ${registration.email} from ${emailSettings.emailAddress}`);
+    alert(`✅ ${registration.sadyaCount} unique Sadya coupons with real QR codes sent to ${registration.email} from ${emailSettings.emailAddress}`);
   };
 
   const sendThankYouNote = (donation: any) => {
@@ -261,15 +264,27 @@ const AdminPortal: React.FC = () => {
   };
 
   const SadyaCouponPreview = ({ data }: { data: any }) => {
-    // Generate unique coupons for preview
-    const coupons = Array.from({ length: data.sadyaCount }, (_, index) => {
-      const couponId = generateCouponId(data.id, index);
-      const qrData = generateQRCodeData(couponId, {
-        name: data.name,
-        flat: data.flat
-      });
-      return { couponId, qrData };
-    });
+    // Generate unique coupons for preview with real QR codes
+    const [coupons, setCoupons] = useState<any[]>([]);
+
+    React.useEffect(() => {
+      const generateCoupons = async () => {
+        const generatedCoupons = await Promise.all(
+          Array.from({ length: data.sadyaCount }, async (_, index) => {
+            const couponId = generateCouponId(data.id, index);
+            const qrData = generateQRCodeData(couponId, {
+              name: data.name,
+              flat: data.flat
+            });
+            const qrCodeDataURL = await generateQRCodeDataURL(qrData);
+            return { couponId, qrData, qrCodeDataURL };
+          })
+        );
+        setCoupons(generatedCoupons);
+      };
+
+      generateCoupons();
+    }, [data]);
 
     return (
       <div className="space-y-4">
@@ -295,10 +310,18 @@ const AdminPortal: React.FC = () => {
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="w-24 h-24 bg-white dark:bg-gray-800 border-2 border-green-400 dark:border-green-500 rounded-lg flex items-center justify-center mb-2">
-                    <QrCode size={40} className="text-green-600 dark:text-green-400" />
-                  </div>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">Scan for Entry</p>
+                  {coupon.qrCodeDataURL ? (
+                    <img 
+                      src={coupon.qrCodeDataURL} 
+                      alt={`QR Code for ${coupon.couponId}`}
+                      className="w-24 h-24 border-2 border-green-400 dark:border-green-500 rounded-lg"
+                    />
+                  ) : (
+                    <div className="w-24 h-24 bg-white dark:bg-gray-800 border-2 border-green-400 dark:border-green-500 rounded-lg flex items-center justify-center">
+                      <QrCode size={40} className="text-green-600 dark:text-green-400" />
+                    </div>
+                  )}
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">Scan for Entry</p>
                 </div>
               </div>
               <div className="mt-4 pt-4 border-t border-green-300 dark:border-green-600">
