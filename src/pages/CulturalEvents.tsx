@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Music, Users, Star, Trophy, Calendar, CheckCircle } from 'lucide-react';
+import { Music, Users, Star, Trophy, Calendar, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { culturalRegistrations } from '../lib/database';
 
 const CulturalEvents: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ const CulturalEvents: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const eventCategories = [
     {
@@ -82,10 +85,33 @@ const CulturalEvents: React.FC = () => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Cultural event registration:', formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Create registration
+      await culturalRegistrations.create({
+        participant_name: formData.participantName,
+        email: formData.email,
+        phone: formData.phone,
+        flat_number: formData.flatNumber,
+        event_category: formData.eventCategory,
+        event_title: formData.eventTitle,
+        participant_count: formData.participantCount,
+        description: formData.description,
+        special_requirements: formData.specialRequirements || null
+      });
+
+      console.log('Cultural event registration successful:', formData);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Cultural event registration error:', err);
+      setError(err instanceof Error ? err.message : 'An error occurred during registration. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -94,6 +120,9 @@ const CulturalEvents: React.FC = () => {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
 
   const selectedEvent = eventCategories.find(event => event.id === formData.eventCategory);
@@ -180,6 +209,15 @@ const CulturalEvents: React.FC = () => {
           </h2>
         </div>
 
+        {error && (
+          <div className="mx-8 mt-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-600 rounded-lg">
+            <div className="flex items-center space-x-2">
+              <AlertCircle className="text-red-600 dark:text-red-400" size={20} />
+              <p className="text-red-700 dark:text-red-300 font-medium">{error}</p>
+            </div>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -192,7 +230,8 @@ const CulturalEvents: React.FC = () => {
                 required
                 value={formData.participantName}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Enter your full name"
               />
             </div>
@@ -207,7 +246,8 @@ const CulturalEvents: React.FC = () => {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -222,7 +262,8 @@ const CulturalEvents: React.FC = () => {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="+91 98765 43210"
               />
             </div>
@@ -236,7 +277,8 @@ const CulturalEvents: React.FC = () => {
                 name="flatNumber"
                 value={formData.flatNumber}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="e.g., A-1205"
               />
             </div>
@@ -250,7 +292,8 @@ const CulturalEvents: React.FC = () => {
                 required
                 value={formData.eventCategory}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="">Select an event category</option>
                 {eventCategories.map((event) => (
@@ -273,7 +316,8 @@ const CulturalEvents: React.FC = () => {
                 max={selectedEvent?.maxParticipants || 20}
                 value={formData.participantCount}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Number of participants"
               />
               {selectedEvent && (
@@ -294,7 +338,8 @@ const CulturalEvents: React.FC = () => {
               required
               value={formData.eventTitle}
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              disabled={isSubmitting}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="Give a title to your performance"
             />
           </div>
@@ -308,8 +353,9 @@ const CulturalEvents: React.FC = () => {
               required
               value={formData.description}
               onChange={handleChange}
+              disabled={isSubmitting}
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="Describe your performance, theme, duration, etc."
             />
           </div>
@@ -322,8 +368,9 @@ const CulturalEvents: React.FC = () => {
               name="specialRequirements"
               value={formData.specialRequirements}
               onChange={handleChange}
+              disabled={isSubmitting}
               rows={3}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="Any special requirements for props, music, lighting, etc."
             />
           </div>
@@ -353,9 +400,17 @@ const CulturalEvents: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-purple-600 hover:to-violet-600 dark:hover:from-purple-700 dark:hover:to-violet-700 transition-all duration-200 transform hover:scale-105"
+            disabled={isSubmitting}
+            className="w-full bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-purple-600 hover:to-violet-600 dark:hover:from-purple-700 dark:hover:to-violet-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
-            Register for Cultural Event
+            {isSubmitting ? (
+              <div className="flex items-center justify-center space-x-2">
+                <Loader2 className="animate-spin" size={20} />
+                <span>Registering...</span>
+              </div>
+            ) : (
+              'Register for Cultural Event'
+            )}
           </button>
         </form>
       </div>

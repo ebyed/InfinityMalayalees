@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Heart, Award, QrCode, CheckCircle, User, Mail, Phone } from 'lucide-react';
+import { Heart, Award, QrCode, CheckCircle, User, Mail, Phone, AlertCircle, Loader2 } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { donations } from '../lib/database';
 
 const Donations: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,8 @@ const Donations: React.FC = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const sponsorshipTiers = [
     {
@@ -74,10 +77,33 @@ const Donations: React.FC = () => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Donation data:', formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Create donation
+      await donations.create({
+        donor_name: formData.donorName,
+        email: formData.email,
+        phone: formData.phone,
+        flat_number: formData.flatNumber || null,
+        donation_type: formData.donationType,
+        donation_amount: formData.donationAmount,
+        upi_id: formData.upiId || null,
+        transaction_id: formData.transactionId || null,
+        message: formData.message || null
+      });
+
+      console.log('Donation successful:', formData);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Donation error:', err);
+      setError(err instanceof Error ? err.message : 'An error occurred during donation submission. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -102,6 +128,9 @@ const Donations: React.FC = () => {
         [name]: value
       }));
     }
+    
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
 
   const selectedTier = sponsorshipTiers.find(tier => tier.id === formData.donationType);
@@ -111,15 +140,15 @@ const Donations: React.FC = () => {
       <div className="min-h-screen">
         <Navigation />
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="bg-green-50 rounded-2xl p-8 text-center border border-green-200">
-            <CheckCircle className="mx-auto text-green-500 mb-4" size={64} />
-            <h2 className="text-2xl font-bold text-green-800 mb-4">Donation Submitted!</h2>
-            <p className="text-green-700 mb-6">
+          <div className="bg-green-50 dark:bg-green-900/50 rounded-2xl p-8 text-center border border-green-200 dark:border-green-600">
+            <CheckCircle className="mx-auto text-green-500 dark:text-green-400 mb-4" size={64} />
+            <h2 className="text-2xl font-bold text-green-800 dark:text-green-300 mb-4">Donation Submitted!</h2>
+            <p className="text-green-700 dark:text-green-300 mb-6">
               Thank you for your generous contribution! Our admin team will verify your donation 
               and send you a confirmation with benefits details.
             </p>
-            <div className="bg-white rounded-lg p-4 border border-green-200 mb-6">
-              <p className="text-sm text-gray-600">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-green-200 dark:border-green-600 mb-6">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 <strong>Donation Type:</strong> {selectedTier?.name}<br />
                 <strong>Amount:</strong> ₹{formData.donationAmount}<br />
                 <strong>Donor:</strong> {formData.donorName}
@@ -141,7 +170,7 @@ const Donations: React.FC = () => {
                   message: ''
                 });
               }}
-              className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"
+              className="bg-green-500 dark:bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-600 dark:hover:bg-green-700 transition-colors"
             >
               Make Another Donation
             </button>
@@ -158,10 +187,10 @@ const Donations: React.FC = () => {
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             Support Onam 2025 Celebrations
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Help us make Onam 2025 a memorable celebration for the entire community. 
             Your generous contributions enable us to organize cultural events, authentic Sadya, and foster Malayalam traditions.
           </p>
@@ -172,16 +201,16 @@ const Donations: React.FC = () => {
           {sponsorshipTiers.map((tier) => (
             <div
               key={tier.id}
-              className={`bg-gradient-to-br ${tier.bgColor} rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-300 ${
-                formData.donationType === tier.id ? 'ring-2 ring-blue-500' : ''
+              className={`bg-gradient-to-br ${tier.bgColor} dark:from-gray-700 dark:to-gray-600 rounded-2xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all duration-300 ${
+                formData.donationType === tier.id ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
               }`}
             >
               <div className={`w-16 h-16 bg-gradient-to-br ${tier.color} rounded-full flex items-center justify-center mb-4`}>
                 <Award className="text-white" size={28} />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{tier.name}</h3>
-              <p className="text-2xl font-bold text-gray-800 mb-4">₹{tier.amount.toLocaleString()}</p>
-              <ul className="text-sm text-gray-600 space-y-1">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{tier.name}</h3>
+              <p className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">₹{tier.amount.toLocaleString()}</p>
+              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                 {tier.benefits.map((benefit, index) => (
                   <li key={index}>• {benefit}</li>
                 ))}
@@ -191,18 +220,27 @@ const Donations: React.FC = () => {
         </div>
 
         {/* Donation Form */}
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-red-500 to-pink-500 px-8 py-6">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
+          <div className="bg-gradient-to-r from-red-500 to-pink-500 dark:from-red-600 dark:to-pink-600 px-8 py-6">
             <h2 className="text-2xl font-bold text-white flex items-center">
               <Heart className="mr-3" size={28} />
               Donation Form
             </h2>
           </div>
 
+          {error && (
+            <div className="mx-8 mt-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-600 rounded-lg">
+              <div className="flex items-center space-x-2">
+                <AlertCircle className="text-red-600 dark:text-red-400" size={20} />
+                <p className="text-red-700 dark:text-red-300 font-medium">{error}</p>
+              </div>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="p-8 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   <User size={16} className="inline mr-2" />
                   Donor Name *
                 </label>
@@ -212,13 +250,14 @@ const Donations: React.FC = () => {
                   required
                   value={formData.donorName}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Enter your full name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   <Mail size={16} className="inline mr-2" />
                   Email Address *
                 </label>
@@ -228,13 +267,14 @@ const Donations: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   <Phone size={16} className="inline mr-2" />
                   Phone Number *
                 </label>
@@ -244,13 +284,14 @@ const Donations: React.FC = () => {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="+91 98765 43210"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Flat Number
                 </label>
                 <input
@@ -258,7 +299,8 @@ const Donations: React.FC = () => {
                   name="flatNumber"
                   value={formData.flatNumber}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="e.g., A-1205"
                 />
               </div>
@@ -266,7 +308,7 @@ const Donations: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Donation Type *
                 </label>
                 <select
@@ -274,7 +316,8 @@ const Donations: React.FC = () => {
                   required
                   value={formData.donationType}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {sponsorshipTiers.map((tier) => (
                     <option key={tier.id} value={tier.id}>
@@ -285,7 +328,7 @@ const Donations: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Amount
                 </label>
                 <div className="relative">
@@ -294,50 +337,52 @@ const Donations: React.FC = () => {
                     name="customAmount"
                     value={formData.customAmount}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder={`₹${formData.donationAmount}`}
                     min={formData.donationType === 'malayalee' ? 2000 : selectedTier?.amount}
                   />
                   {formData.donationType === 'malayalee' && (
-                    <p className="text-xs text-gray-500 mt-1">Minimum ₹2,000</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Minimum ₹2,000</p>
                   )}
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Message (Optional)
               </label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                disabled={isSubmitting}
                 rows={3}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Any message for the community..."
               />
             </div>
 
             {/* Payment Section */}
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Payment Details</h3>
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border border-gray-200 dark:border-gray-600">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Payment Details</h3>
               <div className="flex flex-col lg:flex-row gap-6">
                 <div className="flex-1 text-center">
-                  <div className="bg-white rounded-lg p-6 mb-4 border">
+                  <div className="bg-white dark:bg-gray-600 rounded-lg p-6 mb-4 border">
                     <QrCode size={150} className="mx-auto text-gray-400 mb-3" />
-                    <p className="text-sm text-gray-600 font-medium">Scan to Donate</p>
-                    <p className="text-lg font-bold text-gray-800 mt-2">₹{formData.donationAmount}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">Scan to Donate</p>
+                    <p className="text-lg font-bold text-gray-800 dark:text-gray-200 mt-2">₹{formData.donationAmount}</p>
                   </div>
-                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
-                    <p className="text-sm text-blue-800 font-medium">UPI ID:</p>
-                    <p className="text-blue-700 font-mono text-sm">infinitymalayalees@paytm</p>
+                  <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-3 border border-blue-200 dark:border-blue-600">
+                    <p className="text-sm text-blue-800 dark:text-blue-300 font-medium">UPI ID:</p>
+                    <p className="text-blue-700 dark:text-blue-400 font-mono text-sm">infinitymalayalees@paytm</p>
                   </div>
                 </div>
 
                 <div className="flex-1 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Your UPI ID (for verification)
                     </label>
                     <input
@@ -345,13 +390,14 @@ const Donations: React.FC = () => {
                       name="upiId"
                       value={formData.upiId}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="yourname@paytm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Transaction ID (After payment)
                     </label>
                     <input
@@ -359,14 +405,15 @@ const Donations: React.FC = () => {
                       name="transactionId"
                       value={formData.transactionId}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Enter transaction ID after payment"
                     />
                   </div>
 
-                  <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
-                    <h4 className="font-semibold text-yellow-800 mb-2">Payment Instructions:</h4>
-                    <ol className="text-yellow-700 text-sm space-y-1">
+                  <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-200 dark:border-yellow-600">
+                    <h4 className="font-semibold text-yellow-800 dark:text-yellow-300 mb-2">Payment Instructions:</h4>
+                    <ol className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1">
                       <li>1. Scan QR code or use UPI ID</li>
                       <li>2. Enter amount: ₹{formData.donationAmount}</li>
                       <li>3. Complete payment</li>
@@ -378,9 +425,9 @@ const Donations: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-              <h3 className="font-semibold text-red-800 mb-2">How Your Donation Helps:</h3>
-              <ul className="text-red-700 text-sm space-y-1">
+            <div className="bg-red-50 dark:bg-red-900/30 rounded-lg p-4 border border-red-200 dark:border-red-600">
+              <h3 className="font-semibold text-red-800 dark:text-red-300 mb-2">How Your Donation Helps:</h3>
+              <ul className="text-red-700 dark:text-red-300 text-sm space-y-1">
                 <li>• Subsidize Sadya costs for community members</li>
                 <li>• Arrange cultural program equipment and decorations</li>
                 <li>• Provide prizes and certificates for participants</li>
@@ -391,9 +438,17 @@ const Donations: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold py-4 px-6 rounded-lg hover:from-red-600 hover:to-pink-600 transition-all duration-200 transform hover:scale-105"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-red-500 to-pink-500 dark:from-red-600 dark:to-pink-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-red-600 hover:to-pink-600 dark:hover:from-red-700 dark:hover:to-pink-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              Complete Donation
+              {isSubmitting ? (
+                <div className="flex items-center justify-center space-x-2">
+                  <Loader2 className="animate-spin" size={20} />
+                  <span>Submitting...</span>
+                </div>
+              ) : (
+                'Complete Donation'
+              )}
             </button>
           </form>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Users, CheckCircle, User, Mail, Phone, Home } from 'lucide-react';
+import { Users, CheckCircle, User, Mail, Phone, Home, AlertCircle, Loader2 } from 'lucide-react';
+import { thiruvathiraRegistrations } from '../lib/database';
 
 const ThiruvathiraRegistration: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const ThiruvathiraRegistration: React.FC = () => {
 
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,17 +59,39 @@ const ThiruvathiraRegistration: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm()) {
-      // Here you would typically send the data to your backend/database
-      console.log('Thiruvathira registration:', formData);
-      
-      // Simulate API call
-      setTimeout(() => {
-        setIsSubmitted(true);
-      }, 500);
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Check if email already exists
+      const existingRegistration = await thiruvathiraRegistrations.getByEmail(formData.email);
+      if (existingRegistration) {
+        setError('This email is already registered for Thiruvathira. Please use a different email address.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Create registration
+      await thiruvathiraRegistrations.create({
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        flat_number: formData.flatNumber
+      });
+
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Thiruvathira registration error:', err);
+      setError(err instanceof Error ? err.message : 'An error occurred during registration. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -84,6 +109,9 @@ const ThiruvathiraRegistration: React.FC = () => {
         [name]: ''
       }));
     }
+    
+    // Clear general error
+    if (error) setError(null);
   };
 
   if (isSubmitted) {
@@ -173,6 +201,15 @@ const ThiruvathiraRegistration: React.FC = () => {
           <p className="text-pink-100 mt-2 font-medium">Simple registration - just 4 essential details</p>
         </div>
 
+        {error && (
+          <div className="mx-8 mt-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-600 rounded-lg">
+            <div className="flex items-center space-x-2">
+              <AlertCircle className="text-red-600 dark:text-red-400" size={20} />
+              <p className="text-red-700 dark:text-red-300 font-medium">{error}</p>
+            </div>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
           <div className="space-y-6">
             {/* Full Name */}
@@ -187,7 +224,8 @@ const ThiruvathiraRegistration: React.FC = () => {
                 required
                 value={formData.fullName}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm ${
+                disabled={isSubmitting}
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.fullName 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
                     : 'border-gray-300 dark:border-gray-600 focus:border-pink-500 dark:focus:border-pink-400'
@@ -211,7 +249,8 @@ const ThiruvathiraRegistration: React.FC = () => {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm ${
+                disabled={isSubmitting}
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.email 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
                     : 'border-gray-300 dark:border-gray-600 focus:border-pink-500 dark:focus:border-pink-400'
@@ -235,7 +274,8 @@ const ThiruvathiraRegistration: React.FC = () => {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm ${
+                disabled={isSubmitting}
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.phone 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
                     : 'border-gray-300 dark:border-gray-600 focus:border-pink-500 dark:focus:border-pink-400'
@@ -262,7 +302,8 @@ const ThiruvathiraRegistration: React.FC = () => {
                 required
                 value={formData.flatNumber}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm ${
+                disabled={isSubmitting}
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.flatNumber 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
                     : 'border-gray-300 dark:border-gray-600 focus:border-pink-500 dark:focus:border-pink-400'
@@ -289,9 +330,17 @@ const ThiruvathiraRegistration: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-500 dark:to-rose-500 text-white font-bold py-4 px-6 rounded-lg hover:from-pink-700 hover:to-rose-700 dark:hover:from-pink-600 dark:hover:to-rose-600 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg"
+            disabled={isSubmitting}
+            className="w-full bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-500 dark:to-rose-500 text-white font-bold py-4 px-6 rounded-lg hover:from-pink-700 hover:to-rose-700 dark:hover:from-pink-600 dark:hover:to-rose-600 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
-            💃 Register for Mega Thiruvathira 🌺
+            {isSubmitting ? (
+              <div className="flex items-center justify-center space-x-2">
+                <Loader2 className="animate-spin" size={20} />
+                <span>Registering...</span>
+              </div>
+            ) : (
+              '💃 Register for Mega Thiruvathira 🌺'
+            )}
           </button>
         </form>
       </div>
