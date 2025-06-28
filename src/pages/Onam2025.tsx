@@ -5,12 +5,14 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import SadyaRegistration from './SadyaRegistration';
 import CulturalEvents from './CulturalEvents';
+import MegaThiruvathiraRegistration from './MegaThiruvathiraRegistration';
 
 const Onam2025: React.FC = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(() => {
     if (location.pathname === '/sadya-registration') return 'sadya';
     if (location.pathname === '/cultural-events') return 'events';
+    if (location.pathname === '/mega-thiruvathira') return 'thiruvathira';
     return 'overview';
   });
 
@@ -248,6 +250,7 @@ const Onam2025: React.FC = () => {
             <TabButton tabId="overview" label="Overview" icon={Calendar} />
             <TabButton tabId="sadya" label="Sadya Registration" icon={Utensils} />
             <TabButton tabId="events" label="Cultural Events" icon={Music} />
+            <TabButton tabId="thiruvathira" label="Mega Thiruvathira" icon={Users} />
           </div>
         </div>
       </section>
@@ -279,7 +282,7 @@ const Onam2025: React.FC = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <div
                   onClick={() => setActiveTab('sadya')}
                   className={`group cursor-pointer bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 rounded-2xl p-8 border-2 border-green-400 dark:border-green-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden`}
@@ -319,7 +322,39 @@ const Onam2025: React.FC = () => {
                     Cultural Events
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 font-medium">
-                    Participate in dance, songs, skits, fashion show & Mega Thiruvathira
+                    Participate in dance, songs, skits, fashion show
+                  </p>
+                </div>
+
+                <div
+                  onClick={() => setActiveTab('thiruvathira')}
+                  className={`group cursor-pointer bg-gradient-to-br from-pink-100 to-rose-200 dark:from-pink-900/30 dark:to-rose-900/30 rounded-2xl p-8 border-2 border-pink-400 dark:border-pink-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden`}
+                >
+                  {/* Thiruvathira circle in background */}
+                  <div className="absolute top-1 right-1 opacity-15">
+                    <div className="relative w-8 h-8">
+                      {[...Array(6)].map((_, i) => (
+                        <div 
+                          key={i} 
+                          className="absolute w-1 h-3 bg-pink-600 rounded-full"
+                          style={{
+                            top: '50%',
+                            left: '50%',
+                            transform: `translate(-50%, -50%) rotate(${i * 60}deg) translateY(-8px)`,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className={`relative w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg`}>
+                    <Users className="text-white" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200">
+                    Mega Thiruvathira
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 font-medium">
+                    Ladies only traditional group dance registration
                   </p>
                 </div>
 
@@ -434,77 +469,6 @@ const Onam2025: React.FC = () => {
             </div>
           </section>
 
-          {/* Title Sponsors Section */}
-          <section className="py-16 bg-gradient-to-br from-purple-100 to-indigo-200 dark:from-gray-700 dark:to-gray-800 relative">
-            {/* Traditional background elements */}
-            <div className="absolute inset-0 opacity-5 dark:opacity-3">
-              <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-gradient-conic from-purple-400 to-indigo-400"></div>
-              <div className="absolute bottom-10 right-10 w-16 h-16 rounded-full bg-gradient-conic from-pink-400 to-purple-400"></div>
-              <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-amber-500 rounded-full"></div>
-              <div className="absolute bottom-1/3 right-1/4 w-12 h-8 bg-gradient-to-b from-cream-200 to-yellow-300 rounded-b-full"></div>
-            </div>
-
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-300 dark:bg-purple-600 text-purple-900 dark:text-purple-100 text-sm font-bold mb-4 border-2 border-purple-400 dark:border-purple-500">
-                  <Award size={16} className="mr-2" />
-                  🏆 Title Sponsors
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-700 to-indigo-700 dark:from-purple-400 dark:to-indigo-400 bg-clip-text text-transparent mb-4">
-                  Our Generous Sponsors
-                </h2>
-                <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
-                  Special thanks to our title sponsors who make these celebrations possible
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border-2 border-purple-300 dark:border-purple-500 text-center transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-conic from-yellow-300 to-orange-300 rounded-full opacity-15"></div>
-                  <div className="relative w-24 h-24 bg-gradient-to-br from-purple-500 to-indigo-600 dark:from-purple-400 dark:to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <Award className="text-white" size={40} />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">🥇 Title Sponsor</h3>
-                  <p className="text-gray-600 dark:text-gray-400 font-medium">Platinum Level Sponsorship</p>
-                  <p className="text-purple-700 dark:text-purple-400 font-bold mt-2 text-lg">₹50,000+</p>
-                </div>
-
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border-2 border-amber-300 dark:border-amber-500 text-center transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute top-2 right-2 w-4 h-4 bg-amber-400 rounded-full opacity-20"></div>
-                  <div className="relative w-24 h-24 bg-gradient-to-br from-amber-500 to-orange-600 dark:from-amber-400 dark:to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <Award className="text-white" size={40} />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">🥈 Gold Sponsor</h3>
-                  <p className="text-gray-600 dark:text-gray-400 font-medium">Gold Level Sponsorship</p>
-                  <p className="text-amber-700 dark:text-amber-400 font-bold mt-2 text-lg">₹25,000+</p>
-                </div>
-
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border-2 border-gray-300 dark:border-gray-500 text-center transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute top-2 right-2 w-8 h-6 bg-gradient-to-b from-cream-200 to-yellow-300 rounded-b-full opacity-15"></div>
-                  <div className="relative w-24 h-24 bg-gradient-to-br from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-700 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <Award className="text-white" size={40} />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">🥉 Silver Sponsor</h3>
-                  <p className="text-gray-600 dark:text-gray-400 font-medium">Silver Level Sponsorship</p>
-                  <p className="text-gray-700 dark:text-gray-400 font-bold mt-2 text-lg">₹10,000+</p>
-                </div>
-              </div>
-
-              <div className="text-center mt-8">
-                <p className="text-gray-700 dark:text-gray-300 mb-4 font-medium">
-                  Want to become a sponsor? Contact our organizing committee for sponsorship opportunities.
-                </p>
-                <Link
-                  to="/donations"
-                  className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 dark:from-purple-400 dark:to-indigo-400 text-white font-bold hover:from-purple-600 hover:to-indigo-600 dark:hover:from-purple-500 dark:hover:to-indigo-500 transition-all duration-200 shadow-lg transform hover:scale-105"
-                >
-                  💝 Become a Sponsor
-                  <Heart className="ml-2" size={18} />
-                </Link>
-              </div>
-            </div>
-          </section>
-
           {/* Event Schedule */}
           <section className="py-16 bg-white dark:bg-gray-900 relative">
             {/* Traditional background elements */}
@@ -526,24 +490,29 @@ const Onam2025: React.FC = () => {
               </div>
 
               <div className="space-y-8">
-                <div className="bg-gradient-to-r from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 rounded-2xl p-8 border-2 border-green-300 dark:border-green-500 shadow-lg relative overflow-hidden">
+                <div className="bg-gradient-to-r from-purple-100 to-violet-200 dark:from-purple-900/30 dark:to-violet-900/30 rounded-2xl p-8 border-2 border-purple-300 dark:border-purple-500 shadow-lg relative overflow-hidden">
                   <div className="absolute top-2 right-2 w-8 h-6 bg-gradient-to-b from-cream-200 to-yellow-300 rounded-b-full opacity-20"></div>
-                  <h3 className="relative text-2xl font-bold text-green-800 dark:text-green-300 mb-4">🌅 Day 1 - September 13, 2025</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <h3 className="relative text-2xl font-bold text-purple-800 dark:text-purple-300 mb-4">🌅 Day 1 - September 13, 2025</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                     <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Morning (10:00 AM - 12:00 PM)</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-1 font-medium">
-                        <li>🌸 Pookalam competition</li>
-                        <li>🎮 Traditional games</li>
-                        <li>🎭 Cultural program rehearsals</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Afternoon (12:00 PM - 3:00 PM)</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-1 font-medium">
-                        <li>🍛 Traditional Onam Sadya</li>
-                        <li>👨‍👩‍👧‍👦 Community lunch</li>
-                        <li>☕ Rest and bonding time</li>
+                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-4 text-lg">Evening (6:00 PM - 9:00 PM)</h4>
+                      <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                          <span>🎭 Cultural events and performances</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                          <span>🍛 Traditional food stalls</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                          <span>🎵 Live music and entertainment</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                          <span>👨‍👩‍👧‍👦 Community bonding activities</span>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -554,22 +523,65 @@ const Onam2025: React.FC = () => {
                   <h3 className="relative text-2xl font-bold text-amber-800 dark:text-amber-300 mb-4">🌆 Day 2 - September 14, 2025</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Evening (4:00 PM - 8:00 PM)</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-1 font-medium">
-                        <li>🎭 Cultural program showcase</li>
-                        <li>💃 Mega Thiruvathira</li>
-                        <li>🏆 Prize distribution</li>
+                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-3 text-lg">Morning Program</h4>
+                      <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span><strong>9:00 AM:</strong> 🎺 Onam procession, welcoming Maveli with Chenda Melam</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span><strong>10:00 AM:</strong> 💃 Mega Thiruvathira performance</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span><strong>10:30 AM:</strong> 🎮 Traditional Onam games</span>
+                        </li>
+                        <li className="flex items-center space-x-3 ml-6">
+                          <span className="w-1 h-1 bg-amber-400 rounded-full"></span>
+                          <span className="text-sm">• Vadam Vali (Tug of War)</span>
+                        </li>
+                        <li className="flex items-center space-x-3 ml-6">
+                          <span className="w-1 h-1 bg-amber-400 rounded-full"></span>
+                          <span className="text-sm">• Sundarikku Pottuthodal</span>
+                        </li>
+                        <li className="flex items-center space-x-3 ml-6">
+                          <span className="w-1 h-1 bg-amber-400 rounded-full"></span>
+                          <span className="text-sm">• Kudam Adi (Pot Breaking)</span>
+                        </li>
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Night (8:00 PM onwards)</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-1 font-medium">
-                        <li>🍽️ Community dinner</li>
-                        <li>🎵 DJ and dancing</li>
-                        <li>📸 Group photos & memories</li>
+                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-3 text-lg">Afternoon Feast</h4>
+                      <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span><strong>11:30 AM onwards:</strong> 🍛 Traditional Onam Sadya</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span>🌿 Served on authentic banana leaves</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span>🍮 20+ traditional dishes including Payasam</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                          <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                          <span>👨‍👩‍👧‍👦 Community dining experience</span>
+                        </li>
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="mt-8 bg-gradient-to-r from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 rounded-2xl p-6 border-2 border-green-300 dark:border-green-500">
+                <h4 className="font-bold text-green-800 dark:text-green-300 mb-3 text-lg text-center">📍 Venue Information</h4>
+                <div className="text-center text-gray-700 dark:text-gray-300 font-medium">
+                  <p><strong>🏛️ Location:</strong> Ajmera Infinity Community Hall</p>
+                  <p><strong>📍 Address:</strong> Neeladri Road, Karuna Nagar, Electronic City Phase 1, Bangalore - 560100</p>
+                  <p className="mt-2 text-green-700 dark:text-green-400"><strong>🎫 Entry:</strong> Valid Sadya coupon or event registration required</p>
                 </div>
               </div>
             </div>
@@ -586,6 +598,12 @@ const Onam2025: React.FC = () => {
       {activeTab === 'events' && (
         <div className="bg-gradient-to-br from-green-50 via-yellow-50 to-orange-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
           <CulturalEvents />
+        </div>
+      )}
+
+      {activeTab === 'thiruvathira' && (
+        <div className="bg-gradient-to-br from-green-50 via-yellow-50 to-orange-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
+          <MegaThiruvathiraRegistration />
         </div>
       )}
 
