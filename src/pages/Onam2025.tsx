@@ -5,14 +5,14 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import SadyaRegistration from './SadyaRegistration';
 import CulturalEvents from './CulturalEvents';
-import MegaThiruvathiraRegistration from './MegaThiruvathiraRegistration';
+import ThiruvathiraRegistration from './ThiruvathiraRegistration';
 
 const Onam2025: React.FC = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(() => {
     if (location.pathname === '/sadya-registration') return 'sadya';
     if (location.pathname === '/cultural-events') return 'events';
-    if (location.pathname === '/mega-thiruvathira') return 'thiruvathira';
+    if (location.pathname === '/thiruvathira-registration') return 'thiruvathira';
     return 'overview';
   });
 
@@ -603,7 +603,7 @@ const Onam2025: React.FC = () => {
 
       {activeTab === 'thiruvathira' && (
         <div className="bg-gradient-to-br from-green-50 via-yellow-50 to-orange-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
-          <MegaThiruvathiraRegistration />
+          <ThiruvathiraRegistration />
         </div>
       )}
 

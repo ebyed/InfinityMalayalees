@@ -8,6 +8,7 @@ import Onam2025 from './pages/Onam2025';
 import MalayaleeRegistration from './pages/MalayaleeRegistration';
 import SadyaRegistration from './pages/SadyaRegistration';
 import CulturalEvents from './pages/CulturalEvents';
+import ThiruvathiraRegistration from './pages/ThiruvathiraRegistration';
 import Donations from './pages/Donations';
 import AdminPortal from './pages/AdminPortal';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/malayalee-registration" element={<MalayaleeRegistration />} />
             <Route path="/sadya-registration" element={<SadyaRegistration />} />
             <Route path="/cultural-events" element={<CulturalEvents />} />
+            <Route path="/thiruvathira-registration" element={<ThiruvathiraRegistration />} />
             <Route path="/donations" element={<Donations />} />
             <Route path="/admin" element={<AdminPortal />} />
           </Routes>

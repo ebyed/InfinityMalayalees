@@ -16,7 +16,8 @@ import {
   Save,
   Eye,
   QrCode,
-  X
+  X,
+  Crown
 } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -86,6 +87,37 @@ const AdminPortal: React.FC = () => {
       registeredAt: '2024-12-18T09:15:00Z'
     }
   ];
+
+  // Thiruvathira registrations state
+  const [thiruvathiraRegistrations, setThiruvathiraRegistrations] = useState([
+    {
+      id: 1,
+      fullName: 'Deepa Pillai',
+      email: 'deepa@example.com',
+      phone: '+91 98765 43215',
+      flatNumber: 'A-905',
+      status: 'registered',
+      registeredAt: '2024-12-20T14:20:00Z'
+    },
+    {
+      id: 2,
+      fullName: 'Kavitha Nair',
+      email: 'kavitha@example.com',
+      phone: '+91 98765 43216',
+      flatNumber: 'B-1105',
+      status: 'registered',
+      registeredAt: '2024-12-19T16:45:00Z'
+    },
+    {
+      id: 3,
+      fullName: 'Sujatha Menon',
+      email: 'sujatha@example.com',
+      phone: '+91 98765 43217',
+      flatNumber: 'C-705',
+      status: 'registered',
+      registeredAt: '2024-12-18T11:30:00Z'
+    }
+  ]);
 
   const [donations, setDonations] = useState([
     {
@@ -224,6 +256,19 @@ const AdminPortal: React.FC = () => {
     alert(`✅ Thank you note sent to ${donation.email} for their generous donation of ₹${donation.amount} from ${emailSettings.emailAddress}`);
   };
 
+  const sendThiruvathiraConfirmation = (registration: any) => {
+    if (!emailSettings.isConfigured) {
+      alert('❌ Please configure email settings first to send notifications');
+      setShowEmailSettings(true);
+      return;
+    }
+
+    console.log(`Sending Thiruvathira confirmation to ${registration.email}`);
+    console.log(`Using email: ${emailSettings.emailAddress}`);
+    // Here you would send a confirmation email with rehearsal details
+    alert(`✅ Thiruvathira confirmation and rehearsal details sent to ${registration.email} from ${emailSettings.emailAddress}`);
+  };
+
   const TabButton = ({ tabId, label, icon: Icon, count }: { tabId: string, label: string, icon: any, count?: number }) => (
     <button
       onClick={() => setActiveTab(tabId)}
@@ -251,7 +296,8 @@ const AdminPortal: React.FC = () => {
       verified: { color: 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-300 dark:border-green-600', label: '✅ Verified' },
       approved: { color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border-blue-300 dark:border-blue-600', label: '👍 Approved' },
       rejected: { color: 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border-red-300 dark:border-red-600', label: '❌ Rejected' },
-      active: { color: 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-300 dark:border-green-600', label: '✅ Active' }
+      active: { color: 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border-green-300 dark:border-green-600', label: '✅ Active' },
+      registered: { color: 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 border-pink-300 dark:border-pink-600', label: '💃 Registered' }
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
@@ -601,6 +647,7 @@ const AdminPortal: React.FC = () => {
         <div className="flex flex-wrap gap-4 mb-8">
           <TabButton tabId="sadya" label="Sadya Registrations" icon={Utensils} count={sadyaRegistrations.length} />
           <TabButton tabId="cultural" label="Cultural Events" icon={Music} count={culturalEvents.length} />
+          <TabButton tabId="thiruvathira" label="Thiruvathira" icon={Crown} count={thiruvathiraRegistrations.length} />
           <TabButton tabId="donations" label="Donations" icon={Heart} count={donations.length} />
           <TabButton tabId="members" label="Malayalee Members" icon={Users} count={malayaleeMembers.length} />
         </div>
@@ -630,6 +677,7 @@ const AdminPortal: React.FC = () => {
                 <option value="verified">Verified</option>
                 <option value="approved">Approved</option>
                 <option value="rejected">Rejected</option>
+                <option value="registered">Registered</option>
               </select>
             </div>
           </div>
@@ -785,6 +833,92 @@ const AdminPortal: React.FC = () => {
             </div>
           )}
 
+          {/* Thiruvathira Registrations */}
+          {activeTab === 'thiruvathira' && (
+            <div>
+              <div className="px-6 py-4 border-b border-orange-200 dark:border-gray-600 bg-gradient-to-r from-pink-100 to-rose-100 dark:from-gray-700 dark:to-gray-600">
+                <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 flex items-center">
+                  <Crown className="mr-2" size={22} />
+                  💃 Mega Thiruvathira Registrations
+                </h2>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-pink-50 dark:bg-gray-700">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                        Participant
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                        Contact Details
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                        Registration Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                    {thiruvathiraRegistrations.map((registration) => (
+                      <tr key={registration.id} className="hover:bg-pink-50 dark:hover:bg-gray-700 transition-colors">
+                        <td className="px-6 py-4">
+                          <div>
+                            <div className="font-bold text-gray-900 dark:text-gray-100">{registration.fullName}</div>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">🏠 Flat: {registration.flatNumber}</div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm">
+                            <div className="text-gray-900 dark:text-gray-100">📧 {registration.email}</div>
+                            <div className="text-gray-500 dark:text-gray-400">📱 {registration.phone}</div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-900 dark:text-gray-100">
+                            {new Date(registration.registeredAt).toLocaleDateString('en-IN', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <StatusBadge status={registration.status} />
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={() => sendThiruvathiraConfirmation(registration)}
+                              className="text-pink-600 dark:text-pink-400 hover:text-pink-800 dark:hover:text-pink-300 flex items-center space-x-1 px-3 py-1 rounded-full hover:bg-pink-100 dark:hover:bg-pink-900/30 transition-all"
+                              title="Send Rehearsal Details"
+                            >
+                              <Send size={16} />
+                              <span className="text-xs font-medium">Send Details</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+              {thiruvathiraRegistrations.length === 0 && (
+                <div className="p-8 text-center">
+                  <Crown size={48} className="mx-auto text-gray-400 dark:text-gray-500 mb-4" />
+                  <p className="text-gray-500 dark:text-gray-400 font-medium">No Thiruvathira registrations yet</p>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Donations */}
           {activeTab === 'donations' && (
             <div>
@@ -888,7 +1022,7 @@ const AdminPortal: React.FC = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mt-8">
           <div className="bg-gradient-to-r from-green-500 to-emerald-500 dark:from-green-600 dark:to-emerald-600 rounded-lg p-6 text-white shadow-lg transform hover:scale-105 transition-all">
             <div className="flex items-center justify-between">
               <div>
@@ -908,6 +1042,16 @@ const AdminPortal: React.FC = () => {
                 <p className="text-3xl font-bold">{culturalEvents.length}</p>
               </div>
               <Music size={36} className="text-purple-200" />
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-pink-500 to-rose-500 dark:from-pink-600 dark:to-rose-600 rounded-lg p-6 text-white shadow-lg transform hover:scale-105 transition-all">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-pink-100 font-medium">💃 Thiruvathira</p>
+                <p className="text-3xl font-bold">{thiruvathiraRegistrations.length}</p>
+              </div>
+              <Crown size={36} className="text-pink-200" />
             </div>
           </div>
 
