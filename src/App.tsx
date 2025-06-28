@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Homepage from './pages/Homepage';
+import AboutUs from './pages/AboutUs';
+import Events from './pages/Events';
 import Onam2025 from './pages/Onam2025';
 import MalayaleeRegistration from './pages/MalayaleeRegistration';
 import SadyaRegistration from './pages/SadyaRegistration';
@@ -16,6 +18,8 @@ function App() {
         <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-red-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/onam-2025" element={<Onam2025 />} />
             <Route path="/malayalee-registration" element={<MalayaleeRegistration />} />
             <Route path="/sadya-registration" element={<SadyaRegistration />} />

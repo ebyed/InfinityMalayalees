@@ -41,9 +41,14 @@ const Footer: React.FC = () => {
                 <Phone size={18} className="text-yellow-300 dark:text-amber-300" />
                 <span className="text-sm font-medium">+91 98765 43210</span>
               </div>
-              <div className="flex items-center space-x-3 p-3 bg-white/10 dark:bg-gray-700/50 rounded-lg backdrop-blur-sm">
-                <MapPin size={18} className="text-yellow-300 dark:text-amber-300" />
-                <span className="text-sm font-medium">Ajmera Infinity, Mumbai</span>
+              <div className="flex items-start space-x-3 p-3 bg-white/10 dark:bg-gray-700/50 rounded-lg backdrop-blur-sm">
+                <MapPin size={18} className="text-yellow-300 dark:text-amber-300 mt-0.5" />
+                <div className="text-sm font-medium">
+                  <div>Ajmera Infinity</div>
+                  <div>Neeladri Road, Karuna Nagar</div>
+                  <div>Electronic City Phase 1</div>
+                  <div>Bangalore - 560100</div>
+                </div>
               </div>
             </div>
           </div>

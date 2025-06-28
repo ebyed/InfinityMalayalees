@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Calendar, Users, Heart, Settings } from 'lucide-react';
+import { Home, Calendar, Users, Heart, Settings, Info } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation: React.FC = () => {
@@ -8,8 +8,8 @@ const Navigation: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/onam-2025', label: 'Onam 2025', icon: Calendar },
-    { path: '/malayalee-registration', label: 'Register', icon: Users },
+    { path: '/about', label: 'About Us', icon: Info },
+    { path: '/events', label: 'Events', icon: Calendar },
     { path: '/donations', label: 'Donate', icon: Heart },
   ];
 
@@ -25,7 +25,7 @@ const Navigation: React.FC = () => {
               <span className="font-bold text-xl bg-gradient-to-r from-orange-600 to-red-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
                 Infinity Malayalees
               </span>
-              <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Onam 2025 Celebrations</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Ajmera Infinity, Bangalore</span>
             </div>
           </Link>
 
@@ -36,7 +36,7 @@ const Navigation: React.FC = () => {
                 to={path}
                 className={`flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 ${
                   location.pathname === path || 
-                  (path === '/onam-2025' && (location.pathname === '/sadya-registration' || location.pathname === '/cultural-events'))
+                  (path === '/events' && (location.pathname === '/onam-2025' || location.pathname === '/sadya-registration' || location.pathname === '/cultural-events'))
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 dark:from-amber-500 dark:to-orange-500 text-white shadow-lg border-2 border-yellow-300 dark:border-amber-300'
                     : 'text-gray-700 dark:text-gray-300 hover:text-orange-700 dark:hover:text-amber-400 hover:bg-gradient-to-r hover:from-orange-100 hover:to-yellow-100 dark:hover:from-gray-800 dark:hover:to-gray-700 hover:shadow-md'
                 }`}
@@ -48,6 +48,13 @@ const Navigation: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
+            <Link
+              to="/malayalee-registration"
+              className="flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-600 dark:hover:from-blue-500 dark:hover:to-cyan-500 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            >
+              <Users size={18} />
+              <span className="hidden sm:block">Register</span>
+            </Link>
             <ThemeToggle />
             <Link
               to="/admin"
@@ -69,7 +76,7 @@ const Navigation: React.FC = () => {
               to={path}
               className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-bold transition-all duration-300 ${
                 location.pathname === path || 
-                (path === '/onam-2025' && (location.pathname === '/sadya-registration' || location.pathname === '/cultural-events'))
+                (path === '/events' && (location.pathname === '/onam-2025' || location.pathname === '/sadya-registration' || location.pathname === '/cultural-events'))
                   ? 'bg-gradient-to-r from-orange-500 to-red-500 dark:from-amber-500 dark:to-orange-500 text-white shadow-lg'
                   : 'text-gray-700 dark:text-gray-300 hover:text-orange-700 dark:hover:text-amber-400 hover:bg-gradient-to-r hover:from-orange-100 hover:to-yellow-100 dark:hover:from-gray-700 dark:hover:to-gray-600'
               }`}
@@ -78,6 +85,13 @@ const Navigation: React.FC = () => {
               <span>{label}</span>
             </Link>
           ))}
+          <Link
+            to="/malayalee-registration"
+            className="flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 text-white shadow-lg"
+          >
+            <Users size={20} />
+            <span>Register</span>
+          </Link>
         </div>
       </div>
     </nav>

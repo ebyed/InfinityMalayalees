@@ -117,13 +117,6 @@ const Homepage: React.FC = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            <div className="mb-8">
-              <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 dark:from-amber-400 dark:to-orange-400 text-orange-900 dark:text-gray-900 text-sm font-bold mb-4 shadow-lg border-2 border-yellow-400 dark:border-amber-300">
-                <Sparkles size={18} className="mr-2 text-red-600 dark:text-red-700" />
-                🌺 Onam 2025 Celebrations 🌺
-              </div>
-            </div>
-            
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 dark:from-amber-400 dark:via-orange-400 dark:to-red-400">
                 Infinity Malayalees
@@ -135,16 +128,16 @@ const Homepage: React.FC = () => {
             </h1>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto font-medium">
-              Join us in celebrating the spirit of Onam 2025! Experience the joy of Malayalam culture, 
+              Join us in celebrating the spirit of Malayalam culture! Experience the joy of traditional festivals, 
               delicious Sadya, vibrant cultural programs, and the warmth of our community. 🎭🍛
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
-                to="/onam-2025"
+                to="/events"
                 className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 dark:from-amber-500 dark:via-orange-500 dark:to-red-500 text-white font-bold text-lg hover:from-red-600 hover:via-orange-600 hover:to-yellow-600 dark:hover:from-amber-600 dark:hover:via-orange-600 dark:hover:to-red-600 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-yellow-400 dark:border-amber-300"
               >
-                🎉 Take me to Onam Celebrations 🎉
+                🎉 Explore Our Events 🎉
                 <ArrowRight className="ml-2" size={20} />
               </Link>
               
@@ -160,7 +153,7 @@ const Homepage: React.FC = () => {
         </div>
       </section>
 
-      {/* Onam Highlights */}
+      {/* Community Highlights */}
       <section className="py-16 bg-gradient-to-br from-green-50 via-yellow-50 to-orange-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative">
         {/* Traditional Food Background Elements */}
         <div className="absolute inset-0 opacity-5 dark:opacity-3">
@@ -183,10 +176,10 @@ const Homepage: React.FC = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-700 to-orange-700 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-4">
-              🌟 Onam 2025 Highlights 🌟
+              🌟 Community Highlights 🌟
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
-              September 13-14, 2025 • Experience the grandest Onam celebration at Ajmera Infinity
+              Discover what makes our Malayalam community special at Ajmera Infinity
             </p>
           </div>
 
@@ -199,12 +192,11 @@ const Homepage: React.FC = () => {
               <div className="relative w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 dark:from-emerald-400 dark:to-green-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Gift className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-green-800 dark:text-emerald-300 mb-4">🍛 Traditional Sadya</h3>
+              <h3 className="text-xl font-bold text-green-800 dark:text-emerald-300 mb-4">🍛 Authentic Traditions</h3>
               <p className="text-green-700 dark:text-gray-300 mb-4 font-medium">
-                Authentic Kerala Sadya with 20+ traditional dishes served on banana leaves. 
-                A feast that brings back memories of home!
+                Experience genuine Kerala culture with traditional Sadya, classical arts, 
+                and time-honored customs that connect us to our roots.
               </p>
-              <p className="text-green-800 dark:text-emerald-400 font-bold text-lg">₹350 per person</p>
             </div>
 
             <div className="bg-gradient-to-br from-purple-100 to-violet-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-purple-300 dark:border-purple-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 relative overflow-hidden">
@@ -220,12 +212,11 @@ const Homepage: React.FC = () => {
               <div className="relative w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 dark:from-purple-400 dark:to-violet-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Users className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-purple-800 dark:text-purple-300 mb-4">🎭 Cultural Programs</h3>
+              <h3 className="text-xl font-bold text-purple-800 dark:text-purple-300 mb-4">🎭 Vibrant Community</h3>
               <p className="text-purple-700 dark:text-gray-300 mb-4 font-medium">
-                Spectacular performances including Thiruvathira, folk dances, songs, skits, 
-                and fashion shows by our talented community members.
+                Join a warm, welcoming community of Malayalam families who share 
+                the same love for culture, traditions, and creating lasting friendships.
               </p>
-              <p className="text-purple-800 dark:text-purple-400 font-bold">Open for all residents</p>
             </div>
 
             <div className="bg-gradient-to-br from-amber-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 relative overflow-hidden">
@@ -235,12 +226,11 @@ const Homepage: React.FC = () => {
               <div className="relative w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 dark:from-amber-400 dark:to-orange-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Calendar className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">📅 Two-Day Celebration</h3>
+              <h3 className="text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">📅 Year-Round Events</h3>
               <p className="text-amber-700 dark:text-gray-300 mb-4 font-medium">
-                Two full days of festivities with morning programs, Sadya lunch, 
-                evening cultural events, and community bonding activities.
+                From grand Onam celebrations to intimate cultural gatherings, 
+                we organize events throughout the year that bring our community together.
               </p>
-              <p className="text-amber-800 dark:text-amber-400 font-bold">Sept 13-14, 2025</p>
             </div>
           </div>
         </div>
@@ -265,17 +255,18 @@ const Homepage: React.FC = () => {
 
         <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white dark:text-gray-100 mb-6">
-            🎊 Ready to Join the Celebration? 🎊
+            🎊 Ready to Join Our Community? 🎊
           </h2>
           <p className="text-xl text-green-100 dark:text-gray-300 mb-8 font-medium">
-            Register now and be part of the most memorable Onam celebration at Ajmera Infinity!
+            Become part of our vibrant Malayalam family at Ajmera Infinity and experience 
+            the joy of celebrating our rich cultural heritage together!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/onam-2025"
+              to="/events"
               className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-green-700 dark:text-amber-400 font-bold text-lg hover:bg-green-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-yellow-300 dark:border-amber-400"
             >
-              View Onam Portal
+              View All Events
               <ArrowRight className="ml-2" size={20} />
             </Link>
             <Link
