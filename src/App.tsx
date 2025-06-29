@@ -16,7 +16,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="min-h-screen bg-serene-gradient dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div className="min-h-screen bg-golden-gradient dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/about" element={<AboutUs />} />

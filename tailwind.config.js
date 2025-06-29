@@ -5,21 +5,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Serene Backwaters Theme (Portal Base)
-        serene: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
-          950: '#042f2e',
+        // Golden Harvest Theme (Portal Base)
+        golden: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
         },
-        backwater: {
+        harvest: {
           50: '#fefdf8',
           100: '#fefbeb',
           200: '#fef3c7',
@@ -32,18 +32,18 @@ export default {
           900: '#713f12',
           950: '#422006',
         },
-        sage: {
-          50: '#f6f7f6',
-          100: '#e3e8e3',
-          200: '#c7d2c7',
-          300: '#9fb09f',
-          400: '#7a8f7a',
-          500: '#5d735d',
-          600: '#485a48',
-          700: '#3c4a3c',
-          800: '#323d32',
-          900: '#2b342b',
-          950: '#161c16',
+        amber: {
+          50: '#fffbf0',
+          100: '#fef7e0',
+          200: '#feebc8',
+          300: '#fbd38d',
+          400: '#f6ad55',
+          500: '#ed8936',
+          600: '#dd6b20',
+          700: '#c05621',
+          800: '#9c4221',
+          900: '#7b341e',
+          950: '#42180a',
         },
         
         // Tropical Bloom Theme (Onam Sections)
@@ -105,6 +105,8 @@ export default {
         'spin-slow': 'spin 8s linear infinite',
         'float': 'float 6s ease-in-out infinite',
         'shimmer': 'shimmer 2s linear infinite',
+        'sway': 'sway 4s ease-in-out infinite',
+        'dance': 'dance 3s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -115,10 +117,20 @@ export default {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
         },
+        sway: {
+          '0%, 100%': { transform: 'rotate(-2deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        },
+        dance: {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '25%': { transform: 'translateY(-5px) rotate(1deg)' },
+          '75%': { transform: 'translateY(-3px) rotate(-1deg)' },
+        },
       },
       backgroundImage: {
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
-        'serene-gradient': 'linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 25%, #99f6e4 50%, #5eead4 75%, #2dd4bf 100%)',
+        'golden-gradient': 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 25%, #fde68a 50%, #fcd34d 75%, #fbbf24 100%)',
+        'harvest-gradient': 'linear-gradient(135deg, #fefdf8 0%, #fefbeb 25%, #fef3c7 50%, #fde68a 75%, #facc15 100%)',
         'tropical-gradient': 'linear-gradient(135deg, #fef7ed 0%, #fdedd4 25%, #fbd7a8 50%, #f8b871 75%, #f59338 100%)',
         'bloom-gradient': 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 25%, #fbcfe8 50%, #f9a8d4 75%, #f472b6 100%)',
       },

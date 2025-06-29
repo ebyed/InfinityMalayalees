@@ -9,41 +9,167 @@ const Homepage: React.FC = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section with Serene Backwaters Theme */}
-      <section className="relative overflow-hidden bg-serene-gradient dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
-        {/* Backwater elements */}
-        <div className="absolute inset-0 opacity-20 dark:opacity-10">
-          {/* Gentle water ripples */}
-          <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-gradient-to-br from-serene-300 to-backwater-300 animate-pulse-slow"></div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full bg-gradient-to-br from-sage-300 to-serene-300 animate-float"></div>
-          <div className="absolute top-1/2 left-1/4 w-32 h-32 rounded-full bg-gradient-to-br from-backwater-300 to-sage-300 animate-bounce-slow"></div>
-          
-          {/* Coconut palm silhouettes */}
-          <div className="absolute top-10 right-10 w-16 h-40 opacity-30">
-            <div className="w-2 h-32 bg-sage-600 mx-auto"></div>
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-              {[...Array(6)].map((_, i) => (
-                <div 
-                  key={i} 
-                  className="absolute w-12 h-3 bg-serene-600 rounded-full"
-                  style={{
-                    transform: `rotate(${i * 60}deg) translateY(-8px)`,
-                    transformOrigin: 'center bottom'
-                  }}
-                />
-              ))}
-            </div>
+      {/* Hero Section with Golden Harvest Theme and Kerala Cultural Silhouettes */}
+      <section className="relative overflow-hidden bg-golden-gradient dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
+        {/* Kathakali Dancer Silhouette */}
+        <div className="absolute top-10 right-10 w-32 h-48 opacity-15 dark:opacity-8">
+          <div className="w-full h-full relative">
+            {/* Elaborate Kathakali headdress */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-16 bg-gradient-to-b from-golden-600 to-harvest-600 rounded-t-full"></div>
+            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-20 h-12 bg-gradient-to-b from-amber-500 to-golden-500 rounded-t-full"></div>
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gradient-to-b from-harvest-400 to-golden-400 rounded-t-full"></div>
+            
+            {/* Face */}
+            <div className="absolute top-12 left-1/2 transform -translate-x-1/2 w-12 h-16 bg-gradient-to-b from-amber-600 to-harvest-600 rounded-full"></div>
+            
+            {/* Elaborate costume */}
+            <div className="absolute top-28 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-gradient-to-b from-golden-500 to-harvest-500 rounded-lg"></div>
+            
+            {/* Arms in dramatic pose */}
+            <div className="absolute top-32 left-2 w-8 h-16 bg-amber-600 rounded-lg transform rotate-45 animate-sway"></div>
+            <div className="absolute top-32 right-2 w-8 h-16 bg-amber-600 rounded-lg transform -rotate-45 animate-sway"></div>
           </div>
+        </div>
+
+        {/* Mohiniyattam Dancer Silhouette */}
+        <div className="absolute top-20 left-16 w-24 h-40 opacity-12 dark:opacity-6">
+          <div className="w-full h-full relative animate-dance">
+            {/* Hair bun with flowers */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-golden-500 to-harvest-500 rounded-full"></div>
+            <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-amber-400 rounded-full"></div>
+            
+            {/* Head */}
+            <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-6 h-8 bg-gradient-to-b from-harvest-600 to-golden-600 rounded-full"></div>
+            
+            {/* Graceful body */}
+            <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-8 h-12 bg-gradient-to-b from-golden-500 to-harvest-500 rounded-lg"></div>
+            
+            {/* Flowing costume */}
+            <div className="absolute top-26 left-1/2 transform -translate-x-1/2 w-12 h-14 bg-gradient-to-b from-amber-400 to-golden-400 rounded-b-full"></div>
+            
+            {/* Graceful arms */}
+            <div className="absolute top-16 left-0 w-6 h-2 bg-harvest-600 rounded-full transform rotate-12"></div>
+            <div className="absolute top-16 right-0 w-6 h-2 bg-harvest-600 rounded-full transform -rotate-12"></div>
+          </div>
+        </div>
+
+        {/* Theyyam Performer Silhouette */}
+        <div className="absolute bottom-20 right-24 w-28 h-44 opacity-10 dark:opacity-5">
+          <div className="w-full h-full relative">
+            {/* Elaborate Theyyam headdress */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-gradient-to-b from-golden-600 via-harvest-600 to-amber-600 rounded-t-full"></div>
+            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-b from-harvest-500 to-golden-500 rounded-t-full"></div>
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-amber-400 rounded-t-full"></div>
+            
+            {/* Face mask */}
+            <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-10 h-12 bg-gradient-to-b from-harvest-700 to-golden-700 rounded-lg"></div>
+            
+            {/* Body */}
+            <div className="absolute top-28 left-1/2 transform -translate-x-1/2 w-14 h-16 bg-gradient-to-b from-golden-500 to-harvest-500 rounded-lg"></div>
+            
+            {/* Dramatic pose */}
+            <div className="absolute top-32 left-1 w-6 h-12 bg-amber-600 rounded-lg transform rotate-30"></div>
+            <div className="absolute top-32 right-1 w-6 h-12 bg-amber-600 rounded-lg transform -rotate-30"></div>
+          </div>
+        </div>
+
+        {/* Koodiyattam Artist Silhouette */}
+        <div className="absolute bottom-32 left-20 w-20 h-36 opacity-8 dark:opacity-4">
+          <div className="w-full h-full relative animate-pulse-slow">
+            {/* Traditional crown */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-12 h-8 bg-gradient-to-b from-golden-500 to-harvest-500 rounded-t-lg"></div>
+            
+            {/* Head */}
+            <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-8 h-10 bg-gradient-to-b from-harvest-600 to-golden-600 rounded-full"></div>
+            
+            {/* Classical costume */}
+            <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-10 h-14 bg-gradient-to-b from-golden-500 to-harvest-500 rounded-lg"></div>
+            
+            {/* Traditional dhoti */}
+            <div className="absolute top-30 left-1/2 transform -translate-x-1/2 w-12 h-6 bg-amber-400 rounded-b-lg"></div>
+          </div>
+        </div>
+
+        {/* Chenda Player Silhouette */}
+        <div className="absolute top-1/2 left-1/4 w-24 h-32 opacity-12 dark:opacity-6">
+          <div className="w-full h-full relative">
+            {/* Head */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-6 h-8 bg-gradient-to-b from-harvest-600 to-golden-600 rounded-full"></div>
+            
+            {/* Body */}
+            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-8 h-12 bg-gradient-to-b from-golden-500 to-harvest-500 rounded-lg"></div>
+            
+            {/* Chenda drum */}
+            <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-10 h-8 bg-gradient-to-r from-amber-600 to-harvest-600 rounded-full"></div>
+            
+            {/* Arms holding sticks */}
+            <div className="absolute top-12 left-2 w-6 h-2 bg-harvest-600 rounded-full transform rotate-45"></div>
+            <div className="absolute top-12 right-2 w-6 h-2 bg-harvest-600 rounded-full transform -rotate-45"></div>
+          </div>
+        </div>
+
+        {/* Traditional Boat (Vallam) Silhouettes */}
+        <div className="absolute bottom-10 left-10 w-64 h-12 opacity-15 dark:opacity-8">
+          <div className="w-full h-full bg-gradient-to-r from-golden-600 to-harvest-600 rounded-full transform rotate-3"></div>
+          <div className="absolute top-2 left-4 w-56 h-8 bg-gradient-to-r from-harvest-500 to-amber-500 rounded-full transform rotate-3"></div>
+          {/* Boat crew silhouettes */}
+          {[...Array(8)].map((_, i) => (
+            <div 
+              key={i} 
+              className="absolute top-0 w-2 h-6 bg-golden-700 rounded-full"
+              style={{ left: `${20 + i * 24}px` }}
+            />
+          ))}
+        </div>
+
+        {/* Coconut Palm Silhouettes */}
+        <div className="absolute top-16 right-1/3 w-16 h-40 opacity-20 dark:opacity-10">
+          <div className="w-2 h-32 bg-harvest-600 mx-auto"></div>
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
+            {[...Array(8)].map((_, i) => (
+              <div 
+                key={i} 
+                className="absolute w-12 h-3 bg-golden-600 rounded-full animate-sway"
+                style={{
+                  transform: `rotate(${i * 45}deg) translateY(-8px)`,
+                  transformOrigin: 'center bottom',
+                  animationDelay: `${i * 0.2}s`
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Traditional Kerala Architecture Elements */}
+        <div className="absolute bottom-16 right-16 w-32 h-20 opacity-10 dark:opacity-5">
+          {/* Traditional roof */}
+          <div className="w-full h-8 bg-gradient-to-r from-harvest-600 to-golden-600 rounded-t-lg transform -skew-x-12"></div>
+          <div className="w-full h-12 bg-gradient-to-r from-golden-500 to-harvest-500 rounded-b-lg"></div>
+          {/* Pillars */}
+          <div className="absolute bottom-0 left-4 w-2 h-16 bg-amber-600"></div>
+          <div className="absolute bottom-0 right-4 w-2 h-16 bg-amber-600"></div>
+        </div>
+
+        {/* Golden harvest elements scattered */}
+        <div className="absolute inset-0 opacity-20 dark:opacity-10">
+          {/* Rice grains pattern */}
+          <div className="absolute top-1/4 right-1/4 w-6 h-3 bg-golden-400 rounded-full transform rotate-12"></div>
+          <div className="absolute top-1/3 right-1/5 w-5 h-2 bg-harvest-500 rounded-full transform -rotate-12"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-7 h-3 bg-amber-600 rounded-full transform rotate-45"></div>
           
-          {/* Traditional boat silhouettes */}
-          <div className="absolute bottom-16 left-16 w-48 h-8 bg-gradient-to-r from-sage-600 to-backwater-600 rounded-full opacity-25 transform rotate-12"></div>
-          <div className="absolute bottom-12 left-20 w-32 h-6 bg-gradient-to-r from-serene-600 to-sage-600 rounded-full opacity-20 transform rotate-12"></div>
+          {/* Traditional lamps */}
+          <div className="absolute top-2/3 right-1/6 w-8 h-6 bg-golden-600 rounded-b-full"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-6 h-4 bg-harvest-600 rounded-b-full"></div>
+          
+          {/* Flower petals */}
+          <div className="absolute top-1/6 left-1/5 w-4 h-4 bg-amber-400 rounded-full"></div>
+          <div className="absolute bottom-1/6 right-1/3 w-5 h-5 bg-golden-500 rounded-full"></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-serene-600 via-backwater-600 to-sage-600 dark:from-serene-400 dark:via-backwater-400 dark:to-sage-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-golden-400 dark:via-harvest-400 dark:to-amber-400">
                 Infinity Malayalees
               </span>
               <br />
@@ -105,7 +231,7 @@ const Homepage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 to="/events"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-serene-500 to-backwater-500 dark:from-serene-400 dark:to-backwater-400 text-white font-bold text-lg hover:from-serene-600 hover:to-backwater-600 dark:hover:from-serene-500 dark:hover:to-backwater-500 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-sage-300 dark:border-sage-300"
+                className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-golden-500 to-harvest-500 dark:from-golden-400 dark:to-harvest-400 text-white font-bold text-lg hover:from-golden-600 hover:to-harvest-600 dark:hover:from-golden-500 dark:hover:to-harvest-500 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-amber-300 dark:border-amber-300"
               >
                 📅 Explore All Events
                 <Calendar className="ml-2" size={20} />
@@ -113,7 +239,7 @@ const Homepage: React.FC = () => {
               
               <Link
                 to="/malayalee-registration"
-                className="inline-flex items-center px-8 py-4 rounded-full border-3 border-serene-500 dark:border-serene-400 bg-white dark:bg-gray-800 text-serene-700 dark:text-serene-400 font-bold text-lg hover:bg-serene-50 dark:hover:bg-gray-700 transition-all duration-200 shadow-lg"
+                className="inline-flex items-center px-8 py-4 rounded-full border-3 border-golden-500 dark:border-golden-400 bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-400 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transition-all duration-200 shadow-lg"
               >
                 Register as Malayalee
                 <Users className="ml-2" size={20} />
@@ -123,18 +249,18 @@ const Homepage: React.FC = () => {
         </div>
       </section>
 
-      {/* Community Highlights with Serene Theme */}
-      <section className="py-16 bg-gradient-to-br from-serene-50 via-backwater-50 to-sage-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative">
-        {/* Serene background elements */}
+      {/* Community Highlights with Golden Harvest Theme */}
+      <section className="py-16 bg-gradient-to-br from-golden-50 via-harvest-50 to-amber-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative">
+        {/* Golden harvest background elements */}
         <div className="absolute inset-0 opacity-5 dark:opacity-3">
-          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-gradient-to-br from-serene-400 to-backwater-400"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-gradient-to-br from-sage-400 to-serene-400"></div>
-          <div className="absolute top-1/2 left-1/6 w-16 h-16 rounded-full bg-backwater-400"></div>
+          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-gradient-to-br from-golden-400 to-harvest-400"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 to-golden-400"></div>
+          <div className="absolute top-1/2 left-1/6 w-16 h-16 rounded-full bg-harvest-400"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-serene-700 to-backwater-700 dark:from-serene-400 dark:to-backwater-400 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-golden-700 to-harvest-700 dark:from-golden-400 dark:to-harvest-400 bg-clip-text text-transparent mb-4">
               🌟 Community Highlights 🌟
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
@@ -143,34 +269,34 @@ const Homepage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-serene-100 to-backwater-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-serene-300 dark:border-serene-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-serene-500 to-backwater-600 dark:from-serene-400 dark:to-backwater-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <div className="bg-gradient-to-br from-golden-100 to-harvest-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-golden-300 dark:border-golden-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <div className="w-16 h-16 bg-gradient-to-br from-golden-500 to-harvest-600 dark:from-golden-400 dark:to-harvest-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Gift className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-serene-800 dark:text-serene-300 mb-4">🍛 Authentic Traditions</h3>
-              <p className="text-serene-700 dark:text-gray-300 mb-4 font-medium">
+              <h3 className="text-xl font-bold text-golden-800 dark:text-golden-300 mb-4">🍛 Authentic Traditions</h3>
+              <p className="text-golden-700 dark:text-gray-300 mb-4 font-medium">
                 Experience genuine Kerala culture with traditional Sadya, classical arts, 
                 and time-honored customs that connect us to our roots.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-sage-100 to-serene-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-sage-300 dark:border-sage-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-sage-500 to-serene-600 dark:from-sage-400 dark:to-serene-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <div className="bg-gradient-to-br from-amber-100 to-golden-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-golden-600 dark:from-amber-400 dark:to-golden-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Users className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-sage-800 dark:text-sage-300 mb-4">🎭 Vibrant Community</h3>
-              <p className="text-sage-700 dark:text-gray-300 mb-4 font-medium">
+              <h3 className="text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">🎭 Vibrant Community</h3>
+              <p className="text-amber-700 dark:text-gray-300 mb-4 font-medium">
                 Join a warm, welcoming community of Malayalam families who share 
                 the same love for culture, traditions, and creating lasting friendships.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-backwater-100 to-sage-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-backwater-300 dark:border-backwater-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-backwater-500 to-sage-600 dark:from-backwater-400 dark:to-sage-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <div className="bg-gradient-to-br from-harvest-100 to-amber-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-harvest-300 dark:border-harvest-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <div className="w-16 h-16 bg-gradient-to-br from-harvest-500 to-amber-600 dark:from-harvest-400 dark:to-amber-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Calendar className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-backwater-800 dark:text-backwater-300 mb-4">📅 Year-Round Events</h3>
-              <p className="text-backwater-700 dark:text-gray-300 mb-4 font-medium">
+              <h3 className="text-xl font-bold text-harvest-800 dark:text-harvest-300 mb-4">📅 Year-Round Events</h3>
+              <p className="text-harvest-700 dark:text-gray-300 mb-4 font-medium">
                 From grand Onam celebrations to intimate cultural gatherings, 
                 we organize events throughout the year that bring our community together.
               </p>
@@ -179,27 +305,27 @@ const Homepage: React.FC = () => {
         </div>
       </section>
 
-      {/* Call to Action with Serene Theme */}
-      <section className="py-16 bg-gradient-to-r from-serene-600 via-backwater-600 to-sage-600 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden">
-        {/* Serene background elements */}
+      {/* Call to Action with Golden Harvest Theme */}
+      <section className="py-16 bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden">
+        {/* Golden harvest background elements */}
         <div className="absolute inset-0 opacity-10 dark:opacity-5">
-          <div className="absolute top-1/4 right-1/4 w-32 h-32 rounded-full bg-gradient-to-br from-backwater-400 to-sage-400"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-24 h-24 rounded-full bg-serene-400"></div>
-          <div className="absolute top-1/2 right-1/6 w-16 h-16 rounded-full bg-sage-400"></div>
+          <div className="absolute top-1/4 right-1/4 w-32 h-32 rounded-full bg-gradient-to-br from-harvest-400 to-amber-400"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-24 h-24 rounded-full bg-golden-400"></div>
+          <div className="absolute top-1/2 right-1/6 w-16 h-16 rounded-full bg-amber-400"></div>
         </div>
 
         <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white dark:text-gray-100 mb-6">
             🎊 Ready to Join Our Community? 🎊
           </h2>
-          <p className="text-xl text-serene-100 dark:text-gray-300 mb-8 font-medium">
+          <p className="text-xl text-golden-100 dark:text-gray-300 mb-8 font-medium">
             Become part of our vibrant Malayalam family at Ajmera Infinity and experience 
             the joy of celebrating our rich cultural heritage together!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/onam-2025"
-              className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-serene-700 dark:text-serene-400 font-bold text-lg hover:bg-serene-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-backwater-300 dark:border-backwater-400"
+              className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-400 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-harvest-300 dark:border-harvest-400"
             >
               🎉 Join Onam 2025
               <ArrowRight className="ml-2" size={20} />
