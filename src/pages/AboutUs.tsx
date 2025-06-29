@@ -34,62 +34,62 @@ const AboutUs: React.FC = () => {
   const organizationalStructure = [
     {
       role: 'Patron / Mentor',
-      description: 'Rajesh Nair serves as our guiding light, bringing 25+ years of community leadership experience from Kerala. A retired IAS officer, he provides strategic direction and ensures our cultural authenticity. His deep knowledge of Malayalam traditions and administrative expertise helps navigate complex event planning while maintaining our core values.',
+      description: 'Rajesh serves as our guiding light, bringing 25+ years of community leadership experience from Kerala. A retired government officer, he provides strategic direction and ensures our cultural authenticity. His deep knowledge of Malayalam traditions and administrative expertise helps navigate complex event planning while maintaining our core values.',
       category: 'leadership'
     },
     {
       role: 'President',
-      description: 'Priya Menon leads with infectious enthusiasm and unwavering dedication. A software architect by profession, she seamlessly balances modern organizational skills with traditional values. Her vision of creating a "home away from home" drives every initiative, and her ability to unite diverse perspectives makes her an exceptional leader.',
+      description: 'Priya leads with infectious enthusiasm and unwavering dedication. A software architect by profession, she seamlessly balances modern organizational skills with traditional values. Her vision of creating a "home away from home" drives every initiative, and her ability to unite diverse perspectives makes her an exceptional leader.',
       category: 'leadership'
     },
     {
       role: 'Vice President',
-      description: 'Anil Kumar acts as the perfect complement to our President, bringing diplomatic finesse and operational excellence. His background in project management shines through in coordinating between teams. Known for his calm demeanor and problem-solving abilities, he ensures smooth execution of all inter-team collaborations.',
+      description: 'Anil acts as the perfect complement to our President, bringing diplomatic finesse and operational excellence. His background in project management shines through in coordinating between teams. Known for his calm demeanor and problem-solving abilities, he ensures smooth execution of all inter-team collaborations.',
       category: 'leadership'
     },
     {
       role: 'General Secretary',
-      description: 'Deepa Pillai is the communication backbone of our organization. A former journalist, she crafts compelling narratives that keep our community engaged and informed. Her meticulous meeting minutes and clear communication strategies ensure transparency and keep everyone aligned with our mission and activities.',
+      description: 'Deepa is the communication backbone of our organization. A former journalist, she crafts compelling narratives that keep our community engaged and informed. Her meticulous meeting minutes and clear communication strategies ensure transparency and keep everyone aligned with our mission and activities.',
       category: 'core'
     },
     {
       role: 'Treasurer',
-      description: 'Suresh Varma brings financial discipline with a heart for community service. A chartered accountant, he maintains transparent financial records while optimizing every rupee for maximum community benefit. His innovative fundraising ideas and cost-effective planning ensure sustainable celebrations year after year.',
+      description: 'Suresh brings financial discipline with a heart for community service. A chartered accountant, he maintains transparent financial records while optimizing every rupee for maximum community benefit. His innovative fundraising ideas and cost-effective planning ensure sustainable celebrations year after year.',
       category: 'core'
     },
     {
       role: 'Cultural Team Lead',
-      description: 'Lakshmi Nair is a classical dance expert who breathes life into our cultural programs. Trained in Bharatanatyam and Mohiniyattam, she identifies talent, conducts auditions, and choreographs performances that showcase authentic Kerala artforms. Her patient teaching style helps beginners shine alongside experienced performers.',
+      description: 'Lakshmi is a classical dance expert who breathes life into our cultural programs. Trained in Bharatanatyam and Mohiniyattam, she identifies talent, conducts auditions, and choreographs performances that showcase authentic Kerala artforms. Her patient teaching style helps beginners shine alongside experienced performers.',
       category: 'operations'
     },
     {
       role: 'Logistics Team Lead',
-      description: 'Ravi Krishnan is our master of behind-the-scenes magic. An event management professional, he transforms empty halls into vibrant celebration spaces. From sound systems to seating arrangements, his attention to detail ensures every guest experiences comfort and every performer has the perfect stage setup.',
+      description: 'Ravi is our master of behind-the-scenes magic. An event management professional, he transforms empty halls into vibrant celebration spaces. From sound systems to seating arrangements, his attention to detail ensures every guest experiences comfort and every performer has the perfect stage setup.',
       category: 'operations'
     },
     {
       role: 'Food Committee Head',
-      description: 'Geetha Nambiar brings authentic Kerala flavors to every celebration. A culinary expert specializing in traditional recipes, she coordinates with caterers to ensure our Sadya maintains the authentic taste of home. Her volunteer coordination skills mobilize community members to assist in food preparation and service.',
+      description: 'Geetha brings authentic Kerala flavors to every celebration. A culinary expert specializing in traditional recipes, she coordinates with caterers to ensure our Sadya maintains the authentic taste of home. Her volunteer coordination skills mobilize community members to assist in food preparation and service.',
       category: 'operations'
     },
     {
       role: 'Game & Sports Lead',
-      description: 'Vinod Menon revives the joy of traditional Onam games with modern safety standards. A sports enthusiast and safety coordinator, he organizes Vadam Vali, Kudam Adi, and other traditional games that bring out the child in every adult. His inclusive approach ensures participation across all age groups.',
+      description: 'Vinod revives the joy of traditional Onam games with modern safety standards. A sports enthusiast and safety coordinator, he organizes Vadam Vali, Kudam Adi, and other traditional games that bring out the child in every adult. His inclusive approach ensures participation across all age groups.',
       category: 'operations'
     },
     {
       role: 'Publicity & Design Lead',
-      description: 'Kavya Raj is our creative visionary who brings our events to life through stunning visuals. A graphic designer with a passion for Malayalam aesthetics, she creates eye-catching posters, manages our social media presence, and produces memorable video content that captures the essence of our celebrations.',
+      description: 'Kavya is our creative visionary who brings our events to life through stunning visuals. A graphic designer with a passion for Malayalam aesthetics, she creates eye-catching posters, manages our social media presence, and produces memorable video content that captures the essence of our celebrations.',
       category: 'support'
     },
     {
       role: 'Photography & Videography',
-      description: 'Arjun Nair and Maya Krishnan form our dynamic documentation duo. Professional photographers with an eye for candid moments, they capture the emotions, traditions, and joy of our celebrations. Their work creates lasting memories and helps absent family members feel connected to our community events.',
+      description: 'Arjun and Maya form our dynamic documentation duo. Professional photographers with an eye for candid moments, they capture the emotions, traditions, and joy of our celebrations. Their work creates lasting memories and helps absent family members feel connected to our community events.',
       category: 'support'
     },
     {
       role: 'Volunteer Coordinator',
-      description: 'Sindhu Varma is the heart that connects our community members to meaningful participation. A natural organizer with exceptional people skills, she identifies volunteer opportunities, matches skills with needs, and ensures every willing hand finds a way to contribute to our collective success.',
+      description: 'Sindhu is the heart that connects our community members to meaningful participation. A natural organizer with exceptional people skills, she identifies volunteer opportunities, matches skills with needs, and ensures every willing hand finds a way to contribute to our collective success.',
       category: 'support'
     }
   ];
@@ -301,27 +301,6 @@ const AboutUs: React.FC = () => {
                 </p>
               </div>
             ))}
-          </div>
-
-          <div className="mt-12 bg-gradient-to-r from-indigo-100 to-cyan-100 dark:from-indigo-900/30 dark:to-cyan-900/30 rounded-2xl p-8 border-2 border-indigo-300 dark:border-indigo-500 shadow-lg">
-            <h3 className="text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-4 text-center">📌 Team Highlights</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">12</div>
-                <p className="text-indigo-600 dark:text-indigo-300 font-semibold">Key Roles</p>
-                <p className="text-gray-600 dark:text-gray-200 text-sm">Comprehensive coverage</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">15-20</div>
-                <p className="text-indigo-600 dark:text-indigo-300 font-semibold">Total Team Size</p>
-                <p className="text-gray-600 dark:text-gray-200 text-sm">Dedicated volunteers</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">4</div>
-                <p className="text-indigo-600 dark:text-indigo-300 font-semibold">Core Categories</p>
-                <p className="text-gray-600 dark:text-gray-200 text-sm">Structured approach</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
