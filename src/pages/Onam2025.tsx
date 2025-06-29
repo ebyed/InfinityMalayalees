@@ -88,7 +88,7 @@ const Onam2025: React.FC = () => {
               🌺 September 13-14, 2025 🌺
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-malayalam">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-tropical-600 via-bloom-600 to-coral-600 dark:from-tropical-400 dark:via-bloom-400 dark:to-coral-400">
                 🎉 Onam 2025 🎉
               </span>
@@ -129,7 +129,7 @@ const Onam2025: React.FC = () => {
           <section className="py-16 bg-gradient-to-br from-tropical-50 via-bloom-50 to-coral-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-tropical-700 to-coral-700 dark:from-tropical-400 dark:to-coral-400 bg-clip-text text-transparent mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-tropical-700 to-coral-700 dark:from-tropical-400 dark:to-coral-400 bg-clip-text text-transparent mb-4 font-malayalam">
                   🌟 Celebration Features 🌟
                 </h2>
                 <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
@@ -214,7 +214,7 @@ const Onam2025: React.FC = () => {
                 </div>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-malayalam">
                 🙏 Help Make Onam 2025 Unforgettable! 🙏
               </h2>
               <p className="text-xl text-bloom-100 mb-8 font-medium max-w-2xl mx-auto">
@@ -270,7 +270,7 @@ const Onam2025: React.FC = () => {
           <section className="py-16 bg-white dark:bg-gray-900">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-tropical-700 to-coral-700 dark:from-tropical-400 dark:to-coral-400 bg-clip-text text-transparent mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-tropical-700 to-coral-700 dark:from-tropical-400 dark:to-coral-400 bg-clip-text text-transparent mb-4 font-malayalam">
                   📅 Event Schedule
                 </h2>
                 <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
