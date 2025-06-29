@@ -225,7 +225,7 @@ const Homepage: React.FC = () => {
                 </div>
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
                   <PookkalamIcon size={32} className="text-coral-600 dark:text-coral-400 mb-2" />
-                  <h3 className="font-bold text-gray-800 dark:text-gray-100">Pookalam Competition</h3>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-100">Pookalam Event</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Flower Arrangements</p>
                 </div>
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
