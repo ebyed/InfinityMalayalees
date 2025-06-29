@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Lock, User, Eye, EyeOff, LogOut, Plus, Users, Calendar, Heart, TrendingUp, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { Lock, User, Eye, EyeOff, LogOut, Plus, Users, Calendar, Heart, TrendingUp, AlertCircle, CheckCircle, Loader2, Mail, Settings } from 'lucide-react';
 import { useSupabaseData } from '../hooks/useSupabaseData';
 import { adminAuth, type AdminUser } from '../lib/auth';
 import QRCodeModal from '../components/QRCodeModal';
+import { sendEmail, generateDonationThankYouTemplate, emailSettings } from '../utils/emailService';
 
 const AdminPortal: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +22,10 @@ const AdminPortal: React.FC = () => {
   // QR Code Modal
   const [selectedRegistration, setSelectedRegistration] = useState<any>(null);
   const [showQRModal, setShowQRModal] = useState(false);
+
+  // Email settings
+  const [showEmailSettings, setShowEmailSettings] = useState(false);
+  const [emailConfig, setEmailConfig] = useState(emailSettings.getConfig());
 
   const { data, loading, error, refetch } = useSupabaseData();
 
@@ -90,6 +95,46 @@ const AdminPortal: React.FC = () => {
   const handleGenerateQR = (registration: any) => {
     setSelectedRegistration(registration);
     setShowQRModal(true);
+  };
+
+  const handleSendDonationThankYou = async (donation: any) => {
+    if (!emailSettings.isConfigured()) {
+      setShowEmailSettings(true);
+      return;
+    }
+
+    try {
+      const emailTemplate = generateDonationThankYouTemplate(
+        donation.donor_name,
+        donation.donation_type,
+        donation.donation_amount,
+        donation.transaction_id,
+        donation.message
+      );
+
+      const emailData = {
+        to: donation.email,
+        subject: `Thank You for Your Donation - Onam 2025`,
+        html: emailTemplate
+      };
+
+      const success = await sendEmail(emailData);
+      
+      if (success) {
+        alert('Thank you email sent successfully!');
+      } else {
+        alert('Failed to send email. Please check your email settings.');
+      }
+    } catch (err) {
+      console.error('Error sending donation email:', err);
+      alert('Failed to send email. Please try again.');
+    }
+  };
+
+  const handleSaveEmailSettings = () => {
+    emailSettings.saveConfig(emailConfig);
+    setShowEmailSettings(false);
+    alert('Email settings saved successfully!');
   };
 
   const formatDate = (dateString: string) => {
@@ -211,6 +256,13 @@ const AdminPortal: React.FC = () => {
             
             <div className="flex items-center space-x-4">
               <button
+                onClick={() => setShowEmailSettings(true)}
+                className="flex items-center space-x-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+              >
+                <Settings size={16} />
+                <span>Email Settings</span>
+              </button>
+              <button
                 onClick={() => setShowCreateAdmin(true)}
                 className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
               >
@@ -236,6 +288,18 @@ const AdminPortal: React.FC = () => {
             <div className="flex items-center space-x-2">
               <CheckCircle className="text-green-600 dark:text-green-400" size={20} />
               <p className="text-green-700 dark:text-green-300 font-medium">{createAdminSuccess}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Email Configuration Status */}
+        {!emailSettings.isConfigured() && (
+          <div className="mb-6 p-4 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-600 rounded-lg">
+            <div className="flex items-center space-x-2">
+              <AlertCircle className="text-yellow-600 dark:text-yellow-400" size={20} />
+              <p className="text-yellow-700 dark:text-yellow-300 font-medium">
+                Email not configured. Click "Email Settings" to set up Gmail credentials for sending confirmations.
+              </p>
             </div>
           </div>
         )}
@@ -353,7 +417,7 @@ const AdminPortal: React.FC = () => {
                           onClick={() => handleGenerateQR(registration)}
                           className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600 transition-colors"
                         >
-                          Generate QR
+                          Verify & Send QR
                         </button>
                       </td>
                     </tr>
@@ -397,15 +461,24 @@ const AdminPortal: React.FC = () => {
               <div className="space-y-3">
                 {data.donations.slice(0, 5).map((donation) => (
                   <div key={donation.id} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <div>
+                    <div className="flex-1">
                       <p className="font-medium text-gray-900 dark:text-gray-100">{donation.donor_name}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{donation.donation_type}</p>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-green-600 dark:text-green-400">₹{donation.donation_amount}</p>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                        {formatDate(donation.created_at!)}
-                      </span>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {formatDate(donation.created_at!)}
+                        </span>
+                        <button
+                          onClick={() => handleSendDonationThankYou(donation)}
+                          className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600 transition-colors"
+                          title="Send thank you email"
+                        >
+                          <Mail size={12} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -476,6 +549,74 @@ const AdminPortal: React.FC = () => {
         </div>
       )}
 
+      {/* Email Settings Modal */}
+      {showEmailSettings && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-6">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">📧 Email Settings</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Gmail Address
+                </label>
+                <input
+                  type="email"
+                  value={emailConfig.auth.user}
+                  onChange={(e) => setEmailConfig(prev => ({
+                    ...prev,
+                    auth: { ...prev.auth, user: e.target.value }
+                  }))}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="infinitymalayalees@gmail.com"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  App Password
+                </label>
+                <input
+                  type="password"
+                  value={emailConfig.auth.pass}
+                  onChange={(e) => setEmailConfig(prev => ({
+                    ...prev,
+                    auth: { ...prev.auth, pass: e.target.value }
+                  }))}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter Gmail app password"
+                />
+              </div>
+
+              <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-3 border border-yellow-200 dark:border-yellow-600">
+                <p className="text-yellow-800 dark:text-yellow-300 text-sm">
+                  <strong>Setup Instructions:</strong><br />
+                  1. Enable 2-factor authentication on your Gmail account<br />
+                  2. Go to Google Account Settings → Security → App passwords<br />
+                  3. Generate an app password for "Mail"<br />
+                  4. Use that 16-character password here (not your regular Gmail password)
+                </p>
+              </div>
+            </div>
+
+            <div className="flex space-x-3 pt-6">
+              <button
+                onClick={handleSaveEmailSettings}
+                className="flex-1 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Save Settings
+              </button>
+              <button
+                onClick={() => setShowEmailSettings(false)}
+                className="flex-1 bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* QR Code Modal */}
       {showQRModal && selectedRegistration && (
         <QRCodeModal
@@ -486,7 +627,6 @@ const AdminPortal: React.FC = () => {
           }}
           registration={selectedRegistration}
           onEmailSent={() => {
-            // Optionally refresh data or show success message
             console.log('QR codes sent successfully');
           }}
         />

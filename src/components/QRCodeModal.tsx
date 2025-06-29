@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, Download, Mail, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { X, Download, Mail, Loader2, CheckCircle, AlertCircle, Settings } from 'lucide-react';
 import { generateSadyaQRCodes } from '../utils/qrCodeGenerator';
-import { sendEmail, generateSadyaEmailTemplate } from '../utils/emailService';
+import { sendEmail, generateSadyaEmailTemplate, emailSettings } from '../utils/emailService';
 
 interface QRCodeModalProps {
   isOpen: boolean;
@@ -21,6 +21,9 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   const [sendingEmail, setSendingEmail] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showEmailSettings, setShowEmailSettings] = useState(false);
+  const [emailConfig, setEmailConfig] = useState(emailSettings.getConfig());
+  const [verified, setVerified] = useState(false);
 
   useEffect(() => {
     if (isOpen && registration) {
@@ -42,7 +45,12 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
     }
   };
 
-  const handleSendEmail = async () => {
+  const handleVerifyAndSendEmail = async () => {
+    if (!emailSettings.isConfigured()) {
+      setShowEmailSettings(true);
+      return;
+    }
+
     try {
       setSendingEmail(true);
       setError(null);
@@ -64,6 +72,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
       
       if (success) {
         setEmailSent(true);
+        setVerified(true);
         onEmailSent?.();
         setTimeout(() => {
           setEmailSent(false);
@@ -73,10 +82,15 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
       }
     } catch (err) {
       console.error('Error sending email:', err);
-      setError('Failed to send email. Please try again.');
+      setError('Failed to send email. Please check your email settings and try again.');
     } finally {
       setSendingEmail(false);
     }
+  };
+
+  const handleSaveEmailSettings = () => {
+    emailSettings.saveConfig(emailConfig);
+    setShowEmailSettings(false);
   };
 
   const downloadQRCode = (qrDataUrl: string, couponId: string) => {
@@ -105,7 +119,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
         <div className="bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-500 dark:to-emerald-500 px-6 py-4 flex justify-between items-center rounded-t-2xl">
           <div>
             <h3 className="text-xl font-bold text-white">
-              🎫 Sadya QR Codes
+              🎫 Sadya QR Codes & Email Verification
             </h3>
             <p className="text-green-100">
               {registration?.full_name} - {registration?.sadya_count} meals
@@ -159,31 +173,66 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
                 </p>
               </div>
 
+              {/* Verification Status */}
+              <div className={`p-4 rounded-lg mb-6 ${
+                verified 
+                  ? 'bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-600' 
+                  : 'bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-600'
+              }`}>
+                <div className="flex items-center space-x-2">
+                  {verified ? (
+                    <CheckCircle className="text-green-600 dark:text-green-400" size={20} />
+                  ) : (
+                    <AlertCircle className="text-yellow-600 dark:text-yellow-400" size={20} />
+                  )}
+                  <p className={`font-medium ${
+                    verified 
+                      ? 'text-green-800 dark:text-green-300' 
+                      : 'text-yellow-800 dark:text-yellow-300'
+                  }`}>
+                    {verified 
+                      ? '✅ Payment verified and confirmation email sent!' 
+                      : '⏳ Click "Verify & Send Email" to confirm payment and send QR codes'
+                    }
+                  </p>
+                </div>
+              </div>
+
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-3 mb-6">
                 <button
-                  onClick={handleSendEmail}
-                  disabled={sendingEmail}
-                  className="flex items-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={handleVerifyAndSendEmail}
+                  disabled={sendingEmail || verified}
+                  className="flex items-center space-x-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                 >
                   {sendingEmail ? (
                     <Loader2 className="animate-spin" size={16} />
                   ) : (
                     <Mail size={16} />
                   )}
-                  <span>{sendingEmail ? 'Sending...' : 'Send Email'}</span>
+                  <span>
+                    {sendingEmail ? 'Sending...' : verified ? 'Email Sent ✓' : 'Verify & Send Email'}
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => setShowEmailSettings(true)}
+                  className="flex items-center space-x-2 px-4 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                >
+                  <Settings size={16} />
+                  <span>Email Settings</span>
                 </button>
 
                 <button
                   onClick={downloadAllQRCodes}
-                  className="flex items-center space-x-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
+                  className="flex items-center space-x-2 px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
                 >
                   <Download size={16} />
                   <span>Download All</span>
                 </button>
 
                 {emailSent && (
-                  <div className="flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded-lg">
+                  <div className="flex items-center space-x-2 px-4 py-3 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded-lg">
                     <CheckCircle size={16} />
                     <span>Email sent successfully!</span>
                   </div>
@@ -236,6 +285,71 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
           )}
         </div>
       </div>
+
+      {/* Email Settings Modal */}
+      {showEmailSettings && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-6">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">📧 Email Settings</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Gmail Address
+                </label>
+                <input
+                  type="email"
+                  value={emailConfig.auth.user}
+                  onChange={(e) => setEmailConfig(prev => ({
+                    ...prev,
+                    auth: { ...prev.auth, user: e.target.value }
+                  }))}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="infinitymalayalees@gmail.com"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  App Password
+                </label>
+                <input
+                  type="password"
+                  value={emailConfig.auth.pass}
+                  onChange={(e) => setEmailConfig(prev => ({
+                    ...prev,
+                    auth: { ...prev.auth, pass: e.target.value }
+                  }))}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter Gmail app password"
+                />
+              </div>
+
+              <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-3 border border-yellow-200 dark:border-yellow-600">
+                <p className="text-yellow-800 dark:text-yellow-300 text-sm">
+                  <strong>Note:</strong> Use Gmail App Password, not your regular password. 
+                  Enable 2-factor authentication and generate an app password in your Google Account settings.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex space-x-3 pt-6">
+              <button
+                onClick={handleSaveEmailSettings}
+                className="flex-1 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Save Settings
+              </button>
+              <button
+                onClick={() => setShowEmailSettings(false)}
+                className="flex-1 bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
