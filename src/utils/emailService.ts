@@ -1,4 +1,6 @@
 // Email service for sending QR codes and confirmations
+import nodemailer from 'nodemailer';
+
 export interface EmailData {
   to: string;
   subject: string;
@@ -33,18 +35,40 @@ const defaultEmailConfig: EmailConfig = {
 
 export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
   try {
-    // In a real implementation, you would integrate with an email service like:
-    // - Nodemailer with Gmail SMTP
-    // - SendGrid
-    // - Mailgun
-    // - AWS SES
+    const config = emailSettings.getConfig();
     
-    console.log('Sending email via Gmail SMTP:', emailData);
-    
-    // For now, simulate email sending
-    // In production, this would use the actual email service
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    if (!config.auth.user || !config.auth.pass) {
+      console.error('Email not configured properly');
+      return false;
+    }
+
+    // Create transporter with Gmail SMTP
+    const transporter = nodemailer.createTransporter({
+      host: config.host,
+      port: config.port,
+      secure: config.secure,
+      auth: {
+        user: config.auth.user,
+        pass: config.auth.pass
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    // Verify connection
+    await transporter.verify();
+
+    // Send email
+    const info = await transporter.sendMail({
+      from: `"Infinity Malayalees" <${config.auth.user}>`,
+      to: emailData.to,
+      subject: emailData.subject,
+      html: emailData.html,
+      attachments: emailData.attachments
+    });
+
+    console.log('Email sent successfully:', info.messageId);
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
