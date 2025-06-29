@@ -173,7 +173,7 @@ const Homepage: React.FC = () => {
                 Infinity Malayalees
               </span>
               <br />
-              <span className="text-2xl md:text-4xl text-gray-800 dark:text-gray-200 font-sans">
+              <span className="text-2xl md:text-4xl text-golden-800 dark:text-golden-300 font-sans font-bold">
                 Ajmera Infinity Malayalam Association
               </span>
             </h1>
