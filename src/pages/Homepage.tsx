@@ -181,11 +181,8 @@ const Homepage: React.FC = () => {
             
             {/* Malayalam Text */}
             <div className="mb-6">
-              <p className="text-sm text-golden-700 dark:text-golden-300 font-malayalam mb-1">
-                ഇൻഫിനിറ്റി മലയാളികൾ
-              </p>
               <p className="text-xs text-golden-600 dark:text-golden-400 font-malayalam">
-                അജ്മേര ഇൻഫിനിറ്റി മലയാളം അസോസിയേഷൻ
+                അജ്മേര ഇൻഫിനിറ്റി മലയാളി അസോസിയേഷൻ
               </p>
             </div>
             
