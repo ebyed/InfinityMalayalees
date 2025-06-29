@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Users, Gift, Sparkles, ArrowRight } from 'lucide-react';
-import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, PookkalamIcon } from '../components/KeralaSVGIcons';
+import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, PookkalamIcon, LampIcon, CoconutPalmIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -277,7 +277,7 @@ const Homepage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-golden-100 to-harvest-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-golden-300 dark:border-golden-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="w-16 h-16 bg-gradient-to-br from-golden-500 to-harvest-600 dark:from-golden-400 dark:to-harvest-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                <Gift className="text-white" size={32} />
+                <SadyaIcon className="text-white" size={32} />
               </div>
               <h3 className="text-xl font-bold text-golden-800 dark:text-golden-200 mb-4">🍛 Authentic Traditions</h3>
               <p className="text-golden-700 dark:text-gray-200 mb-4 font-medium">
@@ -288,7 +288,7 @@ const Homepage: React.FC = () => {
 
             <div className="bg-gradient-to-br from-amber-100 to-golden-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-golden-600 dark:from-amber-400 dark:to-golden-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                <Users className="text-white" size={32} />
+                <ThiruvathiraIcon className="text-white" size={32} />
               </div>
               <h3 className="text-xl font-bold text-amber-800 dark:text-amber-200 mb-4">🎭 Vibrant Community</h3>
               <p className="text-amber-700 dark:text-gray-200 mb-4 font-medium">
@@ -299,7 +299,7 @@ const Homepage: React.FC = () => {
 
             <div className="bg-gradient-to-br from-harvest-100 to-amber-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 border-2 border-harvest-300 dark:border-harvest-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="w-16 h-16 bg-gradient-to-br from-harvest-500 to-amber-600 dark:from-harvest-400 dark:to-amber-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
-                <Calendar className="text-white" size={32} />
+                <LampIcon className="text-white" size={32} />
               </div>
               <h3 className="text-xl font-bold text-harvest-800 dark:text-harvest-200 mb-4">📅 Year-Round Events</h3>
               <p className="text-harvest-700 dark:text-gray-200 mb-4 font-medium">
