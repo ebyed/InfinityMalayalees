@@ -43,7 +43,7 @@ const Onam2025: React.FC = () => {
       className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-bold transition-all duration-300 ${
         activeTab === tabId
           ? 'bg-gradient-to-r from-tropical-500 to-coral-500 dark:from-tropical-400 dark:to-coral-400 text-white shadow-lg'
-          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-tropical-100 dark:hover:bg-gray-700 hover:text-tropical-700 dark:hover:text-tropical-400 shadow-md'
+          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-tropical-100 dark:hover:bg-gray-700 hover:text-tropical-700 dark:hover:text-tropical-300 shadow-md'
       }`}
     >
       <Icon size={18} />
@@ -94,14 +94,14 @@ const Onam2025: React.FC = () => {
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 mb-8 max-w-4xl mx-auto font-medium">
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-100 mb-8 max-w-4xl mx-auto font-medium">
               Welcome to the ultimate Onam celebration portal! Register, participate, donate, 
               and be part of the grandest Malayalam festival at Ajmera Infinity. 🏛️✨
             </p>
             
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-tropical-400 dark:border-tropical-400 shadow-xl">
-              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2">🌺 Onam Ashamsakal! 🌺</h3>
-              <p className="text-gray-700 dark:text-gray-300 font-medium">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">🌺 Onam Ashamsakal! 🌺</h3>
+              <p className="text-gray-700 dark:text-gray-200 font-medium">
                 Experience the joy of King Mahabali's return with authentic traditions, 
                 delicious Sadya, and vibrant cultural programs.
               </p>
@@ -132,7 +132,7 @@ const Onam2025: React.FC = () => {
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-tropical-700 to-coral-700 dark:from-tropical-400 dark:to-coral-400 bg-clip-text text-transparent mb-4 font-malayalam">
                   🌟 Celebration Features 🌟
                 </h2>
-                <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
+                <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
                   Everything you need to be part of our Onam 2025 celebrations
                 </p>
               </div>
@@ -148,7 +148,7 @@ const Onam2025: React.FC = () => {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     Sadya Registration
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 font-medium">
+                  <p className="text-gray-700 dark:text-gray-200 font-medium">
                     Book your traditional Onam Sadya for ₹350 per person
                   </p>
                 </div>
@@ -163,7 +163,7 @@ const Onam2025: React.FC = () => {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     Cultural Events
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 font-medium">
+                  <p className="text-gray-700 dark:text-gray-200 font-medium">
                     Participate in dance, songs, skits, fashion show
                   </p>
                 </div>
@@ -178,7 +178,7 @@ const Onam2025: React.FC = () => {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     Mega Thiruvathira
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 font-medium">
+                  <p className="text-gray-700 dark:text-gray-200 font-medium">
                     Ladies only traditional group dance registration
                   </p>
                 </div>
@@ -195,7 +195,7 @@ const Onam2025: React.FC = () => {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 font-medium">
+                    <p className="text-gray-700 dark:text-gray-200 font-medium">
                       {feature.description}
                     </p>
                   </Link>
@@ -217,7 +217,7 @@ const Onam2025: React.FC = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-malayalam">
                 🙏 Help Make Onam 2025 Unforgettable! 🙏
               </h2>
-              <p className="text-xl text-bloom-100 mb-8 font-medium max-w-2xl mx-auto">
+              <p className="text-xl text-bloom-100 dark:text-gray-200 mb-8 font-medium max-w-2xl mx-auto">
                 Your generous donations help us organize spectacular cultural programs, provide authentic Sadya experiences, 
                 and create lasting memories for our entire Malayalam community at Ajmera Infinity.
               </p>
@@ -258,7 +258,7 @@ const Onam2025: React.FC = () => {
               </div>
               
               <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <p className="text-bloom-100 font-medium">
+                <p className="text-bloom-100 dark:text-gray-200 font-medium">
                   🌟 Every contribution, big or small, helps preserve and celebrate our rich Malayalam heritage. 
                   Together, we create magic! 🌟
                 </p>
@@ -273,18 +273,18 @@ const Onam2025: React.FC = () => {
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-tropical-700 to-coral-700 dark:from-tropical-400 dark:to-coral-400 bg-clip-text text-transparent mb-4 font-malayalam">
                   📅 Event Schedule
                 </h2>
-                <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+                <p className="text-lg text-gray-700 dark:text-gray-200 font-medium">
                   Two days of non-stop celebration and fun activities
                 </p>
               </div>
 
               <div className="space-y-8">
                 <div className="bg-gradient-to-r from-bloom-100 to-coral-200 dark:from-bloom-900/30 dark:to-coral-900/30 rounded-2xl p-8 border-2 border-bloom-300 dark:border-bloom-500 shadow-lg">
-                  <h3 className="text-2xl font-bold text-bloom-800 dark:text-bloom-300 mb-4">🌅 Day 1 - September 13, 2025</h3>
+                  <h3 className="text-2xl font-bold text-bloom-800 dark:text-bloom-200 mb-4">🌅 Day 1 - September 13, 2025</h3>
                   <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                     <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-4 text-lg">Evening (6:00 PM - 9:00 PM)</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
+                      <h4 className="font-bold text-gray-800 dark:text-gray-100 mb-4 text-lg">Evening (6:00 PM - 9:00 PM)</h4>
+                      <ul className="text-gray-700 dark:text-gray-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-bloom-500 rounded-full"></span>
                           <span>🎭 Cultural events and performances</span>
@@ -307,11 +307,11 @@ const Onam2025: React.FC = () => {
                 </div>
 
                 <div className="bg-gradient-to-r from-tropical-100 to-bloom-200 dark:from-tropical-900/30 dark:to-bloom-900/30 rounded-2xl p-8 border-2 border-tropical-300 dark:border-tropical-500 shadow-lg">
-                  <h3 className="text-2xl font-bold text-tropical-800 dark:text-tropical-300 mb-4">🌆 Day 2 - September 14, 2025</h3>
+                  <h3 className="text-2xl font-bold text-tropical-800 dark:text-tropical-200 mb-4">🌆 Day 2 - September 14, 2025</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-3 text-lg">Morning Program</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
+                      <h4 className="font-bold text-gray-800 dark:text-gray-100 mb-3 text-lg">Morning Program</h4>
+                      <ul className="text-gray-700 dark:text-gray-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-tropical-500 rounded-full"></span>
                           <span><strong>9:00 AM:</strong> 🎺 Onam procession, welcoming Maveli with Chenda Melam</span>
@@ -339,8 +339,8 @@ const Onam2025: React.FC = () => {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-3 text-lg">Afternoon Feast</h4>
-                      <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
+                      <h4 className="font-bold text-gray-800 dark:text-gray-100 mb-3 text-lg">Afternoon Feast</h4>
+                      <ul className="text-gray-700 dark:text-gray-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-tropical-500 rounded-full"></span>
                           <span><strong>11:30 AM onwards:</strong> 🍛 Traditional Onam Sadya</span>
@@ -364,11 +364,11 @@ const Onam2025: React.FC = () => {
               </div>
 
               <div className="mt-8 bg-gradient-to-r from-coral-100 to-tropical-200 dark:from-coral-900/30 dark:to-tropical-900/30 rounded-2xl p-6 border-2 border-coral-300 dark:border-coral-500">
-                <h4 className="font-bold text-coral-800 dark:text-coral-300 mb-3 text-lg text-center">📍 Venue Information</h4>
-                <div className="text-center text-gray-700 dark:text-gray-300 font-medium">
+                <h4 className="font-bold text-coral-800 dark:text-coral-200 mb-3 text-lg text-center">📍 Venue Information</h4>
+                <div className="text-center text-gray-700 dark:text-gray-200 font-medium">
                   <p><strong>🏛️ Location:</strong> Ajmera Infinity Community Hall</p>
                   <p><strong>📍 Address:</strong> Neeladri Road, Karuna Nagar, Electronic City Phase 1, Bangalore - 560100</p>
-                  <p className="mt-2 text-coral-700 dark:text-coral-400"><strong>🎫 Entry:</strong> Valid Sadya coupon or event registration required</p>
+                  <p className="mt-2 text-coral-700 dark:text-coral-300"><strong>🎫 Entry:</strong> Valid Sadya coupon or event registration required</p>
                 </div>
               </div>
             </div>

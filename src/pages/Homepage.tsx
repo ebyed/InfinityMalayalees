@@ -173,12 +173,12 @@ const Homepage: React.FC = () => {
                 Infinity Malayalees
               </span>
               <br />
-              <span className="text-2xl md:text-4xl text-gray-800 dark:text-gray-200 font-sans">
+              <span className="text-2xl md:text-4xl text-gray-800 dark:text-gray-100 font-sans">
                 Ajmera Infinity Malayalam Association
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto font-medium">
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 max-w-3xl mx-auto font-medium">
               Join us in celebrating the spirit of Malayalam culture! Experience the joy of traditional festivals, 
               delicious Sadya, vibrant cultural programs, and the warmth of our community. 🎭🍛
             </p>
@@ -196,7 +196,7 @@ const Homepage: React.FC = () => {
                 </span>
               </h2>
               
-              <p className="text-lg text-gray-800 dark:text-gray-200 mb-6 font-medium max-w-2xl mx-auto">
+              <p className="text-lg text-gray-800 dark:text-gray-100 mb-6 font-medium max-w-2xl mx-auto">
                 Experience the grandest Malayalam festival with authentic Sadya, spectacular cultural programs, 
                 Mega Thiruvathira, and traditional games. Two days of pure celebration!
               </p>
@@ -204,18 +204,18 @@ const Homepage: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500">
                   <div className="text-2xl mb-2">🍛</div>
-                  <h3 className="font-bold text-gray-800 dark:text-gray-200">Traditional Sadya</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">₹350 per person</p>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-100">Traditional Sadya</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">₹350 per person</p>
                 </div>
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500">
                   <div className="text-2xl mb-2">🎭</div>
-                  <h3 className="font-bold text-gray-800 dark:text-gray-200">Cultural Programs</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Dance, Music & More</p>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-100">Cultural Programs</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Dance, Music & More</p>
                 </div>
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500">
                   <div className="text-2xl mb-2">💃</div>
-                  <h3 className="font-bold text-gray-800 dark:text-gray-200">Mega Thiruvathira</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Ladies Only Event</p>
+                  <h3 className="font-bold text-gray-800 dark:text-gray-100">Mega Thiruvathira</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Ladies Only Event</p>
                 </div>
               </div>
               
@@ -239,7 +239,7 @@ const Homepage: React.FC = () => {
               
               <Link
                 to="/malayalee-registration"
-                className="inline-flex items-center px-8 py-4 rounded-full border-3 border-golden-500 dark:border-golden-400 bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-400 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transition-all duration-200 shadow-lg"
+                className="inline-flex items-center px-8 py-4 rounded-full border-3 border-golden-500 dark:border-golden-400 bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-300 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transition-all duration-200 shadow-lg"
               >
                 Register as Malayalee
                 <Users className="ml-2" size={20} />
@@ -263,7 +263,7 @@ const Homepage: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-golden-700 to-harvest-700 dark:from-golden-400 dark:to-harvest-400 bg-clip-text text-transparent mb-4 font-malayalam">
               🌟 Community Highlights 🌟
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
+            <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
               Discover what makes our Malayalam community special at Ajmera Infinity
             </p>
           </div>
@@ -273,8 +273,8 @@ const Homepage: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-golden-500 to-harvest-600 dark:from-golden-400 dark:to-harvest-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Gift className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-golden-800 dark:text-golden-300 mb-4">🍛 Authentic Traditions</h3>
-              <p className="text-golden-700 dark:text-gray-300 mb-4 font-medium">
+              <h3 className="text-xl font-bold text-golden-800 dark:text-golden-200 mb-4">🍛 Authentic Traditions</h3>
+              <p className="text-golden-700 dark:text-gray-200 mb-4 font-medium">
                 Experience genuine Kerala culture with traditional Sadya, classical arts, 
                 and time-honored customs that connect us to our roots.
               </p>
@@ -284,8 +284,8 @@ const Homepage: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-golden-600 dark:from-amber-400 dark:to-golden-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Users className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">🎭 Vibrant Community</h3>
-              <p className="text-amber-700 dark:text-gray-300 mb-4 font-medium">
+              <h3 className="text-xl font-bold text-amber-800 dark:text-amber-200 mb-4">🎭 Vibrant Community</h3>
+              <p className="text-amber-700 dark:text-gray-200 mb-4 font-medium">
                 Join a warm, welcoming community of Malayalam families who share 
                 the same love for culture, traditions, and creating lasting friendships.
               </p>
@@ -295,8 +295,8 @@ const Homepage: React.FC = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-harvest-500 to-amber-600 dark:from-harvest-400 dark:to-amber-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Calendar className="text-white" size={32} />
               </div>
-              <h3 className="text-xl font-bold text-harvest-800 dark:text-harvest-300 mb-4">📅 Year-Round Events</h3>
-              <p className="text-harvest-700 dark:text-gray-300 mb-4 font-medium">
+              <h3 className="text-xl font-bold text-harvest-800 dark:text-harvest-200 mb-4">📅 Year-Round Events</h3>
+              <p className="text-harvest-700 dark:text-gray-200 mb-4 font-medium">
                 From grand Onam celebrations to intimate cultural gatherings, 
                 we organize events throughout the year that bring our community together.
               </p>
@@ -318,21 +318,21 @@ const Homepage: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white dark:text-gray-100 mb-6 font-malayalam">
             🎊 Ready to Join Our Community? 🎊
           </h2>
-          <p className="text-xl text-golden-100 dark:text-gray-300 mb-8 font-medium">
+          <p className="text-xl text-golden-100 dark:text-gray-200 mb-8 font-medium">
             Become part of our vibrant Malayalam family at Ajmera Infinity and experience 
             the joy of celebrating our rich cultural heritage together!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/onam-2025"
-              className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-400 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-harvest-300 dark:border-harvest-400"
+              className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-300 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-harvest-300 dark:border-harvest-400"
             >
               🎉 Join Onam 2025
               <ArrowRight className="ml-2" size={20} />
             </Link>
             <Link
               to="/donations"
-              className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white dark:border-gray-300 text-white dark:text-gray-300 font-bold text-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-200 shadow-lg"
+              className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white dark:border-gray-300 text-white dark:text-gray-200 font-bold text-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-200 shadow-lg"
             >
               💝 Support with Donations
               <Gift className="ml-2" size={20} />
