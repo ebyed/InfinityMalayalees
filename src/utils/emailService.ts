@@ -1,15 +1,9 @@
-// Email service for sending QR codes and confirmations
-import nodemailer from 'nodemailer';
+// Email service for sending QR codes and confirmations via Supabase Edge Function
 
 export interface EmailData {
   to: string;
   subject: string;
   html: string;
-  attachments?: Array<{
-    filename: string;
-    content: string;
-    encoding: string;
-  }>;
 }
 
 export interface EmailConfig {
@@ -42,33 +36,37 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
       return false;
     }
 
-    // Create transporter with Gmail SMTP
-    const transporter = nodemailer.createTransporter({
-      host: config.host,
-      port: config.port,
-      secure: config.secure,
-      auth: {
-        user: config.auth.user,
-        pass: config.auth.pass
+    // Get Supabase URL from environment
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    if (!supabaseUrl) {
+      console.error('Supabase URL not configured');
+      return false;
+    }
+
+    // Call the Edge Function to send email
+    const response = await fetch(`${supabaseUrl}/functions/v1/send-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
       },
-      tls: {
-        rejectUnauthorized: false
-      }
+      body: JSON.stringify({
+        ...emailData,
+        emailConfig: {
+          user: config.auth.user,
+          pass: config.auth.pass
+        }
+      })
     });
 
-    // Verify connection
-    await transporter.verify();
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Email service error:', errorData);
+      return false;
+    }
 
-    // Send email
-    const info = await transporter.sendMail({
-      from: `"Infinity Malayalees" <${config.auth.user}>`,
-      to: emailData.to,
-      subject: emailData.subject,
-      html: emailData.html,
-      attachments: emailData.attachments
-    });
-
-    console.log('Email sent successfully:', info.messageId);
+    const result = await response.json();
+    console.log('Email sent successfully:', result);
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
