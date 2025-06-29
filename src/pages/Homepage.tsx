@@ -168,8 +168,8 @@ const Homepage: React.FC = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-malayalam">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-golden-400 dark:via-harvest-400 dark:to-amber-400">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-malayalam">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-golden-300 dark:via-harvest-300 dark:to-amber-300">
                 Infinity Malayalees
               </span>
               <br />
@@ -191,7 +191,7 @@ const Homepage: React.FC = () => {
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-malayalam">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-tropical-600 via-bloom-600 to-coral-600 dark:from-tropical-400 dark:via-bloom-400 dark:to-coral-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-tropical-600 via-bloom-600 to-coral-600 dark:from-tropical-300 dark:via-bloom-300 dark:to-coral-300">
                   🎉 Onam 2025 Grand Celebration 🎉
                 </span>
               </h2>
