@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, Mail, Phone, MapPin } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const Footer: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <div className="flex items-center space-x-3 mb-6">
+            <Link to="/" className="flex items-center space-x-3 mb-6">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
                 isOnamPage 
                   ? 'bg-gradient-to-br from-tropical-400 to-coral-500 dark:from-tropical-400 dark:to-coral-500' 
@@ -42,7 +43,7 @@ const Footer: React.FC = () => {
               }`}>
                 Infinity Malayalees
               </span>
-            </div>
+            </Link>
             <p className={`mb-6 font-medium text-lg leading-relaxed transition-all duration-300 ${
               isOnamPage 
                 ? 'text-tropical-100 dark:text-gray-300' 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Users, Heart, Calendar, Award, MapPin, Mail, Phone } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, CoconutPalmIcon, LampIcon, PookkalamIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -495,20 +496,20 @@ const AboutUs: React.FC = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/malayalee-registration"
+            <Link
+              to="/malayalee-registration"
               className="inline-flex items-center px-8 py-4 rounded-full bg-white text-blue-600 font-bold text-lg hover:bg-blue-50 transform hover:scale-105 transition-all duration-200 shadow-xl"
             >
               <ThiruvathiraIcon className="mr-2" size={20} />
               👥 Register as Member
-            </a>
-            <a
-              href="/events"
+            </Link>
+            <Link
+              to="/events"
               className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white/10 transition-all duration-200 shadow-lg"
             >
               <LampIcon className="mr-2" size={20} />
               📅 View Events
-            </a>
+            </Link>
           </div>
         </div>
       </section>
