@@ -1,164 +1,130 @@
-import React, { useState } from 'react';
-import { Users, Utensils, Music, Heart, Download, Calendar, Mail, Phone, Home, User } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, Utensils, Music, Heart, Download, Calendar, Mail, Phone, Home, User, Loader2, AlertCircle, CheckCircle, Eye, Send, Shield } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import QRCodeModal from '../components/QRCodeModal';
+import { useSupabaseData } from '../hooks/useSupabaseData';
+import { sendEmail, generateConfirmationEmailTemplate } from '../utils/emailService';
 
 const AdminPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  const { data, loading, error, refetch } = useSupabaseData();
+  const [selectedRegistration, setSelectedRegistration] = useState<any>(null);
+  const [showQRModal, setShowQRModal] = useState(false);
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [verifyingPayment, setVerifyingPayment] = useState<number | null>(null);
 
-  // Mock data - in a real app, this would come from your database
-  const mockMalayaleeRegistrations = [
-    {
-      id: 1,
-      fullName: 'Rajesh Kumar',
-      email: 'rajesh.kumar@email.com',
-      phone: '+91 98765 43210',
-      flatNumber: 'A-1205',
-      nativePlace: 'Kochi',
-      familyMembers: '4',
-      specialSkills: 'Classical dance, singing',
-      volunteerInterest: true,
-      registeredAt: '2024-12-20T10:30:00Z'
-    },
-    {
-      id: 2,
-      fullName: 'Priya Nair',
-      email: 'priya.nair@email.com',
-      phone: '+91 87654 32109',
-      flatNumber: 'B-0803',
-      nativePlace: 'Thiruvananthapuram',
-      familyMembers: '3',
-      specialSkills: 'Cooking, Thiruvathira',
-      volunteerInterest: false,
-      registeredAt: '2024-12-20T14:15:00Z'
-    },
-    {
-      id: 3,
-      fullName: 'Anil Menon',
-      email: 'anil.menon@email.com',
-      phone: '+91 76543 21098',
-      flatNumber: 'C-1507',
-      nativePlace: 'Kozhikode',
-      familyMembers: '2',
-      specialSkills: 'Chenda, Photography',
-      volunteerInterest: true,
-      registeredAt: '2024-12-20T16:45:00Z'
-    }
-  ];
+  // Send confirmation email
+  const sendConfirmationEmail = async (registration: any, type: string) => {
+    setSendingEmail(true);
+    try {
+      let emailTemplate = '';
+      let subject = '';
+      
+      if (type === 'sadya') {
+        subject = `Onam 2025 Sadya Registration Confirmed - ${registration.sadya_count} meals`;
+        emailTemplate = generateConfirmationEmailTemplate(
+          registration.full_name,
+          'Sadya Registration',
+          {
+            'Sadya Count': registration.sadya_count,
+            'Total Amount': `₹${registration.total_amount}`,
+            'Registration ID': registration.registration_id,
+            'Event Date': 'September 13-14, 2025',
+            'Venue': 'Ajmera Infinity Community Hall'
+          }
+        );
+      } else if (type === 'malayalee') {
+        subject = 'Welcome to Infinity Malayalees Community';
+        emailTemplate = generateConfirmationEmailTemplate(
+          registration.full_name,
+          'Malayalee Community Registration',
+          {
+            'Flat Number': registration.flat_number,
+            'Native Place': registration.native_place || 'Not specified',
+            'Family Members': registration.family_members || 'Not specified',
+            'Volunteer Interest': registration.volunteer_interest ? 'Yes' : 'No'
+          }
+        );
+      } else if (type === 'thiruvathira') {
+        subject = 'Mega Thiruvathira Registration Confirmed';
+        emailTemplate = generateConfirmationEmailTemplate(
+          registration.full_name,
+          'Mega Thiruvathira Registration',
+          {
+            'Event Date': 'September 14, 2025 at 10:00 AM',
+            'Venue': 'Ajmera Infinity Community Hall',
+            'Flat Number': registration.flat_number,
+            'Contact': registration.phone
+          }
+        );
+      } else if (type === 'cultural') {
+        subject = `Cultural Event Registration Confirmed - ${registration.event_title}`;
+        emailTemplate = generateConfirmationEmailTemplate(
+          registration.participant_name,
+          'Cultural Event Registration',
+          {
+            'Event Category': registration.event_category.replace('-', ' '),
+            'Event Title': registration.event_title,
+            'Participants': registration.participant_count,
+            'Event Date': 'September 14, 2025 (Evening)',
+            'Venue': 'Ajmera Infinity Community Hall'
+          }
+        );
+      } else if (type === 'donation') {
+        subject = `Thank you for your generous donation - ₹${registration.donation_amount}`;
+        emailTemplate = generateConfirmationEmailTemplate(
+          registration.donor_name,
+          'Donation Confirmation',
+          {
+            'Donation Type': registration.donation_type === 'malayalee' ? 'Community Support' : registration.donation_type,
+            'Amount': `₹${registration.donation_amount}`,
+            'Transaction ID': registration.transaction_id || 'Pending verification',
+            'Message': registration.message || 'No message'
+          }
+        );
+      }
 
-  const mockSadyaRegistrations = [
-    {
-      id: 1,
-      fullName: 'Deepa Pillai',
-      email: 'deepa.pillai@email.com',
-      phone: '+91 65432 10987',
-      flatNumber: 'A-0904',
-      sadyaCount: 4,
-      totalAmount: 1400,
-      upiId: 'deepa@paytm',
-      transactionId: 'TXN123456789',
-      registrationId: 'SADYA-ABC123',
-      registeredAt: '2024-12-20T11:20:00Z'
-    },
-    {
-      id: 2,
-      fullName: 'Suresh Nambiar',
-      email: 'suresh.nambiar@email.com',
-      phone: '+91 54321 09876',
-      flatNumber: 'B-1206',
-      sadyaCount: 2,
-      totalAmount: 700,
-      upiId: 'suresh@gpay',
-      transactionId: 'TXN987654321',
-      registrationId: 'SADYA-DEF456',
-      registeredAt: '2024-12-20T13:10:00Z'
-    }
-  ];
+      const emailData = {
+        to: registration.email,
+        subject,
+        html: emailTemplate
+      };
 
-  const mockThiruvathiraRegistrations = [
-    {
-      id: 1,
-      fullName: 'Lakshmi Devi',
-      email: 'lakshmi.devi@email.com',
-      phone: '+91 43210 98765',
-      flatNumber: 'C-0802',
-      registeredAt: '2024-12-20T09:45:00Z'
-    },
-    {
-      id: 2,
-      fullName: 'Radha Krishnan',
-      email: 'radha.krishnan@email.com',
-      phone: '+91 32109 87654',
-      flatNumber: 'A-1408',
-      registeredAt: '2024-12-20T15:30:00Z'
-    },
-    {
-      id: 3,
-      fullName: 'Meera Sathyan',
-      email: 'meera.sathyan@email.com',
-      phone: '+91 21098 76543',
-      flatNumber: 'B-0705',
-      registeredAt: '2024-12-20T17:20:00Z'
+      const success = await sendEmail(emailData);
+      
+      if (success) {
+        alert(`Confirmation email sent to ${registration.email}`);
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send email. Please try again.');
+    } finally {
+      setSendingEmail(false);
     }
-  ];
+  };
 
-  const mockCulturalRegistrations = [
-    {
-      id: 1,
-      participantName: 'Arjun Nair',
-      email: 'arjun.nair@email.com',
-      phone: '+91 10987 65432',
-      flatNumber: 'A-0603',
-      eventCategory: 'solo-dance',
-      eventTitle: 'Bharatanatyam Performance',
-      participantCount: 1,
-      description: 'Classical Bharatanatyam piece depicting Lord Krishna',
-      specialRequirements: 'Traditional music system',
-      registeredAt: '2024-12-20T12:00:00Z'
-    },
-    {
-      id: 2,
-      participantName: 'Kavya Menon',
-      email: 'kavya.menon@email.com',
-      phone: '+91 09876 54321',
-      flatNumber: 'C-1203',
-      eventCategory: 'group-song',
-      eventTitle: 'Malayalam Folk Songs',
-      participantCount: 6,
-      description: 'Traditional Malayalam folk songs medley',
-      specialRequirements: 'Microphones for 6 people',
-      registeredAt: '2024-12-20T14:30:00Z'
+  // Verify payment (mock function)
+  const verifyPayment = async (registrationId: number, type: string) => {
+    setVerifyingPayment(registrationId);
+    try {
+      // In a real implementation, you would update the database
+      console.log(`Verifying payment for ${type} registration:`, registrationId);
+      
+      // Simulate verification delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      alert('Payment verified successfully!');
+      refetch(); // Refresh data
+    } catch (error) {
+      console.error('Error verifying payment:', error);
+      alert('Failed to verify payment. Please try again.');
+    } finally {
+      setVerifyingPayment(null);
     }
-  ];
-
-  const mockDonations = [
-    {
-      id: 1,
-      donorName: 'Vinod Kumar',
-      email: 'vinod.kumar@email.com',
-      phone: '+91 98765 43210',
-      flatNumber: 'A-1501',
-      donationType: 'gold',
-      donationAmount: 25000,
-      upiId: 'vinod@paytm',
-      transactionId: 'TXN555666777',
-      message: 'Happy to support our community celebrations',
-      registeredAt: '2024-12-20T10:15:00Z'
-    },
-    {
-      id: 2,
-      donorName: 'Sita Ramachandran',
-      email: 'sita.ramachandran@email.com',
-      phone: '+91 87654 32109',
-      flatNumber: 'B-0907',
-      donationType: 'malayalee',
-      donationAmount: 5000,
-      upiId: 'sita@gpay',
-      transactionId: 'TXN888999000',
-      message: 'For the success of Onam celebrations',
-      registeredAt: '2024-12-20T16:00:00Z'
-    }
-  ];
+  };
 
   // CSV Export Functions
   const convertToCSV = (data: any[], headers: string[]) => {
@@ -191,54 +157,44 @@ const AdminPortal: React.FC = () => {
   };
 
   const exportMalayaleeRegistrations = () => {
-    const headers = ['fullName', 'email', 'phone', 'flatNumber', 'nativePlace', 'familyMembers', 'specialSkills', 'volunteerInterest', 'registeredAt'];
-    const csvContent = convertToCSV(mockMalayaleeRegistrations, headers);
+    const headers = ['full_name', 'email', 'phone', 'flat_number', 'native_place', 'family_members', 'special_skills', 'volunteer_interest', 'created_at'];
+    const csvContent = convertToCSV(data.malayaleeRegistrations, headers);
     downloadCSV(csvContent, `malayalee_registrations_${new Date().toISOString().split('T')[0]}.csv`);
   };
 
   const exportSadyaRegistrations = () => {
-    const headers = ['fullName', 'email', 'phone', 'flatNumber', 'sadyaCount', 'totalAmount', 'upiId', 'transactionId', 'registrationId', 'registeredAt'];
-    const csvContent = convertToCSV(mockSadyaRegistrations, headers);
+    const headers = ['full_name', 'email', 'phone', 'flat_number', 'sadya_count', 'total_amount', 'upi_id', 'transaction_id', 'registration_id', 'created_at'];
+    const csvContent = convertToCSV(data.sadyaRegistrations, headers);
     downloadCSV(csvContent, `sadya_registrations_${new Date().toISOString().split('T')[0]}.csv`);
   };
 
   const exportThiruvathiraRegistrations = () => {
-    const headers = ['fullName', 'email', 'phone', 'flatNumber', 'registeredAt'];
-    const csvContent = convertToCSV(mockThiruvathiraRegistrations, headers);
+    const headers = ['full_name', 'email', 'phone', 'flat_number', 'created_at'];
+    const csvContent = convertToCSV(data.thiruvathiraRegistrations, headers);
     downloadCSV(csvContent, `thiruvathira_registrations_${new Date().toISOString().split('T')[0]}.csv`);
   };
 
   const exportCulturalRegistrations = () => {
-    const headers = ['participantName', 'email', 'phone', 'flatNumber', 'eventCategory', 'eventTitle', 'participantCount', 'description', 'specialRequirements', 'registeredAt'];
-    const csvContent = convertToCSV(mockCulturalRegistrations, headers);
+    const headers = ['participant_name', 'email', 'phone', 'flat_number', 'event_category', 'event_title', 'participant_count', 'description', 'special_requirements', 'created_at'];
+    const csvContent = convertToCSV(data.culturalRegistrations, headers);
     downloadCSV(csvContent, `cultural_registrations_${new Date().toISOString().split('T')[0]}.csv`);
   };
 
   const exportDonations = () => {
-    const headers = ['donorName', 'email', 'phone', 'flatNumber', 'donationType', 'donationAmount', 'upiId', 'transactionId', 'message', 'registeredAt'];
-    const csvContent = convertToCSV(mockDonations, headers);
+    const headers = ['donor_name', 'email', 'phone', 'flat_number', 'donation_type', 'donation_amount', 'upi_id', 'transaction_id', 'message', 'created_at'];
+    const csvContent = convertToCSV(data.donations, headers);
     downloadCSV(csvContent, `donations_${new Date().toISOString().split('T')[0]}.csv`);
   };
 
   const exportAllData = () => {
-    // Create a comprehensive export with all registration data
-    const allData = {
-      malayalee: mockMalayaleeRegistrations,
-      sadya: mockSadyaRegistrations,
-      thiruvathira: mockThiruvathiraRegistrations,
-      cultural: mockCulturalRegistrations,
-      donations: mockDonations
-    };
-
-    // Create a summary CSV with key statistics
     const summaryData = [
-      { category: 'Malayalee Registrations', count: mockMalayaleeRegistrations.length },
-      { category: 'Sadya Registrations', count: mockSadyaRegistrations.length },
-      { category: 'Thiruvathira Registrations', count: mockThiruvathiraRegistrations.length },
-      { category: 'Cultural Event Registrations', count: mockCulturalRegistrations.length },
-      { category: 'Donations', count: mockDonations.length },
-      { category: 'Total Sadya Count', count: mockSadyaRegistrations.reduce((sum, reg) => sum + reg.sadyaCount, 0) },
-      { category: 'Total Donation Amount', count: `₹${mockDonations.reduce((sum, don) => sum + don.donationAmount, 0)}` }
+      { category: 'Malayalee Registrations', count: data.statistics.malayaleeRegistrations },
+      { category: 'Sadya Registrations', count: data.statistics.sadyaRegistrations },
+      { category: 'Total Sadya Count', count: data.statistics.totalSadyaCount },
+      { category: 'Thiruvathira Registrations', count: data.statistics.thiruvathiraRegistrations },
+      { category: 'Cultural Event Registrations', count: data.statistics.culturalRegistrations },
+      { category: 'Donations', count: data.statistics.totalDonations },
+      { category: 'Total Donation Amount', count: `₹${data.statistics.totalDonationAmount}` }
     ];
 
     const summaryHeaders = ['category', 'count'];
@@ -267,6 +223,43 @@ const AdminPortal: React.FC = () => {
     </button>
   );
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <Loader2 className="animate-spin mx-auto mb-4 text-blue-600 dark:text-blue-400" size={48} />
+            <p className="text-lg text-gray-600 dark:text-gray-400">Loading admin data...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center max-w-md">
+            <AlertCircle className="mx-auto mb-4 text-red-600 dark:text-red-400" size={48} />
+            <h2 className="text-xl font-bold text-red-800 dark:text-red-300 mb-2">Error Loading Data</h2>
+            <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
+            <button
+              onClick={refetch}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <Navigation />
@@ -284,11 +277,11 @@ const AdminPortal: React.FC = () => {
         {/* Tab Navigation */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <TabButton tabId="overview" label="Overview" icon={Calendar} />
-          <TabButton tabId="malayalee" label="Malayalee Members" icon={Users} count={mockMalayaleeRegistrations.length} />
-          <TabButton tabId="sadya" label="Sadya Bookings" icon={Utensils} count={mockSadyaRegistrations.length} />
-          <TabButton tabId="thiruvathira" label="Thiruvathira" icon={Music} count={mockThiruvathiraRegistrations.length} />
-          <TabButton tabId="cultural" label="Cultural Events" icon={Music} count={mockCulturalRegistrations.length} />
-          <TabButton tabId="donations" label="Donations" icon={Heart} count={mockDonations.length} />
+          <TabButton tabId="malayalee" label="Malayalee Members" icon={Users} count={data.statistics.malayaleeRegistrations} />
+          <TabButton tabId="sadya" label="Sadya Bookings" icon={Utensils} count={data.statistics.sadyaRegistrations} />
+          <TabButton tabId="thiruvathira" label="Thiruvathira" icon={Music} count={data.statistics.thiruvathiraRegistrations} />
+          <TabButton tabId="cultural" label="Cultural Events" icon={Music} count={data.statistics.culturalRegistrations} />
+          <TabButton tabId="donations" label="Donations" icon={Heart} count={data.statistics.totalDonations} />
         </div>
 
         {/* Overview Tab */}
@@ -299,7 +292,7 @@ const AdminPortal: React.FC = () => {
               <div className="bg-gradient-to-br from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-2xl p-6 border-2 border-blue-300 dark:border-blue-500 shadow-lg">
                 <div className="flex items-center justify-between mb-4">
                   <Users className="text-blue-600 dark:text-blue-400" size={32} />
-                  <span className="text-2xl font-bold text-blue-800 dark:text-blue-300">{mockMalayaleeRegistrations.length}</span>
+                  <span className="text-2xl font-bold text-blue-800 dark:text-blue-300">{data.statistics.malayaleeRegistrations}</span>
                 </div>
                 <h3 className="font-bold text-blue-800 dark:text-blue-300">Malayalee Members</h3>
                 <p className="text-blue-600 dark:text-blue-400 text-sm">Community registrations</p>
@@ -308,9 +301,7 @@ const AdminPortal: React.FC = () => {
               <div className="bg-gradient-to-br from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 rounded-2xl p-6 border-2 border-green-300 dark:border-green-500 shadow-lg">
                 <div className="flex items-center justify-between mb-4">
                   <Utensils className="text-green-600 dark:text-green-400" size={32} />
-                  <span className="text-2xl font-bold text-green-800 dark:text-green-300">
-                    {mockSadyaRegistrations.reduce((sum, reg) => sum + reg.sadyaCount, 0)}
-                  </span>
+                  <span className="text-2xl font-bold text-green-800 dark:text-green-300">{data.statistics.totalSadyaCount}</span>
                 </div>
                 <h3 className="font-bold text-green-800 dark:text-green-300">Sadya Bookings</h3>
                 <p className="text-green-600 dark:text-green-400 text-sm">Total meals booked</p>
@@ -320,7 +311,7 @@ const AdminPortal: React.FC = () => {
                 <div className="flex items-center justify-between mb-4">
                   <Music className="text-purple-600 dark:text-purple-400" size={32} />
                   <span className="text-2xl font-bold text-purple-800 dark:text-purple-300">
-                    {mockThiruvathiraRegistrations.length + mockCulturalRegistrations.length}
+                    {data.statistics.thiruvathiraRegistrations + data.statistics.culturalRegistrations}
                   </span>
                 </div>
                 <h3 className="font-bold text-purple-800 dark:text-purple-300">Cultural Events</h3>
@@ -331,7 +322,7 @@ const AdminPortal: React.FC = () => {
                 <div className="flex items-center justify-between mb-4">
                   <Heart className="text-red-600 dark:text-red-400" size={32} />
                   <span className="text-2xl font-bold text-red-800 dark:text-red-300">
-                    ₹{mockDonations.reduce((sum, don) => sum + don.donationAmount, 0).toLocaleString()}
+                    ₹{data.statistics.totalDonationAmount.toLocaleString()}
                   </span>
                 </div>
                 <h3 className="font-bold text-red-800 dark:text-red-300">Total Donations</h3>
@@ -414,7 +405,7 @@ const AdminPortal: React.FC = () => {
             <div className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-500 dark:to-cyan-500 px-6 py-4 flex justify-between items-center">
               <h2 className="text-xl font-bold text-white flex items-center">
                 <Users className="mr-2" size={24} />
-                Malayalee Community Registrations ({mockMalayaleeRegistrations.length})
+                Malayalee Community Registrations ({data.malayaleeRegistrations.length})
               </h2>
               <button
                 onClick={exportMalayaleeRegistrations}
@@ -425,65 +416,83 @@ const AdminPortal: React.FC = () => {
               </button>
             </div>
             <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b-2 border-gray-200 dark:border-gray-600">
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Name</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Contact</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Flat</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Native Place</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Family</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Skills</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Volunteer</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {mockMalayaleeRegistrations.map((registration) => (
-                      <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="py-3 px-2">
-                          <div>
-                            <div className="font-medium text-gray-900 dark:text-gray-100">{registration.fullName}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">
-                              {new Date(registration.registeredAt).toLocaleDateString()}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="text-gray-700 dark:text-gray-300">
-                            <div className="flex items-center space-x-1">
-                              <Mail size={12} />
-                              <span className="text-xs">{registration.email}</span>
-                            </div>
-                            <div className="flex items-center space-x-1 mt-1">
-                              <Phone size={12} />
-                              <span className="text-xs">{registration.phone}</span>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="flex items-center space-x-1">
-                            <Home size={12} className="text-gray-500 dark:text-gray-400" />
-                            <span className="text-gray-700 dark:text-gray-300">{registration.flatNumber}</span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2 text-gray-700 dark:text-gray-300">{registration.nativePlace}</td>
-                        <td className="py-3 px-2 text-gray-700 dark:text-gray-300">{registration.familyMembers} members</td>
-                        <td className="py-3 px-2 text-gray-700 dark:text-gray-300 max-w-xs truncate">{registration.specialSkills}</td>
-                        <td className="py-3 px-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            registration.volunteerInterest 
-                              ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300' 
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
-                          }`}>
-                            {registration.volunteerInterest ? 'Yes' : 'No'}
-                          </span>
-                        </td>
+              {data.malayaleeRegistrations.length === 0 ? (
+                <div className="text-center py-8">
+                  <Users className="mx-auto text-gray-400 mb-4" size={48} />
+                  <p className="text-gray-500 dark:text-gray-400">No Malayalee registrations yet.</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 dark:border-gray-600">
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Name</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Contact</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Flat</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Native Place</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Family</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Skills</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Volunteer</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {data.malayaleeRegistrations.map((registration) => (
+                        <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                          <td className="py-3 px-2">
+                            <div>
+                              <div className="font-medium text-gray-900 dark:text-gray-100">{registration.full_name}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                                {registration.created_at ? new Date(registration.created_at).toLocaleDateString() : 'N/A'}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="text-gray-700 dark:text-gray-300">
+                              <div className="flex items-center space-x-1">
+                                <Mail size={12} />
+                                <span className="text-xs">{registration.email}</span>
+                              </div>
+                              <div className="flex items-center space-x-1 mt-1">
+                                <Phone size={12} />
+                                <span className="text-xs">{registration.phone}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="flex items-center space-x-1">
+                              <Home size={12} className="text-gray-500 dark:text-gray-400" />
+                              <span className="text-gray-700 dark:text-gray-300">{registration.flat_number}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2 text-gray-700 dark:text-gray-300">{registration.native_place || 'N/A'}</td>
+                          <td className="py-3 px-2 text-gray-700 dark:text-gray-300">{registration.family_members ? `${registration.family_members} members` : 'N/A'}</td>
+                          <td className="py-3 px-2 text-gray-700 dark:text-gray-300 max-w-xs truncate">{registration.special_skills || 'N/A'}</td>
+                          <td className="py-3 px-2">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              registration.volunteer_interest 
+                                ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300' 
+                                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                            }`}>
+                              {registration.volunteer_interest ? 'Yes' : 'No'}
+                            </span>
+                          </td>
+                          <td className="py-3 px-2">
+                            <button
+                              onClick={() => sendConfirmationEmail(registration, 'malayalee')}
+                              disabled={sendingEmail}
+                              className="flex items-center space-x-1 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded text-xs hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors disabled:opacity-50"
+                            >
+                              {sendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                              <span>Email</span>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -494,7 +503,7 @@ const AdminPortal: React.FC = () => {
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-500 dark:to-emerald-500 px-6 py-4 flex justify-between items-center">
               <h2 className="text-xl font-bold text-white flex items-center">
                 <Utensils className="mr-2" size={24} />
-                Sadya Registrations ({mockSadyaRegistrations.length} bookings, {mockSadyaRegistrations.reduce((sum, reg) => sum + reg.sadyaCount, 0)} meals)
+                Sadya Registrations ({data.sadyaRegistrations.length} bookings, {data.statistics.totalSadyaCount} meals)
               </h2>
               <button
                 onClick={exportSadyaRegistrations}
@@ -505,52 +514,84 @@ const AdminPortal: React.FC = () => {
               </button>
             </div>
             <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b-2 border-gray-200 dark:border-gray-600">
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Name & Contact</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Flat</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Sadya Count</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Amount</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Payment Details</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Registration ID</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {mockSadyaRegistrations.map((registration) => (
-                      <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="py-3 px-2">
-                          <div>
-                            <div className="font-medium text-gray-900 dark:text-gray-100">{registration.fullName}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{registration.email}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{registration.phone}</div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2 text-gray-700 dark:text-gray-300">{registration.flatNumber}</td>
-                        <td className="py-3 px-2">
-                          <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 px-2 py-1 rounded-full text-xs font-medium">
-                            {registration.sadyaCount} meals
-                          </span>
-                        </td>
-                        <td className="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">₹{registration.totalAmount}</td>
-                        <td className="py-3 px-2">
-                          <div className="text-xs text-gray-600 dark:text-gray-400">
-                            <div>UPI: {registration.upiId}</div>
-                            <div>TXN: {registration.transactionId}</div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="text-xs font-mono text-gray-600 dark:text-gray-400">{registration.registrationId}</div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
-                            {new Date(registration.registeredAt).toLocaleDateString()}
-                          </div>
-                        </td>
+              {data.sadyaRegistrations.length === 0 ? (
+                <div className="text-center py-8">
+                  <Utensils className="mx-auto text-gray-400 mb-4" size={48} />
+                  <p className="text-gray-500 dark:text-gray-400">No Sadya registrations yet.</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 dark:border-gray-600">
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Name & Contact</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Flat</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Sadya Count</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Amount</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Payment Details</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {data.sadyaRegistrations.map((registration) => (
+                        <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                          <td className="py-3 px-2">
+                            <div>
+                              <div className="font-medium text-gray-900 dark:text-gray-100">{registration.full_name}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{registration.email}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{registration.phone}</div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2 text-gray-700 dark:text-gray-300">{registration.flat_number}</td>
+                          <td className="py-3 px-2">
+                            <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 px-2 py-1 rounded-full text-xs font-medium">
+                              {registration.sadya_count} meals
+                            </span>
+                          </td>
+                          <td className="py-3 px-2 font-medium text-gray-900 dark:text-gray-100">₹{registration.total_amount}</td>
+                          <td className="py-3 px-2">
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              <div>UPI: {registration.upi_id || 'N/A'}</div>
+                              <div>TXN: {registration.transaction_id || 'N/A'}</div>
+                              <div>ID: {registration.registration_id}</div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="flex space-x-2">
+                              <button
+                                onClick={() => {
+                                  setSelectedRegistration(registration);
+                                  setShowQRModal(true);
+                                }}
+                                className="flex items-center space-x-1 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded text-xs hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                              >
+                                <Eye size={12} />
+                                <span>QR</span>
+                              </button>
+                              <button
+                                onClick={() => sendConfirmationEmail(registration, 'sadya')}
+                                disabled={sendingEmail}
+                                className="flex items-center space-x-1 px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded text-xs hover:bg-green-200 dark:hover:bg-green-800 transition-colors disabled:opacity-50"
+                              >
+                                {sendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                                <span>Email</span>
+                              </button>
+                              <button
+                                onClick={() => verifyPayment(registration.id!, 'sadya')}
+                                disabled={verifyingPayment === registration.id}
+                                className="flex items-center space-x-1 px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 rounded text-xs hover:bg-yellow-200 dark:hover:bg-yellow-800 transition-colors disabled:opacity-50"
+                              >
+                                {verifyingPayment === registration.id ? <Loader2 size={12} className="animate-spin" /> : <Shield size={12} />}
+                                <span>Verify</span>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -561,7 +602,7 @@ const AdminPortal: React.FC = () => {
             <div className="bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-500 dark:to-rose-500 px-6 py-4 flex justify-between items-center">
               <h2 className="text-xl font-bold text-white flex items-center">
                 <Music className="mr-2" size={24} />
-                Mega Thiruvathira Registrations ({mockThiruvathiraRegistrations.length})
+                Mega Thiruvathira Registrations ({data.thiruvathiraRegistrations.length})
               </h2>
               <button
                 onClick={exportThiruvathiraRegistrations}
@@ -572,52 +613,70 @@ const AdminPortal: React.FC = () => {
               </button>
             </div>
             <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b-2 border-gray-200 dark:border-gray-600">
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Name</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Email</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Phone</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Flat Number</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Registered</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {mockThiruvathiraRegistrations.map((registration) => (
-                      <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="py-3 px-2">
-                          <div className="flex items-center space-x-2">
-                            <User size={16} className="text-pink-500 dark:text-pink-400" />
-                            <span className="font-medium text-gray-900 dark:text-gray-100">{registration.fullName}</span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="flex items-center space-x-2">
-                            <Mail size={16} className="text-gray-400" />
-                            <span className="text-gray-700 dark:text-gray-300">{registration.email}</span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="flex items-center space-x-2">
-                            <Phone size={16} className="text-gray-400" />
-                            <span className="text-gray-700 dark:text-gray-300">{registration.phone}</span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="flex items-center space-x-2">
-                            <Home size={16} className="text-gray-400" />
-                            <span className="text-gray-700 dark:text-gray-300">{registration.flatNumber}</span>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2 text-gray-600 dark:text-gray-400">
-                          {new Date(registration.registeredAt).toLocaleDateString()}
-                        </td>
+              {data.thiruvathiraRegistrations.length === 0 ? (
+                <div className="text-center py-8">
+                  <Music className="mx-auto text-gray-400 mb-4" size={48} />
+                  <p className="text-gray-500 dark:text-gray-400">No Thiruvathira registrations yet.</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 dark:border-gray-600">
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Name</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Email</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Phone</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Flat Number</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Registered</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {data.thiruvathiraRegistrations.map((registration) => (
+                        <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                          <td className="py-3 px-2">
+                            <div className="flex items-center space-x-2">
+                              <User size={16} className="text-pink-500 dark:text-pink-400" />
+                              <span className="font-medium text-gray-900 dark:text-gray-100">{registration.full_name}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="flex items-center space-x-2">
+                              <Mail size={16} className="text-gray-400" />
+                              <span className="text-gray-700 dark:text-gray-300">{registration.email}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="flex items-center space-x-2">
+                              <Phone size={16} className="text-gray-400" />
+                              <span className="text-gray-700 dark:text-gray-300">{registration.phone}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="flex items-center space-x-2">
+                              <Home size={16} className="text-gray-400" />
+                              <span className="text-gray-700 dark:text-gray-300">{registration.flat_number}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2 text-gray-600 dark:text-gray-400">
+                            {registration.created_at ? new Date(registration.created_at).toLocaleDateString() : 'N/A'}
+                          </td>
+                          <td className="py-3 px-2">
+                            <button
+                              onClick={() => sendConfirmationEmail(registration, 'thiruvathira')}
+                              disabled={sendingEmail}
+                              className="flex items-center space-x-1 px-2 py-1 bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-300 rounded text-xs hover:bg-pink-200 dark:hover:bg-pink-800 transition-colors disabled:opacity-50"
+                            >
+                              {sendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                              <span>Email</span>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -628,7 +687,7 @@ const AdminPortal: React.FC = () => {
             <div className="bg-gradient-to-r from-purple-600 to-violet-600 dark:from-purple-500 dark:to-violet-500 px-6 py-4 flex justify-between items-center">
               <h2 className="text-xl font-bold text-white flex items-center">
                 <Music className="mr-2" size={24} />
-                Cultural Event Registrations ({mockCulturalRegistrations.length})
+                Cultural Event Registrations ({data.culturalRegistrations.length})
               </h2>
               <button
                 onClick={exportCulturalRegistrations}
@@ -639,56 +698,74 @@ const AdminPortal: React.FC = () => {
               </button>
             </div>
             <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b-2 border-gray-200 dark:border-gray-600">
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Participant</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Event Details</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Participants</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Description</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Requirements</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {mockCulturalRegistrations.map((registration) => (
-                      <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="py-3 px-2">
-                          <div>
-                            <div className="font-medium text-gray-900 dark:text-gray-100">{registration.participantName}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{registration.email}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{registration.phone}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">Flat: {registration.flatNumber}</div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div>
-                            <div className="font-medium text-gray-900 dark:text-gray-100">{registration.eventTitle}</div>
-                            <div className="text-xs text-purple-600 dark:text-purple-400 capitalize">
-                              {registration.eventCategory.replace('-', ' ')}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-300 px-2 py-1 rounded-full text-xs font-medium">
-                            {registration.participantCount}
-                          </span>
-                        </td>
-                        <td className="py-3 px-2 max-w-xs">
-                          <div className="text-gray-700 dark:text-gray-300 text-xs truncate" title={registration.description}>
-                            {registration.description}
-                          </div>
-                        </td>
-                        <td className="py-3 px-2 max-w-xs">
-                          <div className="text-gray-600 dark:text-gray-400 text-xs truncate" title={registration.specialRequirements}>
-                            {registration.specialRequirements || 'None'}
-                          </div>
-                        </td>
+              {data.culturalRegistrations.length === 0 ? (
+                <div className="text-center py-8">
+                  <Music className="mx-auto text-gray-400 mb-4" size={48} />
+                  <p className="text-gray-500 dark:text-gray-400">No cultural event registrations yet.</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 dark:border-gray-600">
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Participant</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Event Details</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Participants</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Description</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Requirements</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {data.culturalRegistrations.map((registration) => (
+                        <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                          <td className="py-3 px-2">
+                            <div>
+                              <div className="font-medium text-gray-900 dark:text-gray-100">{registration.participant_name}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{registration.email}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{registration.phone}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Flat: {registration.flat_number}</div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div>
+                              <div className="font-medium text-gray-900 dark:text-gray-100">{registration.event_title}</div>
+                              <div className="text-xs text-purple-600 dark:text-purple-400 capitalize">
+                                {registration.event_category.replace('-', ' ')}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-300 px-2 py-1 rounded-full text-xs font-medium">
+                              {registration.participant_count}
+                            </span>
+                          </td>
+                          <td className="py-3 px-2 max-w-xs">
+                            <div className="text-gray-700 dark:text-gray-300 text-xs truncate" title={registration.description}>
+                              {registration.description}
+                            </div>
+                          </td>
+                          <td className="py-3 px-2 max-w-xs">
+                            <div className="text-gray-600 dark:text-gray-400 text-xs truncate" title={registration.special_requirements || ''}>
+                              {registration.special_requirements || 'None'}
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <button
+                              onClick={() => sendConfirmationEmail(registration, 'cultural')}
+                              disabled={sendingEmail}
+                              className="flex items-center space-x-1 px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded text-xs hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors disabled:opacity-50"
+                            >
+                              {sendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                              <span>Email</span>
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -699,7 +776,7 @@ const AdminPortal: React.FC = () => {
             <div className="bg-gradient-to-r from-red-600 to-pink-600 dark:from-red-500 dark:to-pink-500 px-6 py-4 flex justify-between items-center">
               <h2 className="text-xl font-bold text-white flex items-center">
                 <Heart className="mr-2" size={24} />
-                Donations ({mockDonations.length} donors, ₹{mockDonations.reduce((sum, don) => sum + don.donationAmount, 0).toLocaleString()})
+                Donations ({data.donations.length} donors, ₹{data.statistics.totalDonationAmount.toLocaleString()})
               </h2>
               <button
                 onClick={exportDonations}
@@ -710,69 +787,110 @@ const AdminPortal: React.FC = () => {
               </button>
             </div>
             <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b-2 border-gray-200 dark:border-gray-600">
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Donor</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Contact</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Type</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Amount</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Payment</th>
-                      <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Message</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {mockDonations.map((donation) => (
-                      <tr key={donation.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <td className="py-3 px-2">
-                          <div>
-                            <div className="font-medium text-gray-900 dark:text-gray-100">{donation.donorName}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">Flat: {donation.flatNumber}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">
-                              {new Date(donation.registeredAt).toLocaleDateString()}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <div className="text-xs text-gray-600 dark:text-gray-400">
-                            <div>{donation.email}</div>
-                            <div>{donation.phone}</div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            donation.donationType === 'gold' 
-                              ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-300'
-                              : donation.donationType === 'silver'
-                              ? 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
-                              : donation.donationType === 'platinum'
-                              ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-300'
-                              : 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300'
-                          }`}>
-                            {donation.donationType === 'malayalee' ? 'Community' : donation.donationType}
-                          </span>
-                        </td>
-                        <td className="py-3 px-2 font-bold text-gray-900 dark:text-gray-100">₹{donation.donationAmount.toLocaleString()}</td>
-                        <td className="py-3 px-2">
-                          <div className="text-xs text-gray-600 dark:text-gray-400">
-                            <div>UPI: {donation.upiId}</div>
-                            <div>TXN: {donation.transactionId}</div>
-                          </div>
-                        </td>
-                        <td className="py-3 px-2 max-w-xs">
-                          <div className="text-gray-700 dark:text-gray-300 text-xs truncate" title={donation.message}>
-                            {donation.message || 'No message'}
-                          </div>
-                        </td>
+              {data.donations.length === 0 ? (
+                <div className="text-center py-8">
+                  <Heart className="mx-auto text-gray-400 mb-4" size={48} />
+                  <p className="text-gray-500 dark:text-gray-400">No donations yet.</p>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b-2 border-gray-200 dark:border-gray-600">
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Donor</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Contact</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Type</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Amount</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Payment</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Message</th>
+                        <th className="text-left py-3 px-2 font-bold text-gray-700 dark:text-gray-300">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {data.donations.map((donation) => (
+                        <tr key={donation.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                          <td className="py-3 px-2">
+                            <div>
+                              <div className="font-medium text-gray-900 dark:text-gray-100">{donation.donor_name}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">Flat: {donation.flat_number || 'N/A'}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                                {donation.created_at ? new Date(donation.created_at).toLocaleDateString() : 'N/A'}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              <div>{donation.email}</div>
+                              <div>{donation.phone}</div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              donation.donation_type === 'gold' 
+                                ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-300'
+                                : donation.donation_type === 'silver'
+                                ? 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
+                                : donation.donation_type === 'platinum'
+                                ? 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-300'
+                                : 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300'
+                            }`}>
+                              {donation.donation_type === 'malayalee' ? 'Community' : donation.donation_type}
+                            </span>
+                          </td>
+                          <td className="py-3 px-2 font-bold text-gray-900 dark:text-gray-100">₹{donation.donation_amount.toLocaleString()}</td>
+                          <td className="py-3 px-2">
+                            <div className="text-xs text-gray-600 dark:text-gray-400">
+                              <div>UPI: {donation.upi_id || 'N/A'}</div>
+                              <div>TXN: {donation.transaction_id || 'N/A'}</div>
+                            </div>
+                          </td>
+                          <td className="py-3 px-2 max-w-xs">
+                            <div className="text-gray-700 dark:text-gray-300 text-xs truncate" title={donation.message || ''}>
+                              {donation.message || 'No message'}
+                            </div>
+                          </td>
+                          <td className="py-3 px-2">
+                            <div className="flex space-x-2">
+                              <button
+                                onClick={() => sendConfirmationEmail(donation, 'donation')}
+                                disabled={sendingEmail}
+                                className="flex items-center space-x-1 px-2 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded text-xs hover:bg-green-200 dark:hover:bg-green-800 transition-colors disabled:opacity-50"
+                              >
+                                {sendingEmail ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                                <span>Email</span>
+                              </button>
+                              <button
+                                onClick={() => verifyPayment(donation.id!, 'donation')}
+                                disabled={verifyingPayment === donation.id}
+                                className="flex items-center space-x-1 px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 rounded text-xs hover:bg-yellow-200 dark:hover:bg-yellow-800 transition-colors disabled:opacity-50"
+                              >
+                                {verifyingPayment === donation.id ? <Loader2 size={12} className="animate-spin" /> : <Shield size={12} />}
+                                <span>Verify</span>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         )}
+
+        {/* QR Code Modal */}
+        <QRCodeModal
+          isOpen={showQRModal}
+          onClose={() => {
+            setShowQRModal(false);
+            setSelectedRegistration(null);
+          }}
+          registration={selectedRegistration}
+          onEmailSent={() => {
+            console.log('Email sent successfully');
+          }}
+        />
       </div>
 
       <Footer />

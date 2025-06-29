@@ -20,6 +20,7 @@ export const generateQRCodeData = (couponId: string, registrationData: any): str
     event: 'Onam 2025 Sadya',
     name: registrationData.name,
     flat: registrationData.flat,
+    registrationId: registrationData.registrationId,
     date: 'September 13-14, 2025',
     venue: 'Ajmera Infinity Community Hall',
     verified: true,
@@ -75,6 +76,35 @@ export const generateQRCodeSVG = async (data: string): Promise<string> => {
   }
 };
 
+// Generate QR codes for Sadya registration
+export const generateSadyaQRCodes = async (registration: any) => {
+  const coupons = [];
+  
+  for (let i = 0; i < registration.sadya_count; i++) {
+    const couponId = generateCouponId(registration.id || Date.now(), i);
+    const qrData = generateQRCodeData(couponId, {
+      name: registration.full_name,
+      flat: registration.flat_number,
+      registrationId: registration.registration_id
+    });
+    
+    try {
+      const qrDataUrl = await generateQRCodeDataURL(qrData);
+      coupons.push({ couponId, qrData, qrDataUrl });
+    } catch (error) {
+      console.error('Error generating QR code for coupon:', couponId, error);
+      // Fallback: create a placeholder QR code
+      coupons.push({ 
+        couponId, 
+        qrData, 
+        qrDataUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==' 
+      });
+    }
+  }
+  
+  return coupons;
+};
+
 // Function to create a simple QR code pattern (for display purposes)
 export const createQRPattern = (data: string): string => {
   // This creates a simple pattern based on the data
@@ -84,4 +114,14 @@ export const createQRPattern = (data: string): string => {
   }, 0);
   
   return `QR-${hash.toString(16).toUpperCase()}`;
+};
+
+// Validate QR code data
+export const validateQRCode = (qrData: string): boolean => {
+  try {
+    const parsed = JSON.parse(qrData);
+    return parsed.event === 'Onam 2025 Sadya' && parsed.verified === true;
+  } catch {
+    return false;
+  }
 };
