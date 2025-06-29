@@ -169,22 +169,18 @@ const Homepage: React.FC = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            {/* Main English Title */}
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-malayalam">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-amber-400 dark:via-orange-400 dark:to-red-400">
                 Infinity Malayalees
               </span>
-            </h1>
-            
-            {/* Malayalam Subtitle */}
-            <div className="mb-6">
-              <p className="text-lg md:text-xl font-malayalam text-golden-700 dark:text-golden-300 font-medium mb-2">
+              <br />
+              <span className="text-lg md:text-xl text-golden-700 dark:text-golden-300 font-malayalam font-medium block mt-1">
                 അജ്മേര ഇൻഫിനിറ്റി മലയാളി അസോസിയേഷൻ
-              </p>
-              <p className="text-base md:text-lg text-golden-600 dark:text-golden-400 font-sans font-medium">
+              </span>
+              <span className="text-base md:text-lg text-golden-600 dark:text-golden-400 font-sans font-medium block mt-1">
                 Ajmera Infinity Malayalam Association
-              </p>
-            </div>
+              </span>
+            </h1>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-black mb-8 max-w-3xl mx-auto font-medium">
               Join us in celebrating the spirit of Malayalam culture! Experience the joy of traditional festivals, 
