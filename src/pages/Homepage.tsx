@@ -169,7 +169,8 @@ const Homepage: React.FC = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-malayalam">
+            {/* Main English Title */}
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-amber-400 dark:via-orange-400 dark:to-red-400">
                 Infinity Malayalees
               </span>
@@ -177,10 +178,10 @@ const Homepage: React.FC = () => {
             
             {/* Malayalam Subtitle */}
             <div className="mb-6">
-              <p className="text-lg md:text-xl font-malayalam text-golden-700 dark:text-golden-300 font-medium">
+              <p className="text-lg md:text-xl font-malayalam text-golden-700 dark:text-golden-300 font-medium mb-2">
                 അജ്മേര ഇൻഫിനിറ്റി മലയാളി അസോസിയേഷൻ
               </p>
-              <p className="text-base md:text-lg text-golden-600 dark:text-golden-400 font-sans font-medium mt-2">
+              <p className="text-base md:text-lg text-golden-600 dark:text-golden-400 font-sans font-medium">
                 Ajmera Infinity Malayalam Association
               </p>
             </div>
