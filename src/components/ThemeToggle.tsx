@@ -1,17 +1,29 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { useLocation } from 'react-router-dom';
 
 const ThemeToggle: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
+  const location = useLocation();
+  
+  // Check if we're on Onam-related pages
+  const isOnamPage = location.pathname.includes('onam') || 
+                    location.pathname.includes('sadya') || 
+                    location.pathname.includes('cultural') || 
+                    location.pathname.includes('thiruvathira');
 
   return (
     <button
       onClick={toggleTheme}
-      className={`relative p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${
+      className={`relative p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg ${
         isDark 
-          ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg hover:from-amber-600 hover:to-orange-600' 
-          : 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg hover:from-indigo-600 hover:to-purple-600'
+          ? isOnamPage
+            ? 'bg-gradient-to-r from-tropical-500 to-coral-500 text-white hover:from-tropical-600 hover:to-coral-600' 
+            : 'bg-gradient-to-r from-backwater-500 to-serene-500 text-white hover:from-backwater-600 hover:to-serene-600'
+          : isOnamPage
+            ? 'bg-gradient-to-r from-bloom-500 to-tropical-500 text-white hover:from-bloom-600 hover:to-tropical-600'
+            : 'bg-gradient-to-r from-serene-500 to-sage-500 text-white hover:from-serene-600 hover:to-sage-600'
       }`}
       title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
