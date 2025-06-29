@@ -169,16 +169,16 @@ const Homepage: React.FC = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-malayalam">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:text-black">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-amber-400 dark:via-orange-400 dark:to-red-400">
                 Infinity Malayalees
               </span>
               <br />
-              <span className="text-2xl md:text-4xl text-gray-800 dark:text-black font-sans">
+              <span className="text-2xl md:text-4xl text-gray-800 dark:text-gray-200 font-sans">
                 Ajmera Infinity Malayalam Association
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 max-w-3xl mx-auto font-medium">
+            <p className="text-lg md:text-xl text-gray-700 dark:text-black mb-8 max-w-3xl mx-auto font-medium">
               Join us in celebrating the spirit of Malayalam culture! Experience the joy of traditional festivals, 
               delicious Sadya, vibrant cultural programs, and the warmth of our community. 🎭🍛
             </p>
@@ -191,12 +191,12 @@ const Homepage: React.FC = () => {
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-malayalam">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-tropical-600 via-bloom-600 to-coral-600 dark:text-black">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-tropical-600 via-bloom-600 to-coral-600 dark:from-amber-400 dark:via-orange-400 dark:to-red-400">
                   🎉 Onam 2025 Grand Celebration 🎉
                 </span>
               </h2>
               
-              <p className="text-lg text-gray-800 dark:text-gray-100 mb-6 font-medium max-w-2xl mx-auto">
+              <p className="text-lg text-gray-800 dark:text-black mb-6 font-medium max-w-2xl mx-auto">
                 Experience the grandest Malayalam festival with authentic Sadya, spectacular cultural programs, 
                 Mega Thiruvathira, and traditional games. Two days of pure celebration!
               </p>
