@@ -147,10 +147,10 @@ const AboutUs: React.FC = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-200 via-cyan-200 to-teal-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
         {/* Traditional background elements */}
         <div className="absolute inset-0 opacity-20 dark:opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-gradient-conic from-blue-400 via-cyan-400 to-teal-400 animate-spin-slow"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-gradient-conic from-green-400 via-emerald-400 to-teal-400"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-400 rounded-full animate-pulse-slow"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-cyan-400 rounded-full"></div>
+          <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-gradient-conic from-blue-400 via-cyan-400 to-teal-400 animate-spin-slow animate-float"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-gradient-conic from-green-400 via-emerald-400 to-teal-400 animate-float"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-400 rounded-full animate-pulse-slow animate-float"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-cyan-400 rounded-full animate-float"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -166,7 +166,7 @@ const AboutUs: React.FC = () => {
               United by culture, strengthened by tradition. 🌺
             </p>
             
-            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-3xl mx-auto border-2 border-blue-400 dark:border-cyan-400 shadow-xl">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-6 max-w-3xl mx-auto border-2 border-blue-400 dark:border-cyan-400 shadow-2xl">
               <div className="flex items-center justify-center space-x-3 mb-4">
                 <MapPin size={24} className="text-blue-600 dark:text-cyan-400" />
                 <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">Our Location</h3>
@@ -184,7 +184,7 @@ const AboutUs: React.FC = () => {
       <section className="py-16 bg-gradient-to-br from-green-50 via-blue-50 to-cyan-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="bg-gradient-to-br from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-2xl p-8 border-2 border-blue-300 dark:border-blue-500 shadow-lg">
+            <div className="bg-gradient-to-br from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-tl-3xl rounded-br-3xl p-8 border-2 border-blue-300 dark:border-blue-500 shadow-lg">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Heart className="text-white" size={32} />
               </div>
@@ -197,7 +197,7 @@ const AboutUs: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-teal-100 to-emerald-200 dark:from-teal-900/30 dark:to-emerald-900/30 rounded-2xl p-8 border-2 border-teal-300 dark:border-teal-500 shadow-lg">
+            <div className="bg-gradient-to-br from-teal-100 to-emerald-200 dark:from-teal-900/30 dark:to-emerald-900/30 rounded-tr-3xl rounded-bl-3xl p-8 border-2 border-teal-300 dark:border-teal-500 shadow-lg">
               <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-500 dark:from-teal-400 dark:to-emerald-400 rounded-full flex items-center justify-center mb-6 shadow-lg">
                 <Award className="text-white" size={32} />
               </div>
@@ -225,7 +225,7 @@ const AboutUs: React.FC = () => {
             </p>
           </div>
 
-          <div className="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30 rounded-2xl p-8 border-2 border-green-300 dark:border-green-500 shadow-lg">
+          <div className="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30 rounded-3xl p-8 border-2 border-green-300 dark:border-green-500 shadow-lg">
             <p className="text-gray-800 dark:text-gray-100 font-medium leading-relaxed mb-6 text-lg">
               Infinity Malayalees was born from a simple desire - to recreate the warmth and joy of Kerala's 
               festivals in our new home at Ajmera Infinity, Bangalore. What started as informal gatherings 
@@ -284,7 +284,7 @@ const AboutUs: React.FC = () => {
             {organizationalStructure.map((position, index) => (
               <div 
                 key={index} 
-                className={`bg-gradient-to-br ${getCategoryBg(position.category)} rounded-2xl p-6 border-2 ${getCategoryBorder(position.category)} shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+                className={`group bg-gradient-to-br ${getCategoryBg(position.category)} rounded-3xl p-6 border-2 ${getCategoryBorder(position.category)} shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group-hover:rotate-1`}
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className={`w-12 h-12 bg-gradient-to-br ${getCategoryColor(position.category)} rounded-full flex items-center justify-center shadow-lg`}>
@@ -319,7 +319,7 @@ const AboutUs: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {achievements.map((achievement, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border-2 border-amber-200 dark:border-amber-600 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+              <div key={index} className="group bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border-2 border-amber-200 dark:border-amber-600 hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group-hover:-translate-y-1">
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="text-4xl">{achievement.icon}</div>
                   <div>
@@ -346,17 +346,17 @@ const AboutUs: React.FC = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <Mail size={32} className="text-white mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Email Us</h3>
               <p className="text-blue-100 text-sm">admin@infinitymalayalees.com</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <Phone size={32} className="text-white mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Call Us</h3>
               <p className="text-blue-100 text-sm">+91 98765 43210</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <MapPin size={32} className="text-white mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Visit Us</h3>
               <p className="text-blue-100 text-sm">Ajmera Infinity Community Hall</p>
