@@ -4,33 +4,6 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 const AboutUs: React.FC = () => {
-  const teamMembers = [
-    {
-      name: 'Rajesh Kumar',
-      role: 'President',
-      description: 'Leading the community with passion for Malayalam culture',
-      icon: Users
-    },
-    {
-      name: 'Priya Nair',
-      role: 'Cultural Secretary',
-      description: 'Organizing vibrant cultural programs and events',
-      icon: Calendar
-    },
-    {
-      name: 'Anil Menon',
-      role: 'Treasurer',
-      description: 'Managing finances and sponsorships',
-      icon: Award
-    },
-    {
-      name: 'Deepa Pillai',
-      role: 'Event Coordinator',
-      description: 'Coordinating logistics and community activities',
-      icon: Heart
-    }
-  ];
-
   const achievements = [
     {
       year: '2024',
@@ -61,74 +34,62 @@ const AboutUs: React.FC = () => {
   const organizationalStructure = [
     {
       role: 'Patron / Mentor',
-      responsibilities: 'Senior/respected members who provide guidance',
-      headcount: '1–2',
+      description: 'Rajesh Nair serves as our guiding light, bringing 25+ years of community leadership experience from Kerala. A retired IAS officer, he provides strategic direction and ensures our cultural authenticity. His deep knowledge of Malayalam traditions and administrative expertise helps navigate complex event planning while maintaining our core values.',
       category: 'leadership'
     },
     {
       role: 'President',
-      responsibilities: 'Overall event leadership, final approvals',
-      headcount: '1',
+      description: 'Priya Menon leads with infectious enthusiasm and unwavering dedication. A software architect by profession, she seamlessly balances modern organizational skills with traditional values. Her vision of creating a "home away from home" drives every initiative, and her ability to unite diverse perspectives makes her an exceptional leader.',
       category: 'leadership'
     },
     {
       role: 'Vice President',
-      responsibilities: 'Supports President, handles inter-team coordination',
-      headcount: '1',
+      description: 'Anil Kumar acts as the perfect complement to our President, bringing diplomatic finesse and operational excellence. His background in project management shines through in coordinating between teams. Known for his calm demeanor and problem-solving abilities, he ensures smooth execution of all inter-team collaborations.',
       category: 'leadership'
     },
     {
       role: 'General Secretary',
-      responsibilities: 'Drives communication, meeting coordination, minutes',
-      headcount: '1',
+      description: 'Deepa Pillai is the communication backbone of our organization. A former journalist, she crafts compelling narratives that keep our community engaged and informed. Her meticulous meeting minutes and clear communication strategies ensure transparency and keep everyone aligned with our mission and activities.',
       category: 'core'
     },
     {
       role: 'Treasurer',
-      responsibilities: 'Budgeting, collections, expense tracking',
-      headcount: '1',
+      description: 'Suresh Varma brings financial discipline with a heart for community service. A chartered accountant, he maintains transparent financial records while optimizing every rupee for maximum community benefit. His innovative fundraising ideas and cost-effective planning ensure sustainable celebrations year after year.',
       category: 'core'
     },
     {
       role: 'Cultural Team Lead',
-      responsibilities: 'Manages performances, auditions, rehearsals',
-      headcount: '1',
+      description: 'Lakshmi Nair is a classical dance expert who breathes life into our cultural programs. Trained in Bharatanatyam and Mohiniyattam, she identifies talent, conducts auditions, and choreographs performances that showcase authentic Kerala artforms. Her patient teaching style helps beginners shine alongside experienced performers.',
       category: 'operations'
     },
     {
       role: 'Logistics Team Lead',
-      responsibilities: 'Stage, decorations, chairs, sound system',
-      headcount: '1',
+      description: 'Ravi Krishnan is our master of behind-the-scenes magic. An event management professional, he transforms empty halls into vibrant celebration spaces. From sound systems to seating arrangements, his attention to detail ensures every guest experiences comfort and every performer has the perfect stage setup.',
       category: 'operations'
     },
     {
       role: 'Food Committee Head',
-      responsibilities: 'Sadya planning, catering, volunteers',
-      headcount: '1',
+      description: 'Geetha Nambiar brings authentic Kerala flavors to every celebration. A culinary expert specializing in traditional recipes, she coordinates with caterers to ensure our Sadya maintains the authentic taste of home. Her volunteer coordination skills mobilize community members to assist in food preparation and service.',
       category: 'operations'
     },
     {
       role: 'Game & Sports Lead',
-      responsibilities: 'Onakalikal, indoor/outdoor games',
-      headcount: '1',
+      description: 'Vinod Menon revives the joy of traditional Onam games with modern safety standards. A sports enthusiast and safety coordinator, he organizes Vadam Vali, Kudam Adi, and other traditional games that bring out the child in every adult. His inclusive approach ensures participation across all age groups.',
       category: 'operations'
     },
     {
       role: 'Publicity & Design Lead',
-      responsibilities: 'Posters, WhatsApp invites, video edits',
-      headcount: '1',
+      description: 'Kavya Raj is our creative visionary who brings our events to life through stunning visuals. A graphic designer with a passion for Malayalam aesthetics, she creates eye-catching posters, manages our social media presence, and produces memorable video content that captures the essence of our celebrations.',
       category: 'support'
     },
     {
       role: 'Photography & Videography',
-      responsibilities: 'Capturing and sharing memories',
-      headcount: '1–2',
+      description: 'Arjun Nair and Maya Krishnan form our dynamic documentation duo. Professional photographers with an eye for candid moments, they capture the emotions, traditions, and joy of our celebrations. Their work creates lasting memories and helps absent family members feel connected to our community events.',
       category: 'support'
     },
     {
       role: 'Volunteer Coordinator',
-      responsibilities: 'Organize volunteers for each sub-team',
-      headcount: '1',
+      description: 'Sindhu Varma is the heart that connects our community members to meaningful participation. A natural organizer with exceptional people skills, she identifies volunteer opportunities, matches skills with needs, and ensures every willing hand finds a way to contribute to our collective success.',
       category: 'support'
     }
   ];
@@ -287,33 +248,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-700 to-pink-700 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-4">
-              👥 Leadership Team
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 font-medium">
-              Dedicated volunteers leading our community with passion
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border-2 border-purple-200 dark:border-purple-600 hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400 rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
-                  <member.icon className="text-white" size={28} />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 text-center mb-2">{member.name}</h3>
-                <p className="text-purple-700 dark:text-purple-300 font-semibold text-center mb-3">{member.role}</p>
-                <p className="text-gray-600 dark:text-gray-200 text-sm text-center font-medium">{member.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Organizational Structure */}
       <section className="py-16 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -322,7 +256,7 @@ const AboutUs: React.FC = () => {
               🏛️ Organizational Structure
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-200 font-medium">
-              Our comprehensive team structure for organizing spectacular events
+              Meet the dedicated individuals who make our celebrations possible
             </p>
           </div>
 
@@ -346,7 +280,7 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {organizationalStructure.map((position, index) => (
               <div 
                 key={index} 
@@ -356,24 +290,24 @@ const AboutUs: React.FC = () => {
                   <div className={`w-12 h-12 bg-gradient-to-br ${getCategoryColor(position.category)} rounded-full flex items-center justify-center shadow-lg`}>
                     <Users className="text-white" size={20} />
                   </div>
-                  <div className={`px-3 py-1 bg-gradient-to-r ${getCategoryColor(position.category)} text-white text-xs font-bold rounded-full`}>
-                    {position.headcount}
+                  <div className={`px-3 py-1 bg-gradient-to-r ${getCategoryColor(position.category)} text-white text-xs font-bold rounded-full uppercase tracking-wide`}>
+                    {position.category}
                   </div>
                 </div>
                 
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">{position.role}</h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{position.role}</h3>
                 <p className="text-gray-700 dark:text-gray-200 text-sm font-medium leading-relaxed">
-                  {position.responsibilities}
+                  {position.description}
                 </p>
               </div>
             ))}
           </div>
 
           <div className="mt-12 bg-gradient-to-r from-indigo-100 to-cyan-100 dark:from-indigo-900/30 dark:to-cyan-900/30 rounded-2xl p-8 border-2 border-indigo-300 dark:border-indigo-500 shadow-lg">
-            <h3 className="text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-4 text-center">📌 Key Highlights</h3>
+            <h3 className="text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-4 text-center">📌 Team Highlights</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">12+</div>
+                <div className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-2">12</div>
                 <p className="text-indigo-600 dark:text-indigo-300 font-semibold">Key Roles</p>
                 <p className="text-gray-600 dark:text-gray-200 text-sm">Comprehensive coverage</p>
               </div>
