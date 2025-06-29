@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Users, Gift, Sparkles, ArrowRight } from 'lucide-react';
+import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, PookkalamIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -201,19 +202,24 @@ const Homepage: React.FC = () => {
                 Mega Thiruvathira, and traditional games. Two days of pure celebration!
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500">
-                  <div className="text-2xl mb-2">🍛</div>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
+                  <SadyaIcon size={32} className="text-tropical-600 dark:text-tropical-400 mb-2" />
                   <h3 className="font-bold text-gray-800 dark:text-gray-100">Traditional Sadya</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300">₹350 per person</p>
                 </div>
-                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500">
-                  <div className="text-2xl mb-2">🎭</div>
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
+                  <CulturalIcon size={32} className="text-bloom-600 dark:text-bloom-400 mb-2" />
                   <h3 className="font-bold text-gray-800 dark:text-gray-100">Cultural Programs</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Dance, Music & More</p>
                 </div>
-                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500">
-                  <div className="text-2xl mb-2">💃</div>
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
+                  <PookkalamIcon size={32} className="text-coral-600 dark:text-coral-400 mb-2" />
+                  <h3 className="font-bold text-gray-800 dark:text-gray-100">Pookalam Competition</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Flower Arrangements</p>
+                </div>
+                <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
+                  <ThiruvathiraIcon size={32} className="text-tropical-600 dark:text-tropical-400 mb-2" />
                   <h3 className="font-bold text-gray-800 dark:text-gray-100">Mega Thiruvathira</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Ladies Only Event</p>
                 </div>
