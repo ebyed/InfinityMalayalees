@@ -202,3 +202,48 @@ export const PookkalamIcon: React.FC<{ size?: number; className?: string }> = ({
     <circle cx="12" cy="12" r="2" fill="currentColor"/>
   </svg>
 );
+
+// Kerala-based Logo Icon (Elephant with Traditional Elements)
+export const KeralaLogoIcon: React.FC<{ size?: number; className?: string }> = ({ 
+  size = 24, 
+  className = "" 
+}) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 48 48" 
+    fill="currentColor" 
+    className={className}
+  >
+    {/* Elephant head */}
+    <ellipse cx="24" cy="20" rx="12" ry="10" fill="currentColor" opacity="0.8"/>
+    
+    {/* Elephant trunk */}
+    <path d="M24 28 Q20 32 18 36 Q16 40 20 42 Q24 40 26 36" fill="currentColor" opacity="0.7"/>
+    
+    {/* Elephant ears */}
+    <ellipse cx="12" cy="18" rx="6" ry="8" fill="currentColor" opacity="0.6"/>
+    <ellipse cx="36" cy="18" rx="6" ry="8" fill="currentColor" opacity="0.6"/>
+    
+    {/* Traditional decorations on elephant */}
+    <circle cx="20" cy="16" r="1" fill="currentColor"/>
+    <circle cx="28" cy="16" r="1" fill="currentColor"/>
+    <path d="M18 20 L30 20" stroke="currentColor" strokeWidth="2" opacity="0.8"/>
+    <path d="M19 22 L29 22" stroke="currentColor" strokeWidth="1.5" opacity="0.6"/>
+    
+    {/* Traditional lamp on top */}
+    <ellipse cx="24" cy="8" rx="3" ry="2" fill="currentColor" opacity="0.9"/>
+    <rect x="23.5" y="6" width="1" height="2" fill="currentColor"/>
+    <path d="M24 6 Q23 4 24 2 Q25 4 24 6" fill="currentColor" opacity="0.8"/>
+    
+    {/* Coconut palm fronds as decorative elements */}
+    <path d="M8 12 Q12 8 16 10" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.5"/>
+    <path d="M40 12 Q36 8 32 10" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.5"/>
+    
+    {/* Traditional Kerala border pattern */}
+    <circle cx="6" cy="6" r="2" fill="currentColor" opacity="0.3"/>
+    <circle cx="42" cy="6" r="2" fill="currentColor" opacity="0.3"/>
+    <circle cx="6" cy="42" r="2" fill="currentColor" opacity="0.3"/>
+    <circle cx="42" cy="42" r="2" fill="currentColor" opacity="0.3"/>
+  </svg>
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Calendar, Users, Heart, Settings, Info } from 'lucide-react';
+import { KeralaLogoIcon } from './KeralaSVGIcons';
 import ThemeToggle from './ThemeToggle';
 
 const Navigation: React.FC = () => {
@@ -33,7 +34,7 @@ const Navigation: React.FC = () => {
                 ? 'bg-gradient-to-br from-tropical-500 via-bloom-500 to-coral-500 dark:from-tropical-400 dark:via-bloom-400 dark:to-coral-400' 
                 : 'bg-gradient-to-br from-golden-500 via-harvest-500 to-amber-500 dark:from-golden-400 dark:via-harvest-400 dark:to-amber-400'
             }`}>
-              <span className="text-white font-bold text-xl">∞</span>
+              <KeralaLogoIcon className="text-white" size={28} />
             </div>
             <div className="flex flex-col">
               <span className={`font-bold text-xl bg-clip-text text-transparent transition-all duration-300 ${

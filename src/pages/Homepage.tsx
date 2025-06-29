@@ -179,6 +179,16 @@ const Homepage: React.FC = () => {
               </span>
             </h1>
             
+            {/* Malayalam Text */}
+            <div className="mb-6">
+              <p className="text-sm text-golden-700 dark:text-golden-300 font-malayalam mb-1">
+                ഇൻഫിനിറ്റി മലയാളികൾ
+              </p>
+              <p className="text-xs text-golden-600 dark:text-golden-400 font-malayalam">
+                അജ്മേര ഇൻഫിനിറ്റി മലയാളം അസോസിയേഷൻ
+              </p>
+            </div>
+            
             <p className="text-lg md:text-xl text-gray-700 dark:text-black mb-8 max-w-3xl mx-auto font-medium">
               Join us in celebrating the spirit of Malayalam culture! Experience the joy of traditional festivals, 
               delicious Sadya, vibrant cultural programs, and the warmth of our community. 🎭🍛
