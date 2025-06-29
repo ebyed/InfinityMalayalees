@@ -20,8 +20,8 @@ export interface EmailConfig {
   };
 }
 
-// Email configuration for infinitymalayalees@gmail.com
-const emailConfig: EmailConfig = {
+// Default email configuration for infinitymalayalees@gmail.com
+const defaultEmailConfig: EmailConfig = {
   host: 'smtp.gmail.com',
   port: 587,
   secure: false,
@@ -371,7 +371,7 @@ export const generateDonationThankYouTemplate = (
             <strong>Dear ${donorName},</strong>
           </div>
           
-          <p>We are deeply grateful for your generous contribution to our Onam 2025 celebrations! Your support helps us organize authentic cultural events and bring our Malayalam community together.</p>
+          <p>We are deeply grateful for your generous contribution to our Onam 2025 celebrations! Your support helps us organize authentic cultural events and bring our Malayalee community together.</p>
           
           <div class="donation-details">
             <h3 style="color: #2d3748; margin: 0 0 15px 0;">📋 Donation Details</h3>
@@ -511,22 +511,44 @@ export const generateConfirmationEmailTemplate = (
   `;
 };
 
-// Email settings management
+// Email settings management with session storage fallback
 export const emailSettings = {
   getConfig(): EmailConfig {
-    const savedConfig = localStorage.getItem('email_config');
-    if (savedConfig) {
-      return JSON.parse(savedConfig);
+    // Try localStorage first, then sessionStorage, then default
+    let savedConfig = localStorage.getItem('email_config');
+    if (!savedConfig) {
+      savedConfig = sessionStorage.getItem('email_config');
     }
-    return emailConfig;
+    
+    if (savedConfig) {
+      try {
+        return JSON.parse(savedConfig);
+      } catch (e) {
+        console.error('Error parsing email config:', e);
+      }
+    }
+    
+    return defaultEmailConfig;
   },
 
   saveConfig(config: EmailConfig): void {
-    localStorage.setItem('email_config', JSON.stringify(config));
+    const configString = JSON.stringify(config);
+    // Save to both localStorage and sessionStorage for persistence across devices
+    try {
+      localStorage.setItem('email_config', configString);
+    } catch (e) {
+      console.warn('Could not save to localStorage, using sessionStorage:', e);
+    }
+    sessionStorage.setItem('email_config', configString);
   },
 
   isConfigured(): boolean {
     const config = this.getConfig();
     return !!(config.auth.user && config.auth.pass);
+  },
+
+  clearConfig(): void {
+    localStorage.removeItem('email_config');
+    sessionStorage.removeItem('email_config');
   }
 };

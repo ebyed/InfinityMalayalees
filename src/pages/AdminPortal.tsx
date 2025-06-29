@@ -4,6 +4,7 @@ import { useSupabaseData } from '../hooks/useSupabaseData';
 import { adminAuth, type AdminUser } from '../lib/auth';
 import QRCodeModal from '../components/QRCodeModal';
 import { sendEmail, generateDonationThankYouTemplate, emailSettings } from '../utils/emailService';
+import { supabase } from '../lib/supabase';
 
 const AdminPortal: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -104,6 +105,19 @@ const AdminPortal: React.FC = () => {
     }
 
     try {
+      // First verify the donation in database
+      const { error: verifyError } = await supabase.rpc('verify_donation', {
+        donation_id_param: donation.id,
+        verified_by_param: adminAuth.getCurrentUser() || 'admin'
+      });
+
+      if (verifyError) {
+        console.error('Error verifying donation:', verifyError);
+        alert('Failed to verify donation in database.');
+        return;
+      }
+
+      // Then send thank you email
       const emailTemplate = generateDonationThankYouTemplate(
         donation.donor_name,
         donation.donation_type,
@@ -121,13 +135,14 @@ const AdminPortal: React.FC = () => {
       const success = await sendEmail(emailData);
       
       if (success) {
-        alert('Thank you email sent successfully!');
+        alert('Donation verified and thank you email sent successfully!');
+        refetch(); // Refresh data to show updated verification status
       } else {
-        alert('Failed to send email. Please check your email settings.');
+        alert('Donation verified but failed to send email. Please check your email settings.');
       }
     } catch (err) {
-      console.error('Error sending donation email:', err);
-      alert('Failed to send email. Please try again.');
+      console.error('Error processing donation:', err);
+      alert('Failed to process donation. Please try again.');
     }
   };
 
@@ -340,7 +355,7 @@ const AdminPortal: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Cultural Events</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.statistics.culturalRegistrations}</p>
+                <p className="text-2xl font-bol text-gray-900 dark:text-gray-100">{data.statistics.culturalRegistrations}</p>
               </div>
               <TrendingUp className="text-purple-500" size={32} />
             </div>
@@ -402,6 +417,7 @@ const AdminPortal: React.FC = () => {
                     <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                     <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Count</th>
                     <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Amount</th>
+                    <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Status</th>
                     <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
                   </tr>
                 </thead>
@@ -413,11 +429,24 @@ const AdminPortal: React.FC = () => {
                       <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.sadya_count}</td>
                       <td className="py-3 text-sm text-gray-600 dark:text-gray-400">₹{registration.total_amount}</td>
                       <td className="py-3">
+                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                          registration.verified 
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' 
+                            : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+                        }`}>
+                          {registration.verified ? 'Verified' : 'Pending'}
+                        </span>
+                      </td>
+                      <td className="py-3">
                         <button
                           onClick={() => handleGenerateQR(registration)}
-                          className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600 transition-colors"
+                          className={`px-3 py-1 text-xs rounded transition-colors ${
+                            registration.verified
+                              ? 'bg-green-500 text-white hover:bg-green-600'
+                              : 'bg-blue-500 text-white hover:bg-blue-600'
+                          }`}
                         >
-                          Verify & Send QR
+                          {registration.verified ? 'View QR' : 'Verify & Send QR'}
                         </button>
                       </td>
                     </tr>
@@ -464,6 +493,13 @@ const AdminPortal: React.FC = () => {
                     <div className="flex-1">
                       <p className="font-medium text-gray-900 dark:text-gray-100">{donation.donor_name}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{donation.donation_type}</p>
+                      <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full mt-1 ${
+                        donation.verified 
+                          ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' 
+                          : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+                      }`}>
+                        {donation.verified ? 'Verified' : 'Pending'}
+                      </span>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-green-600 dark:text-green-400">₹{donation.donation_amount}</p>
@@ -473,8 +509,13 @@ const AdminPortal: React.FC = () => {
                         </span>
                         <button
                           onClick={() => handleSendDonationThankYou(donation)}
-                          className="px-2 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600 transition-colors"
-                          title="Send thank you email"
+                          disabled={donation.verified}
+                          className={`px-2 py-1 text-xs rounded transition-colors ${
+                            donation.verified
+                              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                              : 'bg-green-500 text-white hover:bg-green-600'
+                          }`}
+                          title={donation.verified ? 'Already verified' : 'Verify & send thank you email'}
                         >
                           <Mail size={12} />
                         </button>
@@ -594,7 +635,9 @@ const AdminPortal: React.FC = () => {
                   1. Enable 2-factor authentication on your Gmail account<br />
                   2. Go to Google Account Settings → Security → App passwords<br />
                   3. Generate an app password for "Mail"<br />
-                  4. Use that 16-character password here (not your regular Gmail password)
+                  4. Use that 16-character password here (not your regular Gmail password)<br />
+                  <br />
+                  <strong>Note:</strong> Settings are saved locally on this device and will persist across sessions.
                 </p>
               </div>
             </div>
@@ -628,6 +671,7 @@ const AdminPortal: React.FC = () => {
           registration={selectedRegistration}
           onEmailSent={() => {
             console.log('QR codes sent successfully');
+            refetch(); // Refresh data to show updated verification status
           }}
         />
       )}

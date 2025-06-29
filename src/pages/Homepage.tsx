@@ -178,7 +178,7 @@ const Homepage: React.FC = () => {
             {/* English subtitle directly under main title */}
             <div className="mb-4">
               <span className="text-lg md:text-xl text-golden-700 dark:text-golden-300 font-sans font-medium block">
-                Ajmera Infinity Malayalam Association
+                Ajmera Infinity Malayalee Association
               </span>
             </div>
             
@@ -280,7 +280,7 @@ const Homepage: React.FC = () => {
               🌟 Community Highlights 🌟
             </h2>
             <p className="text-lg text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
-              Discover what makes our Malayalam community special at Ajmera Infinity
+              Discover what makes our Malayalee community special at Ajmera Infinity
             </p>
           </div>
 
@@ -302,7 +302,7 @@ const Homepage: React.FC = () => {
               </div>
               <h3 className="text-xl font-bold text-amber-800 dark:text-amber-200 mb-4">🎭 Vibrant Community</h3>
               <p className="text-amber-700 dark:text-gray-200 mb-4 font-medium">
-                Join a warm, welcoming community of Malayalam families who share 
+                Join a warm, welcoming community of Malayalee families who share 
                 the same love for culture, traditions, and creating lasting friendships.
               </p>
             </div>
@@ -335,7 +335,7 @@ const Homepage: React.FC = () => {
             🎊 Ready to Join Our Community? 🎊
           </h2>
           <p className="text-xl text-golden-100 dark:text-gray-200 mb-8 font-medium">
-            Become part of our vibrant Malayalam family at Ajmera Infinity and experience 
+            Become part of our vibrant Malayalee family at Ajmera Infinity and experience 
             the joy of celebrating our rich cultural heritage together!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

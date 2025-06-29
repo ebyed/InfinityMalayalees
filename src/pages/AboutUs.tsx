@@ -301,7 +301,7 @@ const AboutUs: React.FC = () => {
               </div>
               <h3 className="text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">🎯 Our Mission</h3>
               <p className="text-blue-700 dark:text-gray-200 font-medium leading-relaxed">
-                To create a vibrant Malayalam community at Ajmera Infinity that celebrates our rich cultural heritage, 
+                To create a vibrant Malayalee community at Ajmera Infinity that celebrates our rich cultural heritage, 
                 fosters meaningful connections among residents, and preserves traditional values for future generations. 
                 We strive to organize authentic cultural events, promote Malayalam language and arts, and build a 
                 supportive network for all Malayalee families.
@@ -314,7 +314,7 @@ const AboutUs: React.FC = () => {
               </div>
               <h3 className="text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">🌟 Our Vision</h3>
               <p className="text-teal-700 dark:text-gray-200 font-medium leading-relaxed">
-                To be the premier Malayalam cultural association in Bangalore, known for organizing spectacular 
+                To be the premier Malayalee cultural association in Bangalore, known for organizing spectacular 
                 celebrations that bring together families from across Kerala. We envision a thriving community 
                 where Malayalam traditions flourish, children learn about their heritage, and every member feels 
                 a sense of belonging and pride in their cultural identity.
@@ -357,7 +357,7 @@ const AboutUs: React.FC = () => {
               Today, we're proud to organize grand celebrations that bring together over 200 community members, 
               featuring authentic Sadya, spectacular cultural programs, and the spirit of Kerala that makes 
               everyone feel at home. Our journey continues as we work to make every festival a memorable 
-              experience for our growing Malayalam family.
+              experience for our growing Malayalee family.
             </p>
           </div>
         </div>
@@ -473,7 +473,7 @@ const AboutUs: React.FC = () => {
             <CoconutPalmIcon size={32} className="text-white" />
           </div>
           <p className="text-xl text-blue-100 mb-8 font-medium">
-            Be part of our growing Malayalam family at Ajmera Infinity. 
+            Be part of our growing Malayalee family at Ajmera Infinity. 
             Together, we celebrate traditions and create lasting memories.
           </p>
           

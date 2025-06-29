@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Download, Mail, Loader2, CheckCircle, AlertCircle, Settings } from 'lucide-react';
 import { generateSadyaQRCodes } from '../utils/qrCodeGenerator';
 import { sendEmail, generateSadyaEmailTemplate, emailSettings } from '../utils/emailService';
+import { supabase } from '../lib/supabase';
 
 interface QRCodeModalProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
   useEffect(() => {
     if (isOpen && registration) {
       generateQRCodes();
+      setVerified(registration.verified || false);
     }
   }, [isOpen, registration]);
 
@@ -55,6 +57,17 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
       setSendingEmail(true);
       setError(null);
 
+      // First, mark as verified in database
+      const { error: verifyError } = await supabase.rpc('verify_sadya_registration', {
+        registration_id_param: registration.registration_id,
+        verified_by_param: 'admin' // You can get current admin user here
+      });
+
+      if (verifyError) {
+        throw new Error('Failed to verify registration in database');
+      }
+
+      // Then send email
       const emailTemplate = generateSadyaEmailTemplate(
         registration.full_name,
         registration.sadya_count,
@@ -81,8 +94,8 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
         throw new Error('Failed to send email');
       }
     } catch (err) {
-      console.error('Error sending email:', err);
-      setError('Failed to send email. Please check your email settings and try again.');
+      console.error('Error verifying and sending email:', err);
+      setError('Failed to verify registration and send email. Please check your email settings and try again.');
     } finally {
       setSendingEmail(false);
     }
@@ -327,8 +340,13 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({
 
               <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-3 border border-yellow-200 dark:border-yellow-600">
                 <p className="text-yellow-800 dark:text-yellow-300 text-sm">
-                  <strong>Note:</strong> Use Gmail App Password, not your regular password. 
-                  Enable 2-factor authentication and generate an app password in your Google Account settings.
+                  <strong>Setup Instructions:</strong><br />
+                  1. Enable 2-factor authentication on Gmail<br />
+                  2. Go to Google Account Settings → Security → App passwords<br />
+                  3. Generate an app password for "Mail"<br />
+                  4. Use that 16-character password here<br />
+                  <br />
+                  <strong>Note:</strong> Settings are saved locally on this device.
                 </p>
               </div>
             </div>
