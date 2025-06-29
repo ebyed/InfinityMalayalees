@@ -11,27 +11,33 @@ export interface AdminUser {
 export const adminAuth = {
   async login(username: string, password: string): Promise<boolean> {
     try {
+      console.log('Attempting login for:', username);
+      
       // Call the database function to verify login
       const { data, error } = await supabase.rpc('verify_admin_login', {
         input_username: username,
         input_password: password
       });
 
+      console.log('Login response:', { data, error });
+
       if (error) {
         console.error('Login error:', error);
         return false;
       }
 
-      if (data) {
+      if (data === true) {
         // Store login state in localStorage
         localStorage.setItem('admin_logged_in', 'true');
         localStorage.setItem('admin_username', username);
+        console.log('Login successful');
         return true;
       }
 
+      console.log('Login failed - invalid credentials');
       return false;
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Login exception:', error);
       return false;
     }
   },

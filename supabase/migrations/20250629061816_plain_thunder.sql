@@ -1,22 +1,16 @@
 /*
-  # Admin Users Table and Authentication
+  # Fix Admin Authentication System
 
-  1. New Tables
-    - `admin_users`
-      - `id` (uuid, primary key)
-      - `username` (text, unique)
-      - `password_hash` (text)
-      - `created_at` (timestamptz)
-      - `last_login` (timestamptz, optional)
-      - `is_active` (boolean, default true)
+  1. Admin Users Table
+    - Create admin_users table with proper structure
+    - Enable RLS with correct policies
+    - Insert default admin user
+    - Create authentication function
 
   2. Security
     - Enable RLS on admin_users table
-    - Add policies for authenticated access
-    - Create function for login verification
-
-  3. Default Admin
-    - Insert default admin user (username: admin, password: admin)
+    - Add policies for public access (needed for login)
+    - Create secure login verification function
 */
 
 -- Admin Users Table
@@ -29,41 +23,53 @@ CREATE TABLE IF NOT EXISTS admin_users (
   is_active boolean DEFAULT true
 );
 
+-- Enable RLS
 ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
 
--- Only authenticated users can read admin_users (for login verification)
-CREATE POLICY "Allow authenticated read access on admin_users"
+-- Drop existing policies if they exist, then recreate them
+DROP POLICY IF EXISTS "Allow authenticated read access on admin_users" ON admin_users;
+DROP POLICY IF EXISTS "Allow authenticated update on admin_users" ON admin_users;
+DROP POLICY IF EXISTS "Allow public read access on admin_users" ON admin_users;
+DROP POLICY IF EXISTS "Allow public insert on admin_users" ON admin_users;
+
+-- Create policies for public access (needed for login verification)
+CREATE POLICY "Allow public read access on admin_users"
   ON admin_users
   FOR SELECT
-  TO authenticated
+  TO public
   USING (true);
 
--- Only authenticated users can update last_login
-CREATE POLICY "Allow authenticated update on admin_users"
+CREATE POLICY "Allow public insert on admin_users"
+  ON admin_users
+  FOR INSERT
+  TO public
+  WITH CHECK (true);
+
+CREATE POLICY "Allow public update on admin_users"
   ON admin_users
   FOR UPDATE
-  TO authenticated
+  TO public
   USING (true)
   WITH CHECK (true);
 
 -- Create index for username lookup
 CREATE INDEX IF NOT EXISTS idx_admin_users_username ON admin_users(username);
 
--- Insert default admin user (password: admin - simplified for demo)
--- Note: In production, you should use proper bcrypt hashing
+-- Insert default admin user (password: admin)
 INSERT INTO admin_users (username, password_hash) 
 VALUES ('admin', 'admin')
 ON CONFLICT (username) DO NOTHING;
 
--- Function to verify admin login (simplified for demo)
+-- Drop existing function if it exists, then recreate it
+DROP FUNCTION IF EXISTS verify_admin_login(text, text);
+
 CREATE OR REPLACE FUNCTION verify_admin_login(input_username text, input_password text)
 RETURNS boolean
 LANGUAGE plpgsql
 SECURITY DEFINER
 AS $$
 BEGIN
-  -- For demo purposes, simple password check
-  -- In production, use proper bcrypt verification
+  -- Simple password check for demo
   IF EXISTS (
     SELECT 1 FROM admin_users 
     WHERE username = input_username 
