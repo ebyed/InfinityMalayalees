@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, Utensils, Music, Heart, ArrowRight } from 'lucide-react';
+import { Calendar, Users, Heart, ArrowRight } from 'lucide-react';
+import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -22,7 +23,7 @@ const Events: React.FC = () => {
 
   const eventCategories = [
     {
-      icon: Utensils,
+      icon: SadyaIcon,
       title: 'Sadya Registration',
       description: 'Book your authentic Kerala Sadya experience',
       link: '/sadya-registration',
@@ -31,13 +32,22 @@ const Events: React.FC = () => {
       borderColor: 'border-green-400 dark:border-green-500'
     },
     {
-      icon: Music,
+      icon: CulturalIcon,
       title: 'Cultural Events',
       description: 'Participate in dance, songs, and cultural programs',
       link: '/cultural-events',
       color: 'from-purple-500 to-violet-500',
       bgColor: 'from-purple-100 to-violet-200 dark:from-purple-900/30 dark:to-violet-900/30',
       borderColor: 'border-purple-400 dark:border-purple-500'
+    },
+    {
+      icon: ThiruvathiraIcon,
+      title: 'Mega Thiruvathira',
+      description: 'Traditional group dance for ladies',
+      link: '/thiruvathira-registration',
+      color: 'from-pink-500 to-rose-500',
+      bgColor: 'from-pink-100 to-rose-200 dark:from-pink-900/30 dark:to-rose-900/30',
+      borderColor: 'border-pink-400 dark:border-pink-500'
     },
     {
       icon: Users,
@@ -81,14 +91,14 @@ const Events: React.FC = () => {
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-200 mb-8 max-w-4xl mx-auto font-medium">
+            <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-100 mb-8 max-w-4xl mx-auto font-medium">
               Celebrating Malayalam culture through vibrant festivals, authentic traditions, 
               and memorable community gatherings at Ajmera Infinity. 🌺
             </p>
             
             <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-purple-400 dark:border-pink-400 shadow-xl">
-              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2">🎉 Join Our Celebrations!</h3>
-              <p className="text-gray-700 dark:text-gray-300 font-medium">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-2">🎉 Join Our Celebrations!</h3>
+              <p className="text-gray-700 dark:text-gray-200 font-medium">
                 From grand Onam festivities to intimate cultural gatherings, 
                 experience the warmth of Kerala's traditions in Bangalore.
               </p>
@@ -104,7 +114,7 @@ const Events: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-700 to-red-700 dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent mb-4">
               🎪 Upcoming Events
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+            <p className="text-lg text-gray-700 dark:text-gray-200 font-medium">
               Don't miss these exciting celebrations coming up!
             </p>
           </div>
@@ -119,16 +129,16 @@ const Events: React.FC = () => {
                     <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">{event.title}</h3>
                     <div className="flex items-center justify-center lg:justify-start space-x-2 mb-4">
                       <Calendar size={20} className="text-orange-600 dark:text-orange-400" />
-                      <span className="text-lg font-semibold text-orange-700 dark:text-orange-400">{event.date}</span>
+                      <span className="text-lg font-semibold text-orange-700 dark:text-orange-300">{event.date}</span>
                     </div>
-                    <p className="text-gray-700 dark:text-gray-300 font-medium mb-6 text-lg leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-200 font-medium mb-6 text-lg leading-relaxed">
                       {event.description}
                     </p>
                     
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                       {event.features.map((feature, idx) => (
                         <div key={idx} className="bg-white/50 dark:bg-gray-700/50 rounded-lg p-3 text-center">
-                          <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">{feature}</span>
+                          <span className="text-sm font-semibold text-gray-800 dark:text-gray-100">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -155,12 +165,12 @@ const Events: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-700 to-purple-700 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
               📋 Event Categories
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+            <p className="text-lg text-gray-700 dark:text-gray-200 font-medium">
               Explore different ways to participate in our community
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {eventCategories.map((category, index) => (
               <Link
                 key={index}
@@ -168,12 +178,12 @@ const Events: React.FC = () => {
                 className={`group bg-gradient-to-br ${category.bgColor} rounded-2xl p-8 border-2 ${category.borderColor} hover:shadow-2xl transform hover:scale-105 transition-all duration-300`}
               >
                 <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg`}>
-                  <category.icon className="text-white" size={32} />
+                  <category.icon size={32} className="text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200">
                   {category.title}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 font-medium">
+                <p className="text-gray-700 dark:text-gray-200 group-hover:text-gray-800 dark:group-hover:text-gray-200 font-medium">
                   {category.description}
                 </p>
               </Link>
@@ -188,7 +198,7 @@ const Events: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-700 to-teal-700 dark:from-green-400 dark:to-teal-400 bg-clip-text text-transparent mb-6">
             🌟 Our Vision
           </h2>
-          <p className="text-xl text-gray-700 dark:text-gray-300 font-medium leading-relaxed mb-8">
+          <p className="text-xl text-gray-700 dark:text-gray-200 font-medium leading-relaxed mb-8">
             Infinity Malayalees is dedicated to preserving and celebrating our rich Malayalam heritage 
             through authentic cultural events, traditional festivals, and community bonding activities. 
             We bring the warmth of Kerala to Bangalore, creating a home away from home for all Malayalam families.
@@ -197,18 +207,18 @@ const Events: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-600">
               <div className="text-3xl mb-3">🎭</div>
-              <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Cultural Preservation</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Keeping Malayalam traditions alive through authentic celebrations</p>
+              <h3 className="font-bold text-gray-800 dark:text-gray-100 mb-2">Cultural Preservation</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">Keeping Malayalam traditions alive through authentic celebrations</p>
             </div>
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-600">
               <div className="text-3xl mb-3">🤝</div>
-              <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Community Building</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Fostering connections among Malayalam families in Bangalore</p>
+              <h3 className="font-bold text-gray-800 dark:text-gray-100 mb-2">Community Building</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">Fostering connections among Malayalam families in Bangalore</p>
             </div>
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-green-200 dark:border-green-600">
               <div className="text-3xl mb-3">🌱</div>
-              <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Future Generations</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Teaching children about their Malayalam heritage and culture</p>
+              <h3 className="font-bold text-gray-800 dark:text-gray-100 mb-2">Future Generations</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">Teaching children about their Malayalam heritage and culture</p>
             </div>
           </div>
         </div>

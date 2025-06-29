@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Music, Users, Star, Trophy, Calendar, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Users, Star, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { CulturalIcon } from '../components/KeralaSVGIcons';
 import { culturalRegistrations } from '../lib/database';
 
 const CulturalEvents: React.FC = () => {
@@ -41,7 +42,7 @@ const CulturalEvents: React.FC = () => {
     {
       id: 'group-song',
       name: 'Group Song',
-      icon: Music,
+      icon: CulturalIcon,
       description: 'Choir or group singing performances',
       maxParticipants: 10,
       color: 'from-blue-500 to-cyan-500',
@@ -50,7 +51,7 @@ const CulturalEvents: React.FC = () => {
     {
       id: 'solo-song',
       name: 'Solo Song',
-      icon: Music,
+      icon: CulturalIcon,
       description: 'Individual singing performances',
       maxParticipants: 1,
       color: 'from-green-500 to-emerald-500',
@@ -138,7 +139,7 @@ const CulturalEvents: React.FC = () => {
             Our events team will contact you with further details.
           </p>
           <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-green-200 dark:border-green-600 mb-6">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               <strong>Event:</strong> {selectedEvent?.name}<br />
               <strong>Participants:</strong> {formData.participantCount}<br />
               <strong>Contact:</strong> {formData.email}
@@ -174,7 +175,7 @@ const CulturalEvents: React.FC = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
           Cultural Events Registration
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Showcase your talent at Onam 2025! Register for cultural events and be part of 
           our spectacular celebration. Open for all residents of Ajmera Infinity.
         </p>
@@ -188,13 +189,13 @@ const CulturalEvents: React.FC = () => {
             className={`bg-gradient-to-br ${event.bgColor} rounded-2xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all duration-300`}
           >
             <div className={`w-16 h-16 bg-gradient-to-br ${event.color} rounded-full flex items-center justify-center mb-4`}>
-              <event.icon className="text-white" size={28} />
+              <event.icon size={28} className="text-white" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">{event.name}</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">{event.description}</p>
-            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-500">
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">{event.description}</p>
+            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
               <span>Max: {event.maxParticipants} participants</span>
-              <Trophy size={14} />
+              <CulturalIcon size={14} />
             </div>
           </div>
         ))}
@@ -204,7 +205,7 @@ const CulturalEvents: React.FC = () => {
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
         <div className="bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
-            <Music className="mr-3" size={28} />
+            <CulturalIcon size={28} className="mr-3 text-white" />
             Event Registration Form
           </h2>
         </div>
@@ -385,17 +386,6 @@ const CulturalEvents: React.FC = () => {
               <li>• Rehearsal slots will be arranged closer to the event date</li>
               <li>• Registration closes on September 5, 2025</li>
             </ul>
-          </div>
-
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 rounded-lg p-4 border border-amber-200 dark:border-amber-600">
-            <div className="flex items-center space-x-2 mb-2">
-              <Calendar size={16} className="text-amber-600 dark:text-amber-400" />
-              <h3 className="font-semibold text-amber-800 dark:text-amber-300">Event Schedule</h3>
-            </div>
-            <p className="text-amber-700 dark:text-amber-300 text-sm">
-              Cultural programs will be held on <strong>September 14, 2025 (Evening)</strong> at the 
-              Ajmera Infinity Community Hall. Detailed schedule will be shared after registration closes.
-            </p>
           </div>
 
           <button

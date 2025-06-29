@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Users, Utensils, Music, Heart, Award, Calendar } from 'lucide-react';
+import { Users, Heart, Award, Calendar } from 'lucide-react';
+import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import SadyaRegistration from './SadyaRegistration';
@@ -22,18 +23,18 @@ const Onam2025: React.FC = () => {
       title: 'Malayalee Registration',
       description: 'Register as a Malayalee member of Ajmera Infinity community',
       link: '/malayalee-registration',
-      color: 'from-serene-500 to-backwater-500',
-      bgColor: 'from-serene-100 to-backwater-200 dark:from-serene-900/30 dark:to-backwater-900/30',
-      borderColor: 'border-serene-400 dark:border-serene-500'
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30',
+      borderColor: 'border-blue-400 dark:border-blue-500'
     },
     {
       icon: Heart,
       title: 'Community Donations',
       description: 'Support Onam celebrations with your generous contributions (Min: ₹2000)',
       link: '/donations',
-      color: 'from-coral-500 to-bloom-500',
-      bgColor: 'from-coral-100 to-bloom-200 dark:from-coral-900/30 dark:to-bloom-900/30',
-      borderColor: 'border-coral-400 dark:border-coral-500'
+      color: 'from-red-500 to-pink-500',
+      bgColor: 'from-red-100 to-pink-200 dark:from-red-900/30 dark:to-pink-900/30',
+      borderColor: 'border-red-400 dark:border-red-500'
     }
   ];
 
@@ -115,9 +116,9 @@ const Onam2025: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <TabButton tabId="overview" label="Overview" icon={Calendar} />
-            <TabButton tabId="sadya" label="Sadya Registration" icon={Utensils} />
-            <TabButton tabId="events" label="Cultural Events" icon={Music} />
-            <TabButton tabId="thiruvathira" label="Mega Thiruvathira" icon={Users} />
+            <TabButton tabId="sadya" label="Sadya Registration" icon={() => <SadyaIcon size={18} />} />
+            <TabButton tabId="events" label="Cultural Events" icon={() => <CulturalIcon size={18} />} />
+            <TabButton tabId="thiruvathira" label="Mega Thiruvathira" icon={() => <ThiruvathiraIcon size={18} />} />
           </div>
         </div>
       </section>
@@ -143,7 +144,7 @@ const Onam2025: React.FC = () => {
                   className="group cursor-pointer bg-gradient-to-br from-tropical-100 to-bloom-200 dark:from-tropical-900/30 dark:to-bloom-900/30 rounded-2xl p-8 border-2 border-tropical-400 dark:border-tropical-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
                   <div className="w-16 h-16 bg-gradient-to-br from-tropical-500 to-bloom-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
-                    <Utensils className="text-white" size={32} />
+                    <SadyaIcon size={32} className="text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     Sadya Registration
@@ -158,7 +159,7 @@ const Onam2025: React.FC = () => {
                   className="group cursor-pointer bg-gradient-to-br from-bloom-100 to-coral-200 dark:from-bloom-900/30 dark:to-coral-900/30 rounded-2xl p-8 border-2 border-bloom-400 dark:border-bloom-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
                   <div className="w-16 h-16 bg-gradient-to-br from-bloom-500 to-coral-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
-                    <Music className="text-white" size={32} />
+                    <CulturalIcon size={32} className="text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     Cultural Events
@@ -173,7 +174,7 @@ const Onam2025: React.FC = () => {
                   className="group cursor-pointer bg-gradient-to-br from-coral-100 to-tropical-200 dark:from-coral-900/30 dark:to-tropical-900/30 rounded-2xl p-8 border-2 border-coral-400 dark:border-coral-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
                   <div className="w-16 h-16 bg-gradient-to-br from-coral-500 to-tropical-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
-                    <Users className="text-white" size={32} />
+                    <ThiruvathiraIcon size={32} className="text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                     Mega Thiruvathira

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Users, CheckCircle, User, Mail, Phone, Home, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, User, Mail, Phone, Home, AlertCircle, Loader2 } from 'lucide-react';
+import { ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import { thiruvathiraRegistrations } from '../lib/database';
 
 const ThiruvathiraRegistration: React.FC = () => {
@@ -158,7 +159,7 @@ const ThiruvathiraRegistration: React.FC = () => {
       {/* Hero Section */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-pink-300 to-rose-300 dark:from-pink-600 dark:to-rose-600 text-pink-900 dark:text-pink-100 text-sm font-bold mb-6 shadow-lg border-2 border-pink-400 dark:border-pink-500">
-          <Users size={18} className="mr-2 text-rose-600 dark:text-rose-300" />
+          <ThiruvathiraIcon size={18} className="mr-2 text-rose-600 dark:text-rose-300" />
           💃 Ladies Only Event 💃
         </div>
         
@@ -166,7 +167,7 @@ const ThiruvathiraRegistration: React.FC = () => {
           🌺 Mega Thiruvathira Registration 🌺
         </h1>
         
-        <p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
+        <p className="text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
           Join the most spectacular traditional Kerala group dance! Experience the grace and beauty 
           of Thiruvathira with fellow ladies in our community. 💫
         </p>
@@ -195,7 +196,7 @@ const ThiruvathiraRegistration: React.FC = () => {
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border-2 border-pink-200 dark:border-pink-600 overflow-hidden">
         <div className="bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-500 dark:to-rose-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
-            <Users className="mr-3" size={28} />
+            <ThiruvathiraIcon size={28} className="mr-3 text-white" />
             💃 Registration Form
           </h2>
           <p className="text-pink-100 mt-2 font-medium">Simple registration - just 4 essential details</p>
@@ -303,7 +304,7 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.flatNumber}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowe ${
                   errors.flatNumber 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
                     : 'border-gray-300 dark:border-gray-600 focus:border-pink-500 dark:focus:border-pink-400'

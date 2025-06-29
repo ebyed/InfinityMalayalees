@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Utensils, Users, CreditCard, QrCode, CheckCircle, User, Mail, Phone, Plus, Minus, AlertCircle, Loader2 } from 'lucide-react';
+import { User, Mail, Phone, Plus, Minus, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { SadyaIcon } from '../components/KeralaSVGIcons';
 import { generateUniqueId, generateCouponId, generateQRCodeData } from '../utils/qrCodeGenerator';
 import { sadyaRegistrations } from '../lib/database';
 
@@ -159,7 +160,7 @@ const SadyaRegistration: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-4">
           🍛 Onam Sadya Registration
         </h1>
-        <p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-medium">
+        <p className="text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
           Book your authentic Kerala Sadya experience! Traditional feast with 20+ dishes 
           served on banana leaves. ₹350 per person. 🌿
         </p>
@@ -190,7 +191,7 @@ const SadyaRegistration: React.FC = () => {
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border-2 border-green-200 dark:border-green-600 overflow-hidden">
         <div className="bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-500 dark:to-emerald-500 px-8 py-8">
           <h2 className="text-3xl font-bold text-white flex items-center">
-            <Utensils className="mr-3" size={32} />
+            <SadyaIcon size={32} className="mr-3 text-white" />
             {currentStep === 1 && '👤 Personal Details'}
             {currentStep === 2 && '💳 Payment Details'}
             {currentStep === 3 && '✅ Confirm & Submit'}
@@ -285,7 +286,7 @@ const SadyaRegistration: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">
-                    <Users size={18} className="inline mr-2 text-green-600 dark:text-green-400" />
+                    <SadyaIcon size={18} className="inline mr-2 text-green-600 dark:text-green-400" />
                     🍛 Number of Sadya *
                   </label>
                   <div className="flex items-center space-x-4">
@@ -374,22 +375,22 @@ const SadyaRegistration: React.FC = () => {
           {currentStep === 2 && (
             <div className="space-y-8">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">💳 Payment: ₹{formData.totalAmount}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6 font-medium">Scan the QR code below to make payment via UPI 📱</p>
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">💳 Payment: ₹{formData.totalAmount}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 font-medium">Scan the QR code below to make payment via UPI 📱</p>
               </div>
 
               <div className="flex flex-col lg:flex-row gap-8">
                 <div className="flex-1 text-center">
                   <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 mb-4 border-2 border-gray-300 dark:border-gray-500">
-                    <QrCode size={200} className="mx-auto text-gray-500 dark:text-gray-400 mb-4" />
-                    <p className="text-sm text-gray-600 dark:text-gray-400 font-bold">📱 UPI QR Code</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                    <SadyaIcon size={200} className="mx-auto text-gray-500 dark:text-gray-400 mb-4" />
+                    <p className="text-sm text-gray-600 dark:text-gray-300 font-bold">📱 UPI QR Code</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                       Scan with any UPI app to pay ₹{formData.totalAmount}
                     </p>
                   </div>
                   <div className="bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-xl p-4 border-2 border-blue-300 dark:border-blue-500">
                     <p className="text-sm text-blue-800 dark:text-blue-300 font-bold">💳 UPI ID:</p>
-                    <p className="text-blue-700 dark:text-blue-400 font-mono text-lg font-bold">infinitymalayalees@paytm</p>
+                    <p className="text-blue-700 dark:text-blue-300 font-mono text-lg font-bold">infinitymalayalees@paytm</p>
                   </div>
                 </div>
 
@@ -462,21 +463,21 @@ const SadyaRegistration: React.FC = () => {
           {currentStep === 3 && (
             <div className="space-y-8">
               <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-6 border-2 border-gray-300 dark:border-gray-500">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">✅ Confirm Your Registration</h3>
+                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">✅ Confirm Your Registration</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm font-medium">
                   <div>
-                    <p className="text-gray-700 dark:text-gray-300"><strong>👤 Name:</strong> {formData.fullName}</p>
-                    <p className="text-gray-700 dark:text-gray-300"><strong>📧 Email:</strong> {formData.email}</p>
-                    <p className="text-gray-700 dark:text-gray-300"><strong>📱 Phone:</strong> {formData.phone}</p>
+                    <p className="text-gray-700 dark:text-gray-200"><strong>👤 Name:</strong> {formData.fullName}</p>
+                    <p className="text-gray-700 dark:text-gray-200"><strong>📧 Email:</strong> {formData.email}</p>
+                    <p className="text-gray-700 dark:text-gray-200"><strong>📱 Phone:</strong> {formData.phone}</p>
                   </div>
                   <div>
-                    <p className="text-gray-700 dark:text-gray-300"><strong>🏠 Flat:</strong> {formData.flatNumber}</p>
-                    <p className="text-gray-700 dark:text-gray-300"><strong>🍛 Sadya Count:</strong> {formData.sadyaCount}</p>
-                    <p className="text-gray-700 dark:text-gray-300"><strong>💰 Total Amount:</strong> ₹{formData.totalAmount}</p>
+                    <p className="text-gray-700 dark:text-gray-200"><strong>🏠 Flat:</strong> {formData.flatNumber}</p>
+                    <p className="text-gray-700 dark:text-gray-200"><strong>🍛 Sadya Count:</strong> {formData.sadyaCount}</p>
+                    <p className="text-gray-700 dark:text-gray-200"><strong>💰 Total Amount:</strong> ₹{formData.totalAmount}</p>
                   </div>
                 </div>
                 <div className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-500">
-                  <p className="text-gray-700 dark:text-gray-300 text-xs"><strong>📝 Registration ID:</strong> {formData.registrationId}</p>
+                  <p className="text-gray-700 dark:text-gray-200 text-xs"><strong>📝 Registration ID:</strong> {formData.registrationId}</p>
                 </div>
               </div>
 
