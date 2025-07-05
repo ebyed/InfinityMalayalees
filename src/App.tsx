@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Calendar, Settings, Info } from 'lucide-react';
-import { KeralaLogoIcon } from './KeralaSVGIcons';
+import { KeralaLogoIcon } from './components/KeralaSVGIcons';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
