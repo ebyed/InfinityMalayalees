@@ -363,67 +363,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Organizational Structure with Kerala Icons */}
-      <section className="py-16 bg-gradient-to-br from-indigo-50 via-blue-50 to-cyan-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <CoconutPalmIcon size={32} className="text-indigo-600 dark:text-indigo-400" />
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-700 to-cyan-700 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                🏛️ Organizational Structure
-              </h2>
-              <CoconutPalmIcon size={32} className="text-cyan-600 dark:text-cyan-400" />
-            </div>
-            <p className="text-lg text-gray-700 dark:text-gray-200 font-medium">
-              Meet the dedicated individuals who make our celebrations possible
-            </p>
-          </div>
-
-          {/* Category Legend with Kerala Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="flex items-center space-x-2 p-3 bg-gradient-to-r from-purple-100 to-indigo-200 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-lg border border-purple-300 dark:border-purple-500">
-              <LampIcon size={16} className="text-purple-600 dark:text-purple-400" />
-              <span className="text-sm font-bold text-purple-800 dark:text-purple-200">Leadership</span>
-            </div>
-            <div className="flex items-center space-x-2 p-3 bg-gradient-to-r from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-lg border border-blue-300 dark:border-blue-500">
-              <SadyaIcon size={16} className="text-blue-600 dark:text-blue-400" />
-              <span className="text-sm font-bold text-blue-800 dark:text-blue-200">Core Team</span>
-            </div>
-            <div className="flex items-center space-x-2 p-3 bg-gradient-to-r from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 rounded-lg border border-green-300 dark:border-green-500">
-              <ThiruvathiraIcon size={16} className="text-green-600 dark:text-green-400" />
-              <span className="text-sm font-bold text-green-800 dark:text-green-200">Operations</span>
-            </div>
-            <div className="flex items-center space-x-2 p-3 bg-gradient-to-r from-orange-100 to-red-200 dark:from-orange-900/30 dark:to-red-900/30 rounded-lg border border-orange-300 dark:border-orange-500">
-              <CulturalIcon size={16} className="text-orange-600 dark:text-orange-400" />
-              <span className="text-sm font-bold text-orange-800 dark:text-orange-200">Support</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {organizationalStructure.map((position, index) => (
-              <div 
-                key={index} 
-                className={`group bg-gradient-to-br ${getCategoryBg(position.category)} rounded-3xl p-6 border-2 ${getCategoryBorder(position.category)} shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group-hover:rotate-1`}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${getCategoryColor(position.category)} rounded-full flex items-center justify-center shadow-lg`}>
-                    <position.keralIcon className="text-white" size={20} />
-                  </div>
-                  <div className={`px-3 py-1 bg-gradient-to-r ${getCategoryColor(position.category)} text-white text-xs font-bold rounded-full uppercase tracking-wide`}>
-                    {position.category}
-                  </div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">{position.role}</h3>
-                <p className="text-gray-700 dark:text-gray-200 text-sm font-medium leading-relaxed">
-                  {position.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Achievements Timeline with Kerala Theme */}
       <section className="py-16 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
