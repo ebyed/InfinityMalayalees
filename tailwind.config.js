@@ -5,14 +5,107 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Golden Harvest Theme (Portal Base)
+        // Onam & Malayalee Cultural Color Palette
+        'festive-gold': {
+          50: '#fefce8',
+          100: '#fef9c3',
+          200: '#fef08a',
+          300: '#fde047',
+          400: '#facc15',
+          500: '#F4C542', // Primary festive gold
+          600: '#ca8a04',
+          700: '#a16207',
+          800: '#854d0e',
+          900: '#713f12',
+          950: '#422006',
+        },
+        'kerala-green': {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#4CAF50', // Kerala green
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+          950: '#052e16',
+        },
+        'deep-maroon': {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#8B1A1A', // Deep maroon
+          900: '#7f1d1d',
+          950: '#450a0a',
+        },
+        'ivory': {
+          50: '#FFF8E1', // Background light
+          100: '#fffbeb',
+          200: '#fef3c7',
+          300: '#fde68a',
+          400: '#fcd34d',
+          500: '#fbbf24',
+          600: '#f59e0b',
+          700: '#d97706',
+          800: '#b45309',
+          900: '#92400e',
+          950: '#78350f',
+        },
+        'charcoal': {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#2C2C2C', // Dark text color
+          900: '#0f172a',
+          950: '#020617',
+        },
+        'sunset-orange': {
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#FF7043', // Highlight color
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+          950: '#431407',
+        },
+        'ash-grey': {
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#BDBDBD', // Muted support
+          500: '#9ca3af',
+          600: '#6b7280',
+          700: '#4b5563',
+          800: '#374151',
+          900: '#111827',
+          950: '#030712',
+        },
+        
+        // Keep some existing colors for compatibility
         golden: {
           50: '#fffbeb',
           100: '#fef3c7',
           200: '#fde68a',
           300: '#fcd34d',
           400: '#fbbf24',
-          500: '#f59e0b',
+          500: '#F4C542',
           600: '#d97706',
           700: '#b45309',
           800: '#92400e',
@@ -86,18 +179,6 @@ export default {
           900: '#881337',
           950: '#4c0519',
         },
-        
-        // Traditional Kerala colors
-        cream: {
-          100: '#fefcf0',
-          200: '#fef7e0',
-          300: '#fef2d0',
-        },
-        brown: {
-          400: '#a16207',
-          500: '#92400e',
-          600: '#78350f',
-        }
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -129,7 +210,9 @@ export default {
       },
       backgroundImage: {
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
-        'golden-gradient': 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 25%, #fde68a 50%, #fcd34d 75%, #fbbf24 100%)',
+        'festive-gradient': 'linear-gradient(135deg, #FFF8E1 0%, #fef3c7 25%, #F4C542 50%, #4CAF50 75%, #8B1A1A 100%)',
+        'kerala-gradient': 'linear-gradient(135deg, #FFF8E1 0%, #dcfce7 25%, #4CAF50 50%, #F4C542 75%, #FF7043 100%)',
+        'golden-gradient': 'linear-gradient(135deg, #FFF8E1 0%, #fef3c7 25%, #fde68a 50%, #F4C542 75%, #fbbf24 100%)',
         'harvest-gradient': 'linear-gradient(135deg, #fefdf8 0%, #fefbeb 25%, #fef3c7 50%, #fde68a 75%, #facc15 100%)',
         'tropical-gradient': 'linear-gradient(135deg, #fef7ed 0%, #fdedd4 25%, #fbd7a8 50%, #f8b871 75%, #f59338 100%)',
         'bloom-gradient': 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 25%, #fbcfe8 50%, #f9a8d4 75%, #f472b6 100%)',

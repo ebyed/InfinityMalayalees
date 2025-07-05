@@ -20,10 +20,10 @@ const ThemeToggle: React.FC = () => {
         isDark 
           ? isOnamPage
             ? 'bg-gradient-to-r from-tropical-500 to-coral-500 text-white hover:from-tropical-600 hover:to-coral-600' 
-            : 'bg-gradient-to-r from-harvest-500 to-golden-500 text-white hover:from-harvest-600 hover:to-golden-600'
+            : 'bg-gradient-to-r from-sunset-orange-500 to-deep-maroon-600 text-white hover:from-sunset-orange-600 hover:to-deep-maroon-700'
           : isOnamPage
             ? 'bg-gradient-to-r from-bloom-500 to-tropical-500 text-white hover:from-bloom-600 hover:to-tropical-600'
-            : 'bg-gradient-to-r from-golden-500 to-amber-500 text-white hover:from-golden-600 hover:to-amber-600'
+            : 'bg-gradient-to-r from-festive-gold-500 to-kerala-green-500 text-white hover:from-festive-gold-600 hover:to-kerala-green-600'
       }`}
       title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
