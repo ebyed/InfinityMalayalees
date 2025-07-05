@@ -118,20 +118,20 @@ const ThiruvathiraRegistration: React.FC = () => {
   if (isSubmitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-gradient-to-r from-pink-100 to-rose-100 dark:from-pink-900/50 dark:to-rose-900/50 rounded-3xl p-8 text-center border-2 border-pink-300 dark:border-pink-500 shadow-2xl">
+        <div className="bg-pink-50 dark:bg-pink-900/50 rounded-3xl p-8 text-center border-2 border-pink-300 dark:border-pink-500 shadow-2xl">
           <CheckCircle className="mx-auto text-pink-600 dark:text-pink-400 mb-6" size={80} />
-          <h2 className="text-3xl font-bold text-pink-800 dark:text-pink-300 mb-4">🎉 Registration Successful!</h2>
+          <h2 className="text-3xl font-bold text-pink-800 dark:text-pink-300 mb-4">Registration Successful!</h2>
           <p className="text-pink-700 dark:text-pink-300 mb-6 text-lg font-medium">
             Welcome to the Mega Thiruvathira! You're now registered for this beautiful traditional dance celebration. 
-            Our cultural team will contact you with rehearsal details soon. 💃
+            Our cultural team will contact you with rehearsal details soon.
           </p>
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border-2 border-pink-300 dark:border-pink-500 mb-6">
             <p className="text-sm text-gray-700 dark:text-gray-300 font-bold">
-              📋 Registration Details:<br />
-              👤 Name: {formData.fullName}<br />
-              📧 Email: {formData.email}<br />
-              📱 Phone: {formData.phone}<br />
-              🏠 Flat: {formData.flatNumber}
+              Registration Details:<br />
+              Name: {formData.fullName}<br />
+              Email: {formData.email}<br />
+              Phone: {formData.phone}<br />
+              Flat: {formData.flatNumber}
             </p>
           </div>
           <button
@@ -158,35 +158,35 @@ const ThiruvathiraRegistration: React.FC = () => {
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-pink-300 to-rose-300 dark:from-pink-600 dark:to-rose-600 text-pink-900 dark:text-pink-100 text-sm font-bold mb-6 shadow-lg border-2 border-pink-400 dark:border-pink-500">
+        <div className="inline-flex items-center px-6 py-3 rounded-full bg-white dark:bg-gray-800 text-pink-900 dark:text-pink-300 text-sm font-bold mb-6 shadow-lg border-2 border-pink-400 dark:border-pink-500">
           <ThiruvathiraIcon size={18} className="mr-2 text-rose-600 dark:text-rose-300" />
-          💃 Ladies Only Event 💃
+          Ladies Only Event
         </div>
         
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-400 dark:to-rose-400 bg-clip-text text-transparent mb-4">
-          🌺 Mega Thiruvathira Registration 🌺
+          Mega Thiruvathira Registration
         </h1>
         
         <p className="text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
           Join the most spectacular traditional Kerala group dance! Experience the grace and beauty 
-          of Thiruvathira with fellow ladies in our community. 💫
+          of Thiruvathira with fellow ladies in our community.
         </p>
       </div>
 
       {/* About Thiruvathira */}
-      <div className="bg-gradient-to-r from-pink-100 to-rose-100 dark:from-pink-900/30 dark:to-rose-900/30 rounded-2xl p-6 mb-8 border-2 border-pink-300 dark:border-pink-500">
-        <h3 className="text-xl font-bold text-pink-800 dark:text-pink-300 mb-3">✨ About Mega Thiruvathira</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 mb-8 border-2 border-pink-300 dark:border-pink-500">
+        <h3 className="text-xl font-bold text-pink-800 dark:text-pink-300 mb-3">About Mega Thiruvathira</h3>
         <p className="text-pink-700 dark:text-pink-300 font-medium mb-4">
           Thiruvathira is a traditional group dance performed by women in Kerala. It's a graceful dance form 
           that celebrates femininity and Kerala's cultural heritage.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="font-semibold text-pink-800 dark:text-pink-300">📅 Performance Date:</p>
+            <p className="font-semibold text-pink-800 dark:text-pink-300">Performance Date:</p>
             <p className="text-pink-700 dark:text-pink-300">September 14, 2025 at 10:00 AM</p>
           </div>
           <div>
-            <p className="font-semibold text-pink-800 dark:text-pink-300">🎭 Experience Required:</p>
+            <p className="font-semibold text-pink-800 dark:text-pink-300">Experience Required:</p>
             <p className="text-pink-700 dark:text-pink-300">None - We'll teach you!</p>
           </div>
         </div>
@@ -197,7 +197,7 @@ const ThiruvathiraRegistration: React.FC = () => {
         <div className="bg-gradient-to-r from-pink-600 to-rose-600 dark:from-pink-500 dark:to-rose-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
             <ThiruvathiraIcon size={28} className="mr-3 text-white" />
-            💃 Registration Form
+            Registration Form
           </h2>
           <p className="text-pink-100 mt-2 font-medium">Simple registration - just 4 essential details</p>
         </div>
@@ -217,7 +217,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             <div>
               <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
                 <User size={18} className="inline mr-2 text-pink-600 dark:text-pink-400" />
-                👤 Full Name *
+                Full Name *
               </label>
               <input
                 type="text"
@@ -242,7 +242,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             <div>
               <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
                 <Mail size={18} className="inline mr-2 text-pink-600 dark:text-pink-400" />
-                📧 Email Address *
+                Email Address *
               </label>
               <input
                 type="email"
@@ -267,7 +267,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             <div>
               <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
                 <Phone size={18} className="inline mr-2 text-pink-600 dark:text-pink-400" />
-                📱 Phone Number *
+                Phone Number *
               </label>
               <input
                 type="tel"
@@ -295,7 +295,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             <div>
               <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
                 <Home size={18} className="inline mr-2 text-pink-600 dark:text-pink-400" />
-                🏠 Flat/Apartment Number *
+                Flat/Apartment Number *
               </label>
               <input
                 type="text"
@@ -304,7 +304,7 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.flatNumber}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowe ${
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.flatNumber 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
                     : 'border-gray-300 dark:border-gray-600 focus:border-pink-500 dark:focus:border-pink-400'
@@ -318,14 +318,14 @@ const ThiruvathiraRegistration: React.FC = () => {
           </div>
 
           {/* Guidelines */}
-          <div className="bg-gradient-to-r from-pink-100 to-rose-100 dark:from-pink-900/30 dark:to-rose-900/30 rounded-lg p-4 border border-pink-300 dark:border-pink-500">
-            <h3 className="font-bold text-pink-800 dark:text-pink-300 mb-2">🌟 Important Guidelines:</h3>
+          <div className="bg-pink-50 dark:bg-pink-900/30 rounded-lg p-4 border border-pink-300 dark:border-pink-500">
+            <h3 className="font-bold text-pink-800 dark:text-pink-300 mb-2">Important Guidelines:</h3>
             <ul className="text-pink-700 dark:text-pink-300 text-sm space-y-1 font-medium">
-              <li>• Ladies only event - all ages welcome!</li>
-              <li>• No prior dance experience required</li>
-              <li>• 2-3 rehearsal sessions before the event</li>
-              <li>• Performance on September 14, 2025 at 10:00 AM</li>
-              <li>• Registration closes on September 5, 2025</li>
+              <li>Ladies only event - all ages welcome!</li>
+              <li>No prior dance experience required</li>
+              <li>2-3 rehearsal sessions before the event</li>
+              <li>Performance on September 14, 2025 at 10:00 AM</li>
+              <li>Registration closes on September 5, 2025</li>
             </ul>
           </div>
 
@@ -340,7 +340,7 @@ const ThiruvathiraRegistration: React.FC = () => {
                 <span>Registering...</span>
               </div>
             ) : (
-              '💃 Register for Mega Thiruvathira 🌺'
+              'Register for Mega Thiruvathira'
             )}
           </button>
         </form>

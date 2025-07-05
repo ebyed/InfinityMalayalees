@@ -27,7 +27,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Traditional or modern group dance performances',
       maxParticipants: 15,
       color: 'from-purple-500 to-violet-500',
-      bgColor: 'from-purple-50 to-violet-50 dark:from-purple-900/30 dark:to-violet-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     },
     {
       id: 'solo-dance',
@@ -36,7 +36,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Individual dance performances - classical or contemporary',
       maxParticipants: 1,
       color: 'from-pink-500 to-rose-500',
-      bgColor: 'from-pink-50 to-rose-50 dark:from-pink-900/30 dark:to-rose-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     },
     {
       id: 'group-song',
@@ -45,7 +45,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Choir or group singing performances',
       maxParticipants: 10,
       color: 'from-blue-500 to-cyan-500',
-      bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     },
     {
       id: 'solo-song',
@@ -54,7 +54,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Individual singing performances',
       maxParticipants: 1,
       color: 'from-green-500 to-emerald-500',
-      bgColor: 'from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     },
     {
       id: 'skit',
@@ -63,7 +63,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Short theatrical performances or comedy skits',
       maxParticipants: 8,
       color: 'from-amber-500 to-orange-500',
-      bgColor: 'from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     },
     {
       id: 'fashion-show',
@@ -72,7 +72,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Traditional Kerala attire or theme-based fashion show',
       maxParticipants: 12,
       color: 'from-red-500 to-pink-500',
-      bgColor: 'from-red-50 to-pink-50 dark:from-red-900/30 dark:to-pink-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     },
     {
       id: 'mega-thiruvathira',
@@ -81,7 +81,7 @@ const CulturalEvents: React.FC = () => {
       description: 'Traditional Kerala group dance for women',
       maxParticipants: 20,
       color: 'from-indigo-500 to-purple-500',
-      bgColor: 'from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30'
+      bgColor: 'bg-white dark:bg-gray-800'
     }
   ];
 
@@ -124,7 +124,6 @@ const CulturalEvents: React.FC = () => {
     // Clear error when user starts typing
     if (error) setError(null);
   };
-
 
   if (isSubmitted) {
     return (
@@ -183,7 +182,7 @@ const CulturalEvents: React.FC = () => {
         {eventCategories.map((event) => (
           <div
             key={event.id}
-            className={`bg-gradient-to-br ${event.bgColor} rounded-2xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all duration-300`}
+            className={`${event.bgColor} rounded-2xl p-6 border border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all duration-300`}
           >
             <div className={`w-16 h-16 bg-gradient-to-br ${event.color} rounded-full flex items-center justify-center mb-4`}>
               <event.icon size={28} className="text-white" />
@@ -221,7 +220,7 @@ const CulturalEvents: React.FC = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 <User size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
-                👤 Full Name *
+                Full Name *
               </label>
               <input
                 type="text"
@@ -238,7 +237,6 @@ const CulturalEvents: React.FC = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 <Mail size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
-                📧 Email Address *
                 Email Address *
               </label>
               <input
@@ -256,7 +254,6 @@ const CulturalEvents: React.FC = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 <Phone size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
-                📱 Phone Number *
                 Phone Number *
               </label>
               <input
@@ -274,7 +271,7 @@ const CulturalEvents: React.FC = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 <Home size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
-                🏠 Flat Number *
+                Flat Number *
               </label>
               <input
                 type="text"
@@ -290,7 +287,7 @@ const CulturalEvents: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                🎂 Age *
+                Age *
               </label>
               <input
                 type="text"
@@ -306,7 +303,7 @@ const CulturalEvents: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                👤 Gender *
+                Gender *
               </label>
               <select
                 name="gender"
@@ -324,10 +321,9 @@ const CulturalEvents: React.FC = () => {
             </div>
           </div>
 
-
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              🎭 Interested Events *
+              Interested Events *
             </label>
             <textarea
               name="interestedEvents"
@@ -340,7 +336,6 @@ const CulturalEvents: React.FC = () => {
               placeholder="List the cultural events you're interested in (e.g., Dance, Singing, Drama, Fashion Show, etc.)"
             />
           </div>
-
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -360,12 +355,12 @@ const CulturalEvents: React.FC = () => {
           <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
             <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
             <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
-              <li>• This is an interest registration - we'll contact you with specific event details</li>
-              <li>• All events should be family-friendly and appropriate for all ages</li>
-              <li>• Our cultural team will organize participants into groups based on interests</li>
-              <li>• Rehearsal schedules will be shared after team formation</li>
-              <li>• Events include: Dance, Singing, Drama, Fashion Show, Instrumental, etc.</li>
-              <li>• Interest registration closes on September 5, 2025</li>
+              <li>This is an interest registration - we'll contact you with specific event details</li>
+              <li>All events should be family-friendly and appropriate for all ages</li>
+              <li>Our cultural team will organize participants into groups based on interests</li>
+              <li>Rehearsal schedules will be shared after team formation</li>
+              <li>Events include: Dance, Singing, Drama, Fashion Show, Instrumental, etc.</li>
+              <li>Interest registration closes on September 5, 2025</li>
             </ul>
           </div>
 

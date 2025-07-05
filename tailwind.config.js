@@ -180,34 +180,6 @@ export default {
           950: '#4c0519',
         },
       },
-      animation: {
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-slow': 'bounce 2s infinite',
-        'spin-slow': 'spin 8s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'shimmer': 'shimmer 2s linear infinite',
-        'sway': 'sway 4s ease-in-out infinite',
-        'dance': 'dance 3s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        shimmer: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
-        },
-        sway: {
-          '0%, 100%': { transform: 'rotate(-2deg)' },
-          '50%': { transform: 'rotate(2deg)' },
-        },
-        dance: {
-          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-          '25%': { transform: 'translateY(-5px) rotate(1deg)' },
-          '75%': { transform: 'translateY(-3px) rotate(-1deg)' },
-        },
-      },
       backgroundImage: {
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
         'festive-gradient': 'linear-gradient(135deg, #FFF8E1 0%, #fef3c7 25%, #F4C542 50%, #4CAF50 75%, #8B1A1A 100%)',
@@ -219,6 +191,8 @@ export default {
       },
       fontFamily: {
         'malayalam': ['Noto Sans Malayalam', 'sans-serif'],
+        'serif': ['Georgia', 'serif'],
+        'sans': ['Lato', 'sans-serif'],
       },
     },
   },
