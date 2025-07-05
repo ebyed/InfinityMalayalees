@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                 <Mail size={18} className={`transition-all duration-300 ${
                   isOnamPage ? 'text-tropical-300 dark:text-tropical-300' : 'text-golden-300 dark:text-golden-300'
                 }`} />
-                <span className="text-sm font-medium">admin@infinitymalayalees.com</span>
+                <span className="text-sm font-medium">infinitymalayalees@gmail.com</span>
               </div>
               <div className={`flex items-center space-x-3 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                 isOnamPage 
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
                 <Phone size={18} className={`transition-all duration-300 ${
                   isOnamPage ? 'text-tropical-300 dark:text-tropical-300' : 'text-golden-300 dark:text-golden-300'
                 }`} />
-                <span className="text-sm font-medium">+91 98765 43210</span>
+                <span className="text-sm font-medium">+91 9686 900488</span>
               </div>
               <div className={`flex items-start space-x-3 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                 isOnamPage 

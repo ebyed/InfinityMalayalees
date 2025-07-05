@@ -121,7 +121,7 @@ const SadyaInformation: React.FC = () => {
             <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-4 text-lg">📞 Need More Information?</h3>
             <div className="text-purple-700 dark:text-purple-300 font-medium space-y-2">
               <p><strong>📧 Email:</strong> infinitymalayalees@gmail.com</p>
-              <p><strong>📱 Phone:</strong> +91 98765 43210</p>
+              <p><strong>📱 Phone:</strong> +91 9686 900488</p>
               <p><strong>🏢 Clubhouse:</strong> Ajmera Infinity Reception</p>
             </div>
           </div>

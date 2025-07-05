@@ -305,7 +305,7 @@ export const generateSadyaEmailTemplate = (
         
         <div class="footer">
           <h3>🌺 Onam Ashamsakal! 🌺</h3>
-          <p><strong>For any queries:</strong> infinitymalayalees@gmail.com | +91 98765 43210</p>
+          <p><strong>For any queries:</strong> infinitymalayalees@gmail.com | +91 9686 900488</p>
           <p style="margin-top: 15px; font-size: 12px; color: #9ca3af;">
             This is an automated confirmation email. Please do not reply to this email.
           </p>
@@ -432,7 +432,7 @@ export const generateDonationThankYouTemplate = (
         <div class="footer">
           <h3 style="color: #f59e0b; margin: 0 0 10px 0;">🌺 Onam Ashamsakal! 🌺</h3>
           <p style="color: #6b7280; font-size: 14px;">
-            <strong>Contact:</strong> infinitymalayalees@gmail.com | +91 98765 43210
+            <strong>Contact:</strong> infinitymalayalees@gmail.com | +91 9686 900488
           </p>
         </div>
       </div>
@@ -524,7 +524,7 @@ export const generateConfirmationEmailTemplate = (
         <div class="footer">
           <h3 style="color: #3b82f6;">🌺 Onam Ashamsakal! 🌺</h3>
           <p style="color: #6b7280; font-size: 14px;">
-            For any queries, contact us at infinitymalayalees@gmail.com
+            For any queries, contact us at infinitymalayalees@gmail.com | +91 9686 900488
           </p>
         </div>
       </div>
