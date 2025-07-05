@@ -413,12 +413,12 @@ const AboutUs: React.FC = () => {
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <Mail size={32} className="text-white mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Email Us</h3>
-              <p className="text-blue-100 text-sm">admin@infinitymalayalees.com</p>
+              <p className="text-blue-100 text-sm">infinitymalayalees@gmail.com</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <Phone size={32} className="text-white mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Call Us</h3>
-              <p className="text-blue-100 text-sm">+91 98765 43210</p>
+              <p className="text-blue-100 text-sm">+91 9686 900488</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <MapPin size={32} className="text-white mx-auto mb-4" />
