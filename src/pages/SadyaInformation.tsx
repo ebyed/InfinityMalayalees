@@ -30,13 +30,13 @@ const SadyaInformation: React.FC = () => {
               <Calendar size={40} className="text-white" />
             </div>
             <h3 className="text-3xl font-bold text-emerald-800 dark:text-emerald-300 mb-4">
-              Available at Clubhouse
+              Sadya Coupons Available at Clubhouse
             </h3>
             <p className="text-xl text-emerald-700 dark:text-emerald-300 font-bold mb-2">
               September 1 - 9, 2025
             </p>
             <p className="text-emerald-600 dark:text-emerald-400 font-medium">
-              Visit the Ajmera Infinity Clubhouse to get your Onam Sadya coupons
+              Visit the Ajmera Infinity Clubhouse to purchase your Onam Sadya coupons
             </p>
             <div className="mt-6 bg-white dark:bg-charcoal-600 rounded-xl p-4 border border-emerald-300 dark:border-emerald-500">
               <h4 className="font-bold text-emerald-800 dark:text-emerald-200 mb-2">Pricing</h4>
@@ -69,7 +69,7 @@ const SadyaInformation: React.FC = () => {
               </div>
               <div className="text-terracotta-700 dark:text-terracotta-300 font-medium space-y-2">
                 <p><strong>Coupon Sales:</strong> September 1-9, 2025</p>
-                <p><strong>Sadya Service:</strong> September 14, 2025 (Sunday)</p>
+                <p><strong>Sadya Date:</strong> September 14, 2025 (Sunday only)</p>
                 <p><strong>Service Time:</strong> 11:30 AM onwards</p>
                 <p><strong>Venue:</strong> Community Hall</p>
               </div>
@@ -107,10 +107,10 @@ const SadyaInformation: React.FC = () => {
               <h3 className="font-bold text-gold-accent-800 dark:text-gold-accent-300 text-lg">Important Information</h3>
             </div>
             <ul className="text-gold-accent-700 dark:text-gold-accent-300 font-medium space-y-2">
-              <li>Visit the clubhouse between September 1-9 to purchase Sadya coupons</li>
+              <li>Visit the clubhouse between September 1-9, 2025 to purchase Sadya coupons</li>
               <li>Coupons will be required for entry to the Sadya on event days</li>
               <li>Limited quantities available - first come, first served</li>
-              <li>Sadya will be served on September 14, 2025 (Sunday) from 11:30 AM onwards</li>
+              <li>Sadya will be served on September 14, 2025 (Sunday only) from 11:30 AM onwards</li>
               <li>Venue: Ajmera Infinity Community Hall</li>
               <li>For queries, contact the clubhouse reception</li>
             </ul>

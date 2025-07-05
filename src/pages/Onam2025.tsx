@@ -264,6 +264,7 @@ const Onam2025: React.FC = () => {
                   <p><strong>Location:</strong> Ajmera Infinity Community Hall</p>
                   <p><strong>Address:</strong> Neeladri Road, Karuna Nagar, Electronic City Phase 1, Bangalore - 560100</p>
                   <p className="mt-2 text-terracotta-700 dark:text-terracotta-300"><strong>Sadya Coupons:</strong> Available at clubhouse from September 1-9</p>
+                  <p className="text-terracotta-700 dark:text-terracotta-300"><strong>Sadya Date:</strong> September 14, 2025 (Sunday only)</p>
                 </div>
               </div>
             </div>
