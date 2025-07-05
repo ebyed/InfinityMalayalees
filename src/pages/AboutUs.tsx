@@ -423,7 +423,7 @@ const AboutUs: React.FC = () => {
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/20">
               <MapPin size={32} className="text-white mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Visit Us</h3>
-              <p className="text-blue-100 text-sm">Ajmera Infinity Community Hall</p>
+              <p className="text-blue-100 text-sm">Ajmera Infinity Clubhouse</p>
             </div>
           </div>
           
