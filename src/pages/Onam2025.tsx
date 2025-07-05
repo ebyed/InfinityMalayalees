@@ -37,15 +37,6 @@ const Onam2025: React.FC = () => {
       
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-100 via-terracotta-200 to-terracotta-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
-        {/* Mahabali Image */}
-        <div className="absolute top-8 right-8 w-48 h-64 opacity-20 dark:opacity-15 pointer-events-none hidden lg:block">
-          <img 
-            src="/image.png" 
-            alt="King Mahabali" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-sand-50 dark:bg-charcoal-800 text-terracotta-900 dark:text-terracotta-300 text-sm font-bold mb-6 shadow-lg border-2 border-terracotta-400 dark:border-terracotta-300">
