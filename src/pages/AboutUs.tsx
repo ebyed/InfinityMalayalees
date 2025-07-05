@@ -341,7 +341,7 @@ const AboutUs: React.FC = () => {
             </p>
             
             <p className="text-gray-800 dark:text-gray-100 font-medium leading-relaxed mb-6 text-lg">
-              In 2023, we officially formed the Infinity Malayalees Association with the goal of preserving 
+              In 2013, we officially formed the Infinity Malayalees Association with the goal of preserving 
               our rich cultural heritage while building lasting friendships. Our first Onam celebration was 
               a modest affair with 50 participants, but the enthusiasm and joy were infectious.
             </p>
