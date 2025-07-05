@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home } from 'lucide-react';
+import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home, Users, Star } from 'lucide-react';
 import { CulturalIcon } from '../components/KeralaSVGIcons';
 import { culturalRegistrations } from '../lib/database';
 
