@@ -8,32 +8,25 @@ import Footer from '../components/Footer';
 const AboutUs: React.FC = () => {
   const achievements = [
     {
-      year: '2024',
+      year: '2022',
       title: 'Grand Onam Celebration',
       description: 'Successfully organized Onam 2024 with 200+ participants',
       icon: '🎉',
       keralIcon: PookkalamIcon
     },
     {
-      year: '2023',
+      year: '2013',
       title: 'Community Formation',
       description: 'Established Infinity Malayalees Association',
       icon: '🏛️',
       keralIcon: CoconutPalmIcon
     },
     {
-      year: '2023',
+      year: '2013',
       title: 'First Cultural Program',
       description: 'Inaugural Thiruvathira and cultural showcase',
       icon: '🎭',
       keralIcon: ThiruvathiraIcon
-    },
-    {
-      year: '2024',
-      title: 'Charity Initiative',
-      description: 'Raised ₹50,000 for Kerala flood relief',
-      icon: '💝',
-      keralIcon: LampIcon
     }
   ];
 
