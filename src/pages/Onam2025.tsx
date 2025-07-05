@@ -37,6 +37,15 @@ const Onam2025: React.FC = () => {
       
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-100 via-terracotta-200 to-terracotta-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
+        {/* Mahabali Image */}
+        <div className="absolute top-8 right-8 w-48 h-64 opacity-20 dark:opacity-15 pointer-events-none hidden lg:block">
+          <img 
+            src="/image.png" 
+            alt="King Mahabali" 
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-sand-50 dark:bg-charcoal-800 text-terracotta-900 dark:text-terracotta-300 text-sm font-bold mb-6 shadow-lg border-2 border-terracotta-400 dark:border-terracotta-300">
@@ -56,7 +65,7 @@ const Onam2025: React.FC = () => {
             </p>
             
             <div className="bg-sand-50/80 dark:bg-charcoal-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-terracotta-400 dark:border-terracotta-400 shadow-xl">
-              <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-2">Onam Ashamsakal!</h3>
+              <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-2">🌺 Onam Ashamsakal! 🌺</h3>
               <p className="text-stone-700 dark:text-stone-200 font-medium">
                 Experience the joy of King Mahabali's return with authentic traditions, 
                 delicious Sadya, and vibrant cultural programs.
@@ -86,7 +95,7 @@ const Onam2025: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-terracotta-700 to-plum-700 dark:from-terracotta-400 dark:to-plum-400 bg-clip-text text-transparent mb-4 font-serif">
-                  Celebration Features
+                  🎉 Celebration Features 🎉
                 </h2>
                 <p className="text-lg text-stone-700 dark:text-stone-200 max-w-2xl mx-auto font-medium">
                   Everything you need to be part of our Onam 2025 celebrations
@@ -147,7 +156,7 @@ const Onam2025: React.FC = () => {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-terracotta-700 to-plum-700 dark:from-terracotta-400 dark:to-plum-400 bg-clip-text text-transparent mb-4 font-serif">
-                  Event Schedule
+                  📅 Event Schedule
                 </h2>
                 <p className="text-lg text-stone-700 dark:text-stone-200 font-medium">
                   Two days of non-stop celebration and fun activities
@@ -156,26 +165,26 @@ const Onam2025: React.FC = () => {
 
               <div className="space-y-8">
                 <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-terracotta-300 dark:border-terracotta-500 shadow-lg">
-                  <h3 className="text-2xl font-bold text-terracotta-800 dark:text-terracotta-200 mb-4">Day 1 - September 13, 2025</h3>
+                  <h3 className="text-2xl font-bold text-terracotta-800 dark:text-terracotta-200 mb-4">🌅 Day 1 - September 13, 2025</h3>
                   <div className="grid grid-cols-1 gap-6">
                     <div>
                       <h4 className="font-bold text-stone-800 dark:text-stone-100 mb-4 text-lg">Evening (6:00 PM - 9:00 PM)</h4>
                       <ul className="text-stone-700 dark:text-stone-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-terracotta-500 rounded-full"></span>
-                          <span>Cultural events and performances</span>
+                          <span>🎭 Cultural events and performances</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-terracotta-500 rounded-full"></span>
-                          <span>Traditional food stalls</span>
+                          <span>🍛 Traditional food stalls</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-terracotta-500 rounded-full"></span>
-                          <span>Live music and entertainment</span>
+                          <span>🎵 Live music and entertainment</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-terracotta-500 rounded-full"></span>
-                          <span>Community bonding activities</span>
+                          <span>👨‍👩‍👧‍👦 Community bonding activities</span>
                         </li>
                       </ul>
                     </div>
