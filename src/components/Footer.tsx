@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-tropical-300 dark:text-tropical-300'
-                    }`}>🍛 Sadya:</span> ₹350 per person</p>
+                    }`}>🍛 Sadya:</span> ₹400 per person</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-gray-700/50'
