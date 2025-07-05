@@ -226,7 +226,6 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-gray-700 dark:text-white focus:ring-4 focus:ring-pink-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                 className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-plum-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.fullName 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
