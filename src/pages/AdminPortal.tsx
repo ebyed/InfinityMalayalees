@@ -186,6 +186,44 @@ const AdminPortal: React.FC = () => {
     }
   };
 
+  const downloadCSV = (data: any[], filename: string) => {
+    if (!data || data.length === 0) {
+      alert('No data available to download');
+      return;
+    }
+
+    // Get all unique keys from the data
+    const headers = Array.from(new Set(data.flatMap(item => Object.keys(item))));
+    
+    // Create CSV content
+    const csvContent = [
+      headers.join(','), // Header row
+      ...data.map(item => 
+        headers.map(header => {
+          const value = item[header];
+          // Handle values that might contain commas or quotes
+          if (value === null || value === undefined) return '';
+          const stringValue = String(value);
+          if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+            return `"${stringValue.replace(/"/g, '""')}"`;
+          }
+          return stringValue;
+        }).join(',')
+      )
+    ].join('\n');
+
+    // Create and download the file
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `${filename}_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleSaveEmailSettings = () => {
     emailSettings.saveConfig(emailConfig);
     setShowEmailSettings(false);
@@ -366,10 +404,8 @@ const AdminPortal: React.FC = () => {
               {[
                 { id: 'overview', label: 'Overview', icon: TrendingUp },
                 { id: 'sadya', label: 'Sadya Registrations', icon: Calendar },
-                { id: 'malayalee', label: 'Malayalee Members', icon: Users },
                 { id: 'cultural', label: 'Cultural Events', icon: Music },
                 { id: 'thiruvathira', label: 'Thiruvathira', icon: Crown },
-                { id: 'donations', label: 'Donations', icon: Heart },
                 { id: 'admins', label: 'Admin Users', icon: Lock }
               ].map((tab) => (
                 <button
@@ -397,30 +433,10 @@ const AdminPortal: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Malayalee Members</p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.statistics.malayaleeRegistrations}</p>
-                  </div>
-                  <Users className="text-blue-500" size={32} />
-                </div>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center justify-between">
-                  <div>
                     <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Sadya Bookings</p>
                     <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.statistics.totalSadyaCount}</p>
                   </div>
                   <Calendar className="text-green-500" size={32} />
-                </div>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Donations</p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">₹{data.statistics.totalDonationAmount.toLocaleString()}</p>
-                  </div>
-                  <Heart className="text-red-500" size={32} />
                 </div>
               </div>
 
@@ -433,21 +449,31 @@ const AdminPortal: React.FC = () => {
                   <TrendingUp className="text-purple-500" size={32} />
                 </div>
               </div>
+
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Thiruvathira</p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.statistics.thiruvathiraRegistrations}</p>
+                  </div>
+                  <Crown className="text-pink-500" size={32} />
+                </div>
+              </div>
             </div>
 
             {/* Recent Activity */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Recent Malayalee Registrations */}
+              {/* Recent Cultural Registrations */}
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">Recent Malayalee Registrations</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">Recent Cultural Event Registrations</h3>
                 </div>
                 <div className="p-6">
                   <div className="space-y-3">
-                    {data.malayaleeRegistrations.slice(0, 5).map((registration) => (
+                    {data.culturalRegistrations.slice(0, 5).map((registration) => (
                       <div key={registration.id} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div>
-                          <p className="font-medium text-gray-900 dark:text-gray-100">{registration.full_name}</p>
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{registration.participant_name}</p>
                           <p className="text-sm text-gray-600 dark:text-gray-400">{registration.email}</p>
                         </div>
                         <span className="text-xs text-gray-500 dark:text-gray-400">
@@ -459,25 +485,22 @@ const AdminPortal: React.FC = () => {
                 </div>
               </div>
 
-              {/* Recent Donations */}
+              {/* Recent Thiruvathira Registrations */}
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
                 <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">Recent Donations</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">Recent Thiruvathira Registrations</h3>
                 </div>
                 <div className="p-6">
                   <div className="space-y-3">
-                    {data.donations.slice(0, 5).map((donation) => (
-                      <div key={donation.id} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <div className="flex-1">
-                          <p className="font-medium text-gray-900 dark:text-gray-100">{donation.donor_name}</p>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">{donation.donation_type}</p>
+                    {data.thiruvathiraRegistrations.slice(0, 5).map((registration) => (
+                      <div key={registration.id} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <div>
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{registration.full_name}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">{registration.email}</p>
                         </div>
-                        <div className="text-right">
-                          <p className="font-bold text-green-600 dark:text-green-400">₹{donation.donation_amount}</p>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
-                            {formatDate(donation.created_at!)}
-                          </span>
-                        </div>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">
+                          {formatDate(registration.created_at!)}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -554,55 +577,20 @@ const AdminPortal: React.FC = () => {
           </div>
         )}
 
-        {/* Malayalee Members Tab */}
-        {activeTab === 'malayalee' && (
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Malayalee Members</h2>
-            </div>
-            <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-gray-200 dark:border-gray-700">
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Name</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Native Place</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.malayaleeRegistrations.map((registration) => (
-                      <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700">
-                        <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{registration.full_name}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.native_place || 'N/A'}</td>
-                        <td className="py-3">
-                          <button
-                            onClick={() => handleSendConfirmationEmail(registration, 'Malayalee Community Registration')}
-                            className="px-3 py-1 text-xs bg-blue-500 text-white hover:bg-blue-600 rounded transition-colors"
-                          >
-                            Send Confirmation
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Cultural Events Tab */}
         {activeTab === 'cultural' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
             <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Cultural Events Registrations</h2>
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Cultural Events Registrations</h2>
+                <button
+                  onClick={() => downloadCSV(data.culturalRegistrations, 'cultural_events_registrations')}
+                  className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                >
+                  <span>📥</span>
+                  <span>Download CSV</span>
+                </button>
+              </div>
             </div>
             <div className="p-6">
               <div className="overflow-x-auto">
@@ -611,9 +599,11 @@ const AdminPortal: React.FC = () => {
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Participant</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Event Category</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Event Title</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Participants</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Age</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Gender</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Interested Events</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
                     </tr>
                   </thead>
@@ -622,16 +612,20 @@ const AdminPortal: React.FC = () => {
                       <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700">
                         <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{registration.participant_name}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
-                          <span className="px-2 py-1 text-xs bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400 rounded-full">
-                            {registration.event_category}
-                          </span>
+                          {registration.description?.match(/Age: ([^,]+)/)?.[1] || 'N/A'}
                         </td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.event_title}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.participant_count}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
+                          {registration.description?.match(/Gender: ([^,]+)/)?.[1] || 'N/A'}
+                        </td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">
+                          {registration.event_title}
+                        </td>
                         <td className="py-3">
                           <button
-                            onClick={() => handleSendConfirmationEmail(registration, `Cultural Event: ${registration.event_category}`)}
+                            onClick={() => handleSendConfirmationEmail(registration, 'Cultural Events Interest Registration')}
                             className="px-3 py-1 text-xs bg-purple-500 text-white hover:bg-purple-600 rounded transition-colors"
                           >
                             Send Confirmation
@@ -650,7 +644,16 @@ const AdminPortal: React.FC = () => {
         {activeTab === 'thiruvathira' && (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
             <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Thiruvathira Registrations</h2>
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Thiruvathira Registrations</h2>
+                <button
+                  onClick={() => downloadCSV(data.thiruvathiraRegistrations, 'thiruvathira_registrations')}
+                  className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                >
+                  <span>📥</span>
+                  <span>Download CSV</span>
+                </button>
+              </div>
             </div>
             <div className="p-6">
               <div className="overflow-x-auto">
@@ -661,8 +664,7 @@ const AdminPortal: React.FC = () => {
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Age Group</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Experience</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Registration Date</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
                     </tr>
                   </thead>
@@ -673,72 +675,13 @@ const AdminPortal: React.FC = () => {
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.age || 'N/A'}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.experience || 'N/A'}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(registration.created_at!)}</td>
                         <td className="py-3">
                           <button
                             onClick={() => handleSendConfirmationEmail(registration, 'Mega Thiruvathira Registration')}
                             className="px-3 py-1 text-xs bg-pink-500 text-white hover:bg-pink-600 rounded transition-colors"
                           >
                             Send Confirmation
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Donations Tab */}
-        {activeTab === 'donations' && (
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700">
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Donations</h2>
-            </div>
-            <div className="p-6">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-gray-200 dark:border-gray-700">
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Donor</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Type</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Amount</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Status</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.donations.map((donation) => (
-                      <tr key={donation.id} className="border-b border-gray-100 dark:border-gray-700">
-                        <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{donation.donor_name}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{donation.email}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{donation.donation_type}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">₹{donation.donation_amount}</td>
-                        <td className="py-3">
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                            donation.verified 
-                              ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' 
-                              : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
-                          }`}>
-                            {donation.verified ? 'Verified' : 'Pending'}
-                          </span>
-                        </td>
-                        <td className="py-3">
-                          <button
-                            onClick={() => handleSendDonationThankYou(donation)}
-                            disabled={donation.verified}
-                            className={`px-3 py-1 text-xs rounded transition-colors ${
-                              donation.verified
-                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                : 'bg-green-500 text-white hover:bg-green-600'
-                            }`}
-                            title={donation.verified ? 'Already verified' : 'Verify & send thank you email'}
-                          >
-                            {donation.verified ? 'Verified ✓' : 'Verify & Thank'}
                           </button>
                         </td>
                       </tr>
