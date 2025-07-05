@@ -10,7 +10,7 @@ const SadyaInformation: React.FC = () => {
           🍛 Onam Sadya Information
         </h1>
         <p className="text-xl text-gray-700 dark:text-gray-200 max-w-2xl mx-auto font-medium">
-          Experience authentic Kerala Sadya with 20+ traditional dishes served on banana leaves. 🌿
+          Experience authentic Kerala Sadya with 20+ traditional dishes served on banana leaves. Limited Seats Only !🌿
         </p>
       </div>
 
