@@ -37,6 +37,15 @@ const Onam2025: React.FC = () => {
       
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-100 via-terracotta-200 to-terracotta-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
+        {/* Mahabali Image */}
+        <div className="absolute top-8 right-8 w-48 h-64 opacity-20 dark:opacity-15 pointer-events-none hidden lg:block">
+          <img 
+            src="/image.png" 
+            alt="King Mahabali" 
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-sand-50 dark:bg-charcoal-800 text-terracotta-900 dark:text-terracotta-300 text-sm font-bold mb-6 shadow-lg border-2 border-terracotta-400 dark:border-terracotta-300">
@@ -184,13 +193,22 @@ const Onam2025: React.FC = () => {
 
                 <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-plum-300 dark:border-plum-500 shadow-lg">
                   <h3 className="text-2xl font-bold text-plum-800 dark:text-plum-200 mb-4">Day 2 - September 14, 2025</h3>
+                  <div className="flex justify-center mb-6 lg:hidden">
+                    <div className="w-32 h-40 opacity-60 dark:opacity-40">
+                      <img 
+                        src="/image.png" 
+                        alt="King Mahabali blessing the celebration" 
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-bold text-stone-800 dark:text-stone-100 mb-3 text-lg">Morning Program</h4>
                       <ul className="text-stone-700 dark:text-stone-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>9:00 AM:</strong> Onam procession, welcoming Maveli with Chenda Melam</span>
+                          <span><strong>9:00 AM:</strong> Onam procession, welcoming King Mahabali with Chenda Melam</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
