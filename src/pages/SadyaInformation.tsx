@@ -38,6 +38,13 @@ const SadyaInformation: React.FC = () => {
             <p className="text-green-600 dark:text-green-400 font-medium">
               Visit the Ajmera Infinity Clubhouse to get your Onam Sadya coupons
             </p>
+            <div className="mt-6 bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-green-300 dark:border-green-500">
+              <h4 className="font-bold text-green-800 dark:text-green-200 mb-2">💰 Pricing</h4>
+              <div className="text-green-700 dark:text-green-300 font-medium space-y-1">
+                <p><strong>Adults:</strong> ₹400 per person</p>
+                <p><strong>Children (under 10):</strong> ₹300 per person</p>
+              </div>
+            </div>
           </div>
 
           {/* Details Grid */}
