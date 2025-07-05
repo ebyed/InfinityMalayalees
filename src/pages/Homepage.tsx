@@ -2,14 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, PookkalamIcon, LampIcon, CoconutPalmIcon } from '../components/KeralaSVGIcons';
-import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 const Homepage: React.FC = () => {
   return (
     <div className="min-h-screen">
-      <Navigation />
-      
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-warm-gradient">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

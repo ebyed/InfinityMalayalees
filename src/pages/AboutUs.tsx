@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Heart, Calendar, Award, MapPin, Mail, Phone } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, CoconutPalmIcon, LampIcon, PookkalamIcon } from '../components/KeralaSVGIcons';
-import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 const AboutUs: React.FC = () => {
@@ -29,8 +28,6 @@ const AboutUs: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
-      
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-sapphire-100 via-sapphire-200 to-sapphire-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

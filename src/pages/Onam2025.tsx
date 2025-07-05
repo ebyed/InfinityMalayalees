@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
-import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import SadyaInformation from './SadyaInformation';
 import CulturalEvents from './CulturalEvents';
@@ -33,8 +32,6 @@ const Onam2025: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
-      
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-100 via-terracotta-200 to-terracotta-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
         {/* Mahabali Image */}
