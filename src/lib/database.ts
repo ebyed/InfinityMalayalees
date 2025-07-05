@@ -105,9 +105,9 @@ export const thiruvathiraRegistrations = {
       .from('thiruvathira_registrations')
       .select('*')
       .eq('email', email)
-      .single();
+      .maybeSingle();
     
-    if (error && error.code !== 'PGRST116') throw error;
+    if (error) throw error;
     return data;
   }
 };
