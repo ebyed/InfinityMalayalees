@@ -234,8 +234,9 @@ export default {
       },
       backgroundImage: {
         'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
-        'festive-gradient': 'linear-gradient(135deg, #fafaf9 0%, #f5f5f4 25%, #f1c27d 50%, #10b981 75%, #1e293b 100%)',
+        'festive-gradient': 'linear-gradient(135deg, #fef7ed 0%, #fdedd4 25%, #f1c27d 50%, #10b981 75%, #1e293b 100%)',
         'mature-gradient': 'linear-gradient(135deg, #fafaf9 0%, #f5f5f4 25%, #e7e5e4 50%, #d6d3d1 75%, #a8a29e 100%)',
+        'warm-gradient': 'linear-gradient(135deg, #fef7ed 0%, #fed7aa 25%, #f59e0b 50%, #dc2626 75%, #7c2d12 100%)',
       },
       fontFamily: {
         'malayalam': ['Noto Sans Malayalam', 'sans-serif'],

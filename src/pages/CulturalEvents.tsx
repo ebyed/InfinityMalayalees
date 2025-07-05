@@ -360,7 +360,7 @@ const CulturalEvents: React.FC = () => {
               <li>Our cultural team will organize participants into groups based on interests</li>
               <li>Rehearsal schedules will be shared after team formation</li>
               <li>Events include: Dance, Singing, Drama, Fashion Show, Instrumental, etc.</li>
-              <li>Interest registration closes on September 5, 2025</li>
+              <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
             </ul>
           </div>
 

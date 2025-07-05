@@ -43,14 +43,14 @@ const Footer: React.FC = () => {
                 ? 'text-sand-100 dark:text-stone-300' 
                 : 'text-stone-100 dark:text-stone-300'
             }`}>
-              Celebrating Malayalam culture and traditions at Ajmera Infinity. 
-              {isOnamPage ? 'Join us for Onam 2025 celebrations!' : 'Building community through heritage!'}
+              🌺 Celebrating Malayalam culture and traditions at Ajmera Infinity. 
+              {isOnamPage ? 'Join us for Onam 2025 celebrations! 🎉' : 'Building community through heritage! 🤝'}
             </p>
             <div className="flex items-center space-x-2">
               <Heart size={18} className={`transition-all duration-300 ${
                 isOnamPage ? 'text-terracotta-400 dark:text-terracotta-300' : 'text-gold-accent-400 dark:text-gold-accent-300'
               }`} />
-              <span className="text-sm font-medium">Made with love for our community</span>
+              <span className="text-sm font-medium">Made with love for our community ❤️</span>
             </div>
           </div>
 
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                 ? 'bg-gradient-to-r from-terracotta-300 to-terracotta-400 dark:from-terracotta-300 dark:to-terracotta-400' 
                 : 'bg-gradient-to-r from-emerald-300 to-sapphire-400 dark:from-emerald-300 dark:to-sapphire-400'
             }`}>
-              Contact Information
+              📞 Contact Information
             </h3>
             <div className="space-y-4">
               <div className={`flex items-center space-x-3 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                 ? 'bg-gradient-to-r from-terracotta-300 to-terracotta-400 dark:from-terracotta-300 dark:to-terracotta-400' 
                 : 'bg-gradient-to-r from-emerald-300 to-sapphire-400 dark:from-emerald-300 dark:to-sapphire-400'
             }`}>
-              {isOnamPage ? 'Onam 2025' : 'Community Info'}
+              {isOnamPage ? '🎉 Onam 2025' : '🌟 Community Info'}
             </h3>
             <div className="space-y-3">
               {isOnamPage ? (
@@ -117,28 +117,28 @@ const Footer: React.FC = () => {
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-terracotta-300 dark:text-terracotta-300'
-                    }`}>Dates:</span> September 13-14, 2025</p>
+                    }`}>📅 Dates:</span> September 13-14, 2025</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-charcoal-700/50'
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-terracotta-300 dark:text-terracotta-300'
-                    }`}>Venue:</span> Ajmera Infinity Community Hall</p>
+                    }`}>🏛️ Venue:</span> Ajmera Infinity Community Hall</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-charcoal-700/50'
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-terracotta-300 dark:text-terracotta-300'
-                    }`}>Sadya:</span> ₹400 per person</p>
+                    }`}>🍛 Sadya:</span> ₹400 per person</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-charcoal-700/50'
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-terracotta-300 dark:text-terracotta-300'
-                    }`}>Registration:</span> Open now!</p>
+                    }`}>📝 Registration:</span> Open now!</p>
                   </div>
                 </>
               ) : (
@@ -148,28 +148,28 @@ const Footer: React.FC = () => {
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-emerald-300 dark:text-emerald-300'
-                    }`}>Location:</span> Ajmera Infinity</p>
+                    }`}>🏠 Location:</span> Ajmera Infinity</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-charcoal-700/50'
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-emerald-300 dark:text-emerald-300'
-                    }`}>Members:</span> 200+ Families</p>
+                    }`}>👥 Members:</span> 200+ Families</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-charcoal-700/50'
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-emerald-300 dark:text-emerald-300'
-                    }`}>Events:</span> Year-round celebrations</p>
+                    }`}>🎭 Events:</span> Year-round celebrations</p>
                   </div>
                   <div className={`p-3 rounded-lg backdrop-blur-sm transition-all duration-300 ${
                     'bg-white/10 dark:bg-charcoal-700/50'
                   }`}>
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-emerald-300 dark:text-emerald-300'
-                    }`}>Culture:</span> Malayalam heritage</p>
+                    }`}>🌺 Culture:</span> Malayalam heritage</p>
                   </div>
                 </>
               )}
@@ -199,7 +199,7 @@ const Footer: React.FC = () => {
                 ? 'bg-gradient-to-r from-terracotta-300 to-terracotta-400 dark:from-terracotta-300 dark:to-terracotta-400' 
                 : 'bg-gradient-to-r from-emerald-300 to-sapphire-400 dark:from-emerald-300 dark:to-sapphire-400'
             }`}>
-              {isOnamPage ? 'Onam Ashamsakal!' : 'Namaskaram!'}
+              {isOnamPage ? '🎉 Onam Ashamsakal! 🎉' : '🌺 Namaskaram! 🌺'}
             </p>
           </div>
         </div>

@@ -69,7 +69,7 @@ const SadyaInformation: React.FC = () => {
               </div>
               <div className="text-terracotta-700 dark:text-terracotta-300 font-medium space-y-2">
                 <p><strong>Coupon Sales:</strong> September 1-9, 2025</p>
-                <p><strong>Sadya Service:</strong> September 13-14, 2025</p>
+                <p><strong>Sadya Service:</strong> September 14, 2025 (Sunday)</p>
                 <p><strong>Service Time:</strong> 11:30 AM onwards</p>
                 <p><strong>Venue:</strong> Community Hall</p>
               </div>
@@ -110,7 +110,7 @@ const SadyaInformation: React.FC = () => {
               <li>Visit the clubhouse between September 1-9 to purchase Sadya coupons</li>
               <li>Coupons will be required for entry to the Sadya on event days</li>
               <li>Limited quantities available - first come, first served</li>
-              <li>Sadya will be served on September 13-14, 2025 from 11:30 AM onwards</li>
+              <li>Sadya will be served on September 14, 2025 (Sunday) from 11:30 AM onwards</li>
               <li>Venue: Ajmera Infinity Community Hall</li>
               <li>For queries, contact the clubhouse reception</li>
             </ul>

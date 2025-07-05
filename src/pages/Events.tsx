@@ -55,22 +55,22 @@ const Events: React.FC = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-plum-100 via-plum-200 to-plum-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
+      <section className="relative overflow-hidden bg-gradient-to-br from-orange-100 via-red-100 to-amber-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-plum-600 via-plum-700 to-plum-800 dark:from-plum-400 dark:via-plum-500 dark:to-plum-600">
-                Community Events
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-red-600 to-amber-700 dark:from-orange-400 dark:via-red-400 dark:to-amber-500">
+                🎭 Community Events 🎭
               </span>
             </h1>
             
             <p className="text-xl md:text-2xl text-stone-800 dark:text-stone-100 mb-8 max-w-4xl mx-auto font-medium">
               Celebrating Malayalam culture through vibrant festivals, authentic traditions, 
-              and memorable community gatherings at Ajmera Infinity.
+              and memorable community gatherings at Ajmera Infinity. 🌺
             </p>
             
             <div className="bg-stone-50/80 dark:bg-charcoal-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-plum-400 dark:border-plum-500 shadow-xl">
-              <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-2">Join Our Celebrations!</h3>
+              <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-2">🎉 Join Our Celebrations! 🎉</h3>
               <p className="text-stone-700 dark:text-stone-200 font-medium">
                 From grand Onam festivities to intimate cultural gatherings, 
                 experience the warmth of Kerala's traditions in Bangalore.
@@ -84,11 +84,11 @@ const Events: React.FC = () => {
       <section className="py-16 bg-gradient-to-br from-sand-50 via-sand-100 to-sand-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-terracotta-700 to-plum-700 dark:from-terracotta-400 dark:to-plum-400 bg-clip-text text-transparent mb-4">
-              Upcoming Events
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-700 to-red-700 dark:from-orange-400 dark:to-red-400 bg-clip-text text-transparent mb-4">
+              🎪 Upcoming Events 🎪
             </h2>
             <p className="text-lg text-stone-700 dark:text-stone-200 font-medium">
-              Don't miss these exciting celebrations coming up!
+              Don't miss these exciting celebrations coming up! 🎊
             </p>
           </div>
 
@@ -118,7 +118,7 @@ const Events: React.FC = () => {
                       to={event.link}
                       className={`inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r ${event.color} text-white font-bold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200`}
                     >
-                      Join Celebration
+                      🎉 Join Celebration
                       <ArrowRight className="ml-2" size={20} />
                     </Link>
                   </div>
@@ -134,7 +134,7 @@ const Events: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-sapphire-700 to-plum-700 dark:from-sapphire-400 dark:to-plum-400 bg-clip-text text-transparent mb-4">
-              Event Categories
+              📋 Event Categories 📋
             </h2>
             <p className="text-lg text-stone-700 dark:text-stone-200 font-medium">
               Explore different ways to participate in our community
@@ -167,7 +167,7 @@ const Events: React.FC = () => {
       <section className="py-16 bg-gradient-to-br from-stone-50 via-stone-100 to-stone-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-700 to-sapphire-700 dark:from-emerald-400 dark:to-sapphire-400 bg-clip-text text-transparent mb-6">
-            Our Vision
+            🌟 Our Vision 🌟
           </h2>
           <p className="text-xl text-stone-700 dark:text-stone-200 font-medium leading-relaxed mb-8">
             Infinity Malayalees is dedicated to preserving and celebrating our rich Malayalam heritage 
@@ -177,15 +177,15 @@ const Events: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-stone-50 dark:bg-charcoal-800 rounded-xl p-6 shadow-lg border border-emerald-200 dark:border-emerald-600">
-              <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-2">Cultural Preservation</h3>
+              <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-2">🎭 Cultural Preservation</h3>
               <p className="text-stone-600 dark:text-stone-300 text-sm">Keeping Malayalam traditions alive through authentic celebrations</p>
             </div>
             <div className="bg-stone-50 dark:bg-charcoal-800 rounded-xl p-6 shadow-lg border border-emerald-200 dark:border-emerald-600">
-              <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-2">Community Building</h3>
+              <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-2">🤝 Community Building</h3>
               <p className="text-stone-600 dark:text-stone-300 text-sm">Fostering connections among Malayalam families in Bangalore</p>
             </div>
             <div className="bg-stone-50 dark:bg-charcoal-800 rounded-xl p-6 shadow-lg border border-emerald-200 dark:border-emerald-600">
-              <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-2">Future Generations</h3>
+              <h3 className="font-bold text-stone-800 dark:text-stone-100 mb-2">🌱 Future Generations</h3>
               <p className="text-stone-600 dark:text-stone-300 text-sm">Teaching children about their Malayalam heritage and culture</p>
             </div>
           </div>
@@ -196,7 +196,7 @@ const Events: React.FC = () => {
       <section className="py-16 bg-gradient-to-r from-plum-600 via-plum-700 to-plum-800 dark:from-plum-700 dark:via-plum-800 dark:to-plum-900">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Join Our Next Event?
+            🎊 Ready to Join Our Next Event? 🎊
           </h2>
           <p className="text-xl text-plum-100 mb-8 font-medium">
             Be part of our vibrant Malayalam community and create lasting memories 
@@ -208,7 +208,7 @@ const Events: React.FC = () => {
               to="/onam-2025"
               className="inline-flex items-center px-8 py-4 rounded-full bg-stone-50 text-plum-600 font-bold text-lg hover:bg-stone-100 transform hover:scale-105 transition-all duration-200 shadow-xl"
             >
-              Join Onam 2025
+              🎉 Join Onam 2025
               <ArrowRight className="ml-2" size={20} />
             </Link>
           </div>

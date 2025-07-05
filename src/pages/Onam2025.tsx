@@ -241,7 +241,7 @@ const Onam2025: React.FC = () => {
                       <ul className="text-stone-700 dark:text-stone-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>11:30 AM onwards:</strong> Traditional Onam Sadya (Available at Clubhouse)</span>
+                          <span><strong>11:30 AM onwards:</strong> Traditional Onam Sadya</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
@@ -266,7 +266,7 @@ const Onam2025: React.FC = () => {
                 <div className="text-center text-stone-700 dark:text-stone-200 font-medium">
                   <p><strong>Location:</strong> Ajmera Infinity Community Hall</p>
                   <p><strong>Address:</strong> Neeladri Road, Karuna Nagar, Electronic City Phase 1, Bangalore - 560100</p>
-                  <p className="mt-2 text-terracotta-700 dark:text-terracotta-300"><strong>Sadya:</strong> Available at clubhouse from September 1-9</p>
+                  <p className="mt-2 text-terracotta-700 dark:text-terracotta-300"><strong>Sadya Coupons:</strong> Available at clubhouse from September 1-9</p>
                 </div>
               </div>
             </div>
