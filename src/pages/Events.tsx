@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, Heart, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -24,8 +24,8 @@ const Events: React.FC = () => {
   const eventCategories = [
     {
       icon: SadyaIcon,
-      title: 'Sadya Registration',
-      description: 'Book your authentic Kerala Sadya experience',
+      title: 'Sadya Information',
+      description: 'Learn about our traditional Kerala Sadya',
       link: '/sadya-registration',
       color: 'from-green-500 to-emerald-500',
       bgColor: 'from-green-100 to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30',
@@ -48,24 +48,6 @@ const Events: React.FC = () => {
       color: 'from-pink-500 to-rose-500',
       bgColor: 'from-pink-100 to-rose-200 dark:from-pink-900/30 dark:to-rose-900/30',
       borderColor: 'border-pink-400 dark:border-pink-500'
-    },
-    {
-      icon: Users,
-      title: 'Community Registration',
-      description: 'Join our Malayalam community at Ajmera Infinity',
-      link: '/malayalee-registration',
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: 'from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30',
-      borderColor: 'border-blue-400 dark:border-blue-500'
-    },
-    {
-      icon: Heart,
-      title: 'Support & Donations',
-      description: 'Help us organize spectacular celebrations',
-      link: '/donations',
-      color: 'from-red-500 to-pink-500',
-      bgColor: 'from-red-100 to-pink-200 dark:from-red-900/30 dark:to-pink-900/30',
-      borderColor: 'border-red-400 dark:border-red-500'
     }
   ];
 
@@ -170,7 +152,7 @@ const Events: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {eventCategories.map((category, index) => (
               <Link
                 key={index}
@@ -242,13 +224,6 @@ const Events: React.FC = () => {
             >
               🎉 Join Onam 2025
               <ArrowRight className="ml-2" size={20} />
-            </Link>
-            <Link
-              to="/malayalee-registration"
-              className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white/10 transition-all duration-200 shadow-lg"
-            >
-              👥 Register as Member
-              <Users className="ml-2" size={20} />
             </Link>
           </div>
         </div>

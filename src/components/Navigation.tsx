@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Calendar, Users, Heart, Settings, Info } from 'lucide-react';
+import { Home, Calendar, Settings, Info } from 'lucide-react';
 import { KeralaLogoIcon } from './KeralaSVGIcons';
 import ThemeToggle from './ThemeToggle';
 
@@ -17,7 +17,6 @@ const Navigation: React.FC = () => {
     { path: '/', label: 'Home', icon: Home },
     { path: '/about', label: 'About Us', icon: Info },
     { path: '/events', label: 'Events', icon: Calendar },
-    { path: '/donations', label: 'Donate', icon: Heart },
   ];
 
   return (
@@ -73,17 +72,6 @@ const Navigation: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link
-              to="/malayalee-registration"
-              className={`flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-bold text-white transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                isOnamPage
-                  ? 'bg-gradient-to-r from-bloom-500 to-coral-500 dark:from-bloom-400 dark:to-coral-400 hover:from-bloom-600 hover:to-coral-600 dark:hover:from-bloom-500 dark:hover:to-coral-500'
-                  : 'bg-gradient-to-r from-golden-500 to-amber-500 dark:from-golden-400 dark:to-amber-400 hover:from-golden-600 hover:to-amber-600 dark:hover:from-golden-500 dark:hover:to-amber-500'
-              }`}
-            >
-              <Users size={18} />
-              <span className="hidden sm:block">Register</span>
-            </Link>
             <ThemeToggle />
             <Link
               to="/admin"
@@ -128,17 +116,6 @@ const Navigation: React.FC = () => {
               <span>{label}</span>
             </Link>
           ))}
-          <Link
-            to="/malayalee-registration"
-            className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-bold text-white shadow-lg transition-all duration-300 ${
-              isOnamPage
-                ? 'bg-gradient-to-r from-bloom-500 to-coral-500 dark:from-bloom-400 dark:to-coral-400'
-                : 'bg-gradient-to-r from-golden-500 to-amber-500 dark:from-golden-400 dark:to-amber-400'
-            }`}
-          >
-            <Users size={20} />
-            <span>Register</span>
-          </Link>
         </div>
       </div>
     </nav>

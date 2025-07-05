@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, Gift, Sparkles, ArrowRight } from 'lucide-react';
+import { Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, PookkalamIcon, LampIcon, CoconutPalmIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -216,7 +216,7 @@ const Homepage: React.FC = () => {
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
                   <SadyaIcon size={32} className="text-tropical-600 dark:text-tropical-400 mb-2" />
                   <h3 className="font-bold text-gray-800 dark:text-gray-100">Traditional Sadya</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">₹350 per person</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Available at Clubhouse</p>
                 </div>
                 <div className="bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-tropical-300 dark:border-tropical-500 flex flex-col items-center">
                   <CulturalIcon size={32} className="text-bloom-600 dark:text-bloom-400 mb-2" />
@@ -251,14 +251,6 @@ const Homepage: React.FC = () => {
               >
                 📅 Explore All Events
                 <Calendar className="ml-2" size={20} />
-              </Link>
-              
-              <Link
-                to="/malayalee-registration"
-                className="inline-flex items-center px-8 py-4 rounded-full border-3 border-golden-500 dark:border-golden-400 bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-300 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transition-all duration-200 shadow-lg"
-              >
-                Register as Malayalee
-                <Users className="ml-2" size={20} />
               </Link>
             </div>
           </div>
@@ -317,42 +309,6 @@ const Homepage: React.FC = () => {
                 we organize events throughout the year that bring our community together.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action with Golden Harvest Theme */}
-      <section className="py-16 bg-gradient-to-r from-golden-600 via-harvest-600 to-amber-600 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden">
-        {/* Golden harvest background elements */}
-        <div className="absolute inset-0 opacity-10 dark:opacity-5">
-          <div className="absolute top-1/4 right-1/4 w-32 h-32 rounded-full bg-gradient-to-br from-harvest-400 to-amber-400"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-24 h-24 rounded-full bg-golden-400"></div>
-          <div className="absolute top-1/2 right-1/6 w-16 h-16 rounded-full bg-amber-400"></div>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white dark:text-gray-100 mb-6 font-malayalam">
-            🎊 Ready to Join Our Community? 🎊
-          </h2>
-          <p className="text-xl text-golden-100 dark:text-gray-200 mb-8 font-medium">
-            Become part of our vibrant Malayalee family at Ajmera Infinity and experience 
-            the joy of celebrating our rich cultural heritage together!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/onam-2025"
-              className="inline-flex items-center px-8 py-4 rounded-full bg-white dark:bg-gray-800 text-golden-700 dark:text-golden-300 font-bold text-lg hover:bg-golden-50 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-harvest-300 dark:border-harvest-400"
-            >
-              🎉 Join Onam 2025
-              <ArrowRight className="ml-2" size={20} />
-            </Link>
-            <Link
-              to="/donations"
-              className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white dark:border-gray-300 text-white dark:text-gray-200 font-bold text-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-200 shadow-lg"
-            >
-              💝 Support with Donations
-              <Gift className="ml-2" size={20} />
-            </Link>
           </div>
         </div>
       </section>

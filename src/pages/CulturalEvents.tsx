@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Users, Star, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home } from 'lucide-react';
 import { CulturalIcon } from '../components/KeralaSVGIcons';
 import { culturalRegistrations } from '../lib/database';
 
@@ -9,10 +9,9 @@ const CulturalEvents: React.FC = () => {
     email: '',
     phone: '',
     flatNumber: '',
-    eventCategory: '',
-    eventTitle: '',
-    participantCount: 1,
-    description: '',
+    age: '',
+    gender: '',
+    interestedEvents: '',
     specialRequirements: ''
   });
 
@@ -98,10 +97,10 @@ const CulturalEvents: React.FC = () => {
         email: formData.email,
         phone: formData.phone,
         flat_number: formData.flatNumber,
-        event_category: formData.eventCategory,
-        event_title: formData.eventTitle,
-        participant_count: formData.participantCount,
-        description: formData.description,
+        event_category: 'General Interest',
+        event_title: formData.interestedEvents,
+        participant_count: 1,
+        description: `Age: ${formData.age}, Gender: ${formData.gender}, Interested Events: ${formData.interestedEvents}`,
         special_requirements: formData.specialRequirements || null
       });
 
@@ -126,7 +125,6 @@ const CulturalEvents: React.FC = () => {
     if (error) setError(null);
   };
 
-  const selectedEvent = eventCategories.find(event => event.id === formData.eventCategory);
 
   if (isSubmitted) {
     return (
@@ -140,8 +138,8 @@ const CulturalEvents: React.FC = () => {
           </p>
           <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-green-200 dark:border-green-600 mb-6">
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              <strong>Event:</strong> {selectedEvent?.name}<br />
-              <strong>Participants:</strong> {formData.participantCount}<br />
+              <strong>Participant:</strong> {formData.participantName}<br />
+              <strong>Interested Events:</strong> {formData.interestedEvents}<br />
               <strong>Contact:</strong> {formData.email}
             </p>
           </div>
@@ -153,10 +151,9 @@ const CulturalEvents: React.FC = () => {
                 email: '',
                 phone: '',
                 flatNumber: '',
-                eventCategory: '',
-                eventTitle: '',
-                participantCount: 1,
-                description: '',
+                age: '',
+                gender: '',
+                interestedEvents: '',
                 specialRequirements: ''
               });
             }}
@@ -176,8 +173,8 @@ const CulturalEvents: React.FC = () => {
           Cultural Events Registration
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Showcase your talent at Onam 2025! Register for cultural events and be part of 
-          our spectacular celebration. Open for all residents of Ajmera Infinity.
+          Express your interest in cultural events for Onam 2025! Let us know what events 
+          you'd like to participate in and we'll contact you with more details.
         </p>
       </div>
 
@@ -223,7 +220,8 @@ const CulturalEvents: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Participant Name (Main Contact) *
+                <User size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
+                👤 Full Name *
               </label>
               <input
                 type="text"
@@ -239,6 +237,8 @@ const CulturalEvents: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <Mail size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
+                📧 Email Address *
                 Email Address *
               </label>
               <input
@@ -255,6 +255,8 @@ const CulturalEvents: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <Phone size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
+                📱 Phone Number *
                 Phone Number *
               </label>
               <input
@@ -271,11 +273,13 @@ const CulturalEvents: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Flat Number
+                <Home size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
+                🏠 Flat Number *
               </label>
               <input
                 type="text"
                 name="flatNumber"
+                required
                 value={formData.flatNumber}
                 onChange={handleChange}
                 disabled={isSubmitting}
@@ -286,80 +290,57 @@ const CulturalEvents: React.FC = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Event Category *
+                🎂 Age *
               </label>
-              <select
-                name="eventCategory"
+              <input
+                type="text"
+                name="age"
                 required
-                value={formData.eventCategory}
+                value={formData.age}
                 onChange={handleChange}
                 disabled={isSubmitting}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <option value="">Select an event category</option>
-                {eventCategories.map((event) => (
-                  <option key={event.id} value={event.id}>
-                    {event.name}
-                  </option>
-                ))}
-              </select>
+                placeholder="Enter your age"
+              />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Number of Participants *
+                👤 Gender *
               </label>
-              <input
-                type="number"
-                name="participantCount"
+              <select
+                name="gender"
                 required
-                min="1"
-                max={selectedEvent?.maxParticipants || 20}
-                value={formData.participantCount}
+                value={formData.gender}
                 onChange={handleChange}
                 disabled={isSubmitting}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                placeholder="Number of participants"
-              />
-              {selectedEvent && (
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Maximum {selectedEvent.maxParticipants} participants allowed
-                </p>
-              )}
+              >
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Performance Title *
-            </label>
-            <input
-              type="text"
-              name="eventTitle"
-              required
-              value={formData.eventTitle}
-              onChange={handleChange}
-              disabled={isSubmitting}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Give a title to your performance"
-            />
-          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Performance Description *
+              🎭 Interested Events *
             </label>
             <textarea
-              name="description"
+              name="interestedEvents"
               required
-              value={formData.description}
+              value={formData.interestedEvents}
               onChange={handleChange}
               disabled={isSubmitting}
-              rows={4}
+              rows={3}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Describe your performance, theme, duration, etc."
+              placeholder="List the cultural events you're interested in (e.g., Dance, Singing, Drama, Fashion Show, etc.)"
             />
           </div>
+
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -372,19 +353,19 @@ const CulturalEvents: React.FC = () => {
               disabled={isSubmitting}
               rows={3}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Any special requirements for props, music, lighting, etc."
+              placeholder="Any special requirements or additional information..."
             />
           </div>
 
           <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
             <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
             <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
-              <li>• All performances should be family-friendly and appropriate for all ages</li>
-              <li>• Maximum performance time: 6-8 minutes per act</li>
-              <li>• Participants are responsible for their own costumes and basic props</li>
-              <li>• Background music should be provided in advance (WhatsApp or email)</li>
-              <li>• Rehearsal slots will be arranged closer to the event date</li>
-              <li>• Registration closes on September 5, 2025</li>
+              <li>• This is an interest registration - we'll contact you with specific event details</li>
+              <li>• All events should be family-friendly and appropriate for all ages</li>
+              <li>• Our cultural team will organize participants into groups based on interests</li>
+              <li>• Rehearsal schedules will be shared after team formation</li>
+              <li>• Events include: Dance, Singing, Drama, Fashion Show, Instrumental, etc.</li>
+              <li>• Interest registration closes on September 5, 2025</li>
             </ul>
           </div>
 
@@ -399,7 +380,7 @@ const CulturalEvents: React.FC = () => {
                 <span>Registering...</span>
               </div>
             ) : (
-              'Register for Cultural Event'
+              'Submit Interest Registration'
             )}
           </button>
         </form>

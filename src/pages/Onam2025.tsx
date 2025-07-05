@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Users, Heart, Award, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import SadyaRegistration from './SadyaRegistration';
+import SadyaInformation from './SadyaInformation';
 import CulturalEvents from './CulturalEvents';
 import ThiruvathiraRegistration from './ThiruvathiraRegistration';
 
@@ -18,24 +18,6 @@ const Onam2025: React.FC = () => {
   });
 
   const features = [
-    {
-      icon: Users,
-      title: 'Malayalee Registration',
-      description: 'Register as a Malayalee member of Ajmera Infinity community',
-      link: '/malayalee-registration',
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: 'from-blue-100 to-cyan-200 dark:from-blue-900/30 dark:to-cyan-900/30',
-      borderColor: 'border-blue-400 dark:border-blue-500'
-    },
-    {
-      icon: Heart,
-      title: 'Community Donations',
-      description: 'Support Onam celebrations with your generous contributions (Min: ₹2000)',
-      link: '/donations',
-      color: 'from-red-500 to-pink-500',
-      bgColor: 'from-red-100 to-pink-200 dark:from-red-900/30 dark:to-pink-900/30',
-      borderColor: 'border-red-400 dark:border-red-500'
-    }
   ];
 
   const TabButton = ({ tabId, label, icon: Icon }: { tabId: string, label: string, icon: any }) => (
@@ -116,7 +98,7 @@ const Onam2025: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <TabButton tabId="overview" label="Overview" icon={Calendar} />
-            <TabButton tabId="sadya" label="Sadya Registration" icon={() => <SadyaIcon size={18} />} />
+            <TabButton tabId="sadya" label="Sadya Information" icon={() => <SadyaIcon size={18} />} />
             <TabButton tabId="events" label="Cultural Events" icon={() => <CulturalIcon size={18} />} />
             <TabButton tabId="thiruvathira" label="Mega Thiruvathira" icon={() => <ThiruvathiraIcon size={18} />} />
           </div>
@@ -147,10 +129,10 @@ const Onam2025: React.FC = () => {
                     <SadyaIcon size={32} className="text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                    Sadya Registration
+                    Sadya Information
                   </h3>
                   <p className="text-gray-700 dark:text-gray-200 font-medium">
-                    Book your traditional Onam Sadya for ₹350 per person
+                    Learn about our traditional Onam Sadya availability
                   </p>
                 </div>
 
@@ -184,88 +166,10 @@ const Onam2025: React.FC = () => {
                   </p>
                 </div>
 
-                {features.map((feature, index) => (
-                  <Link
-                    key={index}
-                    to={feature.link}
-                    className={`group bg-gradient-to-br ${feature.bgColor} rounded-2xl p-8 border-2 ${feature.borderColor} hover:shadow-2xl transform hover:scale-105 transition-all duration-300`}
-                  >
-                    <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg`}>
-                      <feature.icon className="text-white" size={32} />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-200 font-medium">
-                      {feature.description}
-                    </p>
-                  </Link>
-                ))}
               </div>
             </div>
           </section>
 
-          {/* Donation CTA Section */}
-          <section className="py-16 bg-gradient-to-r from-tropical-600 via-bloom-600 to-coral-600 dark:from-tropical-700 dark:via-bloom-700 dark:to-coral-700 relative overflow-hidden">
-            <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-              <div className="mb-8">
-                <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-bold mb-6 shadow-lg border-2 border-white/30">
-                  <Heart size={18} className="mr-2 text-bloom-200" />
-                  💝 Support Our Community 💝
-                </div>
-              </div>
-              
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-malayalam">
-                🙏 Help Make Onam 2025 Unforgettable! 🙏
-              </h2>
-              <p className="text-xl text-bloom-100 dark:text-gray-200 mb-8 font-medium max-w-2xl mx-auto">
-                Your generous donations help us organize spectacular cultural programs, provide authentic Sadya experiences, 
-                and create lasting memories for our entire Malayalam community at Ajmera Infinity.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="text-3xl font-bold text-tropical-300 mb-2">₹50,000+</div>
-                  <div className="text-white font-semibold">🥇 Platinum Sponsor</div>
-                  <div className="text-bloom-100 text-sm mt-2">Logo on all materials</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="text-3xl font-bold text-tropical-300 mb-2">₹25,000+</div>
-                  <div className="text-white font-semibold">🥈 Gold Sponsor</div>
-                  <div className="text-bloom-100 text-sm mt-2">Event banners & announcements</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="text-3xl font-bold text-tropical-300 mb-2">₹2,000+</div>
-                  <div className="text-white font-semibold">🤝 Community Support</div>
-                  <div className="text-bloom-100 text-sm mt-2">Help organize celebrations</div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/donations"
-                  className="inline-flex items-center px-8 py-4 rounded-full bg-white text-tropical-600 font-bold text-lg hover:bg-bloom-50 transform hover:scale-105 transition-all duration-200 shadow-xl border-2 border-bloom-200"
-                >
-                  💝 Donate Now
-                  <Heart className="ml-2" size={20} />
-                </Link>
-                <Link
-                  to="/malayalee-registration"
-                  className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white/10 transition-all duration-200 shadow-lg"
-                >
-                  👥 Join Community
-                  <Users className="ml-2" size={20} />
-                </Link>
-              </div>
-              
-              <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <p className="text-bloom-100 dark:text-gray-200 font-medium">
-                  🌟 Every contribution, big or small, helps preserve and celebrate our rich Malayalam heritage. 
-                  Together, we create magic! 🌟
-                </p>
-              </div>
-            </div>
-          </section>
 
           {/* Event Schedule */}
           <section className="py-16 bg-white dark:bg-gray-900">
@@ -348,7 +252,7 @@ const Onam2025: React.FC = () => {
                       <ul className="text-gray-700 dark:text-gray-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-tropical-500 rounded-full"></span>
-                          <span><strong>11:30 AM onwards:</strong> 🍛 Traditional Onam Sadya</span>
+                          <span><strong>11:30 AM onwards:</strong> 🍛 Traditional Onam Sadya (Available at Clubhouse)</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-tropical-500 rounded-full"></span>
@@ -373,7 +277,7 @@ const Onam2025: React.FC = () => {
                 <div className="text-center text-gray-700 dark:text-gray-200 font-medium">
                   <p><strong>🏛️ Location:</strong> Ajmera Infinity Community Hall</p>
                   <p><strong>📍 Address:</strong> Neeladri Road, Karuna Nagar, Electronic City Phase 1, Bangalore - 560100</p>
-                  <p className="mt-2 text-coral-700 dark:text-coral-300"><strong>🎫 Entry:</strong> Valid Sadya coupon or event registration required</p>
+                  <p className="mt-2 text-coral-700 dark:text-coral-300"><strong>🍛 Sadya:</strong> Available at clubhouse from September 1-9</p>
                 </div>
               </div>
             </div>
@@ -383,7 +287,7 @@ const Onam2025: React.FC = () => {
 
       {activeTab === 'sadya' && (
         <div className="bg-tropical-gradient dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
-          <SadyaRegistration />
+          <SadyaInformation />
         </div>
       )}
 
