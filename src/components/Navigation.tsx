@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Calendar, Settings, Info } from 'lucide-react';
 import { KeralaLogoIcon } from './KeralaSVGIcons';
-import ThemeToggle from './ThemeToggle';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -20,9 +19,9 @@ const Navigation: React.FC = () => {
   ];
 
   return (
-    <nav className={`backdrop-blur-md shadow-2xl border-b-4 transition-all duration-300 bg-stone-100/95 dark:bg-charcoal-900/95 border-stone-300 dark:border-charcoal-700 ${
+    <nav className={`backdrop-blur-md shadow-2xl border-b-4 transition-all duration-300 bg-stone-100/95 border-stone-300 ${
       isOnamPage 
-        ? 'bg-sand-100/95 dark:bg-charcoal-900/95 border-terracotta-400 dark:border-terracotta-500' 
+        ? 'bg-sand-100/95 border-terracotta-400' 
         : ''
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,20 +29,20 @@ const Navigation: React.FC = () => {
           <Link to="/" className="flex items-center space-x-3">
             <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-xl border-2 border-white dark:border-charcoal-700 transition-all duration-300 ${
               isOnamPage 
-                ? 'bg-gradient-to-br from-terracotta-500 via-terracotta-600 to-terracotta-700 dark:from-terracotta-400 dark:via-terracotta-500 dark:to-terracotta-600' 
-                : 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-sapphire-700 dark:from-emerald-400 dark:via-emerald-500 dark:to-sapphire-600'
+                ? 'bg-gradient-to-br from-terracotta-500 via-terracotta-600 to-terracotta-700' 
+                : 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-sapphire-700'
             }`}>
               <KeralaLogoIcon className="text-white" size={28} />
             </div>
             <div className="flex flex-col">
               <span className={`font-bold text-xl bg-clip-text text-transparent transition-all duration-300 ${
                 isOnamPage 
-                  ? 'bg-gradient-to-r from-terracotta-600 to-terracotta-700 dark:from-terracotta-400 dark:to-terracotta-500' 
-                  : 'bg-gradient-to-r from-sapphire-700 to-emerald-800 dark:from-emerald-400 dark:to-sapphire-400'
+                  ? 'bg-gradient-to-r from-terracotta-600 to-terracotta-700' 
+                  : 'bg-gradient-to-r from-sapphire-700 to-emerald-800'
               }`}>
                 Infinity Malayalees
               </span>
-              <span className="text-xs text-stone-600 dark:text-stone-400 font-medium">Ajmera Infinity, Bangalore</span>
+              <span className="text-xs text-stone-600 font-medium">Ajmera Infinity, Bangalore</span>
             </div>
           </Link>
 
@@ -56,12 +55,12 @@ const Navigation: React.FC = () => {
                   location.pathname === path || 
                   (path === '/events' && (location.pathname === '/onam-2025' || location.pathname === '/sadya-registration' || location.pathname === '/cultural-events'))
                     ? isOnamPage
-                      ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 dark:from-terracotta-400 dark:to-terracotta-500 text-white shadow-lg border-2 border-terracotta-300 dark:border-terracotta-400'
-                      : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 dark:from-emerald-400 dark:to-sapphire-400 text-white shadow-lg border-2 border-gold-accent-300 dark:border-gold-accent-400'
-                    : `text-stone-700 dark:text-stone-300 hover:shadow-md transition-all duration-300 ${
+                      ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white shadow-lg border-2 border-terracotta-300'
+                      : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 text-white shadow-lg border-2 border-gold-accent-300'
+                    : `text-stone-700 hover:shadow-md transition-all duration-300 ${
                         isOnamPage
-                          ? 'hover:text-terracotta-700 dark:hover:text-terracotta-400 hover:bg-sand-100 dark:hover:bg-charcoal-800'
-                          : 'hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-stone-100 dark:hover:bg-charcoal-800'
+                          ? 'hover:text-terracotta-700 hover:bg-sand-100'
+                          : 'hover:text-emerald-700 hover:bg-stone-100'
                       }`
                 }`}
               >
@@ -72,13 +71,12 @@ const Navigation: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <ThemeToggle />
             <Link
               to="/admin"
               className={`flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-md ${
                 isOnamPage
-                  ? 'text-stone-700 dark:text-stone-300 hover:text-terracotta-700 dark:hover:text-terracotta-400 hover:bg-sand-100 dark:hover:bg-charcoal-800'
-                  : 'text-stone-700 dark:text-stone-300 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-stone-100 dark:hover:bg-charcoal-800'
+                  ? 'text-stone-700 hover:text-terracotta-700 hover:bg-sand-100'
+                  : 'text-stone-700 hover:text-emerald-700 hover:bg-stone-100'
               }`}
             >
               <Settings size={18} />
@@ -91,8 +89,8 @@ const Navigation: React.FC = () => {
       {/* Mobile Navigation */}
       <div className={`md:hidden border-t-2 transition-all duration-300 ${
         isOnamPage 
-          ? 'border-terracotta-200 dark:border-charcoal-700 bg-sand-50 dark:from-charcoal-800 dark:to-charcoal-900' 
-          : 'border-emerald-200 dark:border-charcoal-700 bg-stone-50 dark:from-charcoal-800 dark:to-charcoal-900'
+          ? 'border-terracotta-200 bg-sand-50' 
+          : 'border-emerald-200 bg-stone-50'
       }`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map(({ path, label, icon: Icon }) => (
@@ -103,12 +101,12 @@ const Navigation: React.FC = () => {
                 location.pathname === path || 
                 (path === '/events' && (location.pathname === '/onam-2025' || location.pathname === '/sadya-registration' || location.pathname === '/cultural-events'))
                   ? isOnamPage
-                    ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 dark:from-terracotta-400 dark:to-terracotta-500 text-white shadow-lg'
-                    : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 dark:from-emerald-400 dark:to-sapphire-400 text-white shadow-lg'
-                  : `text-stone-700 dark:text-stone-300 transition-all duration-300 ${
+                    ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white shadow-lg'
+                    : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 text-white shadow-lg'
+                  : `text-stone-700 transition-all duration-300 ${
                       isOnamPage
-                        ? 'hover:text-terracotta-700 dark:hover:text-terracotta-400 hover:bg-sand-100 dark:hover:bg-charcoal-700'
-                        : 'hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-stone-100 dark:hover:bg-charcoal-700'
+                        ? 'hover:text-terracotta-700 hover:bg-sand-100'
+                        : 'hover:text-emerald-700 hover:bg-stone-100'
                     }`
               }`}
             >
