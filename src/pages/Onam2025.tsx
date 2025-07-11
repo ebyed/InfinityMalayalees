@@ -33,12 +33,12 @@ const Onam2025: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-100 via-terracotta-200 to-terracotta-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
-        {/* WhatsApp Image */}
-        <div className="absolute top-8 right-8 w-48 h-64 opacity-20 dark:opacity-15 pointer-events-none hidden lg:block">
+        {/* Full-width Hero Image */}
+        <div className="w-full h-64 md:h-80 lg:h-96 mb-8">
           <img 
             src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg" 
             alt="Aarppo - Onam 2025 Celebration" 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover rounded-b-3xl shadow-2xl"
           />
         </div>
         
@@ -193,15 +193,6 @@ const Onam2025: React.FC = () => {
 
                 <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-plum-300 dark:border-plum-500 shadow-lg">
                   <h3 className="text-2xl font-bold text-plum-800 dark:text-plum-200 mb-4">Day 2 - September 14, 2025</h3>
-                  <div className="flex justify-center mb-6 lg:hidden">
-                    <div className="w-32 h-40 opacity-60 dark:opacity-40">
-                      <img 
-                        src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg" 
-                        alt="Aarppo - Onam 2025 Celebration" 
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-bold text-stone-800 dark:text-stone-100 mb-3 text-lg">Morning Program</h4>
