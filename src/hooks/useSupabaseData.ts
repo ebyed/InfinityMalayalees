@@ -38,6 +38,7 @@ export const useSupabaseData = () => {
 
   const fetchAllData = async () => {
     try {
+      console.log('Fetching all data...');
       setLoading(true);
       setError(null);
 
@@ -57,6 +58,13 @@ export const useSupabaseData = () => {
         getStatistics()
       ]);
 
+      console.log('Fetched data:', {
+        malayalee: malayaleeData.length,
+        sadya: sadyaData.length,
+        thiruvathira: thiruvathiraData.length,
+        cultural: culturalData.length,
+        donations: donationData.length
+      });
       setData({
         malayaleeRegistrations: malayaleeData,
         sadyaRegistrations: sadyaData,
@@ -78,10 +86,11 @@ export const useSupabaseData = () => {
   }, []);
 
   const refetch = () => {
+    console.log('Refetching data...');
     fetchAllData();
   };
 
-  return { data, loading, error, refetch };
+  return { data, setData, loading, error, refetch };
 };
 
 // Individual hooks for specific data types

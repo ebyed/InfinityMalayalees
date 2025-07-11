@@ -39,6 +39,21 @@ export const malayaleeRegistrations = {
     
     if (error && error.code !== 'PGRST116') throw error;
     return data;
+  },
+
+  async delete(id: number) {
+    console.log('Deleting malayalee registration with ID:', id);
+    const { error } = await supabase
+      .from('malayalee_registrations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('Database delete error:', error);
+      throw error;
+    }
+    console.log('Malayalee registration deleted successfully');
+    return true;
   }
 };
 
@@ -74,6 +89,21 @@ export const sadyaRegistrations = {
     
     if (error && error.code !== 'PGRST116') throw error;
     return data;
+  },
+
+  async delete(id: number) {
+    console.log('Deleting sadya registration with ID:', id);
+    const { error } = await supabase
+      .from('sadya_registrations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('Database delete error:', error);
+      throw error;
+    }
+    console.log('Sadya registration deleted successfully');
+    return true;
   }
 };
 
@@ -109,6 +139,21 @@ export const thiruvathiraRegistrations = {
     
     if (error) throw error;
     return data;
+  },
+
+  async delete(id: number) {
+    console.log('Deleting thiruvathira registration with ID:', id);
+    const { error } = await supabase
+      .from('thiruvathira_registrations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('Database delete error:', error);
+      throw error;
+    }
+    console.log('Thiruvathira registration deleted successfully');
+    return true;
   }
 };
 
@@ -144,6 +189,21 @@ export const culturalRegistrations = {
     
     if (error) throw error;
     return data || [];
+  },
+
+  async delete(id: number) {
+    console.log('Deleting cultural registration with ID:', id);
+    const { error } = await supabase
+      .from('cultural_registrations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('Database delete error:', error);
+      throw error;
+    }
+    console.log('Cultural registration deleted successfully');
+    return true;
   }
 };
 
@@ -177,6 +237,21 @@ export const donations = {
     
     if (error) throw error;
     return (data || []).reduce((sum, donation) => sum + donation.donation_amount, 0);
+  },
+
+  async delete(id: number) {
+    console.log('Deleting donation with ID:', id);
+    const { error } = await supabase
+      .from('donations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('Database delete error:', error);
+      throw error;
+    }
+    console.log('Donation deleted successfully');
+    return true;
   }
 };
 

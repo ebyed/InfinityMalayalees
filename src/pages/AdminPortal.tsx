@@ -232,49 +232,101 @@ const AdminPortal: React.FC = () => {
   };
 
   const handleDeleteRegistration = async (id: number, type: string) => {
+    console.log('=== DELETE OPERATION START ===');
+    console.log('Attempting to delete:', { id, type });
+    console.log('Current data state:', data);
+    
     if (!confirm('Are you sure you want to delete this registration? This action cannot be undone.')) {
+      console.log('Delete cancelled by user');
       return;
     }
 
     setDeletingId(id);
     try {
-      let tableName = '';
+      console.log('Setting deleting state for ID:', id);
+      
+      // First, optimistically remove from UI
+      const originalData = { ...data };
+      console.log('Original data before optimistic update:', originalData);
+      
       switch (type) {
         case 'sadya':
-          tableName = 'sadya_registrations';
+          console.log('Deleting sadya registration, current count:', data.sadyaRegistrations.length);
+          setData(prev => ({
+            ...prev,
+            sadyaRegistrations: prev.sadyaRegistrations.filter(item => item.id !== id)
+          }));
           break;
         case 'cultural':
-          tableName = 'cultural_registrations';
+          console.log('Deleting cultural registration, current count:', data.culturalRegistrations.length);
+          setData(prev => ({
+            ...prev,
+            culturalRegistrations: prev.culturalRegistrations.filter(item => item.id !== id)
+          }));
           break;
         case 'thiruvathira':
-          tableName = 'thiruvathira_registrations';
+          console.log('Deleting thiruvathira registration, current count:', data.thiruvathiraRegistrations.length);
+          setData(prev => ({
+            ...prev,
+            thiruvathiraRegistrations: prev.thiruvathiraRegistrations.filter(item => item.id !== id)
+          }));
           break;
         case 'malayalee':
-          tableName = 'malayalee_registrations';
+          console.log('Deleting malayalee registration, current count:', data.malayaleeRegistrations.length);
+          setData(prev => ({
+            ...prev,
+            malayaleeRegistrations: prev.malayaleeRegistrations.filter(item => item.id !== id)
+          }));
           break;
         case 'donation':
-          tableName = 'donations';
+          console.log('Deleting donation, current count:', data.donations.length);
+          setData(prev => ({
+            ...prev,
+            donations: prev.donations.filter(item => item.id !== id)
+          }));
           break;
         default:
+          console.error('Invalid registration type:', type);
           throw new Error('Invalid registration type');
       }
 
-      const { error } = await supabase
-        .from(tableName)
-        .delete()
-        .eq('id', id);
-
-      if (error) {
-        throw error;
+      console.log('UI updated optimistically, now calling database delete...');
+      
+      // Now delete from database
+      let deleteResult;
+      switch (type) {
+        case 'sadya':
+          deleteResult = await sadyaRegistrations.delete(id);
+          break;
+        case 'cultural':
+          deleteResult = await culturalRegistrations.delete(id);
+          break;
+        case 'thiruvathira':
+          deleteResult = await thiruvathiraRegistrations.delete(id);
+          break;
+        case 'malayalee':
+          deleteResult = await malayaleeRegistrations.delete(id);
+          break;
+        case 'donation':
+          deleteResult = await donations.delete(id);
+          break;
       }
 
+      console.log('Database delete result:', deleteResult);
+      console.log('Delete successful!');
       alert('Registration deleted successfully!');
-      refetch(); // Refresh data
+
     } catch (err) {
       console.error('Error deleting registration:', err);
-      alert('Failed to delete registration. Please try again.');
+      console.log('Delete failed, rolling back UI changes...');
+      
+      // Rollback the optimistic update
+      refetch();
+      alert(`Failed to delete registration: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
+      console.log('Clearing deleting state');
       setDeletingId(null);
+      console.log('=== DELETE OPERATION END ===');
     }
   };
 
