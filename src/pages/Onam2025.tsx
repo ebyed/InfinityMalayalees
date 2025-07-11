@@ -193,64 +193,74 @@ const Onam2025: React.FC = () => {
 
                 <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-plum-300 dark:border-plum-500 shadow-lg">
                   <h3 className="text-2xl font-bold text-plum-800 dark:text-plum-200 mb-4">Day 2 - September 14, 2025</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                       <h4 className="font-bold text-stone-800 dark:text-stone-100 mb-3 text-lg">Morning Program</h4>
-                      <ul className="text-stone-700 dark:text-stone-200 space-y-3 font-medium">
-                        <li className="flex items-start space-x-3">
+                      <div className="text-stone-700 dark:text-stone-200 space-y-3 font-medium">
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>5:00 AM:</strong> Community Pookalam Event - Everyone participates in creating beautiful flower arrangements</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
+                          <div className="flex-1">
+                            <strong>5:00 AM:</strong> Community Pookalam Event - Everyone participates in creating beautiful flower arrangements
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>9:00 AM: Onam procession, welcoming King Mahabali with Chenda Melam</strong> </span>
-                        </li>
-                        <li className="flex items-start space-x-3">
+                          <div className="flex-1">
+                            <strong>9:00 AM:</strong> Onam procession, welcoming King Mahabali with Chenda Melam
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>10:00 AM:</strong> Mega Thiruvathira performance</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
+                          <div className="flex-1">
+                            <strong>10:00 AM:</strong> Mega Thiruvathira performance
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>10:30 AM:</strong> Community Bonding Games</span>
-                        </li>
-                        <li className="flex items-start space-x-3 ml-6">
+                          <div className="flex-1">
+                            <strong>10:30 AM:</strong> Community Bonding Games
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3 ml-6">
                           <span className="w-1 h-1 bg-plum-400 rounded-full mt-2"></span>
-                          <span className="text-sm">Vadam Vali (Tug of War)</span>
-                        </li>
-                        <li className="flex items-start space-x-3 ml-6">
+                          <div className="flex-1 text-sm">Vadam Vali (Tug of War)</div>
+                        </div>
+                        <div className="flex items-start space-x-3 ml-6">
                           <span className="w-1 h-1 bg-plum-400 rounded-full mt-2"></span>
-                          <span className="text-sm">Sundarikku Pottuthodal</span>
-                        </li>
-                        <li className="flex items-start space-x-3 ml-6">
+                          <div className="flex-1 text-sm">Sundarikku Pottuthodal</div>
+                        </div>
+                        <div className="flex items-start space-x-3 ml-6">
                           <span className="w-1 h-1 bg-plum-400 rounded-full mt-2"></span>
-                          <span className="text-sm">Kudam Adi (Pot Breaking)</span>
-                        </li>
-                        <li className="flex items-start space-x-3 ml-6">
+                          <div className="flex-1 text-sm">Kudam Adi (Pot Breaking)</div>
+                        </div>
+                        <div className="flex items-start space-x-3 ml-6">
                           <span className="w-1 h-1 bg-plum-400 rounded-full mt-2"></span>
-                          <span className="text-sm">...and many more fun games</span>
-                        </li>
-                      </ul>
+                          <div className="flex-1 text-sm">...and many more fun games</div>
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-800 dark:text-stone-100 mb-3 text-lg">Afternoon Feast</h4>
-                      <ul className="text-stone-700 dark:text-stone-200 space-y-3 font-medium">
-                        <li className="flex items-start space-x-3">
+                      <div className="text-stone-700 dark:text-stone-200 space-y-3 font-medium">
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>11:30 AM onwards:</strong> Traditional Onam Sadya</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
+                          <div className="flex-1">
+                            <strong>11:30 AM onwards:</strong> Traditional Onam Sadya
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span>Served on authentic banana leaves</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
+                          <div className="flex-1">Served on authentic banana leaves</div>
+                        </div>
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span>20+ traditional dishes including Payasam</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
+                          <div className="flex-1">20+ traditional dishes including Payasam</div>
+                        </div>
+                        <div className="flex items-start space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span>Community dining experience</span>
-                        </li>
-                      </ul>
+                          <div className="flex-1">Community dining experience</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
