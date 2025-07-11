@@ -199,11 +199,11 @@ const Onam2025: React.FC = () => {
                       <ul className="text-stone-700 dark:text-stone-200 space-y-2 font-medium">
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>9:00 AM:</strong> Onam procession, welcoming King Mahabali with Chenda Melam</span>
+                          <span><strong>5:00 AM:</strong> Community Pookalam Event - Everyone participates in creating beautiful flower arrangements</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>5:00 AM:</strong> Community Pookalam Event - Everyone participates in creating beautiful flower arrangements</span>
+                          <span><strong>9:00 AM: Onam procession, welcoming King Mahabali with Chenda Melam</strong> </span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
