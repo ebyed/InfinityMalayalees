@@ -95,7 +95,7 @@ const Onam2025: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-terracotta-700 to-plum-700 dark:from-terracotta-400 dark:to-plum-400 bg-clip-text text-transparent mb-4 font-serif">
-                  🎉 Celebration Features 🎉
+                  Join the festivites !
                 </h2>
                 <p className="text-lg text-stone-700 dark:text-stone-200 max-w-2xl mx-auto font-medium">
                   Everything you need to be part of our Onam 2025 celebrations
