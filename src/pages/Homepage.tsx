@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, PookkalamIcon, LampIcon, CoconutPalmIcon } from '../components/KeralaSVGIcons';
-import Footer from '../components/Footer';
 
 const Homepage: React.FC = () => {
   return (
@@ -148,7 +147,6 @@ const Homepage: React.FC = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

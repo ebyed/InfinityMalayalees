@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Heart, Calendar, Award, MapPin, Mail, Phone } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon, CoconutPalmIcon, LampIcon, PookkalamIcon } from '../components/KeralaSVGIcons';
-import Footer from '../components/Footer';
 
 const AboutUs: React.FC = () => {
   const achievements = [
@@ -211,7 +210,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

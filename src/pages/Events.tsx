@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
-import Footer from '../components/Footer';
 
 const Events: React.FC = () => {
   const upcomingEvents = [
@@ -212,7 +211,6 @@ const Events: React.FC = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

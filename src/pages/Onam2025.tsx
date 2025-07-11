@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
-import Footer from '../components/Footer';
 import SadyaInformation from './SadyaInformation';
 import CulturalEvents from './CulturalEvents';
 import ThiruvathiraRegistration from './ThiruvathiraRegistration';
@@ -290,7 +289,6 @@ const Onam2025: React.FC = () => {
         </div>
       )}
 
-      <Footer />
     </div>
   );
 };
