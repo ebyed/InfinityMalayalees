@@ -92,7 +92,6 @@ const SadyaInformation: React.FC = () => {
                 <p>Pachadi & Kichadi</p>
               </div>
               <div>
-                <p>Payasam (3 varieties)</p>
                 <p>Payasam (2 varieties)</p>
                 <p>Banana chips & Papadam</p>
                 <p>Pickle & Banana</p>
