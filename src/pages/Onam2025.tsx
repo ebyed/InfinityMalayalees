@@ -33,11 +33,11 @@ const Onam2025: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section with Clean Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-terracotta-100 via-terracotta-200 to-terracotta-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900">
-        {/* Mahabali Image */}
+        {/* WhatsApp Image */}
         <div className="absolute top-8 right-8 w-48 h-64 opacity-20 dark:opacity-15 pointer-events-none hidden lg:block">
           <img 
-            src="/image.png" 
-            alt="King Mahabali" 
+            src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg" 
+            alt="Aarppo - Onam 2025 Celebration" 
             className="w-full h-full object-contain"
           />
         </div>
@@ -51,12 +51,16 @@ const Onam2025: React.FC = () => {
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6 font-serif">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-terracotta-600 via-terracotta-700 to-terracotta-800 dark:from-terracotta-400 dark:via-terracotta-500 dark:to-terracotta-600">
-                Onam 2025
+                Aarppo
               </span>
             </h1>
             
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-stone-800 dark:text-stone-100">
+              Onam Celebrations 2025
+            </h2>
+            
             <p className="text-xl md:text-2xl text-stone-800 dark:text-stone-100 mb-8 max-w-4xl mx-auto font-medium">
-              Welcome to the ultimate Onam celebration portal! Register, participate, donate, 
+              Welcome to Aarppo - our ultimate Onam celebration! Register, participate, 
               and be part of the grandest Malayalam festival at Ajmera Infinity.
             </p>
             
@@ -192,8 +196,8 @@ const Onam2025: React.FC = () => {
                   <div className="flex justify-center mb-6 lg:hidden">
                     <div className="w-32 h-40 opacity-60 dark:opacity-40">
                       <img 
-                        src="/image.png" 
-                        alt="King Mahabali blessing the celebration" 
+                        src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg" 
+                        alt="Aarppo - Onam 2025 Celebration" 
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -216,7 +220,7 @@ const Onam2025: React.FC = () => {
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>10:30 AM:</strong> Traditional Onam games</span>
+                          <span><strong>10:30 AM:</strong> Community Bonding Games</span>
                         </li>
                         <li className="flex items-center space-x-3 ml-6">
                           <span className="w-1 h-1 bg-plum-400 rounded-full"></span>
@@ -229,6 +233,10 @@ const Onam2025: React.FC = () => {
                         <li className="flex items-center space-x-3 ml-6">
                           <span className="w-1 h-1 bg-plum-400 rounded-full"></span>
                           <span className="text-sm">Kudam Adi (Pot Breaking)</span>
+                        </li>
+                        <li className="flex items-center space-x-3 ml-6">
+                          <span className="w-1 h-1 bg-plum-400 rounded-full"></span>
+                          <span className="text-sm">...and many more fun games</span>
                         </li>
                       </ul>
                     </div>
@@ -266,6 +274,17 @@ const Onam2025: React.FC = () => {
                   <p className="text-terracotta-700 dark:text-terracotta-300"><strong>Sadya Date:</strong> September 14, 2025 (Sunday only)</p>
                 </div>
               </div>
+            </div>
+
+            {/* Closing Message */}
+            <div className="mt-12 bg-gradient-to-r from-terracotta-100 to-sand-100 dark:from-terracotta-900/30 dark:to-sand-900/30 rounded-3xl p-8 border-2 border-terracotta-300 dark:border-terracotta-500 text-center">
+              <h3 className="text-2xl font-bold text-terracotta-800 dark:text-terracotta-200 mb-4">
+                Join the Magic of Aarppo! ✨
+              </h3>
+              <p className="text-lg text-stone-800 dark:text-stone-200 font-medium leading-relaxed">
+                <strong>Aarppo - Infinity Onam 2025</strong> is more than just a celebration - It's a heartfelt gathering of friends and neighbours coming together to create indelible memories.
+                Whether you are a malayalee or just love the festive spirit of Onam — join in, dress up, sing, dance, volunteer, and be a part of the magic!
+              </p>
             </div>
           </section>
         </>

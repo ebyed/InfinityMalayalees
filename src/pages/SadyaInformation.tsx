@@ -30,20 +30,22 @@ const SadyaInformation: React.FC = () => {
               <Calendar size={40} className="text-white" />
             </div>
             <h3 className="text-3xl font-bold text-emerald-800 dark:text-emerald-300 mb-4">
-              Sadya Coupons Available at Clubhouse
+              Sadya Coupon Information
             </h3>
-            <p className="text-xl text-emerald-700 dark:text-emerald-300 font-bold mb-2">
-              September 1 - 9, 2025
-            </p>
-            <p className="text-emerald-600 dark:text-emerald-400 font-medium">
-              Visit the Ajmera Infinity Clubhouse to purchase your Onam Sadya coupons
+            <p className="text-xl text-emerald-700 dark:text-emerald-300 font-bold mb-4">
+              Watch this space for how to get your Sadya coupons
             </p>
             <div className="mt-6 bg-white dark:bg-charcoal-600 rounded-xl p-4 border border-emerald-300 dark:border-emerald-500">
               <h4 className="font-bold text-emerald-800 dark:text-emerald-200 mb-2">Pricing</h4>
               <div className="text-emerald-700 dark:text-emerald-300 font-medium space-y-1">
-                <p><strong>Adults:</strong> ₹400 per person</p>
-                <p><strong>Children (under 10):</strong> ₹300 per person</p>
+                <p><strong>Adults:</strong> INR 400 per person</p>
+                <p><strong>Children (under 10):</strong> INR 300 per person</p>
               </div>
+            </div>
+            <div className="mt-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-xl p-4 border border-yellow-300 dark:border-yellow-500">
+              <p className="text-yellow-800 dark:text-yellow-300 font-medium text-sm">
+                <strong>Limited seats available - First come, first served!</strong>
+              </p>
             </div>
           </div>
 
@@ -65,13 +67,12 @@ const SadyaInformation: React.FC = () => {
             <div className="bg-stone-50 dark:bg-charcoal-700 rounded-2xl p-6 border-2 border-terracotta-300 dark:border-terracotta-500">
               <div className="flex items-center space-x-3 mb-4">
                 <Clock size={24} className="text-terracotta-600 dark:text-terracotta-400" />
-                <h3 className="text-xl font-bold text-terracotta-800 dark:text-terracotta-200">Timing</h3>
+                <h3 className="text-xl font-bold text-terracotta-800 dark:text-terracotta-200">Event Details</h3>
               </div>
               <div className="text-terracotta-700 dark:text-terracotta-300 font-medium space-y-2">
-                <p><strong>Coupon Sales:</strong> September 1-9, 2025</p>
                 <p><strong>Sadya Date:</strong> September 14, 2025 (Sunday only)</p>
                 <p><strong>Service Time:</strong> 11:30 AM onwards</p>
-                <p><strong>Venue:</strong> Community Hall</p>
+                <p><strong>Venue:</strong> Ajmera Infinity Clubhouse</p>
               </div>
             </div>
           </div>
@@ -92,6 +93,7 @@ const SadyaInformation: React.FC = () => {
               </div>
               <div>
                 <p>Payasam (3 varieties)</p>
+                <p>Payasam (2 varieties)</p>
                 <p>Banana chips & Papadam</p>
                 <p>Pickle & Banana</p>
                 <p>Traditional sides</p>
@@ -107,12 +109,11 @@ const SadyaInformation: React.FC = () => {
               <h3 className="font-bold text-gold-accent-800 dark:text-gold-accent-300 text-lg">Important Information</h3>
             </div>
             <ul className="text-gold-accent-700 dark:text-gold-accent-300 font-medium space-y-2">
-              <li>Visit the clubhouse between September 1-9, 2025 to purchase Sadya coupons</li>
-              <li>Coupons will be required for entry to the Sadya on event days</li>
-              <li>Limited quantities available - first come, first served</li>
+              <li>Watch this space for Sadya coupon purchase information</li>
+              <li>Limited seats available - first come, first served</li>
               <li>Sadya will be served on September 14, 2025 (Sunday only) from 11:30 AM onwards</li>
-              <li>Venue: Ajmera Infinity Community Hall</li>
-              <li>For queries, contact the clubhouse reception</li>
+              <li>Venue: Ajmera Infinity Clubhouse</li>
+              <li>For any queries, contact clubhouse reception between September 1 to 9th</li>
             </ul>
           </div>
 
