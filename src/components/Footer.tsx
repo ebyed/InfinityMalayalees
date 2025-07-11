@@ -108,17 +108,7 @@ const Footer: React.FC = () => {
                   <div className="p-3 rounded-lg backdrop-blur-sm transition-all duration-300 bg-white/10">
                     <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
                       'text-terracotta-300'
-                    }`}>Venue:</span> Ajmera Infinity Community Hall</p>
-                  </div>
-                  <div className="p-3 rounded-lg backdrop-blur-sm transition-all duration-300 bg-white/10">
-                    <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
-                      'text-terracotta-300'
-                    }`}>Sadya:</span> ₹400 per person</p>
-                  </div>
-                  <div className="p-3 rounded-lg backdrop-blur-sm transition-all duration-300 bg-white/10">
-                    <p className="text-sm"><span className={`font-bold transition-all duration-300 ${
-                      'text-terracotta-300'
-                    }`}>Registration:</span> Open now!</p>
+                    }`}>Venue:</span> Ajmera Infinity Clubhouse</p>
                   </div>
                 </>
               ) : (
