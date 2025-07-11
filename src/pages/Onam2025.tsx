@@ -212,7 +212,7 @@ const Onam2025: React.FC = () => {
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
-                          <span><strong>9:30 AM:</strong> Community Pookalam Event - Everyone participates in creating beautiful flower arrangements</span>
+                          <span><strong>5:00 AM:</strong> Community Pookalam Event - Everyone participates in creating beautiful flower arrangements</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           <span className="w-2 h-2 bg-plum-500 rounded-full"></span>
