@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Lock, User, Eye, EyeOff, LogOut, Plus, Users, Calendar, Heart, TrendingUp, AlertCircle, CheckCircle, Loader2, Mail, Settings, Music, Crown, Trash2 } from 'lucide-react';
 import { useSupabaseData } from '../hooks/useSupabaseData';
 import { adminAuth, type AdminUser } from '../lib/auth';
+import { 
+  malayaleeRegistrations, 
+  sadyaRegistrations, 
+  thiruvathiraRegistrations, 
+  culturalRegistrations, 
+  donations 
+} from '../lib/database';
 import QRCodeModal from '../components/QRCodeModal';
 import { sendEmail, generateDonationThankYouTemplate, generateConfirmationEmailTemplate, emailSettings } from '../utils/emailService';
 import { supabase } from '../lib/supabase';
