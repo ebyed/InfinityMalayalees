@@ -32,7 +32,7 @@ const AdminPortal: React.FC = () => {
   // Active tab for different views
   const [activeTab, setActiveTab] = useState('overview');
 
-  const { data, loading, error, refetch } = useSupabaseData();
+  const { data, setData, loading, error, refetch } = useSupabaseData();
 
   useEffect(() => {
     setIsLoggedIn(adminAuth.isLoggedIn());
