@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Lock, User, Eye, EyeOff, LogOut, Plus, Users, Calendar, Heart, TrendingUp, AlertCircle, CheckCircle, Loader2, Mail, Settings, Music, Crown } from 'lucide-react';
+import { Lock, User, Eye, EyeOff, LogOut, Plus, Users, Calendar, Heart, TrendingUp, AlertCircle, CheckCircle, Loader2, Mail, Settings, Music, Crown, Trash2 } from 'lucide-react';
 import { useSupabaseData } from '../hooks/useSupabaseData';
 import { adminAuth, type AdminUser } from '../lib/auth';
 import QRCodeModal from '../components/QRCodeModal';
@@ -27,6 +27,7 @@ const AdminPortal: React.FC = () => {
   // Email settings
   const [showEmailSettings, setShowEmailSettings] = useState(false);
   const [emailConfig, setEmailConfig] = useState(emailSettings.getConfig());
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   // Active tab for different views
   const [activeTab, setActiveTab] = useState('overview');
@@ -228,6 +229,53 @@ const AdminPortal: React.FC = () => {
     emailSettings.saveConfig(emailConfig);
     setShowEmailSettings(false);
     alert('Email settings saved successfully!');
+  };
+
+  const handleDeleteRegistration = async (id: number, type: string) => {
+    if (!confirm('Are you sure you want to delete this registration? This action cannot be undone.')) {
+      return;
+    }
+
+    setDeletingId(id);
+    try {
+      let tableName = '';
+      switch (type) {
+        case 'sadya':
+          tableName = 'sadya_registrations';
+          break;
+        case 'cultural':
+          tableName = 'cultural_registrations';
+          break;
+        case 'thiruvathira':
+          tableName = 'thiruvathira_registrations';
+          break;
+        case 'malayalee':
+          tableName = 'malayalee_registrations';
+          break;
+        case 'donation':
+          tableName = 'donations';
+          break;
+        default:
+          throw new Error('Invalid registration type');
+      }
+
+      const { error } = await supabase
+        .from(tableName)
+        .delete()
+        .eq('id', id);
+
+      if (error) {
+        throw error;
+      }
+
+      alert('Registration deleted successfully!');
+      refetch(); // Refresh data
+    } catch (err) {
+      console.error('Error deleting registration:', err);
+      alert('Failed to delete registration. Please try again.');
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const formatDate = (dateString: string) => {
@@ -522,6 +570,7 @@ const AdminPortal: React.FC = () => {
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Name</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Registration Date</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Count</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Amount</th>
@@ -533,6 +582,7 @@ const AdminPortal: React.FC = () => {
                     {data.sadyaRegistrations.map((registration) => (
                       <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700">
                         <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{registration.full_name}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(registration.created_at!)}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.sadya_count}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">₹{registration.total_amount}</td>
@@ -566,6 +616,14 @@ const AdminPortal: React.FC = () => {
                                 Resend Email
                               </button>
                             )}
+                            <button
+                              onClick={() => handleDeleteRegistration(registration.id!, 'sadya')}
+                              disabled={deletingId === registration.id}
+                              className="px-3 py-1 text-xs bg-red-500 text-white hover:bg-red-600 rounded transition-colors disabled:opacity-50"
+                              title="Delete registration"
+                            >
+                              {deletingId === registration.id ? '...' : <Trash2 size={12} />}
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -598,6 +656,7 @@ const AdminPortal: React.FC = () => {
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Participant</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Registration Date</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
@@ -611,6 +670,7 @@ const AdminPortal: React.FC = () => {
                     {data.culturalRegistrations.map((registration) => (
                       <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700">
                         <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{registration.participant_name}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(registration.created_at!)}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
@@ -624,12 +684,22 @@ const AdminPortal: React.FC = () => {
                           {registration.event_title}
                         </td>
                         <td className="py-3">
-                          <button
-                            onClick={() => handleSendConfirmationEmail(registration, 'Cultural Events Interest Registration')}
-                            className="px-3 py-1 text-xs bg-purple-500 text-white hover:bg-purple-600 rounded transition-colors"
-                          >
-                            Send Confirmation
-                          </button>
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={() => handleSendConfirmationEmail(registration, 'Cultural Events Interest Registration')}
+                              className="px-3 py-1 text-xs bg-purple-500 text-white hover:bg-purple-600 rounded transition-colors"
+                            >
+                              Send Confirmation
+                            </button>
+                            <button
+                              onClick={() => handleDeleteRegistration(registration.id!, 'cultural')}
+                              disabled={deletingId === registration.id}
+                              className="px-3 py-1 text-xs bg-red-500 text-white hover:bg-red-600 rounded transition-colors disabled:opacity-50"
+                              title="Delete registration"
+                            >
+                              {deletingId === registration.id ? '...' : <Trash2 size={12} />}
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -661,10 +731,10 @@ const AdminPortal: React.FC = () => {
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Name</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Registration Date</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Registration Date</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
                     </tr>
                   </thead>
@@ -672,17 +742,27 @@ const AdminPortal: React.FC = () => {
                     {data.thiruvathiraRegistrations.map((registration) => (
                       <tr key={registration.id} className="border-b border-gray-100 dark:border-gray-700">
                         <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{registration.full_name}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(registration.created_at!)}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(registration.created_at!)}</td>
                         <td className="py-3">
-                          <button
-                            onClick={() => handleSendConfirmationEmail(registration, 'Mega Thiruvathira Registration')}
-                            className="px-3 py-1 text-xs bg-pink-500 text-white hover:bg-pink-600 rounded transition-colors"
-                          >
-                            Send Confirmation
-                          </button>
+                          <div className="flex space-x-2">
+                            <button
+                              onClick={() => handleSendConfirmationEmail(registration, 'Mega Thiruvathira Registration')}
+                              className="px-3 py-1 text-xs bg-pink-500 text-white hover:bg-pink-600 rounded transition-colors"
+                            >
+                              Send Confirmation
+                            </button>
+                            <button
+                              onClick={() => handleDeleteRegistration(registration.id!, 'thiruvathira')}
+                              disabled={deletingId === registration.id}
+                              className="px-3 py-1 text-xs bg-red-500 text-white hover:bg-red-600 rounded transition-colors disabled:opacity-50"
+                              title="Delete registration"
+                            >
+                              {deletingId === registration.id ? '...' : <Trash2 size={12} />}
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -705,6 +785,7 @@ const AdminPortal: React.FC = () => {
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Username</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Created Date</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Created</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Last Login</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Status</th>
@@ -714,6 +795,7 @@ const AdminPortal: React.FC = () => {
                     {admins.map((admin) => (
                       <tr key={admin.id} className="border-b border-gray-100 dark:border-gray-700">
                         <td className="py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">{admin.username}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(admin.created_at)}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{formatDate(admin.created_at)}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
                           {admin.last_login ? formatDate(admin.last_login) : 'Never'}
