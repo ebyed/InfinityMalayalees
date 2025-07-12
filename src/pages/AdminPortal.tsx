@@ -426,12 +426,6 @@ const AdminPortal: React.FC = () => {
               )}
             </button>
           </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              Default credentials: admin / admin
-            </p>
-          </div>
         </div>
       </div>
     );
