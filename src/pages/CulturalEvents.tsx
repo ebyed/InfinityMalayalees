@@ -177,7 +177,6 @@ const CulturalEvents: React.FC = () => {
             We have limited seats for each event. We will contact you for confirmation after reviewing your registration.
           </p>
         </div>
-        </p>
       </div>
 
       {/* Event Categories */}
