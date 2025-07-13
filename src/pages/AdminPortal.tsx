@@ -1,11 +1,11 @@
-import { supabase } from '../lib/supabase';
+import { supabase } from './supabase';
 import type { 
   MalayaleeRegistration, 
   SadyaRegistration, 
   ThiruvathiraRegistration, 
   CulturalRegistration, 
   Donation 
-} from '../lib/supabase';
+} from './supabase';
 
 // Malayalee Registrations
 export const malayaleeRegistrations = {
