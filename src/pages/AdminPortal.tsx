@@ -239,41 +239,59 @@ const AdminPortal: React.FC = () => {
   };
 
   const handleDeleteRegistration = async (id: number, type: string) => {
+    console.log('🚀 [ADMIN] Delete button clicked for:', { id, type });
+    
     if (!confirm('Are you sure you want to delete this registration? This action cannot be undone.')) {
+      console.log('🚀 [ADMIN] User cancelled deletion');
       return;
     }
 
     setDeletingId(id);
+    console.log('🚀 [ADMIN] Starting deletion process for:', { id, type });
+    
     try {
       // Delete from database
       switch (type) {
         case 'sadya':
+          console.log('🚀 [ADMIN] Calling sadyaRegistrations.delete()');
           await sadyaRegistrations.delete(id);
           break;
         case 'cultural':
+          console.log('🚀 [ADMIN] Calling culturalRegistrations.delete()');
           await culturalRegistrations.delete(id);
           break;
         case 'thiruvathira':
+          console.log('🚀 [ADMIN] Calling thiruvathiraRegistrations.delete()');
           await thiruvathiraRegistrations.delete(id);
           break;
         case 'malayalee':
+          console.log('🚀 [ADMIN] Calling malayaleeRegistrations.delete()');
           await malayaleeRegistrations.delete(id);
           break;
         case 'donation':
+          console.log('🚀 [ADMIN] Calling donations.delete()');
           await donations.delete(id);
           break;
         default:
+          console.error('🚀 [ADMIN] Invalid registration type:', type);
           throw new Error('Invalid registration type');
       }
 
+      console.log('🚀 [ADMIN] Database deletion successful, refreshing data...');
       // Refresh data after successful deletion
       await refetch();
+      console.log('🚀 [ADMIN] Data refresh completed');
       alert('Registration deleted successfully!');
 
     } catch (err) {
-      console.error('Error deleting registration:', err);
+      console.error('🚀 [ADMIN] Error deleting registration:', err);
+      console.error('🚀 [ADMIN] Error details:', {
+        message: err instanceof Error ? err.message : 'Unknown error',
+        stack: err instanceof Error ? err.stack : undefined
+      });
       alert(`Failed to delete registration: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
+      console.log('🚀 [ADMIN] Clearing deletingId state');
       setDeletingId(null);
     }
   };
@@ -669,15 +687,9 @@ const AdminPortal: React.FC = () => {
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
-                          {registration.description?.match(/Age: ([^,]+)/)?.[1] || 'N/A'}
-                        </td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
-                          {registration.description?.match(/Gender: ([^,]+)/)?.[1] || 'N/A'}
-                        </td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">
-                          {registration.event_title}
-                        </td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.age || 'N/A'}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.gender || 'N/A'}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">{registration.event_title}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">
                           {registration.special_requirements || 'None'}
                         </td>

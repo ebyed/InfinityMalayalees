@@ -57,6 +57,8 @@ export interface CulturalRegistration {
   email: string;
   phone: string;
   flat_number: string;
+  age?: number;
+  gender?: string;
   event_category: string;
   event_title: string;
   participant_count: number;

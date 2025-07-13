@@ -92,17 +92,34 @@ export const sadyaRegistrations = {
   },
 
   async delete(id: number) {
-    console.log('Deleting sadya registration with ID:', id);
+    console.log('🗑️ [SADYA] Starting deletion for ID:', id);
+    console.log('🗑️ [SADYA] ID type:', typeof id);
+    
+    // First check if the record exists
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('sadya_registrations')
+      .select('id, full_name, registration_id')
+      .eq('id', id)
+      .single();
+    
+    if (checkError) {
+      console.error('🗑️ [SADYA] Error checking record existence:', checkError);
+      throw new Error(`Record not found: ${checkError.message}`);
+    }
+    
+    console.log('🗑️ [SADYA] Found record to delete:', existingRecord);
+    
     const { error } = await supabase
       .from('sadya_registrations')
       .delete()
       .eq('id', id);
     
     if (error) {
-      console.error('Database delete error:', error);
-      throw error;
+      console.error('🗑️ [SADYA] Database delete error:', error);
+      throw new Error(`Failed to delete sadya registration: ${error.message}`);
     }
-    console.log('Sadya registration deleted successfully');
+    
+    console.log('🗑️ [SADYA] Sadya registration deleted successfully');
     return true;
   }
 };
@@ -142,17 +159,33 @@ export const thiruvathiraRegistrations = {
   },
 
   async delete(id: number) {
-    console.log('Deleting thiruvathira registration with ID:', id);
+    console.log('🗑️ [THIRUVATHIRA] Starting deletion for ID:', id);
+    
+    // First check if the record exists
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('thiruvathira_registrations')
+      .select('id, full_name')
+      .eq('id', id)
+      .single();
+    
+    if (checkError) {
+      console.error('🗑️ [THIRUVATHIRA] Error checking record existence:', checkError);
+      throw new Error(`Record not found: ${checkError.message}`);
+    }
+    
+    console.log('🗑️ [THIRUVATHIRA] Found record to delete:', existingRecord);
+    
     const { error } = await supabase
       .from('thiruvathira_registrations')
       .delete()
       .eq('id', id);
     
     if (error) {
-      console.error('Database delete error:', error);
-      throw error;
+      console.error('🗑️ [THIRUVATHIRA] Database delete error:', error);
+      throw new Error(`Failed to delete thiruvathira registration: ${error.message}`);
     }
-    console.log('Thiruvathira registration deleted successfully');
+    
+    console.log('🗑️ [THIRUVATHIRA] Thiruvathira registration deleted successfully');
     return true;
   }
 };
@@ -192,17 +225,41 @@ export const culturalRegistrations = {
   },
 
   async delete(id: number) {
-    console.log('Deleting cultural registration with ID:', id);
+    console.log('🗑️ [CULTURAL] Starting deletion for ID:', id);
+    console.log('🗑️ [CULTURAL] ID type:', typeof id);
+    console.log('🗑️ [CULTURAL] ID value:', id);
+    
+    // First check if the record exists
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('cultural_registrations')
+      .select('id, participant_name')
+      .eq('id', id)
+      .single();
+    
+    if (checkError) {
+      console.error('🗑️ [CULTURAL] Error checking record existence:', checkError);
+      throw new Error(`Record not found: ${checkError.message}`);
+    }
+    
+    console.log('🗑️ [CULTURAL] Found record to delete:', existingRecord);
+    
     const { error } = await supabase
       .from('cultural_registrations')
       .delete()
       .eq('id', id);
     
     if (error) {
-      console.error('Database delete error:', error);
-      throw error;
+      console.error('🗑️ [CULTURAL] Database delete error:', error);
+      console.error('🗑️ [CULTURAL] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Failed to delete cultural registration: ${error.message}`);
     }
-    console.log('Cultural registration deleted successfully');
+    
+    console.log('🗑️ [CULTURAL] Cultural registration deleted successfully');
     return true;
   }
 };
@@ -240,17 +297,33 @@ export const donations = {
   },
 
   async delete(id: number) {
-    console.log('Deleting donation with ID:', id);
+    console.log('🗑️ [DONATION] Starting deletion for ID:', id);
+    
+    // First check if the record exists
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('donations')
+      .select('id, donor_name')
+      .eq('id', id)
+      .single();
+    
+    if (checkError) {
+      console.error('🗑️ [DONATION] Error checking record existence:', checkError);
+      throw new Error(`Record not found: ${checkError.message}`);
+    }
+    
+    console.log('🗑️ [DONATION] Found record to delete:', existingRecord);
+    
     const { error } = await supabase
       .from('donations')
       .delete()
       .eq('id', id);
     
     if (error) {
-      console.error('Database delete error:', error);
-      throw error;
+      console.error('🗑️ [DONATION] Database delete error:', error);
+      throw new Error(`Failed to delete donation: ${error.message}`);
     }
-    console.log('Donation deleted successfully');
+    
+    console.log('🗑️ [DONATION] Donation deleted successfully');
     return true;
   }
 };

@@ -110,10 +110,12 @@ const CulturalEvents: React.FC = () => {
         email: formData.email,
         phone: formData.phone,
         flat_number: formData.flatNumber,
+        age: parseInt(formData.age),
+        gender: formData.gender,
         event_category: 'Cultural Events',
         event_title: selectedEvents.join(', '),
         participant_count: 1,
-        description: `Age: ${formData.age}, Gender: ${formData.gender}, Interested Events: ${selectedEvents.join(', ')}`,
+        description: `Interested Events: ${selectedEvents.join(', ')}`,
         special_requirements: formData.remarks || null
       });
 
