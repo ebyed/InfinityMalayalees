@@ -241,7 +241,6 @@ const AdminPortal: React.FC = () => {
   const handleDeleteRegistration = async (id: number, type: string) => {
     console.log('=== DELETE OPERATION START ===');
     console.log('Attempting to delete:', { id, type });
-    console.log('Current data state:', data);
     
     if (!confirm('Are you sure you want to delete this registration? This action cannot be undone.')) {
       console.log('Delete cancelled by user');
@@ -252,54 +251,7 @@ const AdminPortal: React.FC = () => {
     try {
       console.log('Setting deleting state for ID:', id);
       
-      // First, optimistically remove from UI
-      const originalData = { ...data };
-      console.log('Original data before optimistic update:', originalData);
-      
-      switch (type) {
-        case 'sadya':
-          console.log('Deleting sadya registration, current count:', data.sadyaRegistrations.length);
-          setData(prev => ({
-            ...prev,
-            sadyaRegistrations: prev.sadyaRegistrations.filter(item => item.id !== id)
-          }));
-          break;
-        case 'cultural':
-          console.log('Deleting cultural registration, current count:', data.culturalRegistrations.length);
-          setData(prev => ({
-            ...prev,
-            culturalRegistrations: prev.culturalRegistrations.filter(item => item.id !== id)
-          }));
-          break;
-        case 'thiruvathira':
-          console.log('Deleting thiruvathira registration, current count:', data.thiruvathiraRegistrations.length);
-          setData(prev => ({
-            ...prev,
-            thiruvathiraRegistrations: prev.thiruvathiraRegistrations.filter(item => item.id !== id)
-          }));
-          break;
-        case 'malayalee':
-          console.log('Deleting malayalee registration, current count:', data.malayaleeRegistrations.length);
-          setData(prev => ({
-            ...prev,
-            malayaleeRegistrations: prev.malayaleeRegistrations.filter(item => item.id !== id)
-          }));
-          break;
-        case 'donation':
-          console.log('Deleting donation, current count:', data.donations.length);
-          setData(prev => ({
-            ...prev,
-            donations: prev.donations.filter(item => item.id !== id)
-          }));
-          break;
-        default:
-          console.error('Invalid registration type:', type);
-          throw new Error('Invalid registration type');
-      }
-
-      console.log('UI updated optimistically, now calling database delete...');
-      
-      // Now delete from database
+      // Delete from database first
       let deleteResult;
       switch (type) {
         case 'sadya':
@@ -317,18 +269,20 @@ const AdminPortal: React.FC = () => {
         case 'donation':
           deleteResult = await donations.delete(id);
           break;
+        default:
+          console.error('Invalid registration type:', type);
+          throw new Error('Invalid registration type');
       }
 
       console.log('Database delete result:', deleteResult);
       console.log('Delete successful!');
+      
+      // Refresh data from database after successful deletion
+      refetch();
       alert('Registration deleted successfully!');
 
     } catch (err) {
       console.error('Error deleting registration:', err);
-      console.log('Delete failed, rolling back UI changes...');
-      
-      // Rollback the optimistic update
-      refetch();
       alert(`Failed to delete registration: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       console.log('Clearing deleting state');
@@ -713,9 +667,8 @@ const AdminPortal: React.FC = () => {
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Age</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Gender</th>
-                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Interested Events</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Events Interested</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Remarks</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
                     </tr>
                   </thead>
@@ -727,14 +680,11 @@ const AdminPortal: React.FC = () => {
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
-                          {registration.description?.match(/Age: ([^,]+)/)?.[1] || 'N/A'}
-                        </td>
-                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
-                          {registration.description?.match(/Gender: ([^,]+)/)?.[1] || 'N/A'}
-                        </td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">
                           {registration.event_title}
+                        </td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">
+                          {registration.special_requirements || 'None'}
                         </td>
                         <td className="py-3">
                           <div className="flex space-x-2">

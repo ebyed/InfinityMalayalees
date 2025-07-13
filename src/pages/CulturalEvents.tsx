@@ -9,10 +9,8 @@ const CulturalEvents: React.FC = () => {
     email: '',
     phone: '',
     flatNumber: '',
-    age: '',
-    gender: '',
     interestedEvents: '',
-    specialRequirements: ''
+    remarks: ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -97,11 +95,11 @@ const CulturalEvents: React.FC = () => {
         email: formData.email,
         phone: formData.phone,
         flat_number: formData.flatNumber,
-        event_category: 'General Interest',
+        event_category: 'Cultural Events',
         event_title: formData.interestedEvents,
         participant_count: 1,
-        description: `Age: ${formData.age}, Gender: ${formData.gender}, Interested Events: ${formData.interestedEvents}`,
-        special_requirements: formData.specialRequirements || null
+        description: `Interested Events: ${formData.interestedEvents}`,
+        special_requirements: formData.remarks || null
       });
 
       console.log('Cultural event registration successful:', formData);
@@ -150,10 +148,8 @@ const CulturalEvents: React.FC = () => {
                 email: '',
                 phone: '',
                 flatNumber: '',
-                age: '',
-                gender: '',
                 interestedEvents: '',
-                specialRequirements: ''
+                remarks: ''
               });
             }}
             className="bg-green-500 dark:bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-600 dark:hover:bg-green-700 transition-colors"
@@ -174,6 +170,13 @@ const CulturalEvents: React.FC = () => {
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Express your interest in cultural events for Onam 2025! Let us know what events 
           you'd like to participate in and we'll contact you with more details.
+        </p>
+        <div className="mt-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500 max-w-2xl mx-auto">
+          <p className="text-yellow-800 dark:text-yellow-300 font-medium text-center">
+            <strong>⚠️ Limited Seats Available!</strong><br />
+            We have limited seats for each event. We will contact you for confirmation after reviewing your registration.
+          </p>
+        </div>
         </p>
       </div>
 
@@ -285,81 +288,58 @@ const CulturalEvents: React.FC = () => {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Age *
-              </label>
-              <input
-                type="text"
-                name="age"
-                required
-                value={formData.age}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                placeholder="Enter your age"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Gender *
-              </label>
-              <select
-                name="gender"
-                required
-                value={formData.gender}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Interested Events *
+              Events Interested In *
             </label>
-            <textarea
+            <select
               name="interestedEvents"
+              multiple
               required
               value={formData.interestedEvents}
               onChange={handleChange}
               disabled={isSubmitting}
-              rows={3}
+              size={7}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="List the cultural events you're interested in (e.g., Dance, Singing, Drama, Fashion Show, etc.)"
-            />
+            >
+              <option value="Singing">Singing</option>
+              <option value="Dancing">Dancing</option>
+              <option value="Drama">Drama</option>
+              <option value="Musical Instruments">Musical Instruments</option>
+              <option value="Ramp walk">Ramp walk</option>
+              <option value="Decoration">Decoration</option>
+              <option value="Volunteer">Volunteer</option>
+            </select>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              Hold Ctrl (Windows) or Cmd (Mac) to select multiple events
+            </p>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Special Requirements (Optional)
+              Remarks (Optional)
             </label>
             <textarea
-              name="specialRequirements"
-              value={formData.specialRequirements}
+              name="remarks"
+              value={formData.remarks}
               onChange={handleChange}
               disabled={isSubmitting}
               rows={3}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Any special requirements or additional information..."
+              placeholder="Any additional remarks, special requirements, or information..."
             />
           </div>
 
           <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
             <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
             <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
-              <li>This is an interest registration - we'll contact you with specific event details</li>
+              <li>Limited seats available - we'll contact you for confirmation</li>
               <li>All events should be family-friendly and appropriate for all ages</li>
               <li>Our cultural team will organize participants into groups based on interests</li>
               <li>Rehearsal schedules will be shared after team formation</li>
-              <li>Events include: Dance, Singing, Drama, Fashion Show, Instrumental, etc.</li>
+              <li>Events include: Singing, Dancing, Drama, Musical Instruments, Ramp walk, Decoration, Volunteer</li>
               <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
             </ul>
           </div>

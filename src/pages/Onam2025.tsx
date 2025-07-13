@@ -65,10 +65,21 @@ const Onam2025: React.FC = () => {
             </p>
             
             <div className="bg-sand-50/80 dark:bg-charcoal-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-terracotta-400 dark:border-terracotta-400 shadow-xl">
-              <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-2">🌺 Onam Ashamsakal! 🌺</h3>
+              <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-4">🌺 Onam Ashamsakal! 🌺</h3>
+              <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
+                Welcome to Aarppo – Our Ultimate Onam Celebration! 🌸🌾
+              </p>
+              <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
+                We, the Infinity Malayalees, are here to celebrate Onam—close to our hearts and full of joy!
+              </p>
+              <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
+                Join us at Ajmera Infinity as we bring to life the colors, flavors, and traditions of Kerala's grandest festival.
+              </p>
               <p className="text-stone-700 dark:text-stone-200 font-medium">
-                Experience the joy of King Mahabali's return with authentic traditions, 
-                delicious Sadya, and vibrant cultural programs.
+                Register, participate, and be a part of the magic that makes Onam unforgettable.
+              </p>
+              <p className="text-stone-700 dark:text-stone-200 font-medium mt-4">
+                Let's celebrate together—with smiles on our faces, love in our hearts, and the spirit of Onam in every moment!
               </p>
             </div>
           </div>
@@ -284,6 +295,12 @@ const Onam2025: React.FC = () => {
               <h3 className="text-2xl font-bold text-terracotta-800 dark:text-terracotta-200 mb-4">
                 Join the Magic of Aarppo! ✨
               </h3>
+              <p className="text-lg text-stone-800 dark:text-stone-200 font-medium leading-relaxed mb-6">
+                Onam isn't just a festival for us—it's a beautiful emotion woven into our memories, our traditions, and our sense of belonging. No matter where we are in the world, this season brings us together with the warmth of home and the spirit of unity.
+              </p>
+              <p className="text-lg text-stone-800 dark:text-stone-200 font-medium leading-relaxed mb-6">
+                We welcome the legendary King Mahabali with open hearts, colorful Pookkalams at our doorsteps, and joyful smiles all around. Dressed in our traditional kasavu sarees and mundu, we relive the essence of Kerala—simple, graceful, and deeply rooted.
+              </p>
               <p className="text-lg text-stone-800 dark:text-stone-200 font-medium leading-relaxed">
                 <strong>Aarppo - Infinity Onam 2025</strong> is more than just a celebration - It's a heartfelt gathering of friends and neighbours coming together to create indelible memories.
                 Whether you are a malayalee or just love the festive spirit of Onam — join in, dress up, sing, dance, volunteer, and be a part of the magic!
