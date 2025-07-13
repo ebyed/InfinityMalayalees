@@ -239,55 +239,42 @@ const AdminPortal: React.FC = () => {
   };
 
   const handleDeleteRegistration = async (id: number, type: string) => {
-    console.log('=== DELETE OPERATION START ===');
-    console.log('Attempting to delete:', { id, type });
-    
     if (!confirm('Are you sure you want to delete this registration? This action cannot be undone.')) {
-      console.log('Delete cancelled by user');
       return;
     }
 
     setDeletingId(id);
     try {
-      console.log('Setting deleting state for ID:', id);
-      
-      // Delete from database first
-      let deleteResult;
+      // Delete from database
       switch (type) {
         case 'sadya':
-          deleteResult = await sadyaRegistrations.delete(id);
+          await sadyaRegistrations.delete(id);
           break;
         case 'cultural':
-          deleteResult = await culturalRegistrations.delete(id);
+          await culturalRegistrations.delete(id);
           break;
         case 'thiruvathira':
-          deleteResult = await thiruvathiraRegistrations.delete(id);
+          await thiruvathiraRegistrations.delete(id);
           break;
         case 'malayalee':
-          deleteResult = await malayaleeRegistrations.delete(id);
+          await malayaleeRegistrations.delete(id);
           break;
         case 'donation':
-          deleteResult = await donations.delete(id);
+          await donations.delete(id);
           break;
         default:
-          console.error('Invalid registration type:', type);
           throw new Error('Invalid registration type');
       }
 
-      console.log('Database delete result:', deleteResult);
-      console.log('Delete successful!');
-      
-      // Refresh data from database after successful deletion
-      refetch();
+      // Refresh data after successful deletion
+      await refetch();
       alert('Registration deleted successfully!');
 
     } catch (err) {
       console.error('Error deleting registration:', err);
       alert(`Failed to delete registration: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
-      console.log('Clearing deleting state');
       setDeletingId(null);
-      console.log('=== DELETE OPERATION END ===');
     }
   };
 
@@ -667,6 +654,8 @@ const AdminPortal: React.FC = () => {
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Email</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Phone</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Flat</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Age</th>
+                      <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Gender</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Events Interested</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Remarks</th>
                       <th className="text-left py-2 text-sm font-medium text-gray-600 dark:text-gray-400">Actions</th>
@@ -680,6 +669,12 @@ const AdminPortal: React.FC = () => {
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.email}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.phone}</td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400">{registration.flat_number}</td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
+                          {registration.description?.match(/Age: ([^,]+)/)?.[1] || 'N/A'}
+                        </td>
+                        <td className="py-3 text-sm text-gray-600 dark:text-gray-400">
+                          {registration.description?.match(/Gender: ([^,]+)/)?.[1] || 'N/A'}
+                        </td>
                         <td className="py-3 text-sm text-gray-600 dark:text-gray-400 max-w-xs truncate">
                           {registration.event_title}
                         </td>

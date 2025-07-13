@@ -9,13 +9,28 @@ const CulturalEvents: React.FC = () => {
     email: '',
     phone: '',
     flatNumber: '',
+    age: '',
+    gender: '',
     interestedEvents: '',
     remarks: ''
   });
 
+  const [selectedEvents, setSelectedEvents] = useState<string[]>([]);
+  const [showEventDropdown, setShowEventDropdown] = useState(false);
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const eventOptions = [
+    'Singing',
+    'Dancing', 
+    'Drama',
+    'Musical Instruments',
+    'Ramp walk',
+    'Decoration',
+    'Volunteer'
+  ];
 
   const eventCategories = [
     {
@@ -96,9 +111,9 @@ const CulturalEvents: React.FC = () => {
         phone: formData.phone,
         flat_number: formData.flatNumber,
         event_category: 'Cultural Events',
-        event_title: formData.interestedEvents,
+        event_title: selectedEvents.join(', '),
         participant_count: 1,
-        description: `Interested Events: ${formData.interestedEvents}`,
+        description: `Age: ${formData.age}, Gender: ${formData.gender}, Interested Events: ${selectedEvents.join(', ')}`,
         special_requirements: formData.remarks || null
       });
 
@@ -123,6 +138,14 @@ const CulturalEvents: React.FC = () => {
     if (error) setError(null);
   };
 
+  const handleEventToggle = (event: string) => {
+    setSelectedEvents(prev => 
+      prev.includes(event) 
+        ? prev.filter(e => e !== event)
+        : [...prev, event]
+    );
+  };
+
   if (isSubmitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -136,7 +159,9 @@ const CulturalEvents: React.FC = () => {
           <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-green-200 dark:border-green-600 mb-6">
             <p className="text-sm text-gray-600 dark:text-gray-300">
               <strong>Participant:</strong> {formData.participantName}<br />
-              <strong>Interested Events:</strong> {formData.interestedEvents}<br />
+              <strong>Age:</strong> {formData.age}<br />
+              <strong>Gender:</strong> {formData.gender}<br />
+              <strong>Interested Events:</strong> {selectedEvents.join(', ')}<br />
               <strong>Contact:</strong> {formData.email}
             </p>
           </div>
@@ -148,9 +173,12 @@ const CulturalEvents: React.FC = () => {
                 email: '',
                 phone: '',
                 flatNumber: '',
+                age: '',
+                gender: '',
                 interestedEvents: '',
                 remarks: ''
               });
+              setSelectedEvents([]);
             }}
             className="bg-green-500 dark:bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-600 dark:hover:bg-green-700 transition-colors"
           >
@@ -287,34 +315,102 @@ const CulturalEvents: React.FC = () => {
               />
             </div>
 
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <User size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
+                Age *
+              </label>
+              <input
+                type="number"
+                name="age"
+                required
+                min="1"
+                max="100"
+                value={formData.age}
+                onChange={handleChange}
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                placeholder="Enter your age"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <User size={18} className="inline mr-2 text-purple-600 dark:text-purple-400" />
+                Gender *
+              </label>
+              <select
+                name="gender"
+                required
+                value={formData.gender}
+                onChange={handleChange}
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Events Interested In *
             </label>
-            <select
-              name="interestedEvents"
-              multiple
-              required
-              value={formData.interestedEvents}
-              onChange={handleChange}
-              disabled={isSubmitting}
-              size={7}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <option value="Singing">Singing</option>
-              <option value="Dancing">Dancing</option>
-              <option value="Drama">Drama</option>
-              <option value="Musical Instruments">Musical Instruments</option>
-              <option value="Ramp walk">Ramp walk</option>
-              <option value="Decoration">Decoration</option>
-              <option value="Volunteer">Volunteer</option>
-            </select>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowEventDropdown(!showEventDropdown)}
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed text-left flex justify-between items-center"
+              >
+                <span className={selectedEvents.length === 0 ? 'text-gray-500' : ''}>
+                  {selectedEvents.length === 0 
+                    ? 'Select events...' 
+                    : `${selectedEvents.length} event(s) selected`
+                  }
+                </span>
+                <span className="text-gray-400">▼</span>
+              </button>
+              
+              {showEventDropdown && (
+                <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  {eventOptions.map((event) => (
+                    <label
+                      key={event}
+                      className="flex items-center px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedEvents.includes(event)}
+                        onChange={() => handleEventToggle(event)}
+                        className="mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                      />
+                      <span className="text-gray-900 dark:text-gray-100">{event}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+            {selectedEvents.length === 0 && (
+              <p className="mt-1 text-xs text-red-500">Please select at least one event</p>
+            )}
             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              Hold Ctrl (Windows) or Cmd (Mac) to select multiple events
+              Select multiple events you're interested in participating
             </p>
           </div>
+
+          {/* Close dropdown when clicking outside */}
+          {showEventDropdown && (
+            <div 
+              className="fixed inset-0 z-5" 
+              onClick={() => setShowEventDropdown(false)}
+            />
+          )}
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -334,7 +430,7 @@ const CulturalEvents: React.FC = () => {
           <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
             <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
             <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
-              <li>Limited seats available - we'll contact you for confirmation</li>
+              <li>⚠️ <strong>Limited seats available</strong> - we'll contact you for confirmation</li>
               <li>All events should be family-friendly and appropriate for all ages</li>
               <li>Our cultural team will organize participants into groups based on interests</li>
               <li>Rehearsal schedules will be shared after team formation</li>
@@ -345,7 +441,7 @@ const CulturalEvents: React.FC = () => {
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || selectedEvents.length === 0}
             className="w-full bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-purple-600 hover:to-violet-600 dark:hover:from-purple-700 dark:hover:to-violet-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {isSubmitting ? (
