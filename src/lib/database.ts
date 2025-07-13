@@ -42,17 +42,62 @@ export const malayaleeRegistrations = {
   },
 
   async delete(id: number) {
-    console.log('Deleting malayalee registration with ID:', id);
+    console.log('🗑️ [MALAYALEE] === STARTING DELETE PROCESS ===');
+    console.log('🗑️ [MALAYALEE] Input ID:', id);
+    console.log('🗑️ [MALAYALEE] ID type:', typeof id);
+    console.log('🗑️ [MALAYALEE] ID value check:', { id, isNumber: !isNaN(id), isInteger: Number.isInteger(id) });
+    
+    // Validate ID
+    if (!id || isNaN(id) || !Number.isInteger(id)) {
+      console.error('🗑️ [MALAYALEE] Invalid ID provided:', id);
+      throw new Error(`Invalid ID: ${id}. Must be a valid integer.`);
+    }
+
+    // First check if the record exists
+    console.log('🗑️ [MALAYALEE] Checking if record exists...');
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('malayalee_registrations')
+      .select('id, full_name, email')
+      .eq('id', id)
+      .single();
+    
+    console.log('🗑️ [MALAYALEE] Existence check result:', { existingRecord, checkError });
+    
+    if (checkError) {
+      console.error('🗑️ [MALAYALEE] Error checking record existence:', checkError);
+      if (checkError.code === 'PGRST116') {
+        throw new Error(`Record with ID ${id} not found`);
+      }
+      throw new Error(`Failed to verify record: ${checkError.message}`);
+    }
+    
+    if (!existingRecord) {
+      console.error('🗑️ [MALAYALEE] No record found with ID:', id);
+      throw new Error(`Record with ID ${id} not found`);
+    }
+    
+    console.log('🗑️ [MALAYALEE] Found record to delete:', existingRecord);
+    console.log('🗑️ [MALAYALEE] Proceeding with deletion...');
+    
     const { error } = await supabase
       .from('malayalee_registrations')
       .delete()
       .eq('id', id);
     
+    console.log('🗑️ [MALAYALEE] Delete operation result:', { error });
+    
     if (error) {
-      console.error('Database delete error:', error);
-      throw error;
+      console.error('🗑️ [MALAYALEE] Database delete error:', error);
+      console.error('🗑️ [MALAYALEE] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Failed to delete malayalee registration: ${error.message}`);
     }
-    console.log('Malayalee registration deleted successfully');
+    
+    console.log('🗑️ [MALAYALEE] === DELETE SUCCESSFUL ===');
     return true;
   }
 };
@@ -92,34 +137,62 @@ export const sadyaRegistrations = {
   },
 
   async delete(id: number) {
-    console.log('🗑️ [SADYA] Starting deletion for ID:', id);
+    console.log('🗑️ [SADYA] === STARTING DELETE PROCESS ===');
+    console.log('🗑️ [SADYA] Input ID:', id);
     console.log('🗑️ [SADYA] ID type:', typeof id);
+    console.log('🗑️ [SADYA] ID value check:', { id, isNumber: !isNaN(id), isInteger: Number.isInteger(id) });
+    
+    // Validate ID
+    if (!id || isNaN(id) || !Number.isInteger(id)) {
+      console.error('🗑️ [SADYA] Invalid ID provided:', id);
+      throw new Error(`Invalid ID: ${id}. Must be a valid integer.`);
+    }
     
     // First check if the record exists
+    console.log('🗑️ [SADYA] Checking if record exists...');
     const { data: existingRecord, error: checkError } = await supabase
       .from('sadya_registrations')
-      .select('id, full_name, registration_id')
+      .select('id, full_name, registration_id, email')
       .eq('id', id)
       .single();
     
+    console.log('🗑️ [SADYA] Existence check result:', { existingRecord, checkError });
+    
     if (checkError) {
       console.error('🗑️ [SADYA] Error checking record existence:', checkError);
-      throw new Error(`Record not found: ${checkError.message}`);
+      if (checkError.code === 'PGRST116') {
+        throw new Error(`Record with ID ${id} not found`);
+      }
+      throw new Error(`Failed to verify record: ${checkError.message}`);
+    }
+    
+    if (!existingRecord) {
+      console.error('🗑️ [SADYA] No record found with ID:', id);
+      throw new Error(`Record with ID ${id} not found`);
     }
     
     console.log('🗑️ [SADYA] Found record to delete:', existingRecord);
+    console.log('🗑️ [SADYA] Proceeding with deletion...');
     
     const { error } = await supabase
       .from('sadya_registrations')
       .delete()
       .eq('id', id);
     
+    console.log('🗑️ [SADYA] Delete operation result:', { error });
+    
     if (error) {
       console.error('🗑️ [SADYA] Database delete error:', error);
+      console.error('🗑️ [SADYA] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
       throw new Error(`Failed to delete sadya registration: ${error.message}`);
     }
     
-    console.log('🗑️ [SADYA] Sadya registration deleted successfully');
+    console.log('🗑️ [SADYA] === DELETE SUCCESSFUL ===');
     return true;
   }
 };
@@ -159,21 +232,42 @@ export const thiruvathiraRegistrations = {
   },
 
   async delete(id: number) {
-    console.log('🗑️ [THIRUVATHIRA] Starting deletion for ID:', id);
+    console.log('🗑️ [THIRUVATHIRA] === STARTING DELETE PROCESS ===');
+    console.log('🗑️ [THIRUVATHIRA] Input ID:', id);
+    console.log('🗑️ [THIRUVATHIRA] ID type:', typeof id);
+    console.log('🗑️ [THIRUVATHIRA] ID value check:', { id, isNumber: !isNaN(id), isInteger: Number.isInteger(id) });
+    
+    // Validate ID
+    if (!id || isNaN(id) || !Number.isInteger(id)) {
+      console.error('🗑️ [THIRUVATHIRA] Invalid ID provided:', id);
+      throw new Error(`Invalid ID: ${id}. Must be a valid integer.`);
+    }
     
     // First check if the record exists
+    console.log('🗑️ [THIRUVATHIRA] Checking if record exists...');
     const { data: existingRecord, error: checkError } = await supabase
       .from('thiruvathira_registrations')
-      .select('id, full_name')
+      .select('id, full_name, email')
       .eq('id', id)
       .single();
     
+    console.log('🗑️ [THIRUVATHIRA] Existence check result:', { existingRecord, checkError });
+    
     if (checkError) {
       console.error('🗑️ [THIRUVATHIRA] Error checking record existence:', checkError);
-      throw new Error(`Record not found: ${checkError.message}`);
+      if (checkError.code === 'PGRST116') {
+        throw new Error(`Record with ID ${id} not found`);
+      }
+      throw new Error(`Failed to verify record: ${checkError.message}`);
+    }
+    
+    if (!existingRecord) {
+      console.error('🗑️ [THIRUVATHIRA] No record found with ID:', id);
+      throw new Error(`Record with ID ${id} not found`);
     }
     
     console.log('🗑️ [THIRUVATHIRA] Found record to delete:', existingRecord);
+    console.log('🗑️ [THIRUVATHIRA] Proceeding with deletion...');
     
     const { error } = await supabase
       .from('thiruvathira_registrations')
