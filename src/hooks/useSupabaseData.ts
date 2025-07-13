@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import type { 
   MalayaleeRegistration, 
@@ -5,7 +6,7 @@ import type {
   ThiruvathiraRegistration, 
   CulturalRegistration, 
   Donation 
-} from './supabase';
+} from '../lib/supabase';
 
 // Malayalee Registrations
 export const malayaleeRegistrations = {
@@ -463,4 +464,75 @@ export const getStatistics = async () => {
       totalDonationAmount: 0
     };
   }
+};
+
+// Custom hook for managing all Supabase data
+export const useSupabaseData = () => {
+  const [data, setData] = useState({
+    malayaleeRegistrations: [],
+    sadyaRegistrations: [],
+    thiruvathiraRegistrations: [],
+    culturalRegistrations: [],
+    donations: [],
+    statistics: {
+      malayaleeRegistrations: 0,
+      sadyaRegistrations: 0,
+      totalSadyaCount: 0,
+      thiruvathiraRegistrations: 0,
+      culturalRegistrations: 0,
+      totalDonations: 0,
+      totalDonationAmount: 0
+    }
+  });
+  
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchAllData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const [
+        malayalee,
+        sadya,
+        thiruvathira,
+        cultural,
+        donationsList,
+        stats
+      ] = await Promise.all([
+        malayaleeRegistrations.getAll(),
+        sadyaRegistrations.getAll(),
+        thiruvathiraRegistrations.getAll(),
+        culturalRegistrations.getAll(),
+        donations.getAll(),
+        getStatistics()
+      ]);
+
+      setData({
+        malayaleeRegistrations: malayalee,
+        sadyaRegistrations: sadya,
+        thiruvathiraRegistrations: thiruvathira,
+        culturalRegistrations: cultural,
+        donations: donationsList,
+        statistics: stats
+      });
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
+  return {
+    data,
+    loading,
+    error,
+    refetch: fetchAllData
+  };
 };
