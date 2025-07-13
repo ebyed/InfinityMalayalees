@@ -27,12 +27,16 @@ const Navigation: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-18">
           <Link to="/" className="flex items-center space-x-3">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-xl border-2 border-white dark:border-charcoal-700 transition-all duration-300 ${
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-xl border-2 border-white dark:border-charcoal-700 transition-all duration-300 overflow-hidden ${
               isOnamPage 
                 ? 'bg-gradient-to-br from-terracotta-500 via-terracotta-600 to-terracotta-700' 
                 : 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-sapphire-700'
             }`}>
-              <KeralaLogoIcon className="text-white" size={28} />
+              <img 
+                src="/Gemini_Generated_Image_dy77j8dy77j8dy77.png" 
+                alt="Infinity Malayalees Logo" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="flex flex-col">
               <span className={`font-bold text-xl bg-clip-text text-transparent transition-all duration-300 ${
