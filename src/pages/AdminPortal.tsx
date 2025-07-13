@@ -5,7 +5,7 @@ import type {
   ThiruvathiraRegistration, 
   CulturalRegistration, 
   Donation 
-} from './supabase';
+} from '../lib/supabase';
 
 // Malayalee Registrations
 export const malayaleeRegistrations = {
