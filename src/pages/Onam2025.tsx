@@ -67,9 +67,6 @@ const Onam2025: React.FC = () => {
             <div className="bg-sand-50/80 dark:bg-charcoal-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-terracotta-400 dark:border-terracotta-400 shadow-xl">
               <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-4">🌺 Onam Ashamsakal! 🌺</h3>
               <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
-                Welcome to Aarppo – Our Ultimate Onam Celebration! 🌸🌾
-              </p>
-              <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
                 We, the Infinity Malayalees, are here to celebrate Onam—close to our hearts and full of joy!
               </p>
               <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
