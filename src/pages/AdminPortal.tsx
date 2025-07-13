@@ -1,466 +1,466 @@
-import React, { useState, useEffect } from 'react';
-import { useSupabaseData } from '../hooks/useSupabaseData';
-import { adminAuth } from '../lib/auth';
-import { 
-  malayaleeRegistrations, 
-  sadyaRegistrations, 
-  thiruvathiraRegistrations, 
-  culturalRegistrations, 
-  donations 
-} from '../lib/database';
-import { Users, Calendar, Heart, Music, Gift, Trash2, LogOut, Eye, EyeOff } from 'lucide-react';
+import { supabase } from './supabase';
+import type { 
+  MalayaleeRegistration, 
+  SadyaRegistration, 
+  ThiruvathiraRegistration, 
+  CulturalRegistration, 
+  Donation 
+} from './supabase';
 
-const AdminPortal: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [loginError, setLoginError] = useState('');
-  const [activeTab, setActiveTab] = useState('overview');
-  const [isLoading, setIsLoading] = useState(false);
+// Malayalee Registrations
+export const malayaleeRegistrations = {
+  async create(data: Omit<MalayaleeRegistration, 'id' | 'created_at'>) {
+    const { data: result, error } = await supabase
+      .from('malayalee_registrations')
+      .insert([data])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return result;
+  },
 
-  const { data, isLoading: dataLoading, error, refetch } = useSupabaseData();
+  async getAll() {
+    const { data, error } = await supabase
+      .from('malayalee_registrations')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
 
-  const {
-    malayaleeRegistrations: malayaleeData = [],
-    sadyaRegistrations: sadyaData = [],
-    thiruvathiraRegistrations: thiruvathiraData = [],
-    culturalRegistrations: culturalData = [],
-    donations: donationsData = [],
-    statistics = {}
-  } = data || {};
+  async getByEmail(email: string) {
+    const { data, error } = await supabase
+      .from('malayalee_registrations')
+      .select('*')
+      .eq('email', email)
+      .single();
+    
+    if (error && error.code !== 'PGRST116') throw error;
+    return data;
+  },
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      const authStatus = await adminAuth.isAuthenticated();
-      setIsAuthenticated(authStatus);
-    };
-    checkAuth();
-  }, []);
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setLoginError('');
-
-    try {
-      const success = await adminAuth.login(username, password);
-      if (success) {
-        setIsAuthenticated(true);
-        await refetch();
-      } else {
-        setLoginError('Invalid credentials');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      setLoginError('Login failed. Please try again.');
-    } finally {
-      setIsLoading(false);
+  async delete(id: number) {
+    console.log('🗑️ [MALAYALEE] === STARTING DELETE PROCESS ===');
+    console.log('🗑️ [MALAYALEE] Input ID:', id);
+    console.log('🗑️ [MALAYALEE] ID type:', typeof id);
+    console.log('🗑️ [MALAYALEE] ID value check:', { id, isNumber: !isNaN(id), isInteger: Number.isInteger(id) });
+    
+    // Validate ID
+    if (!id || isNaN(id) || !Number.isInteger(id)) {
+      console.error('🗑️ [MALAYALEE] Invalid ID provided:', id);
+      throw new Error(`Invalid ID: ${id}. Must be a valid integer.`);
     }
-  };
 
-  const handleLogout = async () => {
-    await adminAuth.logout();
-    setIsAuthenticated(false);
-    setUsername('');
-    setPassword('');
-  };
-
-  const handleDelete = async (type: string, id: number) => {
-    if (!confirm('Are you sure you want to delete this record?')) return;
-
-    try {
-      switch (type) {
-        case 'malayalee':
-          await malayaleeRegistrations.delete(id);
-          break;
-        case 'sadya':
-          await sadyaRegistrations.delete(id);
-          break;
-        case 'thiruvathira':
-          await thiruvathiraRegistrations.delete(id);
-          break;
-        case 'cultural':
-          await culturalRegistrations.delete(id);
-          break;
-        case 'donation':
-          await donations.delete(id);
-          break;
+    // First check if the record exists
+    console.log('🗑️ [MALAYALEE] Checking if record exists...');
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('malayalee_registrations')
+      .select('id, full_name, email')
+      .eq('id', id)
+      .single();
+    
+    console.log('🗑️ [MALAYALEE] Existence check result:', { existingRecord, checkError });
+    
+    if (checkError) {
+      console.error('🗑️ [MALAYALEE] Error checking record existence:', checkError);
+      if (checkError.code === 'PGRST116') {
+        throw new Error(`Record with ID ${id} not found`);
       }
-      await refetch();
-    } catch (error) {
-      console.error('Delete error:', error);
-      alert('Failed to delete record');
+      throw new Error(`Failed to verify record: ${checkError.message}`);
     }
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin Portal</h1>
-            <p className="text-gray-600">Sign in to access the dashboard</p>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Username
-              </label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 pr-10"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-400" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {loginError && (
-              <div className="text-red-600 text-sm text-center">{loginError}</div>
-            )}
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50"
-            >
-              {isLoading ? 'Signing in...' : 'Sign In'}
-            </button>
-          </form>
-        </div>
-      </div>
-    );
+    
+    if (!existingRecord) {
+      console.error('🗑️ [MALAYALEE] No record found with ID:', id);
+      throw new Error(`Record with ID ${id} not found`);
+    }
+    
+    console.log('🗑️ [MALAYALEE] Found record to delete:', existingRecord);
+    console.log('🗑️ [MALAYALEE] Proceeding with deletion...');
+    
+    const { error } = await supabase
+      .from('malayalee_registrations')
+      .delete()
+      .eq('id', id);
+    
+    console.log('🗑️ [MALAYALEE] Delete operation result:', { error });
+    
+    if (error) {
+      console.error('🗑️ [MALAYALEE] Database delete error:', error);
+      console.error('🗑️ [MALAYALEE] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Failed to delete malayalee registration: ${error.message}`);
+    }
+    
+    console.log('🗑️ [MALAYALEE] === DELETE SUCCESSFUL ===');
+    return true;
   }
-
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: Users },
-    { id: 'malayalee', label: 'Malayalee Registrations', icon: Users },
-    { id: 'sadya', label: 'Sadya Registrations', icon: Calendar },
-    { id: 'thiruvathira', label: 'Thiruvathira', icon: Music },
-    { id: 'cultural', label: 'Cultural Events', icon: Heart },
-    { id: 'donations', label: 'Donations', icon: Gift },
-  ];
-
-  const StatCard = ({ title, value, icon: Icon, color }: any) => (
-    <div className={`bg-white rounded-lg shadow-md p-6 border-l-4 ${color}`}>
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium text-gray-600">{title}</p>
-          <p className="text-2xl font-bold text-gray-900">{value}</p>
-        </div>
-        <Icon className="h-8 w-8 text-gray-400" />
-      </div>
-    </div>
-  );
-
-  const DataTable = ({ data, type, columns }: any) => (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              {columns.map((column: any) => (
-                <th key={column.key} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {column.label}
-                </th>
-              ))}
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {data.map((item: any) => (
-              <tr key={item.id} className="hover:bg-gray-50">
-                {columns.map((column: any) => (
-                  <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {column.render ? column.render(item[column.key], item) : item[column.key]}
-                  </td>
-                ))}
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button
-                    onClick={() => handleDelete(type, item.id)}
-                    className="text-red-600 hover:text-red-900"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-
-  const renderTabContent = () => {
-    if (dataLoading) {
-      return (
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-500"></div>
-        </div>
-      );
-    }
-
-    switch (activeTab) {
-      case 'overview':
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <StatCard
-              title="Malayalee Registrations"
-              value={statistics.malayaleeRegistrations || 0}
-              icon={Users}
-              color="border-blue-500"
-            />
-            <StatCard
-              title="Sadya Registrations"
-              value={statistics.sadyaRegistrations || 0}
-              icon={Calendar}
-              color="border-green-500"
-            />
-            <StatCard
-              title="Total Sadya Count"
-              value={statistics.totalSadyaCount || 0}
-              icon={Calendar}
-              color="border-green-600"
-            />
-            <StatCard
-              title="Thiruvathira Registrations"
-              value={statistics.thiruvathiraRegistrations || 0}
-              icon={Music}
-              color="border-purple-500"
-            />
-            <StatCard
-              title="Cultural Registrations"
-              value={statistics.culturalRegistrations || 0}
-              icon={Heart}
-              color="border-red-500"
-            />
-            <StatCard
-              title="Total Donations"
-              value={`₹${statistics.totalDonationAmount || 0}`}
-              icon={Gift}
-              color="border-yellow-500"
-            />
-          </div>
-        );
-
-      case 'malayalee':
-        return (
-          <DataTable
-            data={malayaleeData}
-            type="malayalee"
-            columns={[
-              { key: 'full_name', label: 'Name' },
-              { key: 'email', label: 'Email' },
-              { key: 'phone', label: 'Phone' },
-              { key: 'flat_number', label: 'Flat Number' },
-              { key: 'native_place', label: 'Native Place' },
-              { key: 'family_members', label: 'Family Members' },
-              { 
-                key: 'volunteer_interest', 
-                label: 'Volunteer Interest',
-                render: (value: boolean) => value ? 'Yes' : 'No'
-              },
-              { 
-                key: 'created_at', 
-                label: 'Registered',
-                render: (value: string) => new Date(value).toLocaleDateString()
-              }
-            ]}
-          />
-        );
-
-      case 'sadya':
-        return (
-          <DataTable
-            data={sadyaData}
-            type="sadya"
-            columns={[
-              { key: 'full_name', label: 'Name' },
-              { key: 'email', label: 'Email' },
-              { key: 'phone', label: 'Phone' },
-              { key: 'flat_number', label: 'Flat Number' },
-              { key: 'sadya_count', label: 'Sadya Count' },
-              { key: 'total_amount', label: 'Amount', render: (value: number) => `₹${value}` },
-              { key: 'registration_id', label: 'Registration ID' },
-              { 
-                key: 'verified', 
-                label: 'Verified',
-                render: (value: boolean) => (
-                  <span className={`px-2 py-1 rounded-full text-xs ${value ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                    {value ? 'Verified' : 'Pending'}
-                  </span>
-                )
-              },
-              { 
-                key: 'created_at', 
-                label: 'Registered',
-                render: (value: string) => new Date(value).toLocaleDateString()
-              }
-            ]}
-          />
-        );
-
-      case 'thiruvathira':
-        return (
-          <DataTable
-            data={thiruvathiraData}
-            type="thiruvathira"
-            columns={[
-              { key: 'full_name', label: 'Name' },
-              { key: 'email', label: 'Email' },
-              { key: 'phone', label: 'Phone' },
-              { key: 'flat_number', label: 'Flat Number' },
-              { key: 'age', label: 'Age' },
-              { key: 'experience', label: 'Experience' },
-              { key: 'emergency_contact', label: 'Emergency Contact' },
-              { key: 'emergency_phone', label: 'Emergency Phone' },
-              { 
-                key: 'created_at', 
-                label: 'Registered',
-                render: (value: string) => new Date(value).toLocaleDateString()
-              }
-            ]}
-          />
-        );
-
-      case 'cultural':
-        return (
-          <DataTable
-            data={culturalData}
-            type="cultural"
-            columns={[
-              { key: 'participant_name', label: 'Participant' },
-              { key: 'email', label: 'Email' },
-              { key: 'phone', label: 'Phone' },
-              { key: 'flat_number', label: 'Flat Number' },
-              { key: 'event_category', label: 'Category' },
-              { key: 'event_title', label: 'Event Title' },
-              { key: 'participant_count', label: 'Participants' },
-              { key: 'age', label: 'Age' },
-              { key: 'gender', label: 'Gender' },
-              { 
-                key: 'created_at', 
-                label: 'Registered',
-                render: (value: string) => new Date(value).toLocaleDateString()
-              }
-            ]}
-          />
-        );
-
-      case 'donations':
-        return (
-          <DataTable
-            data={donationsData}
-            type="donation"
-            columns={[
-              { key: 'donor_name', label: 'Donor Name' },
-              { key: 'email', label: 'Email' },
-              { key: 'phone', label: 'Phone' },
-              { key: 'flat_number', label: 'Flat Number' },
-              { key: 'donation_type', label: 'Type' },
-              { key: 'donation_amount', label: 'Amount', render: (value: number) => `₹${value}` },
-              { key: 'transaction_id', label: 'Transaction ID' },
-              { 
-                key: 'verified', 
-                label: 'Verified',
-                render: (value: boolean) => (
-                  <span className={`px-2 py-1 rounded-full text-xs ${value ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                    {value ? 'Verified' : 'Pending'}
-                  </span>
-                )
-              },
-              { 
-                key: 'created_at', 
-                label: 'Donated',
-                render: (value: string) => new Date(value).toLocaleDateString()
-              }
-            ]}
-          />
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-            <button
-              onClick={handleLogout}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900"
-            >
-              <LogOut className="h-4 w-4" />
-              <span>Logout</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex space-x-1 mb-8 overflow-x-auto">
-          {tabs.map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg whitespace-nowrap ${
-                  activeTab === tab.id
-                    ? 'bg-green-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <Icon className="h-4 w-4" />
-                <span>{tab.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-            Error loading data: {error.message}
-          </div>
-        )}
-
-        {renderTabContent()}
-      </div>
-    </div>
-  );
 };
 
-export default AdminPortal;
+// Sadya Registrations
+export const sadyaRegistrations = {
+  async create(data: Omit<SadyaRegistration, 'id' | 'created_at'>) {
+    const { data: result, error } = await supabase
+      .from('sadya_registrations')
+      .insert([data])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return result;
+  },
+
+  async getAll() {
+    const { data, error } = await supabase
+      .from('sadya_registrations')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async getByRegistrationId(registrationId: string) {
+    const { data, error } = await supabase
+      .from('sadya_registrations')
+      .select('*')
+      .eq('registration_id', registrationId)
+      .single();
+    
+    if (error && error.code !== 'PGRST116') throw error;
+    return data;
+  },
+
+  async delete(id: number) {
+    console.log('🗑️ [SADYA] === STARTING DELETE PROCESS ===');
+    console.log('🗑️ [SADYA] Input ID:', id);
+    console.log('🗑️ [SADYA] ID type:', typeof id);
+    console.log('🗑️ [SADYA] ID value check:', { id, isNumber: !isNaN(id), isInteger: Number.isInteger(id) });
+    
+    // Validate ID
+    if (!id || isNaN(id) || !Number.isInteger(id)) {
+      console.error('🗑️ [SADYA] Invalid ID provided:', id);
+      throw new Error(`Invalid ID: ${id}. Must be a valid integer.`);
+    }
+    
+    // First check if the record exists
+    console.log('🗑️ [SADYA] Checking if record exists...');
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('sadya_registrations')
+      .select('id, full_name, registration_id, email')
+      .eq('id', id)
+      .single();
+    
+    console.log('🗑️ [SADYA] Existence check result:', { existingRecord, checkError });
+    
+    if (checkError) {
+      console.error('🗑️ [SADYA] Error checking record existence:', checkError);
+      if (checkError.code === 'PGRST116') {
+        throw new Error(`Record with ID ${id} not found`);
+      }
+      throw new Error(`Failed to verify record: ${checkError.message}`);
+    }
+    
+    if (!existingRecord) {
+      console.error('🗑️ [SADYA] No record found with ID:', id);
+      throw new Error(`Record with ID ${id} not found`);
+    }
+    
+    console.log('🗑️ [SADYA] Found record to delete:', existingRecord);
+    console.log('🗑️ [SADYA] Proceeding with deletion...');
+    
+    const { error } = await supabase
+      .from('sadya_registrations')
+      .delete()
+      .eq('id', id);
+    
+    console.log('🗑️ [SADYA] Delete operation result:', { error });
+    
+    if (error) {
+      console.error('🗑️ [SADYA] Database delete error:', error);
+      console.error('🗑️ [SADYA] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Failed to delete sadya registration: ${error.message}`);
+    }
+    
+    console.log('🗑️ [SADYA] === DELETE SUCCESSFUL ===');
+    return true;
+  }
+};
+
+// Thiruvathira Registrations
+export const thiruvathiraRegistrations = {
+  async create(data: Omit<ThiruvathiraRegistration, 'id' | 'created_at'>) {
+    const { data: result, error } = await supabase
+      .from('thiruvathira_registrations')
+      .insert([data])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return result;
+  },
+
+  async getAll() {
+    const { data, error } = await supabase
+      .from('thiruvathira_registrations')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async getByEmail(email: string) {
+    const { data, error } = await supabase
+      .from('thiruvathira_registrations')
+      .select('*')
+      .eq('email', email)
+      .maybeSingle();
+    
+    if (error) throw error;
+    return data;
+  },
+
+  async delete(id: number) {
+    console.log('🗑️ [THIRUVATHIRA] === STARTING DELETE PROCESS ===');
+    console.log('🗑️ [THIRUVATHIRA] Input ID:', id);
+    console.log('🗑️ [THIRUVATHIRA] ID type:', typeof id);
+    console.log('🗑️ [THIRUVATHIRA] ID value check:', { id, isNumber: !isNaN(id), isInteger: Number.isInteger(id) });
+    
+    // Validate ID
+    if (!id || isNaN(id) || !Number.isInteger(id)) {
+      console.error('🗑️ [THIRUVATHIRA] Invalid ID provided:', id);
+      throw new Error(`Invalid ID: ${id}. Must be a valid integer.`);
+    }
+    
+    // First check if the record exists
+    console.log('🗑️ [THIRUVATHIRA] Checking if record exists...');
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('thiruvathira_registrations')
+      .select('id, full_name, email')
+      .eq('id', id)
+      .single();
+    
+    console.log('🗑️ [THIRUVATHIRA] Existence check result:', { existingRecord, checkError });
+    
+    if (checkError) {
+      console.error('🗑️ [THIRUVATHIRA] Error checking record existence:', checkError);
+      if (checkError.code === 'PGRST116') {
+        throw new Error(`Record with ID ${id} not found`);
+      }
+      throw new Error(`Failed to verify record: ${checkError.message}`);
+    }
+    
+    if (!existingRecord) {
+      console.error('🗑️ [THIRUVATHIRA] No record found with ID:', id);
+      throw new Error(`Record with ID ${id} not found`);
+    }
+    
+    console.log('🗑️ [THIRUVATHIRA] Found record to delete:', existingRecord);
+    console.log('🗑️ [THIRUVATHIRA] Proceeding with deletion...');
+    
+    const { error } = await supabase
+      .from('thiruvathira_registrations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('🗑️ [THIRUVATHIRA] Database delete error:', error);
+      throw new Error(`Failed to delete thiruvathira registration: ${error.message}`);
+    }
+    
+    console.log('🗑️ [THIRUVATHIRA] Thiruvathira registration deleted successfully');
+    return true;
+  }
+};
+
+// Cultural Registrations
+export const culturalRegistrations = {
+  async create(data: Omit<CulturalRegistration, 'id' | 'created_at'>) {
+    const { data: result, error } = await supabase
+      .from('cultural_registrations')
+      .insert([data])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return result;
+  },
+
+  async getAll() {
+    const { data, error } = await supabase
+      .from('cultural_registrations')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async getByCategory(category: string) {
+    const { data, error } = await supabase
+      .from('cultural_registrations')
+      .select('*')
+      .eq('event_category', category)
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async delete(id: number) {
+    console.log('🗑️ [CULTURAL] Starting deletion for ID:', id);
+    console.log('🗑️ [CULTURAL] ID type:', typeof id);
+    console.log('🗑️ [CULTURAL] ID value:', id);
+    
+    // First check if the record exists
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('cultural_registrations')
+      .select('id, participant_name')
+      .eq('id', id)
+      .single();
+    
+    if (checkError) {
+      console.error('🗑️ [CULTURAL] Error checking record existence:', checkError);
+      throw new Error(`Record not found: ${checkError.message}`);
+    }
+    
+    console.log('🗑️ [CULTURAL] Found record to delete:', existingRecord);
+    
+    const { error } = await supabase
+      .from('cultural_registrations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('🗑️ [CULTURAL] Database delete error:', error);
+      console.error('🗑️ [CULTURAL] Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Failed to delete cultural registration: ${error.message}`);
+    }
+    
+    console.log('🗑️ [CULTURAL] Cultural registration deleted successfully');
+    return true;
+  }
+};
+
+// Donations
+export const donations = {
+  async create(data: Omit<Donation, 'id' | 'created_at'>) {
+    const { data: result, error } = await supabase
+      .from('donations')
+      .insert([data])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return result;
+  },
+
+  async getAll() {
+    const { data, error } = await supabase
+      .from('donations')
+      .select('*')
+      .order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async getTotalAmount() {
+    const { data, error } = await supabase
+      .from('donations')
+      .select('donation_amount');
+    
+    if (error) throw error;
+    return (data || []).reduce((sum, donation) => sum + donation.donation_amount, 0);
+  },
+
+  async delete(id: number) {
+    console.log('🗑️ [DONATION] Starting deletion for ID:', id);
+    
+    // First check if the record exists
+    const { data: existingRecord, error: checkError } = await supabase
+      .from('donations')
+      .select('id, donor_name')
+      .eq('id', id)
+      .single();
+    
+    if (checkError) {
+      console.error('🗑️ [DONATION] Error checking record existence:', checkError);
+      throw new Error(`Record not found: ${checkError.message}`);
+    }
+    
+    console.log('🗑️ [DONATION] Found record to delete:', existingRecord);
+    
+    const { error } = await supabase
+      .from('donations')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error('🗑️ [DONATION] Database delete error:', error);
+      throw new Error(`Failed to delete donation: ${error.message}`);
+    }
+    
+    console.log('🗑️ [DONATION] Donation deleted successfully');
+    return true;
+  }
+};
+
+// Statistics
+export const getStatistics = async () => {
+  try {
+    const [
+      malayaleeCount,
+      sadyaData,
+      thiruvathiraCount,
+      culturalCount,
+      donationData
+    ] = await Promise.all([
+      supabase.from('malayalee_registrations').select('id', { count: 'exact', head: true }),
+      supabase.from('sadya_registrations').select('sadya_count'),
+      supabase.from('thiruvathira_registrations').select('id', { count: 'exact', head: true }),
+      supabase.from('cultural_registrations').select('id', { count: 'exact', head: true }),
+      supabase.from('donations').select('donation_amount')
+    ]);
+
+    const totalSadyaCount = (sadyaData.data || []).reduce((sum, reg) => sum + reg.sadya_count, 0);
+    const totalDonationAmount = (donationData.data || []).reduce((sum, don) => sum + don.donation_amount, 0);
+
+    return {
+      malayaleeRegistrations: malayaleeCount.count || 0,
+      sadyaRegistrations: sadyaData.data?.length || 0,
+      totalSadyaCount,
+      thiruvathiraRegistrations: thiruvathiraCount.count || 0,
+      culturalRegistrations: culturalCount.count || 0,
+      totalDonations: donationData.data?.length || 0,
+      totalDonationAmount
+    };
+  } catch (error) {
+    console.error('Error fetching statistics:', error);
+    return {
+      malayaleeRegistrations: 0,
+      sadyaRegistrations: 0,
+      totalSadyaCount: 0,
+      thiruvathiraRegistrations: 0,
+      culturalRegistrations: 0,
+      totalDonations: 0,
+      totalDonationAmount: 0
+    };
+  }
+};
