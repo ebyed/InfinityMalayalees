@@ -64,7 +64,7 @@ const Onam2025: React.FC = () => {
               and be part of the grandest Malayalam festival at Ajmera Infinity.
             </p>
             
-            <div className="bg-sand-50/80 dark:bg-charcoal-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-terracotta-400 dark:border-terracotta-400 shadow-xl">
+            {/* <div className="bg-sand-50/80 dark:bg-charcoal-800/80 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto border-2 border-terracotta-400 dark:border-terracotta-400 shadow-xl">
               <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-4">🌺 Onam Ashamsakal! 🌺</h3>
               <p className="text-stone-700 dark:text-stone-200 font-medium mb-4">
                 We, the Infinity Malayalees, are here to celebrate Onam—close to our hearts and full of joy!
@@ -78,7 +78,7 @@ const Onam2025: React.FC = () => {
               <p className="text-stone-700 dark:text-stone-200 font-medium mt-4">
                 Let's celebrate together—with smiles on our faces, love in our hearts, and the spirit of Onam in every moment!
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
