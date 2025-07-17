@@ -150,20 +150,6 @@ const MegaThiruvathiraRegistration: React.FC = () => {
                 the Thiruvathira festival. It's a graceful dance form that celebrates femininity, 
                 devotion, and the beauty of Kerala's cultural heritage.
               </p>
-              <ul className="text-gray-700 dark:text-gray-300 space-y-2 font-medium">
-                <li className="flex items-center space-x-2">
-                  <Star size={16} className="text-pink-500 dark:text-pink-400" />
-                  <span>Performed in a circle formation</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <Star size={16} className="text-pink-500 dark:text-pink-400" />
-                  <span>Graceful hand movements and steps</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <Star size={16} className="text-pink-500 dark:text-pink-400" />
-                  <span>Traditional Malayalam songs</span>
-                </li>
-              </ul>
             </div>
             
             <div>
