@@ -403,7 +403,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
               </li>
               <li className="flex items-start space-x-2">
                 <span className="text-rose-500 dark:text-rose-400 mt-1">•</span>
-                <span>Registration closes on September 5, 2025</span>
+                <span>Limited slots. Registration closes on September 5, 2025</span>
               </li>
             </ul>
           </div>
