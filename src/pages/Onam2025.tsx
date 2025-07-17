@@ -97,7 +97,11 @@ const Onam2025: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+                <div
+                  onClick={() => setActiveTab('sadya')}
+                  className="group cursor-pointer bg-sand-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-terracotta-400 dark:border-terracotta-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                >
+                  
                   <div className="w-16 h-16 bg-gradient-to-br from-plum-500 to-plum-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
                     <CulturalIcon size={32} className="text-white" />
                   </div>
