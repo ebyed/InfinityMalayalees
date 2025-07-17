@@ -175,11 +175,11 @@ const ThiruvathiraRegistration: React.FC = () => {
 
       {/* About Thiruvathira */}
       <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-6 mb-8 border-2 border-plum-300 dark:border-plum-500">
-        <h3 className="text-xl font-bold text-plum-800 dark:text-plum-300 mb-3">About Mega Thiruvathira</h3>
-        <p className="text-plum-700 dark:text-plum-300 font-medium mb-4">
+        {/* <h3 className="text-xl font-bold text-plum-800 dark:text-plum-300 mb-3">What is Mega Thiruvathira</h3> */}
+        {/* <p className="text-plum-700 dark:text-plum-300 font-medium mb-4">
           Thiruvathira is a traditional group dance performed by women in Kerala. It's a graceful dance form 
           that celebrates femininity and Kerala's cultural heritage. Maximum 100 participants can register.
-        </p>
+        </p> */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
             <p className="font-semibold text-plum-800 dark:text-plum-300">Performance Date:</p>
