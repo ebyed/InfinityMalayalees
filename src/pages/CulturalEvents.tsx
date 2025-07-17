@@ -203,7 +203,7 @@ const CulturalEvents: React.FC = () => {
         </p>
         <div className="mt-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500 max-w-2xl mx-auto">
           <p className="text-yellow-800 dark:text-yellow-300 font-medium text-center">
-            <strong>⚠️ Limited Seats Available!</strong><br />
+            <strong>⚠️ Limited Slots Available!</strong><br />
             We have limited seats for each event. We will contact you for confirmation after reviewing your registration.
           </p>
         </div>
