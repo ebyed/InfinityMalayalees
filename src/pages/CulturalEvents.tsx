@@ -23,13 +23,13 @@ const CulturalEvents: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const eventOptions = [
-    'Singing',
-    'Dancing', 
-    'Drama',
+    'Choreography',
+    'Group Song', 
+    'Group Dance',
+    'Acting',
     'Musical Instruments',
-    'Ramp walk',
-    'Decoration',
-    'Volunteer'
+    'Ramp Walk',
+    'Volunteering'
   ];
 
   const eventCategories = [
