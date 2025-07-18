@@ -12,7 +12,7 @@ const CulturalEvents: React.FC = () => {
     flatNumber: '',
     age: '',
     gender: '',
-    interestedEvents: [],
+    interestedEvents: [] as string[],
     remarks: ''
   });
 
@@ -61,12 +61,23 @@ const CulturalEvents: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     if (name === 'interestedEvents') {
-      const selectedOptions = Array.from((e.target as HTMLSelectElement).selectedOptions).map(opt => opt.value);
-      setFormData(prev => ({ ...prev, [name]: selectedOptions }));
+      const selectedOptions = formData.interestedEvents.includes(value)
+        ? formData.interestedEvents.filter(v => v !== value)
+        : [...formData.interestedEvents, value];
+      setFormData(prev => ({ ...prev, interestedEvents: selectedOptions }));
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
     if (error) setError(null);
+  };
+
+  const toggleCheckbox = (event: string) => {
+    setFormData(prev => ({
+      ...prev,
+      interestedEvents: prev.interestedEvents.includes(event)
+        ? prev.interestedEvents.filter(e => e !== event)
+        : [...prev.interestedEvents, event]
+    }));
   };
 
   if (isSubmitted) {
@@ -176,12 +187,22 @@ const CulturalEvents: React.FC = () => {
 
           <div>
             <label className="block text-sm font-medium text-yellow-800 mb-1">Events Interested In</label>
-            <select name="interestedEvents" value={formData.interestedEvents} onChange={handleChange} multiple required className="w-full border border-yellow-300 px-4 py-2 rounded h-32">
+            <div className="space-y-2 border border-yellow-300 rounded p-4">
               {eventOptions.map((event) => (
-                <option key={event} value={event}>{event}</option>
+                <label key={event} className="flex items-center space-x-2 text-yellow-800">
+                  <input
+                    type="checkbox"
+                    name="interestedEvents"
+                    value={event}
+                    checked={formData.interestedEvents.includes(event)}
+                    onChange={() => toggleCheckbox(event)}
+                    className="h-4 w-4 text-yellow-600 border-yellow-300 rounded"
+                  />
+                  <span>{event}</span>
+                </label>
               ))}
-            </select>
-            <p className="text-xs text-yellow-700 mt-1">Hold Ctrl (Windows) or Command (Mac) to select multiple</p>
+            </div>
+            <p className="text-xs text-yellow-700 mt-1">You may select multiple events.</p>
           </div>
 
           <div>
