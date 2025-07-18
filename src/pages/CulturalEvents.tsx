@@ -203,7 +203,7 @@ const CulturalEvents: React.FC = () => {
         </p>
         <div className="mt-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500 max-w-2xl mx-auto">
           <p className="text-yellow-800 dark:text-yellow-300 font-medium text-center">
-            <strong>⚠️ Limited Slots Available!</strong><br />
+            <strong Limited Slots Available!</strong><br />
             We have limited seats for each event. We will contact you for confirmation after reviewing your registration.
           </p>
         </div>
@@ -232,7 +232,7 @@ const CulturalEvents: React.FC = () => {
       <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
             <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
             <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
-              <li><strong>Limited slots available</strong> - we'll contact you for confirmation</li>
+              <li>>⚠️<strong>Limited slots available</strong> - we'll contact you for confirmation</li>
               <li>Our cultural team will organize participants into groups based on interests</li>
               <li>Rehearsal schedules will be shared after team formation</li>
               <li>Events include: Singing, Dancing, Drama, Musical Instruments, Ramp walk, Decoration, Volunteer</li>
