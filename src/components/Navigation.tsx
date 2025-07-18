@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Calendar, Settings, Info, Menu } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { KeralaLogoIcon } from './KeralaSVGIcons';
 
 const Navigation: React.FC = () => {
@@ -64,7 +63,7 @@ const Navigation: React.FC = () => {
                     ? isOnamPage
                       ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white shadow-lg border-2 border-terracotta-300'
                       : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 text-white shadow-lg border-2 border-gold-accent-300'
-                    : `text-stone-700 hover:shadow-md transition-all duration-300 ${
+                    : `text-stone-700 hover:shadow-md ${
                         isOnamPage
                           ? 'hover:text-terracotta-700 hover:bg-sand-100'
                           : 'hover:text-emerald-700 hover:bg-stone-100'
@@ -77,7 +76,7 @@ const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* Hamburger */}
+          {/* Mobile Hamburger */}
           <div className="md:hidden flex justify-end">
             <button
               onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,44 +88,38 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Nav Animated */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`md:hidden overflow-hidden border-t-2 ${
-              isOnamPage ? 'border-terracotta-200 bg-sand-50' : 'border-emerald-200 bg-stone-50'
-            }`}
-          >
-            <div className="px-4 py-3 space-y-1">
-              {navItems.map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-3 py-2 rounded-md text-base font-bold transition-all duration-300 ${
-                    location.pathname === path
-                      ? isOnamPage
-                        ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white shadow-lg'
-                        : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 text-white shadow-lg'
-                      : `text-stone-700 ${
-                          isOnamPage
-                            ? 'hover:text-terracotta-700 hover:bg-sand-100'
-                            : 'hover:text-emerald-700 hover:bg-stone-100'
-                        }`
-                  }`}
-                >
-                  <Icon size={18} />
-                  <span>{label}</span>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Nav with Tailwind animation */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        } border-t-2 ${
+          isOnamPage ? 'border-terracotta-200 bg-sand-50' : 'border-emerald-200 bg-stone-50'
+        }`}
+      >
+        <div className="px-4 py-3 space-y-1">
+          {navItems.map(({ path, label, icon: Icon }) => (
+            <Link
+              key={path}
+              to={path}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`flex items-center space-x-3 px-3 py-2 rounded-md text-base font-bold transition-all duration-300 ${
+                location.pathname === path
+                  ? isOnamPage
+                    ? 'bg-gradient-to-r from-terracotta-500 to-terracotta-600 text-white shadow-lg'
+                    : 'bg-gradient-to-r from-emerald-500 to-sapphire-500 text-white shadow-lg'
+                  : `text-stone-700 ${
+                      isOnamPage
+                        ? 'hover:text-terracotta-700 hover:bg-sand-100'
+                        : 'hover:text-emerald-700 hover:bg-stone-100'
+                    }`
+              }`}
+            >
+              <Icon size={18} />
+              <span>{label}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 };
