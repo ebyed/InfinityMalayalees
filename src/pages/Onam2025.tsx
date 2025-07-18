@@ -142,9 +142,7 @@ const Onam2025: React.FC = () => {
                     Ladies only traditional group dance registration
                   </p>
                 </div>
-              </div>
-            </div>
-                              <div className="w-16 h-16 bg-gradient-to-br from-terracotta-500 to-terracotta-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
+                                  <div className="w-16 h-16 bg-gradient-to-br from-terracotta-500 to-terracotta-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
                     <SadyaIcon size={32} className="text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-4">
@@ -159,6 +157,9 @@ const Onam2025: React.FC = () => {
                   onClick={() => setActiveTab('events')}
                   className="group cursor-pointer bg-sand-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-plum-400 dark:border-plum-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
                 >
+              </div>
+            </div>
+            
           </section>
 
           {/* Event Schedule */}
