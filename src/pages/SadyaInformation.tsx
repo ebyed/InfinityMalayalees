@@ -7,7 +7,7 @@ const SadyaInformation: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
-          Onam Sadya Information
+          Onam Sadya - 2025
         </h1>
         <p className="text-xl text-yellow-800 max-w-2xl mx-auto font-medium">
           Experience authentic Kerala Sadya with 20+ traditional dishes served on banana leaves. Limited Seats Only!
