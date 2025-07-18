@@ -170,7 +170,8 @@ const ThiruvathiraRegistration: React.FC = () => {
           <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-300">
             <h3 className="font-bold text-yellow-800 mb-2">Important Guidelines:</h3>
             <ul className="text-yellow-700 text-sm space-y-1 font-medium">
-              <li>LADIES ONLY event - all ages welcome! (Limited participants only - First come first serve)</li> 
+              <li>LADIES ONLY event - all ages welcome!</li> 
+              <li>To ensure a quality experience, we will be accomodating only a limited number of participants.</li> 
               <li>Participants are expected to attend all rehearsal sessions set by choreographers</li>
               <li>Registration closes within 1-2 weeks (limited time for practice)</li>
             </ul>
