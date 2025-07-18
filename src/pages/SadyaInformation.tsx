@@ -23,7 +23,7 @@ const SadyaInformation: React.FC = () => {
             <SadyaIcon size={32} className="mr-3 text-white" />
             Onam Sadya - 2025
           </h2>
-          ?
+          
         </div>
 
         <div className="p-8 space-y-8">
