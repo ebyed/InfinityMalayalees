@@ -34,7 +34,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
   if (isSubmitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="bg-gradient-to-br from-yellow-100 to-sand-100 rounded-3xl p-8 text-center border-2 border-yellow-300 shadow-2xl">
+        <div className="bg-white rounded-3xl p-8 text-center border-2 border-yellow-400 shadow-2xl">
           <CheckCircle className="mx-auto text-yellow-600 mb-6" size={80} />
           <h2 className="text-3xl font-bold text-yellow-800 mb-4">🎉 Registration Successful!</h2>
           <p className="text-yellow-700 mb-6 text-lg font-medium">
@@ -56,7 +56,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
                 experience: '', specialRequirements: '', emergencyContact: '', emergencyPhone: ''
               });
             }}
-            className="bg-gradient-to-r from-yellow-500 to-yellow-400 text-white px-8 py-3 rounded-full hover:from-yellow-600 hover:to-yellow-500 transition-all transform hover:scale-105 shadow-lg font-bold"
+            className="bg-gradient-to-r from-yellow-600 to-yellow-500 text-white px-8 py-3 rounded-full hover:from-yellow-700 hover:to-yellow-600 transition-all transform hover:scale-105 shadow-lg font-bold"
           >
             Register Another Participant
           </button>
@@ -66,9 +66,9 @@ const MegaThiruvathiraRegistration: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 text-yellow-800">
+    <div className="max-w-4xl mx-auto px-4 py-12 text-yellow-900">
       <div className="text-center mb-10">
-        <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-yellow-200 to-yellow-100 text-yellow-900 text-sm font-bold border-2 border-yellow-400">
+        <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-yellow-100 to-white text-yellow-800 text-sm font-bold border-2 border-yellow-300">
           <Crown size={18} className="mr-2 text-yellow-600" />
           💃 Ladies Only Event 💃
         </div>
@@ -90,7 +90,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {['participantName', 'email', 'phone', 'flatNumber', 'emergencyContact', 'emergencyPhone'].map(field => (
               <div key={field}>
-                <label className="block text-sm font-bold mb-2 capitalize text-yellow-700">
+                <label className="block text-sm font-bold mb-2 capitalize text-yellow-800">
                   {field.replace(/([A-Z])/g, ' $1')}
                 </label>
                 <input
@@ -99,19 +99,19 @@ const MegaThiruvathiraRegistration: React.FC = () => {
                   value={formData[field as keyof typeof formData]}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-900"
                 />
               </div>
             ))}
 
             <div>
-              <label className="block text-sm font-bold mb-2 text-yellow-700">Age Group</label>
+              <label className="block text-sm font-bold mb-2 text-yellow-800">Age Group</label>
               <select
                 name="age"
                 value={formData.age}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
+                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-900"
               >
                 <option value="">Select age group</option>
                 <option value="18-25">18–25</option>
@@ -123,12 +123,12 @@ const MegaThiruvathiraRegistration: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 text-yellow-700">Dance Experience</label>
+              <label className="block text-sm font-bold mb-2 text-yellow-800">Dance Experience</label>
               <select
                 name="experience"
                 value={formData.experience}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
+                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-900"
               >
                 <option value="">Select experience level</option>
                 <option value="beginner">Beginner</option>
@@ -140,19 +140,19 @@ const MegaThiruvathiraRegistration: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-bold mb-2 text-yellow-700">Special Requirements or Comments</label>
+            <label className="block text-sm font-bold mb-2 text-yellow-800">Special Requirements or Comments</label>
             <textarea
               name="specialRequirements"
               value={formData.specialRequirements}
               onChange={handleChange}
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
+              className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-900"
             ></textarea>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-yellow-500 to-yellow-400 text-white font-bold py-4 rounded-xl hover:from-yellow-600 hover:to-yellow-500 transition-transform duration-300 transform hover:scale-105 shadow-lg"
+            className="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 text-white font-bold py-4 rounded-xl hover:from-yellow-700 hover:to-yellow-600 transition-transform duration-300 transform hover:scale-105 shadow-lg"
           >
             💃 Submit Registration
           </button>
