@@ -87,7 +87,7 @@ const Onam2025: React.FC = () => {
           <section className="py-16 bg-white">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-yellow-700 font-serif mb-2">Event Schedule</h2>
+                        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">Event Schedule</h1>
               </div>
 
               {/* Day 1 */}
