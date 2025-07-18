@@ -342,7 +342,7 @@ const ThiruvathiraRegistration: React.FC = () => {
                 <span>Registering...</span>
               </div>
             ) : (
-              'Register for Mega Thiruvathira'
+              'Register'
             )}
           </button>
         </form>
