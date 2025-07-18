@@ -87,7 +87,7 @@ const Onam2025: React.FC = () => {
       <section className="py-8 bg-gradient-to-br from-sand-50 via-sand-100 to-sand-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <TabButton tabId="overview" label="Home" icon={Calendar} />
+          <TabButton tabId="overview" label="Event Schedule" icon={Calendar} />
             
             <TabButton tabId="events" label="Register for Cultural Events - 13th September" icon={() => <CulturalIcon size={18} />} />
             <TabButton tabId="thiruvathira" label="Register for Mega Thiruvathira - 14th September" icon={() => <ThiruvathiraIcon size={18} />} />
