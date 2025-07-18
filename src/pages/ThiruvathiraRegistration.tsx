@@ -158,10 +158,10 @@ const ThiruvathiraRegistration: React.FC = () => {
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center px-6 py-3 rounded-full bg-stone-50 dark:bg-charcoal-800 text-yellow-900 dark:text-yellow-300 text-sm font-bold mb-6 shadow-lg border-2 border-yellow-400 dark:border-yellow-500">
+        {/* <div className="inline-flex items-center px-6 py-3 rounded-full bg-stone-50 dark:bg-charcoal-800 text-yellow-900 dark:text-yellow-300 text-sm font-bold mb-6 shadow-lg border-2 border-yellow-400 dark:border-yellow-500">
           <ThiruvathiraIcon size={18} className="mr-2 text-rose-600 dark:text-rose-300" />
           Ladies Only Event
-        </div>
+        </div> */}
         
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 dark:from-yellow-400 dark:to-yellow-500 bg-clip-text text-transparent mb-4">
           Mega Thiruvathira Registration
@@ -185,10 +185,10 @@ const ThiruvathiraRegistration: React.FC = () => {
             <p className="font-semibold text-yellow-800 dark:text-yellow-300">Performance Date:</p>
             <p className="text-yellow-700 dark:text-yellow-300">September 14, 2025 at 10:00 AM</p>
           </div>
-          <div>
+          {/* <div>
             <p className="font-semibold text-yellow-800 dark:text-yellow-300">Experience Required:</p>
             <p className="text-yellow-700 dark:text-yellow-300">None - We'll teach you!</p>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -216,7 +216,7 @@ const ThiruvathiraRegistration: React.FC = () => {
           <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500">
             <h3 className="font-bold text-yellow-800 dark:text-yellow-300 mb-2">Important Guidelines:</h3>
             <ul className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1 font-medium">
-              <li>Ladies only event - all ages welcome! (Maximum 50 participants)</li>
+              <li>Ladies only event - all ages welcome! (Limited participants only - First come first serve)</li>
               <li>No prior dance experience required</li>
               <li>4-5 rehearsal sessions before the event</li>
               <li>Performance on September 14, 2025 at 10:00 AM</li>
