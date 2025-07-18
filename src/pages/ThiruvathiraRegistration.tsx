@@ -158,12 +158,12 @@ const ThiruvathiraRegistration: React.FC = () => {
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center px-6 py-3 rounded-full bg-stone-50 dark:bg-charcoal-800 text-plum-900 dark:text-plum-300 text-sm font-bold mb-6 shadow-lg border-2 border-plum-400 dark:border-plum-500">
+        <div className="inline-flex items-center px-6 py-3 rounded-full bg-stone-50 dark:bg-charcoal-800 text-yellow-900 dark:text-yellow-300 text-sm font-bold mb-6 shadow-lg border-2 border-yellow-400 dark:border-yellow-500">
           <ThiruvathiraIcon size={18} className="mr-2 text-rose-600 dark:text-rose-300" />
           Ladies Only Event
         </div>
         
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-plum-600 to-plum-700 dark:from-plum-400 dark:to-plum-500 bg-clip-text text-transparent mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 dark:from-yellow-400 dark:to-yellow-500 bg-clip-text text-transparent mb-4">
           Mega Thiruvathira Registration
         </h1>
         
@@ -174,32 +174,32 @@ const ThiruvathiraRegistration: React.FC = () => {
       </div>
 
       {/* About Thiruvathira */}
-      <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-6 mb-8 border-2 border-plum-300 dark:border-plum-500">
-        {/* <h3 className="text-xl font-bold text-plum-800 dark:text-plum-300 mb-3">What is Mega Thiruvathira</h3> */}
-        {/* <p className="text-plum-700 dark:text-plum-300 font-medium mb-4">
+      <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl p-6 mb-8 border-2 border-yellow-300 dark:border-yellow-500">
+        {/* <h3 className="text-xl font-bold text-yellow-800 dark:text-yellow-300 mb-3">What is Mega Thiruvathira</h3> */}
+        {/* <p className="text-yellow-700 dark:text-yellow-300 font-medium mb-4">
           Thiruvathira is a traditional group dance performed by women in Kerala. It's a graceful dance form 
           that celebrates femininity and Kerala's cultural heritage. Maximum 100 participants can register.
         </p> */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="font-semibold text-plum-800 dark:text-plum-300">Performance Date:</p>
-            <p className="text-plum-700 dark:text-plum-300">September 14, 2025 at 10:00 AM</p>
+            <p className="font-semibold text-yellow-800 dark:text-yellow-300">Performance Date:</p>
+            <p className="text-yellow-700 dark:text-yellow-300">September 14, 2025 at 10:00 AM</p>
           </div>
           <div>
-            <p className="font-semibold text-plum-800 dark:text-plum-300">Experience Required:</p>
-            <p className="text-plum-700 dark:text-plum-300">None - We'll teach you!</p>
+            <p className="font-semibold text-yellow-800 dark:text-yellow-300">Experience Required:</p>
+            <p className="text-yellow-700 dark:text-yellow-300">None - We'll teach you!</p>
           </div>
         </div>
       </div>
 
       {/* Registration Form */}
-      <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl shadow-xl border-2 border-plum-200 dark:border-plum-600 overflow-hidden">
-        <div className="bg-gradient-to-r from-plum-600 to-plum-700 dark:from-plum-500 dark:to-plum-600 px-8 py-6">
+      <div className="bg-stone-50 dark:bg-charcoal-800 rounded-2xl shadow-xl border-2 border-yellow-200 dark:border-yellow-600 overflow-hidden">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 dark:from-yellow-500 dark:to-yellow-600 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
             <ThiruvathiraIcon size={28} className="mr-3 text-white" />
             Registration Form
           </h2>
-          <p className="text-plum-100 mt-2 font-medium">Simple registration - just 4 essential details</p>
+          <p className="text-yellow-100 mt-2 font-medium">Simple registration - just 4 essential details</p>
         </div>
 
         {error && (
@@ -216,7 +216,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             {/* Full Name */}
             <div>
               <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-2">
-                <User size={18} className="inline mr-2 text-plum-600 dark:text-plum-400" />
+                <User size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Full Name *
               </label>
               <input
@@ -226,10 +226,10 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.fullName}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-plum-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-yellow-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.fullName 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
-                    : 'border-stone-300 dark:border-stone-600 focus:border-plum-500 dark:focus:border-plum-400'
+                    : 'border-stone-300 dark:border-stone-600 focus:border-yellow-500 dark:focus:border-yellow-400'
                 }`}
                 placeholder="Enter your full name"
               />
@@ -241,7 +241,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             {/* Email Address */}
             <div>
               <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-2">
-                <Mail size={18} className="inline mr-2 text-plum-600 dark:text-plum-400" />
+                <Mail size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Email Address *
               </label>
               <input
@@ -251,10 +251,10 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-plum-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-yellow-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.email 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
-                    : 'border-stone-300 dark:border-stone-600 focus:border-plum-500 dark:focus:border-plum-400'
+                    : 'border-stone-300 dark:border-stone-600 focus:border-yellow-500 dark:focus:border-yellow-400'
                 }`}
                 placeholder="your.email@example.com"
               />
@@ -266,7 +266,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             {/* Phone Number */}
             <div>
               <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-2">
-                <Phone size={18} className="inline mr-2 text-plum-600 dark:text-plum-400" />
+                <Phone size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Phone Number *
               </label>
               <input
@@ -276,10 +276,10 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-plum-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-yellow-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.phone 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
-                    : 'border-stone-300 dark:border-stone-600 focus:border-plum-500 dark:focus:border-plum-400'
+                    : 'border-stone-300 dark:border-stone-600 focus:border-yellow-500 dark:focus:border-yellow-400'
                 }`}
                 placeholder="+91 98765 43210"
               />
@@ -294,7 +294,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             {/* Flat Number */}
             <div>
               <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 mb-2">
-                <Home size={18} className="inline mr-2 text-plum-600 dark:text-plum-400" />
+                <Home size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Flat/Apartment Number *
               </label>
               <input
@@ -304,10 +304,10 @@ const ThiruvathiraRegistration: React.FC = () => {
                 value={formData.flatNumber}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-plum-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`w-full px-4 py-3 rounded-lg border-2 dark:bg-charcoal-700 dark:text-white focus:ring-4 focus:ring-yellow-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
                   errors.flatNumber 
                     ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400' 
-                    : 'border-stone-300 dark:border-stone-600 focus:border-plum-500 dark:focus:border-plum-400'
+                    : 'border-stone-300 dark:border-stone-600 focus:border-yellow-500 dark:focus:border-yellow-400'
                 }`}
                 placeholder="e.g., A-1205"
               />
@@ -318,9 +318,9 @@ const ThiruvathiraRegistration: React.FC = () => {
           </div>
 
           {/* Guidelines */}
-          <div className="bg-plum-50 dark:bg-plum-900/30 rounded-lg p-4 border border-plum-300 dark:border-plum-500">
-            <h3 className="font-bold text-plum-800 dark:text-plum-300 mb-2">Important Guidelines:</h3>
-            <ul className="text-plum-700 dark:text-plum-300 text-sm space-y-1 font-medium">
+          <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500">
+            <h3 className="font-bold text-yellow-800 dark:text-yellow-300 mb-2">Important Guidelines:</h3>
+            <ul className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1 font-medium">
               <li>Ladies only event - all ages welcome! (Maximum 50 participants)</li>
               <li>No prior dance experience required</li>
               <li>4-5 rehearsal sessions before the event</li>
@@ -332,7 +332,7 @@ const ThiruvathiraRegistration: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-plum-600 to-plum-700 dark:from-plum-500 dark:to-plum-600 text-white font-bold py-4 px-6 rounded-lg hover:from-plum-700 hover:to-plum-800 dark:hover:from-plum-600 dark:hover:to-plum-700 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full bg-gradient-to-r from-yellow-600 to-yellow-700 dark:from-yellow-500 dark:to-yellow-600 text-white font-bold py-4 px-6 rounded-lg hover:from-yellow-700 hover:to-yellow-800 dark:hover:from-yellow-600 dark:hover:to-yellow-700 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center space-x-2">
