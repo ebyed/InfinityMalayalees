@@ -107,7 +107,7 @@ const Onam2025: React.FC = () => {
                   Join the festivites. Express your interest  now !
                 </h2>
                 <p className="text-lg text-stone-700 dark:text-stone-200 max-w-2xl mx-auto font-medium">
-                  
+                  Everything you need to be part of our Onam 2025 celebrations
                 </p>
                 
               {/* </div>
