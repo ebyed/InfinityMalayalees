@@ -71,8 +71,8 @@ const Onam2025: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <TabButton tabId="overview" label="Event Schedule" icon={Calendar} />
-            <TabButton tabId="events" label="Register for Cultural Events - 13th September" icon={() => <CulturalIcon size={18} />} />
-            <TabButton tabId="thiruvathira" label="Register for Mega Thiruvathira - 14th September" icon={() => <ThiruvathiraIcon size={18} />} />
+            <TabButton tabId="events" label="Register for Cultural Events" icon={() => <CulturalIcon size={18} />} />
+            <TabButton tabId="thiruvathira" label="Register for Mega Thiruvathira" icon={() => <ThiruvathiraIcon size={18} />} />
             <TabButton tabId="sadya" label="Sadya Information" icon={() => <SadyaIcon size={18} />} />
           </div>
         </div>
