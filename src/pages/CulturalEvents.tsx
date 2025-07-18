@@ -124,7 +124,14 @@ const CulturalEvents: React.FC = () => {
           you'd like to <strong>participate in, volunteer for, or choreograph</strong> and we will contact you with more details.
         </p>
       </div>
-
+      <div className="bg-yellow-50 rounded-2xl p-6 mb-8 border-2 border-yellow-300">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p className="font-semibold text-yellow-800">Events Date:</p>
+            <p className="text-yellow-700">September 13, 2025 - 06:00 PM onwards</p>
+          </div>
+        </div>
+      </div>
       <div className="bg-white rounded-2xl shadow-xl border border-yellow-300 overflow-hidden">
         <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
