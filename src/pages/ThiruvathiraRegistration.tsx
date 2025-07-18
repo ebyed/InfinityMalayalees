@@ -148,9 +148,10 @@ const ThiruvathiraRegistration: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-xl border-2 border-yellow-200 overflow-hidden">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-8 py-6">
+      <div className="bg-white rounded-2xl shadow-xl border border-yellow-300 overflow-hidden">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
+            
             <ThiruvathiraIcon size={28} className="mr-3 text-white" />
             Mega Thiruvathira Registration Form
           </h2>
