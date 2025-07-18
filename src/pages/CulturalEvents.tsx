@@ -117,7 +117,7 @@ const CulturalEvents: React.FC = () => {
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
-          Cultural Events Registration
+          Cultural Events 
         </h1>
         <p className="text-lg text-yellow-800 max-w-3xl mx-auto">
           Express your interest in cultural events for Onam 2025. Let us know what events 
