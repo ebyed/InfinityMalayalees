@@ -12,7 +12,7 @@ const CulturalEvents: React.FC = () => {
     flatNumber: '',
     age: '',
     gender: '',
-    interestedEvents: '',
+    interestedEvents: [],
     remarks: ''
   });
 
@@ -44,9 +44,9 @@ const CulturalEvents: React.FC = () => {
         age: formData.age ? parseInt(formData.age) : null,
         gender: formData.gender || null,
         event_category: 'Cultural Events',
-        event_title: formData.interestedEvents,
+        event_title: formData.interestedEvents.join(', '),
         participant_count: 1,
-        description: `Age: ${formData.age || 'Not specified'}, Gender: ${formData.gender || 'Not specified'}, Interested Events: ${formData.interestedEvents}`,
+        description: `Age: ${formData.age || 'Not specified'}, Gender: ${formData.gender || 'Not specified'}, Interested Events: ${formData.interestedEvents.join(', ')}`,
         special_requirements: formData.remarks || null
       });
 
@@ -60,7 +60,12 @@ const CulturalEvents: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    if (name === 'interestedEvents') {
+      const selectedOptions = Array.from((e.target as HTMLSelectElement).selectedOptions).map(opt => opt.value);
+      setFormData(prev => ({ ...prev, [name]: selectedOptions }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
     if (error) setError(null);
   };
 
@@ -79,14 +84,14 @@ const CulturalEvents: React.FC = () => {
               <strong>Participant:</strong> {formData.participantName}<br />
               <strong>Age:</strong> {formData.age}<br />
               <strong>Gender:</strong> {formData.gender}<br />
-              <strong>Interested Events:</strong> {formData.interestedEvents}<br />
+              <strong>Interested Events:</strong> {formData.interestedEvents.join(', ')}<br />
               <strong>Contact:</strong> {formData.email}
             </p>
           </div>
           <button
             onClick={() => {
               setIsSubmitted(false);
-              setFormData({ participantName: '', email: '', phone: '', flatNumber: '', age: '', gender: '', interestedEvents: '', remarks: '' });
+              setFormData({ participantName: '', email: '', phone: '', flatNumber: '', age: '', gender: '', interestedEvents: [], remarks: '' });
             }}
             className="bg-yellow-500 text-white px-6 py-2 rounded-full hover:bg-yellow-600 transition-colors"
           >
@@ -128,6 +133,16 @@ const CulturalEvents: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
+              <h3 className="text-yellow-800 font-bold mb-2">Important Guidelines</h3>
+              <ul className="list-disc list-inside text-sm text-yellow-700 space-y-1">
+                <li>⚠️ Limited seats only - We will contact you for confirmation</li>
+                <li>All events should be family-friendly and appropriate for all ages</li>
+                <li>Our cultural team will organize participants into groups based on interests</li>
+                <li>Rehearsal schedules will be shared after team formation</li>
+                <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
+              </ul>
+            </div>
             <div>
               <label className="block text-sm font-medium text-yellow-800 mb-1">Full Name</label>
               <input type="text" name="participantName" value={formData.participantName} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
@@ -160,13 +175,13 @@ const CulturalEvents: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Event Interested In</label>
-            <select name="interestedEvents" value={formData.interestedEvents} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded">
-              <option value="">Select an Event</option>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">Events Interested In</label>
+            <select name="interestedEvents" value={formData.interestedEvents} onChange={handleChange} multiple required className="w-full border border-yellow-300 px-4 py-2 rounded h-32">
               {eventOptions.map((event) => (
                 <option key={event} value={event}>{event}</option>
               ))}
             </select>
+            <p className="text-xs text-yellow-700 mt-1">Hold Ctrl (Windows) or Command (Mac) to select multiple</p>
           </div>
 
           <div>
