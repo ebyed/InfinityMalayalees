@@ -111,26 +111,7 @@ const Onam2025: React.FC = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div
-                  onClick={() => setActiveTab('sadya')}
-                  className="group cursor-pointer bg-sand-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-terracotta-400 dark:border-terracotta-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-br from-terracotta-500 to-terracotta-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
-                    <SadyaIcon size={32} className="text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-stone-900 dark:text-stone-100 mb-4">
-                    Sadya Information
-                  </h3>
-                  <p className="text-stone-700 dark:text-stone-200 font-medium">
-                    Learn about our traditional Onam Sadya availability
-                  </p>
-                </div>
-
-                <div
-                  onClick={() => setActiveTab('events')}
-                  className="group cursor-pointer bg-sand-50 dark:bg-charcoal-800 rounded-2xl p-8 border-2 border-plum-400 dark:border-plum-500 hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-                >
+              
                   <div className="w-16 h-16 bg-gradient-to-br from-plum-500 to-plum-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-200 shadow-lg">
                     <CulturalIcon size={32} className="text-white" />
                   </div>
