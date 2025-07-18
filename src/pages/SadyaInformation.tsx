@@ -17,14 +17,14 @@ const SadyaInformation: React.FC = () => {
       {/* <div className="bg-white rounded-3xl shadow-2xl border-2 border-yellow-300 overflow-hidden">
         <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-8 py-8">
           <h2 className="text-3xl font-bold text-white flex items-center"> */}
-      <div className="bg-white rounded-2xl shadow-xl border border-yellow-300 overflow-hidden">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 px-8 py-6">
+      <div className="bg-white rounded-2xl shadow-xl border border-yellow-300 overflow-hidden"> 
+        {/* <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
             <SadyaIcon size={32} className="mr-3 text-white" />
             Onam Sadya - 2025
           </h2>
           
-        </div>
+        </div> */}
 
         <div className="p-8 space-y-8">
           {/* Main Information */}
