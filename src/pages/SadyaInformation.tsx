@@ -32,7 +32,7 @@ const SadyaInformation: React.FC = () => {
             <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
               <Calendar size={40} className="text-white" />
             </div>
-            <h3 className="text-3xl font-bold text-yellow-800 mb-4">
+            <h3 className="text-2xl font-bold text-yellow-800 mb-4">
               Sadya Coupon Information
             </h3>
             <p className="text-xl text-yellow-700 font-bold mb-4">
