@@ -1,6 +1,6 @@
 // MegaThiruvathiraRegistration.tsx
 import React, { useState } from 'react';
-import { Users, Star, Music, CheckCircle, User, Mail, Phone, Crown } from 'lucide-react';
+import { Users, CheckCircle, User, Mail, Phone, Crown } from 'lucide-react';
 
 const MegaThiruvathiraRegistration: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -81,7 +81,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-3xl shadow-xl border-2 border-yellow-200 p-8">
-        <h2 className="text-2xl font-bold mb-6 flex items-center">
+        <h2 className="text-2xl font-bold mb-6 flex items-center text-yellow-700">
           <Users className="mr-3" size={28} />
           Registration Form
         </h2>
@@ -90,7 +90,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {['participantName', 'email', 'phone', 'flatNumber', 'emergencyContact', 'emergencyPhone'].map(field => (
               <div key={field}>
-                <label className="block text-sm font-bold mb-2 capitalize">
+                <label className="block text-sm font-bold mb-2 capitalize text-yellow-700">
                   {field.replace(/([A-Z])/g, ' $1')}
                 </label>
                 <input
@@ -99,19 +99,19 @@ const MegaThiruvathiraRegistration: React.FC = () => {
                   value={formData[field as keyof typeof formData]}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
                 />
               </div>
             ))}
 
             <div>
-              <label className="block text-sm font-bold mb-2">Age Group</label>
+              <label className="block text-sm font-bold mb-2 text-yellow-700">Age Group</label>
               <select
                 name="age"
                 value={formData.age}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
               >
                 <option value="">Select age group</option>
                 <option value="18-25">18–25</option>
@@ -123,12 +123,12 @@ const MegaThiruvathiraRegistration: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2">Dance Experience</label>
+              <label className="block text-sm font-bold mb-2 text-yellow-700">Dance Experience</label>
               <select
                 name="experience"
                 value={formData.experience}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
               >
                 <option value="">Select experience level</option>
                 <option value="beginner">Beginner</option>
@@ -140,13 +140,13 @@ const MegaThiruvathiraRegistration: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-bold mb-2">Special Requirements or Comments</label>
+            <label className="block text-sm font-bold mb-2 text-yellow-700">Special Requirements or Comments</label>
             <textarea
               name="specialRequirements"
               value={formData.specialRequirements}
               onChange={handleChange}
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="w-full px-4 py-3 rounded-lg border-2 border-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-800"
             ></textarea>
           </div>
 
