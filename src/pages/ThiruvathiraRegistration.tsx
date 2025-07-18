@@ -212,6 +212,17 @@ const ThiruvathiraRegistration: React.FC = () => {
         )}
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          {/* Guidelines */}
+          <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500">
+            <h3 className="font-bold text-yellow-800 dark:text-yellow-300 mb-2">Important Guidelines:</h3>
+            <ul className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1 font-medium">
+              <li>Ladies only event - all ages welcome! (Maximum 50 participants)</li>
+              <li>No prior dance experience required</li>
+              <li>4-5 rehearsal sessions before the event</li>
+              <li>Performance on September 14, 2025 at 10:00 AM</li>
+              <li>Registration closes within 1-2 weeks (limited time for practice)</li>
+            </ul>
+          </div>
           <div className="space-y-6">
             {/* Full Name */}
             <div>
@@ -317,17 +328,7 @@ const ThiruvathiraRegistration: React.FC = () => {
             </div>
           </div>
 
-          {/* Guidelines */}
-          <div className="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-4 border border-yellow-300 dark:border-yellow-500">
-            <h3 className="font-bold text-yellow-800 dark:text-yellow-300 mb-2">Important Guidelines:</h3>
-            <ul className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1 font-medium">
-              <li>Ladies only event - all ages welcome! (Maximum 50 participants)</li>
-              <li>No prior dance experience required</li>
-              <li>4-5 rehearsal sessions before the event</li>
-              <li>Performance on September 14, 2025 at 10:00 AM</li>
-              <li>Registration closes within 1-2 weeks (limited time for practice)</li>
-            </ul>
-          </div>
+          
 
           <button
             type="submit"
