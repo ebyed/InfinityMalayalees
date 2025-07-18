@@ -42,7 +42,7 @@ const SadyaInformation: React.FC = () => {
               <h4 className="font-bold text-yellow-800 mb-2">Pricing</h4>
               <div className="text-yellow-700 font-medium space-y-1">
                 <p><strong>Adults:</strong> INR 400/person </p>
-                <p><strong>Children (under 10):</strong> INR 300/person </p>
+                <p><strong>Children (below 10):</strong> INR 300/person </p>
               </div>
             </div>
             <div className="mt-4 bg-yellow-100 rounded-xl p-4 border border-yellow-300">
