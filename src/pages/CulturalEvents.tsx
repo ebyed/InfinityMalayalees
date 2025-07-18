@@ -116,7 +116,7 @@ const CulturalEvents: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
           Cultural Events Registration
         </h1>
         <p className="text-lg text-yellow-800 max-w-3xl mx-auto">
