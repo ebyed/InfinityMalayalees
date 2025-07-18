@@ -73,14 +73,7 @@ const Onam2025: React.FC = () => {
         <>
           {/* Features */}
           <section className="py-16 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4 font-serif">
-                Join the festivities. Express your interest now!
-              </h2>
-              <p className="text-lg text-stone-700 max-w-2xl mx-auto font-medium">
-                Everything you need to be part of our Onam 2025 celebrations
-              </p>
-            </div>
+           
           </section>
 
           {/* Event Schedule */}
