@@ -1,6 +1,6 @@
 // CulturalEvents.tsx
 import React, { useState } from 'react';
-import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home, Users, Star } from 'lucide-react';
+import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home } from 'lucide-react';
 import { CulturalIcon } from '../components/KeralaSVGIcons';
 import { culturalRegistrations } from '../lib/database';
 
@@ -25,7 +25,7 @@ const CulturalEvents: React.FC = () => {
 
   const eventOptions = [
     'Choreography',
-    'Group Song', 
+    'Group Song',
     'Group Dance',
     'Acting',
     'Musical Instruments',
@@ -135,7 +135,58 @@ const CulturalEvents: React.FC = () => {
         )}
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
-          {/* The rest of the form retains the same structure with classes changed to yellow and white */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-yellow-800 mb-1">Full Name</label>
+              <input type="text" name="participantName" value={formData.participantName} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-yellow-800 mb-1">Email</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-yellow-800 mb-1">Phone</label>
+              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-yellow-800 mb-1">Flat Number</label>
+              <input type="text" name="flatNumber" value={formData.flatNumber} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-yellow-800 mb-1">Age</label>
+              <input type="number" name="age" value={formData.age} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-yellow-800 mb-1">Gender</label>
+              <select name="gender" value={formData.gender} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">Events Interested In</label>
+            <div className="flex flex-wrap gap-2">
+              {eventOptions.map((event) => (
+                <label key={event} className="flex items-center space-x-2">
+                  <input type="checkbox" checked={selectedEvents.includes(event)} onChange={() => handleEventToggle(event)} />
+                  <span className="text-yellow-800 text-sm">{event}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-yellow-800 mb-1">Remarks</label>
+            <textarea name="remarks" value={formData.remarks} onChange={handleChange} rows={3} className="w-full border border-yellow-300 px-4 py-2 rounded" />
+          </div>
+
+          <button type="submit" disabled={isSubmitting} className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600">
+            {isSubmitting ? <span className="flex items-center justify-center space-x-2"><Loader2 className="animate-spin" size={20} /><span>Registering...</span></span> : 'Register'}
+          </button>
         </form>
       </div>
     </div>
