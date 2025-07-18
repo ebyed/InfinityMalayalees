@@ -228,6 +228,7 @@ const CulturalEvents: React.FC = () => {
           </div>
         ))}
       </div> */}
+      
 
       {/* Registration Form */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
