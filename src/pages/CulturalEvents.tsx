@@ -154,7 +154,7 @@ const CulturalEvents: React.FC = () => {
             <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
               <h3 className="text-yellow-800 font-bold mb-2">Important Guidelines</h3>
               <ul className="list-disc list-inside text-sm text-yellow-700 space-y-1">
-                <li>⚠️ Limited seats only - We will contact you after confirmation</li>
+                <li>⚠️ Limited seats only - We will contact you after confirmation</li> 
                 {/* <li>All events should be family-friendly and appropriate for all ages</li> */}
                 <li>Our cultural team will organize participants into groups based on interests</li>
                 <li>Rehearsal schedules will be shared after team formation</li>
