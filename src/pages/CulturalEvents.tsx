@@ -158,7 +158,7 @@ const CulturalEvents: React.FC = () => {
                 <li>All events should be family-friendly and appropriate for all ages</li>
                 <li>Our cultural team will organize participants into groups based on interests</li>
                 <li>Rehearsal schedules will be shared after team formation</li>
-                <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
+                <li>Registration closes within 1-2 weeks (limited time for practice)</li>
               </ul>
             </div>
             <div>
