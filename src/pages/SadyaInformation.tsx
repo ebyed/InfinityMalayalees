@@ -117,14 +117,14 @@ const SadyaInformation: React.FC = () => {
           </div> */}
 
           {/* Contact Information */}
-          <div className="bg-stone-50 dark:bg-charcoal-700 rounded-2xl p-6 border-2 border-plum-300 dark:border-plum-500 text-center">
+          {/* <div className="bg-stone-50 dark:bg-charcoal-700 rounded-2xl p-6 border-2 border-plum-300 dark:border-plum-500 text-center">
             <h3 className="font-bold text-plum-800 dark:text-plum-300 mb-4 text-lg">Need More Information?</h3>
             <div className="text-plum-700 dark:text-plum-300 font-medium space-y-2">
               <p><strong>Email:</strong> infinitymalayalees@gmail.com</p>
               <p><strong>Phone:</strong> +91 9686 900488</p>
               <p><strong>Clubhouse:</strong> Ajmera Infinity Reception</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
