@@ -239,17 +239,7 @@ const CulturalEvents: React.FC = () => {
             Event Registration Form
           </h2>
         </div>
-         <div className="bg-red-50 dark:bg-red-900/30 rounded-lg p-4 border border-red-200 dark:border-red-600">
-            <h3 className="font-semibold text-red-800 dark:text-red-300 mb-2">Important Guidelines:</h3>
-            <ul className="text-red-700 dark:text-red-300 text-sm space-y-1">
-              <li>⚠️ <strong>Limited seats only</strong> - We will contact you for confirmation</li>
-              <li>All events should be family-friendly and appropriate for all ages</li>
-              <li>Our cultural team will organize participants into groups based on interests</li>
-              <li>Rehearsal schedules will be shared after team formation</li>
-              <li>Events include: Singing, Dancing, Drama, Musical Instruments, Ramp walk, Decoration, Volunteer</li>
-              <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
-            </ul>
-          </div>
+         
         {error && (
           <div className="mx-8 mt-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-600 rounded-lg">
             <div className="flex items-center space-x-2">
@@ -261,6 +251,17 @@ const CulturalEvents: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-red-50 dark:bg-red-900/30 rounded-lg p-4 border border-red-200 dark:border-red-600">
+            <h3 className="font-semibold text-red-800 dark:text-red-300 mb-2">Important Guidelines:</h3>
+            <ul className="text-red-700 dark:text-red-300 text-sm space-y-1">
+              <li>⚠️ <strong>Limited seats only</strong> - We will contact you for confirmation</li>
+              <li>All events should be family-friendly and appropriate for all ages</li>
+              <li>Our cultural team will organize participants into groups based on interests</li>
+              <li>Rehearsal schedules will be shared after team formation</li>
+              
+              <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
+            </ul>
+          </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 <User size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
