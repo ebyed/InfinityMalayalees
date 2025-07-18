@@ -365,7 +365,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
             {/* Decorative element */}
             <div className="absolute top-2 right-2 w-8 h-8 rounded-full bg-gradient-conic from-pink-300 via-rose-300 to-red-300 opacity-20"></div>
             
-            <h3 className="relative font-bold text-pink-800 dark:text-pink-300 mb-4 text-lg">🌟 Important Guidelines:</h3>
+            <h3 className="relative font-bold text-pink-800 dark:text-pink-300 mb-4 text-lg">Important Guidelines:</h3>
             <ul className="text-pink-700 dark:text-pink-300 font-medium space-y-2">
               <li className="flex items-start space-x-2">
                 <span className="text-rose-500 dark:text-rose-400 mt-1">•</span>
