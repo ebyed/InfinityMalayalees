@@ -166,7 +166,7 @@ const Onam2025: React.FC = () => {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-terracotta-700 to-plum-700 dark:from-terracotta-400 dark:to-plum-400 bg-clip-text text-transparent mb-4 font-serif">
-                  📅 Event Schedule
+                  Event Schedule
                 </h2>
                 <p className="text-lg text-stone-700 dark:text-stone-200 font-medium">
                   Two days of non-stop celebration and fun activities
