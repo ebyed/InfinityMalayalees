@@ -73,7 +73,7 @@ const MegaThiruvathiraRegistration: React.FC = () => {
           💃 Ladies Only Event 💃
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-yellow-700 mt-4 mb-4">
-          🌼 Mega Thiruvathira Registration 🌼
+          🌼 Mega Thiruvathira 🌼
         </h1>
         <p className="text-xl text-yellow-700 max-w-3xl mx-auto font-medium">
           Join our graceful community dance in traditional attire. No prior experience needed — just enthusiasm and unity!
