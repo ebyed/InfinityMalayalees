@@ -209,7 +209,7 @@ const CulturalEvents: React.FC = () => {
         </div>
       </div>
 
-      {/* Event Categories */}
+      {/* {/* Event Categories */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {eventCategories.map((event) => (
           <div
@@ -227,7 +227,7 @@ const CulturalEvents: React.FC = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Registration Form */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
