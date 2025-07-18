@@ -239,9 +239,9 @@ const CulturalEvents: React.FC = () => {
             Event Registration Form
           </h2>
         </div>
-         <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
-            <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
-            <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
+         <div className="bg-red-50 dark:bg-red-900/30 rounded-lg p-4 border border-red-200 dark:border-red-600">
+            <h3 className="font-semibold text-red-800 dark:text-red-300 mb-2">Important Guidelines:</h3>
+            <ul className="text-red-700 dark:text-red-300 text-sm space-y-1">
               <li>⚠️ <strong>Limited seats only</strong> - We will contact you for confirmation</li>
               <li>All events should be family-friendly and appropriate for all ages</li>
               <li>Our cultural team will organize participants into groups based on interests</li>
