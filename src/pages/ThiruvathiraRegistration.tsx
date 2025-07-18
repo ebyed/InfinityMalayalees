@@ -208,7 +208,8 @@ const ThiruvathiraRegistration: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-yellow-600 to-yellow-700 text-white font-bold py-4 px-6 rounded-lg hover:from-yellow-700 hover:to-yellow-800 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600"
+            {/* className="w-full bg-gradient-to-r from-yellow-600 to-yellow-700 text-white font-bold py-4 px-6 rounded-lg hover:from-yellow-700 hover:to-yellow-800 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed" */}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center space-x-2">
