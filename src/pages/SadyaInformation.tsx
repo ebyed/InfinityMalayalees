@@ -103,7 +103,7 @@ const SadyaInformation: React.FC = () => {
 
           {/* Important Information */}
           <div className="bg-stone-50 dark:bg-charcoal-700 rounded-2xl p-6 border-2 border-gold-accent-300 dark:border-gold-accent-500">
-            <div className="flex items-center space-x-3 mb-4">
+            {/* <div className="flex items-center space-x-3 mb-4">
               <Info size={24} className="text-gold-accent-600 dark:text-gold-accent-400" />
               <h3 className="font-bold text-gold-accent-800 dark:text-gold-accent-300 text-lg">Important Information</h3>
             </div>
@@ -114,7 +114,7 @@ const SadyaInformation: React.FC = () => {
               <li>Venue: Ajmera Infinity Clubhouse</li>
               <li>For any queries, contact clubhouse reception between September 1 to 9th</li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Contact Information */}
           <div className="bg-stone-50 dark:bg-charcoal-700 rounded-2xl p-6 border-2 border-plum-300 dark:border-plum-500 text-center">
