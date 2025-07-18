@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
                 <Phone size={18} className={`transition-all duration-300 ${
                   isOnamPage ? 'text-terracotta-300' : 'text-emerald-300'
                 }`} />
-                <span className="text-sm font-medium">+91 9686 900488</span>
+                {/* <span className="text-sm font-medium">+91 9686 900488</span> */}
               </div>
               <div className="flex items-start space-x-3 p-3 rounded-lg backdrop-blur-sm transition-all duration-300 bg-white/10">
                 <MapPin size={18} className={`mt-0.5 transition-all duration-300 ${
