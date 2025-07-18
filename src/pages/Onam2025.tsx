@@ -71,10 +71,7 @@ const Onam2025: React.FC = () => {
       {/* Tab Content */}
       {activeTab === 'overview' && (
         <>
-          {/* Features */}
-          <section className="py-16 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
-           
-          </section>
+
 
           {/* Event Schedule */}
           <section className="py-16 bg-white">
