@@ -125,8 +125,7 @@ const Onam2025: React.FC = () => {
                 <h4 className="font-bold mb-3 text-lg">📍 Venue Information</h4>
                 <p><strong>Location:</strong> Ajmera Infinity Clubhouse</p>
                 <p><strong>Address:</strong> Neeladri Road, Electronic City Phase 1, Bangalore - 560100</p>
-                <p className="mt-2 text-yellow-700"><strong>Sadya Coupons:</strong> Available from Sep 1–9</p>
-                <p className="text-yellow-700"><strong>Sadya Date:</strong> September 14, 2025 (Sunday)</p>
+                
               </div>
 
               {/* Closing Message */}
