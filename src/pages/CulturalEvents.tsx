@@ -39,7 +39,7 @@ const CulturalEvents: React.FC = () => {
       icon: Users,
       description: 'Traditional or modern group dance performances',
       maxParticipants: 15,
-      color: 'from-gold-500 to-gold-500',
+      color: 'from-yellow-500 to-yellow-500',
       bgColor: 'bg-white dark:bg-gray-800'
     },
     {
@@ -57,7 +57,7 @@ const CulturalEvents: React.FC = () => {
       icon: CulturalIcon,
       description: 'Choir or group singing performances',
       maxParticipants: 10,
-      color: 'from-gold-500 to-cyan-500',
+      color: 'from-yellow-500 to-cyan-500',
       bgColor: 'bg-white dark:bg-gray-800'
     },
     {
@@ -93,7 +93,7 @@ const CulturalEvents: React.FC = () => {
       icon: Users,
       description: 'Traditional Kerala group dance for women',
       maxParticipants: 20,
-      color: 'from-indigo-500 to-gold-500',
+      color: 'from-indigo-500 to-yellow-500',
       bgColor: 'bg-white dark:bg-gray-800'
     }
   ];
@@ -233,7 +233,7 @@ const CulturalEvents: React.FC = () => {
 
       {/* Registration Form */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
-        <div className="bg-gradient-to-r from-gold-500 to-gold-500 dark:from-gold-600 dark:to-gold-600 px-8 py-6">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 dark:from-yellow-600 dark:to-yellow-600 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
             <CulturalIcon size={28} className="mr-3 text-white" />
             Event Registration Form
@@ -263,7 +263,7 @@ const CulturalEvents: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <User size={18} className="inline mr-2 text-gold-600 dark:text-gold-400" />
+                <User size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Full Name *
               </label>
               <input
@@ -273,14 +273,14 @@ const CulturalEvents: React.FC = () => {
                 value={formData.participantName}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Enter your full name"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <Mail size={18} className="inline mr-2 text-gold-600 dark:text-gold-400" />
+                <Mail size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Email Address *
               </label>
               <input
@@ -290,14 +290,14 @@ const CulturalEvents: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="your.email@example.com"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <Phone size={18} className="inline mr-2 text-gold-600 dark:text-gold-400" />
+                <Phone size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Phone Number *
               </label>
               <input
@@ -307,14 +307,14 @@ const CulturalEvents: React.FC = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="+91 98765 43210"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <Home size={18} className="inline mr-2 text-gold-600 dark:text-gold-400" />
+                <Home size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Flat Number *
               </label>
               <input
@@ -324,14 +324,14 @@ const CulturalEvents: React.FC = () => {
                 value={formData.flatNumber}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="e.g., A-1205"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <User size={18} className="inline mr-2 text-gold-600 dark:text-gold-400" />
+                <User size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Age *
               </label>
               <input
@@ -343,14 +343,14 @@ const CulturalEvents: React.FC = () => {
                 value={formData.age}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 placeholder="Enter your age"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                <User size={18} className="inline mr-2 text-gold-600 dark:text-gold-400" />
+                <User size={18} className="inline mr-2 text-yellow-600 dark:text-yellow-400" />
                 Gender *
               </label>
               <select
@@ -359,7 +359,7 @@ const CulturalEvents: React.FC = () => {
                 value={formData.gender}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="">Select gender</option>
                 <option value="Male">Male</option>
@@ -380,7 +380,7 @@ const CulturalEvents: React.FC = () => {
                 type="button"
                 onClick={() => setShowEventDropdown(!showEventDropdown)}
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed text-left flex justify-between items-center"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed text-left flex justify-between items-center"
               >
                 <span className={selectedEvents.length === 0 ? 'text-gray-500' : ''}>
                   {selectedEvents.length === 0 
@@ -402,7 +402,7 @@ const CulturalEvents: React.FC = () => {
                         type="checkbox"
                         checked={selectedEvents.includes(event)}
                         onChange={() => handleEventToggle(event)}
-                        className="mr-3 h-4 w-4 text-gold-600 focus:ring-gold-500 border-gray-300 rounded"
+                        className="mr-3 h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300 rounded"
                       />
                       <span className="text-gray-900 dark:text-gray-100">{event}</span>
                     </label>
@@ -436,7 +436,7 @@ const CulturalEvents: React.FC = () => {
               onChange={handleChange}
               disabled={isSubmitting}
               rows={3}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-gold-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="Any additional remarks, special requirements, or information..."
             />
           </div>
@@ -446,7 +446,7 @@ const CulturalEvents: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting || selectedEvents.length === 0}
-            className="w-full bg-gradient-to-r from-gold-500 to-gold-500 dark:from-gold-600 dark:to-gold-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-gold-600 hover:to-gold-600 dark:hover:from-gold-700 dark:hover:to-gold-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full bg-gradient-to-r from-yellow-500 to-yellow-500 dark:from-yellow-600 dark:to-yellow-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-yellow-600 hover:to-yellow-600 dark:hover:from-yellow-700 dark:hover:to-yellow-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center space-x-2">
