@@ -233,7 +233,7 @@ const CulturalEvents: React.FC = () => {
 
       {/* Registration Form */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 px-8 py-6">
+        <div className="bg-gradient-to-r from-blue-500 to-violet-500 dark:from-blue-600 dark:to-blue-600 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
             <CulturalIcon size={28} className="mr-3 text-white" />
             Event Registration Form
