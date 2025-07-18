@@ -83,7 +83,18 @@ const Onam2025: React.FC = () => {
         </div>
       </section>
 
-     
+      {/* Tab Navigation */}
+      <section className="py-8 bg-gradient-to-br from-sand-50 via-sand-100 to-sand-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <TabButton tabId="overview" label="Home" icon={Calendar} />
+            
+            <TabButton tabId="events" label="Cultural Events" icon={() => <CulturalIcon size={18} />} />
+            <TabButton tabId="thiruvathira" label="Mega Thiruvathira" icon={() => <ThiruvathiraIcon size={18} />} />
+            <TabButton tabId="sadya" label="Sadya Information" icon={() => <SadyaIcon size={18} />} />
+          </div>
+        </div>
+      </section>
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
@@ -98,19 +109,6 @@ const Onam2025: React.FC = () => {
                 <p className="text-lg text-stone-700 dark:text-stone-200 max-w-2xl mx-auto font-medium">
                   Everything you need to be part of our Onam 2025 celebrations
                 </p>
-
-                 {/* Tab Navigation */}
-      <section className="py-8 bg-gradient-to-br from-sand-50 via-sand-100 to-sand-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <TabButton tabId="overview" label="Home" icon={Calendar} />
-            
-            <TabButton tabId="events" label="Cultural Events" icon={() => <CulturalIcon size={18} />} />
-            <TabButton tabId="thiruvathira" label="Mega Thiruvathira" icon={() => <ThiruvathiraIcon size={18} />} />
-            <TabButton tabId="sadya" label="Sadya Information" icon={() => <SadyaIcon size={18} />} />
-          </div>
-        </div>
-      </section>
                 
               {/* </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
