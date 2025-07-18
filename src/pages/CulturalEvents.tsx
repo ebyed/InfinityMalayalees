@@ -429,7 +429,7 @@ const CulturalEvents: React.FC = () => {
             />
           </div>
 
-          
+        
 
           <button
             type="submit"
