@@ -88,7 +88,6 @@ const Onam2025: React.FC = () => {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-yellow-700 font-serif mb-2">Event Schedule</h2>
-                <p className="text-lg text-stone-700 font-medium">Two days of non-stop celebration and fun activities</p>
               </div>
 
               {/* Day 1 */}
