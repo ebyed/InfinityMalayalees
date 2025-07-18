@@ -229,6 +229,17 @@ const CulturalEvents: React.FC = () => {
         ))}
       </div> */}
 
+      <div className="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 border border-purple-200 dark:border-purple-600">
+            <h3 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">Important Guidelines:</h3>
+            <ul className="text-purple-700 dark:text-purple-300 text-sm space-y-1">
+              <li><strong>Limited slots available</strong> - we'll contact you for confirmation</li>
+              <li>Our cultural team will organize participants into groups based on interests</li>
+              <li>Rehearsal schedules will be shared after team formation</li>
+              <li>Events include: Singing, Dancing, Drama, Musical Instruments, Ramp walk, Decoration, Volunteer</li>
+              <li>Interest registration closes within 1-2 weeks (limited time for practice)</li>
+            </ul>
+          </div>
+
       {/* Registration Form */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden">
         <div className="bg-gradient-to-r from-purple-500 to-violet-500 dark:from-purple-600 dark:to-violet-600 px-8 py-6">
