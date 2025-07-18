@@ -218,8 +218,9 @@ const ThiruvathiraRegistration: React.FC = () => {
             <ul className="text-yellow-700 dark:text-yellow-300 text-sm space-y-1 font-medium">
               <li>Ladies only event - all ages welcome! (Limited participants only - First come first serve)</li>
               <li>No prior dance experience required</li>
-               <li>4-5 rehearsal sessions before the event</li> 
-              <li>Performance on September 14, 2025 at 10:00 AM</li>
+              <li>Participants are expected to attend all rehearsal sessions set by choreographers</li>
+               {/* <li>4-5 rehearsal sessions before the event</li> 
+              <li>Performance on September 14, 2025 at 10:00 AM</li> */}
               <li>Registration closes within 1-2 weeks (limited time for practice)</li>
             </ul>
           </div>
