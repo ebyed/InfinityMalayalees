@@ -100,7 +100,7 @@ const Onam2025: React.FC = () => {
       {activeTab === 'overview' && (
         <>
           {/* Main Features */}
-          <section className="py-16 bg-gradient-to-br from-sand-50 via-sand-100 to-sand-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
+          {/* <section className="py-16 bg-gradient-to-br from-sand-50 via-sand-100 to-sand-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-terracotta-700 to-plum-700 dark:from-terracotta-400 dark:to-plum-400 bg-clip-text text-transparent mb-4 font-serif">
@@ -159,7 +159,7 @@ const Onam2025: React.FC = () => {
               </div>
             </div>
             
-          </section>
+          </section> */}
 
           {/* Event Schedule */}
           <section className="py-16 bg-stone-50 dark:bg-charcoal-900">
