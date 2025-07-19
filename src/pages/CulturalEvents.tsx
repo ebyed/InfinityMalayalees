@@ -19,8 +19,10 @@ const ThiruvathiraRegistration: React.FC = () => {
   const successRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isSubmitted && successRef.current) {
-      successRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (isSubmitted) {
+      setTimeout(() => {
+        successRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
     }
   }, [isSubmitted]);
 
