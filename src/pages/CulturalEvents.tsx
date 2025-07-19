@@ -1,112 +1,127 @@
-// CulturalEvents.tsx
-import React, { useState } from 'react';
-import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home } from 'lucide-react';
-import { CulturalIcon } from '../components/KeralaSVGIcons';
-import { culturalRegistrations } from '../lib/database';
+import React, { useState, useRef, useEffect } from 'react';
+import { CheckCircle, User, Mail, Phone, Home, AlertCircle, Loader2 } from 'lucide-react';
+import { ThiruvathiraIcon } from '../components/KeralaSVGIcons';
+import { thiruvathiraRegistrations } from '../lib/database';
 
-const CulturalEvents: React.FC = () => {
+const ThiruvathiraRegistration: React.FC = () => {
   const [formData, setFormData] = useState({
-    participantName: '',
+    fullName: '',
     email: '',
     phone: '',
-    flatNumber: '',
-    age: '',
-    gender: '',
-    interestedEvents: [] as string[],
-    remarks: ''
+    flatNumber: ''
   });
 
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const eventOptions = [
-    'Choreography',
-    'Group Song',
-    'Group Dance',
-    'Acting',
-    'Musical Instruments',
-    'Ramp Walk',
-    'Volunteering'
-  ];
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isSubmitted && successRef.current) {
+      successRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [isSubmitted]);
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateIndianPhone = (phone: string): boolean => {
+    const phoneRegex = /^(\+91[\s-]?)?[6-9]\d{9}$/;
+    return phoneRegex.test(phone.replace(/[\s-]/g, ''));
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: {[key: string]: string} = {};
+
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = 'Full name is required';
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = 'Name must be at least 2 characters long';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email address is required';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!validateIndianPhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid Indian phone number (10 digits starting with 6-9)';
+    }
+
+    if (!formData.flatNumber.trim()) {
+      newErrors.flatNumber = 'Flat/Apartment number is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setIsSubmitting(true);
     setError(null);
 
     try {
-      await culturalRegistrations.create({
-        participant_name: formData.participantName,
+      await thiruvathiraRegistrations.create({
+        full_name: formData.fullName,
         email: formData.email,
         phone: formData.phone,
-        flat_number: formData.flatNumber,
-        age: formData.age ? parseInt(formData.age) : null,
-        gender: formData.gender || null,
-        event_category: 'Cultural Events',
-        event_title: formData.interestedEvents.join(', '),
-        participant_count: 1,
-        description: `Age: ${formData.age || 'Not specified'}, Gender: ${formData.gender || 'Not specified'}, Interested Events: ${formData.interestedEvents.join(', ')}`,
-        special_requirements: formData.remarks || null
+        flat_number: formData.flatNumber
       });
 
       setIsSubmitted(true);
     } catch (err) {
+      console.error('Thiruvathira registration error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred during registration. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === 'interestedEvents') {
-      const selectedOptions = formData.interestedEvents.includes(value)
-        ? formData.interestedEvents.filter(v => v !== value)
-        : [...formData.interestedEvents, value];
-      setFormData(prev => ({ ...prev, interestedEvents: selectedOptions }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
     if (error) setError(null);
-  };
-
-  const toggleCheckbox = (event: string) => {
-    setFormData(prev => ({
-      ...prev,
-      interestedEvents: prev.interestedEvents.includes(event)
-        ? prev.interestedEvents.filter(e => e !== event)
-        : [...prev.interestedEvents, event]
-    }));
   };
 
   if (isSubmitted) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="bg-yellow-50 rounded-2xl p-8 text-center border border-yellow-300">
-          <CheckCircle className="mx-auto text-yellow-600 mb-4" size={64} />
-          <h2 className="text-2xl font-bold text-yellow-800 mb-4">Registration Successful!</h2>
-          <p className="text-yellow-700 mb-6">
-            Your cultural event registration has been submitted successfully. 
-            Our events team will contact you with further details.
+      <div ref={successRef} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="bg-yellow-50 rounded-3xl p-8 text-center border-2 border-yellow-300 shadow-2xl">
+          <CheckCircle className="mx-auto text-yellow-600 mb-6" size={80} />
+          <h2 className="text-3xl font-bold text-yellow-800 mb-4">Registration Successful!</h2>
+          <p className="text-yellow-700 mb-6 text-lg font-medium">
+            Welcome to the Mega Thiruvathira! You're now registered for this beautiful traditional dance celebration. 
+            Our cultural team will contact you with rehearsal details soon.
           </p>
-          <div className="bg-white rounded-lg p-4 border border-yellow-300 mb-6">
-            <p className="text-sm text-yellow-800">
-              <strong>Participant:</strong> {formData.participantName}<br />
-              <strong>Age:</strong> {formData.age}<br />
-              <strong>Gender:</strong> {formData.gender}<br />
-              <strong>Interested Events:</strong> {formData.interestedEvents.join(', ')}<br />
-              <strong>Contact:</strong> {formData.email}
+          <div className="bg-white rounded-xl p-4 border-2 border-yellow-300 mb-6">
+            <p className="text-sm text-gray-700 font-bold">
+              Registration Details:<br />
+              Name: {formData.fullName}<br />
+              Email: {formData.email}<br />
+              Phone: {formData.phone}<br />
+              Flat: {formData.flatNumber}
             </p>
           </div>
           <button
             onClick={() => {
               setIsSubmitted(false);
-              setFormData({ participantName: '', email: '', phone: '', flatNumber: '', age: '', gender: '', interestedEvents: [], remarks: '' });
+              setFormData({ fullName: '', email: '', phone: '', flatNumber: '' });
+              setErrors({});
             }}
-            className="bg-yellow-500 text-white px-6 py-2 rounded-full hover:bg-yellow-600 transition-colors"
+            className="bg-gradient-to-r from-yellow-500 to-yellow-400 text-white px-8 py-3 rounded-full hover:from-yellow-600 hover:to-yellow-500 transition-all transform hover:scale-105 shadow-lg font-bold"
           >
-            Register Another Event
+            Register Another Participant
           </button>
         </div>
       </div>
@@ -114,111 +129,96 @@ const CulturalEvents: React.FC = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-yellow-900">
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
-          Cultural Events 
+          Mega Thiruvathira 
         </h1>
-        <p className="text-lg text-yellow-800 max-w-3xl mx-auto">
-          Express your interest in cultural events for Onam 2025. Let us know what events 
-          you'd like to <strong>participate in, volunteer for, or choreograph</strong> and we will contact you with more details.
+        <p className="text-lg text-yellow-700 max-w-2xl mx-auto font-medium">
+          Join the most spectacular traditional Kerala group dance! Experience the grace and beauty 
+          of Thiruvathira with fellow ladies in our community.
         </p>
       </div>
+
       <div className="bg-yellow-50 rounded-2xl p-6 mb-8 border-2 border-yellow-300">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
-            <p className="font-semibold text-yellow-800">Events Date:</p>
-            <p className="text-yellow-700">September 13, 2025 - 06:00 PM onwards</p>
+            <p className="font-semibold text-yellow-800">Performance Date:</p>
+            <p className="text-yellow-700">September 14, 2025 at 10:00 AM</p>
           </div>
         </div>
       </div>
+
       <div className="bg-white rounded-2xl shadow-xl border border-yellow-300 overflow-hidden">
         <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
-            <CulturalIcon size={28} className="mr-3 text-white" />
-            Event Registration Form
+            <ThiruvathiraIcon size={28} className="mr-3 text-white" />
+            Mega Thiruvathira Registration Form
           </h2>
         </div>
 
         {error && (
-          <div className="mx-8 mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
+          <div className="mx-8 mt-6 p-4 bg-red-100 border border-red-300 rounded-lg">
             <div className="flex items-center space-x-2">
-              <AlertCircle className="text-yellow-800" size={20} />
-              <p className="text-yellow-800 font-medium">{error}</p>
+              <AlertCircle className="text-red-600" size={20} />
+              <p className="text-red-700 font-medium">{error}</p>
             </div>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
-              <h3 className="text-yellow-800 font-bold mb-2">Important Guidelines</h3>
-              <ul className="list-disc list-inside text-sm text-yellow-700 space-y-1">
-                <li>⚠️ Limited seats only - We will contact you after confirmation</li> 
-                {/* <li>All events should be family-friendly and appropriate for all ages</li> */}
-                <li>Our cultural team will organize participants into groups based on interests</li>
-                <li>Rehearsal schedules will be shared after team formation</li>
-                <li>Registration closes within 1-2 weeks (limited time for practice)</li>
-              </ul>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-yellow-800 mb-1">Full Name</label>
-              <input type="text" name="participantName" value={formData.participantName} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-yellow-800 mb-1">Email</label>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-yellow-800 mb-1">Phone</label>
-              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-yellow-800 mb-1">Flat Number</label>
-              <input type="text" name="flatNumber" value={formData.flatNumber} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-yellow-800 mb-1">Age</label>
-              <input type="number" name="age" value={formData.age} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-yellow-800 mb-1">Gender</label>
-              <select name="gender" value={formData.gender} onChange={handleChange} required className="w-full border border-yellow-300 px-4 py-2 rounded">
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-300">
+            <h3 className="font-bold text-yellow-800 mb-2">Important Guidelines:</h3>
+            <ul className="text-yellow-700 text-sm space-y-1 font-medium">
+              <li>LADIES ONLY event - all ages welcome!</li> 
+              <li>To ensure a quality experience, we can accomodate only a limited number of participants.</li> 
+              <li>Participants are expected to attend all rehearsal sessions set by choreographers</li>
+              <li>Registration closes within 1-2 weeks (limited time for practice)</li>
+            </ul>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Events Interested In</label>
-            <div className="space-y-2 border border-yellow-300 rounded p-4">
-              {eventOptions.map((event) => (
-                <label key={event} className="flex items-center space-x-2 text-yellow-800">
-                  <input
-                    type="checkbox"
-                    name="interestedEvents"
-                    value={event}
-                    checked={formData.interestedEvents.includes(event)}
-                    onChange={() => toggleCheckbox(event)}
-                    className="h-4 w-4 text-yellow-600 border-yellow-300 rounded"
-                  />
-                  <span>{event}</span>
-                </label>
-              ))}
+          {['fullName', 'email', 'phone', 'flatNumber'].map(field => (
+            <div key={field}>
+              <label className="block text-sm font-bold text-yellow-800 mb-2 capitalize">
+                {field === 'fullName' && <User size={18} className="inline mr-2 text-yellow-600" />} 
+                {field === 'email' && <Mail size={18} className="inline mr-2 text-yellow-600" />} 
+                {field === 'phone' && <Phone size={18} className="inline mr-2 text-yellow-600" />} 
+                {field === 'flatNumber' && <Home size={18} className="inline mr-2 text-yellow-600" />} 
+                {field.replace(/([A-Z])/g, ' $1')} *
+              </label>
+              <input
+                type={field === 'email' ? 'email' : field === 'phone' ? 'tel' : 'text'}
+                name={field}
+                required
+                value={formData[field as keyof typeof formData]}
+                onChange={handleChange}
+                disabled={isSubmitting}
+                className={`w-full px-4 py-3 rounded-lg border-2 focus:ring-4 focus:ring-yellow-500/20 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${
+                  errors[field] 
+                    ? 'border-red-500 focus:border-red-500' 
+                    : 'border-stone-300 focus:border-yellow-500'
+                }`}
+                placeholder={`Enter your ${field === 'flatNumber' ? 'flat/apartment number' : field}`}
+              />
+              {errors[field] && (
+                <p className="mt-1 text-sm text-red-600 font-medium">{errors[field]}</p>
+              )}
             </div>
-            <p className="text-xs text-yellow-700 mt-1">You may select multiple events.</p>
-          </div>
+          ))}
 
-          <div>
-            <label className="block text-sm font-medium text-yellow-800 mb-1">Remarks</label>
-            <textarea name="remarks" value={formData.remarks} onChange={handleChange} rows={3} className="w-full border border-yellow-300 px-4 py-2 rounded" />
-          </div>
-
-          <button type="submit" disabled={isSubmitting} className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600">
-            {isSubmitting ? <span className="flex items-center justify-center space-x-2"><Loader2 className="animate-spin" size={20} /><span>Registering...</span></span> : 'Register'}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? (
+              <div className="flex items-center justify-center space-x-2">
+                <Loader2 className="animate-spin" size={20} />
+                <span>Registering...</span>
+              </div>
+            ) : (
+              'Register'
+            )}
           </button>
         </form>
       </div>
@@ -226,4 +226,4 @@ const CulturalEvents: React.FC = () => {
   );
 };
 
-export default CulturalEvents;
+export default ThiruvathiraRegistration;
