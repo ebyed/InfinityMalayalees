@@ -122,7 +122,7 @@ const CulturalEvents: React.FC = () => {
         <p className="text-lg text-yellow-800 max-w-3xl mx-auto">
           Express your interest in cultural events for Onam 2025. Let us know what events 
           you'd like to <strong>participate in, volunteer for, or choreograph</strong> and we will contact you with more details.
-        </p>
+        </p> 
       </div>
       <div className="bg-yellow-50 rounded-2xl p-6 mb-8 border-2 border-yellow-300">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
