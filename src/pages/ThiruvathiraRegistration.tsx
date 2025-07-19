@@ -71,13 +71,6 @@ const ThiruvathiraRegistration: React.FC = () => {
     setError(null);
 
     try {
-      const existingRegistration = await thiruvathiraRegistrations.getByEmail(formData.email);
-      if (existingRegistration) {
-        setError('This email is already registered for Thiruvathira. Please use a different email address.');
-        setIsSubmitting(false);
-        return;
-      }
-
       await thiruvathiraRegistrations.create({
         full_name: formData.fullName,
         email: formData.email,
@@ -159,7 +152,6 @@ const ThiruvathiraRegistration: React.FC = () => {
       <div className="bg-white rounded-2xl shadow-xl border border-yellow-300 overflow-hidden">
         <div className="bg-gradient-to-r from-yellow-500 to-yellow-500 px-8 py-6">
           <h2 className="text-2xl font-bold text-white flex items-center">
-            
             <ThiruvathiraIcon size={28} className="mr-3 text-white" />
             Mega Thiruvathira Registration Form
           </h2>
