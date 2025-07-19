@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CheckCircle, User, Mail, Phone, Home, AlertCircle, Loader2 } from 'lucide-react';
 import { ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import { thiruvathiraRegistrations } from '../lib/database';
@@ -15,6 +15,14 @@ const ThiruvathiraRegistration: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isSubmitted && successRef.current) {
+      successRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [isSubmitted]);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -95,7 +103,7 @@ const ThiruvathiraRegistration: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div ref={successRef} className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-yellow-50 rounded-3xl p-8 text-center border-2 border-yellow-300 shadow-2xl">
           <CheckCircle className="mx-auto text-yellow-600 mb-6" size={80} />
           <h2 className="text-3xl font-bold text-yellow-800 mb-4">Registration Successful!</h2>
@@ -209,7 +217,6 @@ const ThiruvathiraRegistration: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            
             className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
