@@ -34,7 +34,6 @@ const CulturalEvents: React.FC = () => {
     'Group Dance',
     'Acting',
     'Musical Instruments',
-    'Ramp Walk',
     'Volunteering'
   ];
 
