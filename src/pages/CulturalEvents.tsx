@@ -1,5 +1,5 @@
 // CulturalEvents.tsx
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Home } from 'lucide-react';
 import { CulturalIcon } from '../components/KeralaSVGIcons';
 import { culturalRegistrations } from '../lib/database';
@@ -19,14 +19,6 @@ const CulturalEvents: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const confirmationRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (isSubmitted && confirmationRef.current) {
-      confirmationRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [isSubmitted]);
 
   const eventOptions = [
     'Choreography',
@@ -90,7 +82,7 @@ const CulturalEvents: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <div ref={confirmationRef} className="max-w-2xl mx-auto px-4 py-16">
+      <div className="max-w-2xl mx-auto px-4 py-16">
         <div className="bg-yellow-50 rounded-2xl p-8 text-center border border-yellow-300">
           <CheckCircle className="mx-auto text-yellow-600 mb-4" size={64} />
           <h2 className="text-2xl font-bold text-yellow-800 mb-4">Registration Successful!</h2>
@@ -163,6 +155,7 @@ const CulturalEvents: React.FC = () => {
               <h3 className="text-yellow-800 font-bold mb-2">Important Guidelines</h3>
               <ul className="list-disc list-inside text-sm text-yellow-700 space-y-1">
                 <li>⚠️ Limited seats only - We will contact you after confirmation</li> 
+                {/* <li>All events should be family-friendly and appropriate for all ages</li> */}
                 <li>Our cultural team will organize participants into groups based on interests</li>
                 <li>Rehearsal schedules will be shared after team formation</li>
                 <li>Registration closes within 1-2 weeks (limited time for practice)</li>
