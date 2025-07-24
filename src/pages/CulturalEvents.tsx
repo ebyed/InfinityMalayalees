@@ -126,8 +126,6 @@ const CulturalEvents: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
           Cultural Events 
         </h1>
-        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent mb-4">
-          (Registrations Closed for 2025)</h2>
         <p className="text-lg text-yellow-800 max-w-3xl mx-auto">
           Express your interest in cultural events for Onam 2025. Let us know what events 
           you'd like to <strong>participate in, volunteer for, or choreograph</strong> and we will contact you with more details.
@@ -225,13 +223,8 @@ const CulturalEvents: React.FC = () => {
             <textarea name="remarks" value={formData.remarks} onChange={handleChange} rows={3} className="w-full border border-yellow-300 px-4 py-2 rounded" />
           </div>
 
-          <button 
-            type="submit" 
-            //disabled={isSubmitting}
-            disabled='true'  
-            className=className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed">
-            {
-              isSubmitting ? <span className="flex items-center justify-center space-x-2"><Loader2 className="animate-spin" size={20} /><span>Registering...</span></span> : 'Register'}
+          <button type="submit" disabled={isSubmitting} className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed">
+            {isSubmitting ? <span className="flex items-center justify-center space-x-2"><Loader2 className="animate-spin" size={20} /><span>Registering...</span></span> : 'Register'}
           </button>
         </form>
       </div>
