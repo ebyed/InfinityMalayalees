@@ -212,7 +212,7 @@ const ThiruvathiraRegistration: React.FC = () => {
           <button
             type="submit"
             
-             disabled={isSubmitting} 
+            //disabled={isSubmitting} 
             disabled='true'
             className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 transition-all duration-200 transform hover:scale-105 shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
