@@ -227,7 +227,7 @@ const CulturalEvents: React.FC = () => {
 
           <button type="submit" 
             //disabled={isSubmitting}
-            disabled='true' 
+            disabled='true'  
             className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600">
             {isSubmitting ? <span className="flex items-center justify-center space-x-2"><Loader2 className="animate-spin" size={20} /><span>Registering...</span></span> : 'Register'}
           </button>
