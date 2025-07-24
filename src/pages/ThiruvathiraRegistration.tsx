@@ -134,7 +134,7 @@ const ThiruvathiraRegistration: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
           Mega Thiruvathira
         </h1>
-        <h3><br/>(Registrations Closed for 2025)</h3>
+        <h2><br/>(Registrations Closed for 2025)</h2>
         <p className="text-lg text-yellow-700 max-w-2xl mx-auto font-medium">
           Join the most spectacular traditional Kerala group dance! Experience the grace and beauty 
           of Thiruvathira with fellow ladies in our community.
