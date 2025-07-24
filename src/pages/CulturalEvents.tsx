@@ -126,6 +126,8 @@ const CulturalEvents: React.FC = () => {
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
           Cultural Events 
         </h1>
+        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent mb-4">
+          (Registrations Closed for 2025)</h2>
         <p className="text-lg text-yellow-800 max-w-3xl mx-auto">
           Express your interest in cultural events for Onam 2025. Let us know what events 
           you'd like to <strong>participate in, volunteer for, or choreograph</strong> and we will contact you with more details.
