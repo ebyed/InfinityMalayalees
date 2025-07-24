@@ -225,7 +225,10 @@ const CulturalEvents: React.FC = () => {
             <textarea name="remarks" value={formData.remarks} onChange={handleChange} rows={3} className="w-full border border-yellow-300 px-4 py-2 rounded" />
           </div>
 
-          <button type="submit" disabled={isSubmitting} className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed">
+          <button type="submit" 
+            //disabled={isSubmitting} 
+            disabled='true'
+            className="w-full bg-yellow-500 text-white font-bold py-3 rounded hover:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed">
             {isSubmitting ? <span className="flex items-center justify-center space-x-2"><Loader2 className="animate-spin" size={20} /><span>Registering...</span></span> : 'Register'}
           </button>
         </form>
