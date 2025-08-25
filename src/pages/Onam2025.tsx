@@ -55,17 +55,37 @@ const Onam2025: React.FC = () => {
           </p>
         </div>
       </section>
-          {/* Features */}
-          <section className="py-16 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4 font-serif">
-                Join the festivities. Express your interest now!
-              </h2>
-              <p className="text-lg text-stone-700 max-w-2xl mx-auto font-medium">
-                Everything you need to be part of our Onam 2025 celebrations
-              </p>
-            </div>
-          </section>
+
+      {/* Presented By Section */}
+      <section className="py-8 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h3 className="text-xl md:text-2xl font-bold text-yellow-700 mb-6">Presented By</h3>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            <a href="https://www.dragarwal.com/eye-hospitals/bangalore/" target="_blank" rel="noopener noreferrer">
+              <img src="/sponsors/agarwals-logo.png" alt="Agarwals Eye Hospital" className="h-16 object-contain transition-transform hover:scale-105" />
+            </a>
+            <a href="https://theoterra.com/" target="_blank" rel="noopener noreferrer">
+              <img src="/sponsors/ottera-logo.png" alt="The Ottera Electronics City" className="h-16 object-contain transition-transform hover:scale-105" />
+            </a>
+            <a href="https://maruthiceramics.com/" target="_blank" rel="noopener noreferrer">
+              <img src="/sponsors/maruti-ceramics-logo.png" alt="Maruti Ceramics" className="h-16 object-contain transition-transform hover:scale-105" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4 font-serif">
+            Join the festivities. Express your interest now!
+          </h2>
+          <p className="text-lg text-stone-700 max-w-2xl mx-auto font-medium">
+            Everything you need to be part of our Onam 2025 celebrations
+          </p>
+        </div>
+      </section>
+
       {/* Tab Navigation */}
       <section className="py-8 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,70 +100,66 @@ const Onam2025: React.FC = () => {
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <>
-
-
-          {/* Event Schedule */}
-          <section className="py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">Event Schedule</h1>
-              </div>
-
-              {/* Day 1 */}
-              <div className="bg-white rounded-2xl p-8 border-2 border-yellow-300 shadow-lg mb-8">
-                <h3 className="text-2xl font-bold text-yellow-700 mb-4">🌅 Day 1 - September 13, 2025</h3>
-                <h4 className="font-bold text-lg mb-4">Evening (6:00 PM - 9:00 PM)</h4>
-                <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside">
-                  <li>🎭 Cultural events and performances</li>
-                  <li>🍛 Traditional food stalls</li>
-                  <li>🎵 Live music and entertainment</li>
-                  <li>👨‍👩‍👧‍👦 Community bonding activities</li>
-                </ul>
-              </div>
-
-              {/* Day 2 */}
-              <div className="bg-white rounded-2xl p-8 border-2 border-yellow-300 shadow-lg">
-                <h3 className="text-2xl font-bold text-yellow-700 mb-4">🌞 Day 2 - September 14, 2025</h3>
-                <h4 className="font-bold text-lg mb-4">Morning Program</h4>
-                <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside mb-6">
-                  <li><strong>5:00 AM:</strong> Pookalam Event (Flower Art)</li>
-                  <li><strong>9:00 AM:</strong> Onam procession with Mahabali</li>
-                  <li><strong>10:00 AM:</strong> Mega Thiruvathira</li>
-                  <li><strong>10:30 AM:</strong> Community Games</li>
-                </ul>
-                <h4 className="font-bold text-lg mb-4">Afternoon Feast</h4>
-                <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside">
-                  <li><strong>11:30 AM onwards:</strong> Traditional Onam Sadya</li>
-                  <li>Served on banana leaves with 20+ dishes</li>
-                  <li>Payasam & Community Dining</li>
-                </ul>
-              </div>
-
-              {/* Venue Info */}
-              <div className="mt-12 bg-white rounded-2xl p-6 border-2 border-yellow-300 text-center shadow">
-                <h4 className="font-bold mb-3 text-lg">📍 Venue Information</h4>
-                <p><strong>Location:</strong> Ajmera Infinity Clubhouse</p>
-                <p><strong>Address:</strong> Neeladri Road, Electronic City Phase 1, Bangalore - 560100</p>
-                
-              </div>
-
-              {/* Closing Message */}
-              <div className="mt-12 bg-gradient-to-r from-yellow-100 to-white rounded-3xl p-8 border-2 border-yellow-300 text-center shadow-lg">
-                <h3 className="text-2xl font-bold text-yellow-700 mb-4">Join the Magic of Aarppo! ✨</h3>
-                <p className="text-lg text-stone-800 font-medium leading-relaxed mb-4">
-                  Onam isn't just a festival—it's an emotion rooted in unity, tradition, and joy. Let's celebrate together, dressed in kasavu and filled with festive spirit!
-                </p>
-                <p className="text-lg text-stone-800 font-medium leading-relaxed">
-                  Aarppo is a celebration of memories, friendships, and Malayalee culture. Whether you’re from Kerala or just love Onam—join the fun!
-                </p>
-              </div>
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent mb-4">
+                Event Schedule
+              </h1>
             </div>
-          </section>
-        </>
+
+            {/* Day 1 */}
+            <div className="bg-white rounded-2xl p-8 border-2 border-yellow-300 shadow-lg mb-8">
+              <h3 className="text-2xl font-bold text-yellow-700 mb-4">🌅 Day 1 - September 13, 2025</h3>
+              <h4 className="font-bold text-lg mb-4">Evening (6:00 PM - 9:00 PM)</h4>
+              <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside">
+                <li>🎭 Cultural events and performances</li>
+                <li>🍛 Traditional food stalls</li>
+                <li>🎵 Live music and entertainment</li>
+                <li>👨‍👩‍👧‍👦 Community bonding activities</li>
+              </ul>
+            </div>
+
+            {/* Day 2 */}
+            <div className="bg-white rounded-2xl p-8 border-2 border-yellow-300 shadow-lg">
+              <h3 className="text-2xl font-bold text-yellow-700 mb-4">🌞 Day 2 - September 14, 2025</h3>
+              <h4 className="font-bold text-lg mb-4">Morning Program</h4>
+              <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside mb-6">
+                <li><strong>5:00 AM:</strong> Pookalam Event (Flower Art)</li>
+                <li><strong>9:00 AM:</strong> Onam procession with Mahabali</li>
+                <li><strong>10:00 AM:</strong> Mega Thiruvathira</li>
+                <li><strong>10:30 AM:</strong> Community Games</li>
+              </ul>
+              <h4 className="font-bold text-lg mb-4">Afternoon Feast</h4>
+              <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside">
+                <li><strong>11:30 AM onwards:</strong> Traditional Onam Sadya</li>
+                <li>Served on banana leaves with 20+ dishes</li>
+                <li>Payasam & Community Dining</li>
+              </ul>
+            </div>
+
+            {/* Venue Info */}
+            <div className="mt-12 bg-white rounded-2xl p-6 border-2 border-yellow-300 text-center shadow">
+              <h4 className="font-bold mb-3 text-lg">📍 Venue Information</h4>
+              <p><strong>Location:</strong> Ajmera Infinity Clubhouse</p>
+              <p><strong>Address:</strong> Neeladri Road, Electronic City Phase 1, Bangalore - 560100</p>
+            </div>
+
+            {/* Closing Message */}
+            <div className="mt-12 bg-gradient-to-r from-yellow-100 to-white rounded-3xl p-8 border-2 border-yellow-300 text-center shadow-lg">
+              <h3 className="text-2xl font-bold text-yellow-700 mb-4">Join the Magic of Aarppo! ✨</h3>
+              <p className="text-lg text-stone-800 font-medium leading-relaxed mb-4">
+                Onam isn't just a festival—it's an emotion rooted in unity, tradition, and joy. Let's celebrate together, dressed in kasavu and filled with festive spirit!
+              </p>
+              <p className="text-lg text-stone-800 font-medium leading-relaxed">
+                Aarppo is a celebration of memories, friendships, and Malayalee culture. Whether you’re from Kerala or just love Onam—join the fun!
+              </p>
+            </div>
+          </div>
+        </section>
       )}
 
-      {/* Dynamic Tabs */}
+      {/* Dynamic Tab Sections */}
       {activeTab === 'sadya' && <div className="bg-white"><SadyaInformation /></div>}
       {activeTab === 'events' && <div className="bg-white"><CulturalEvents /></div>}
       {activeTab === 'thiruvathira' && <div className="bg-white"><ThiruvathiraRegistration /></div>}
