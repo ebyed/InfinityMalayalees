@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
 import SadyaInformation from './SadyaInformation';
@@ -33,7 +33,8 @@ const Onam2025: React.FC = () => {
     <div className="min-h-screen bg-white text-yellow-800">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
-        <div className="w-full h-64 md:h-80 lg:h-96 mb-8">
+        {/* Hero Image */}
+        <div className="w-full h-64 md:h-80 lg:h-96 mb-4">
           <img 
             src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg" 
             alt="Aarppo - Onam 2025 Celebration" 
@@ -41,25 +42,9 @@ const Onam2025: React.FC = () => {
           />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-white text-yellow-800 text-sm font-bold mb-6 shadow-md border-2 border-yellow-400">
-            <Calendar size={18} className="mr-2 text-yellow-600" />
-            September 13-14, 2025
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-serif text-yellow-700">Aarppo</h1>
-          <h2 className="text-2xl md:text-3xl font-bold text-stone-800 mb-6">Onam Celebrations 2025</h2>
-          <p className="text-xl md:text-2xl text-stone-700 max-w-3xl mx-auto font-medium">
-            Welcome to Aarppo - our ultimate Onam celebration! Register, participate, 
-            and be part of the grandest Malayalam festival at Ajmera Infinity.
-          </p>
-        </div>
-      </section>
-
-      {/* Presented By Section */}
-      <section className="py-8 bg-gradient-to-br from-white via-yellow-50 to-yellow-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-xl md:text-2xl font-bold text-yellow-700 mb-6">Presented By</h3>
+        {/* Sponsor Logos */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-4">
+          <h3 className="text-lg md:text-xl font-bold text-yellow-700 mb-4">Presented By</h3>
           <div className="flex flex-wrap justify-center items-center gap-8">
             <a href="https://www.dragarwal.com/eye-hospitals/bangalore/" target="_blank" rel="noopener noreferrer">
               <img src="/sponsors/agarwals-logo.png" alt="Agarwals Eye Hospital" className="h-16 object-contain transition-transform hover:scale-105" />
@@ -71,6 +56,20 @@ const Onam2025: React.FC = () => {
               <img src="/sponsors/maruti-ceramics-logo.png" alt="Maruti Ceramics" className="h-16 object-contain transition-transform hover:scale-105" />
             </a>
           </div>
+        </div>
+
+        {/* Hero Text */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <div className="inline-flex items-center px-6 py-3 rounded-full bg-white text-yellow-800 text-sm font-bold mb-6 shadow-md border-2 border-yellow-400">
+            <Calendar size={18} className="mr-2 text-yellow-600" />
+            September 13-14, 2025
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-serif text-yellow-700">Aarppo</h1>
+          <h2 className="text-2xl md:text-3xl font-bold text-stone-800 mb-6">Onam Celebrations 2025</h2>
+          <p className="text-xl md:text-2xl text-stone-700 max-w-3xl mx-auto font-medium">
+            Welcome to Aarppo - our ultimate Onam celebration! Register, participate, 
+            and be part of the grandest Malayalam festival at Ajmera Infinity.
+          </p>
         </div>
       </section>
 
