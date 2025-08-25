@@ -44,7 +44,7 @@ const Onam2025: React.FC = () => {
 
         {/* Sponsor Logos */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-4">
-          <h3 className="text-lg md:text-xl font-bold text-yellow-700 mb-4">Presented By</h3>
+         
           <div className="flex flex-wrap justify-center items-center gap-8">
             <a href="https://www.dragarwal.com/eye-hospitals/bangalore/" target="_blank" rel="noopener noreferrer">
               <img src="/sponsors/agarwals-logo.png" alt="Agarwals Eye Hospital" className="h-16 object-contain transition-transform hover:scale-105" />
@@ -56,6 +56,7 @@ const Onam2025: React.FC = () => {
               <img src="/sponsors/maruti-ceramics-logo.png" alt="Maruti Ceramics" className="h-16 object-contain transition-transform hover:scale-105" />
             </a>
           </div>
+           <h3 className="text-lg md:text-xl font-bold text-yellow-700 mb-4">Presented By</h3>
         </div>
 
         {/* Hero Text */}
