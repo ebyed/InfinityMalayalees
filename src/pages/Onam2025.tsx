@@ -58,7 +58,7 @@ const Onam2025: React.FC = () => {
 <h3 className="text-lg md:text-xl font-bold text-yellow-700">Presents</h3>
 </div>
         {/* Hero Text */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 text-center">
           <div className="inline-flex items-center px-6 py-3 rounded-full bg-white text-yellow-800 text-sm font-bold mb-6 shadow-md border-2 border-yellow-400">
             <Calendar size={18} className="mr-2 text-yellow-600" />
             September 13-14, 2025
