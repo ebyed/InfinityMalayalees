@@ -49,10 +49,10 @@ const Onam2025: React.FC = () => {
       <img src="/sponsors/agarwals-logo.png" alt="Agarwals Eye Hospital" className="h-24 object-contain transition-transform hover:scale-105" />
     </a>
     <a href="https://theoterra.com/" target="_blank" rel="noopener noreferrer">
-      <img src="/sponsors/ottera-logo.png" alt="The Ottera Electronics City" className="h-16 object-contain transition-transform hover:scale-105" />
+      <img src="/sponsors/ottera-logo.png" alt="The Ottera Electronics City" className="h-24 object-contain transition-transform hover:scale-105" />
     </a>
     <a href="https://maruthiceramics.com/" target="_blank" rel="noopener noreferrer">
-      <img src="/sponsors/maruti-ceramics-logo.png" alt="Maruti Ceramics" className="h-16 object-contain transition-transform hover:scale-105" />
+      <img src="/sponsors/maruti-ceramics-logo.png" alt="Maruti Ceramics" className="h-24 object-contain transition-transform hover:scale-105" />
     </a>
   </div>
 <h3 className="text-lg md:text-xl font-bold text-yellow-700">Presents</h3>
