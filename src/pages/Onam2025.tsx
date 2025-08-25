@@ -43,7 +43,7 @@ const Onam2025: React.FC = () => {
         </div>
 
         {/* Sponsor Logos */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-0">
   <div className="flex flex-wrap justify-center items-center gap-8 mb-6">
     <a href="https://www.dragarwal.com/eye-hospitals/bangalore/" target="_blank" rel="noopener noreferrer">
       <img src="/sponsors/agarwals-logo.png" alt="Agarwals Eye Hospital" className="h-16 object-contain transition-transform hover:scale-105" />
@@ -58,11 +58,11 @@ const Onam2025: React.FC = () => {
 <h3 className="text-lg md:text-xl font-bold text-yellow-700">Presents</h3>
 </div>
         {/* Hero Text */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 text-center">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-white text-yellow-800 text-sm font-bold mb-6 shadow-md border-2 border-yellow-400">
-            <Calendar size={18} className="mr-2 text-yellow-600" />
-            September 13-14, 2025
-          </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 text-center">
+  <div className="inline-flex items-center px-6 py-3 rounded-full bg-white text-yellow-800 text-sm font-bold mb-6 shadow-md border-2 border-yellow-400">
+    <Calendar size={18} className="mr-2 text-yellow-600" />
+    September 13-14, 2025
+  </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 font-serif text-yellow-700">Aarppo</h1>
           <h2 className="text-2xl md:text-3xl font-bold text-stone-800 mb-6">Onam Celebrations 2025 @ Ajmera Infinity</h2>
           <p className="text-xl md:text-2xl text-stone-700 max-w-3xl mx-auto font-medium">
