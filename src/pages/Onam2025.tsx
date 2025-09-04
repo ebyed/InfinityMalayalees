@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
 import { SadyaIcon, CulturalIcon, ThiruvathiraIcon } from '../components/KeralaSVGIcons';
@@ -14,6 +14,37 @@ const Onam2025: React.FC = () => {
     if (location.pathname === '/thiruvathira-registration') return 'thiruvathira';
     return 'overview';
   });
+
+
+  // Countdown state
+const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+});
+
+useEffect(() => {
+  const targetDate = new Date('2025-09-13T09:00:00+05:30').getTime();
+
+  const interval = setInterval(() => {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference > 0) {
+      setTimeLeft({
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      });
+    } else {
+      clearInterval(interval);
+    }
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
 
   const TabButton = ({ tabId, label, icon: Icon }: { tabId: string, label: string, icon: any }) => (
     <button
@@ -33,14 +64,38 @@ const Onam2025: React.FC = () => {
     <div className="min-h-screen bg-white text-yellow-800">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
-        {/* Hero Image */}
-        <div className="w-full h-64 md:h-80 lg:h-96 mb-4">
-          <img 
-            src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg" 
-            alt="Aarppo - Onam 2025 Celebration" 
-            className="w-full h-full object-cover rounded-3xl shadow-2xl border-4 border-yellow-300"
-          />
+   {/* Hero Image with Countdown Overlay */}
+<div className="relative w-full h-64 md:h-80 lg:h-96 mb-4">
+  <img
+    src="/WhatsApp Image 2025-07-09 at 22.59.43.jpeg"
+    alt="Aarppo - Onam 2025 Celebration"
+    className="w-full h-full object-cover rounded-3xl shadow-2xl border-4 border-yellow-300"
+  />
+  {/* Countdown Overlay */}
+  <div className="absolute inset-0 flex items-center justify-center">
+    <div className="text-white text-center font-serif drop-shadow-lg">
+      <div className="flex space-x-6 text-3xl md:text-5xl font-bold">
+        <div>
+          {timeLeft.days}
+          <span className="block text-sm md:text-lg font-normal">Days</span>
         </div>
+        <div>
+          {timeLeft.hours}
+          <span className="block text-sm md:text-lg font-normal">Hrs</span>
+        </div>
+        <div>
+          {timeLeft.minutes}
+          <span className="block text-sm md:text-lg font-normal">Min</span>
+        </div>
+        <div>
+          {timeLeft.seconds}
+          <span className="block text-sm md:text-lg font-normal">Sec</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         {/* Sponsor Logos */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-0">
