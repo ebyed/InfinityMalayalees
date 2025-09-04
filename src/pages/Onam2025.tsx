@@ -85,11 +85,11 @@ useEffect(() => {
         </div>
         <div>
           {timeLeft.minutes}
-          <span className="block text-sm md:text-lg font-normal">Min</span>
+          <span className="block text-sm md:text-lg font-normal">Mins</span>
         </div>
         <div>
           {timeLeft.seconds}
-          <span className="block text-sm md:text-lg font-normal">Sec</span>
+          <span className="block text-sm md:text-lg font-normal">Secs</span>
         </div>
       </div>
     </div>
