@@ -73,7 +73,7 @@ useEffect(() => {
   />
   {/* Countdown Overlay */}
   <div className="absolute inset-0 flex items-center justify-center">
-    <div className="text-white text-center font-serif drop-shadow-lg">
+      <div className="text-yellow-300 text-center font-serif drop-shadow-[0_0_8px_black] drop-shadow-[0_0_3px_black]">
       <div className="flex space-x-6 text-3xl md:text-5xl font-bold">
         <div>
           {timeLeft.days}
