@@ -99,18 +99,17 @@ useEffect(() => {
 
 {/* Sponsor Logos */}
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10 pb-0">
-  <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+  <div className="flex flex-row justify-center items-center gap-4 sm:gap-8 flex-wrap">
     {/* Sub Sponsor Left */}
     <a
       href="https://www.dragarwal.com/eye-hospitals/bangalore/"
       target="_blank"
       rel="noopener noreferrer"
-      className="order-2 md:order-1"
     >
       <img
         src="/sponsors/agarwals-logo.png"
         alt="Agarwals Eye Hospital"
-        className="h-16 md:h-20 object-contain transition-transform hover:scale-105"
+        className="h-12 sm:h-16 md:h-20 object-contain transition-transform hover:scale-105"
       />
     </a>
 
@@ -119,12 +118,11 @@ useEffect(() => {
       href="https://theoterra.com/"
       target="_blank"
       rel="noopener noreferrer"
-      className="order-1 md:order-2"
     >
       <img
         src="/sponsors/ottera-logo.png"
         alt="The Ottera Electronics City"
-        className="h-28 md:h-36 object-contain transition-transform hover:scale-115"
+        className="h-20 sm:h-28 md:h-36 object-contain transition-transform hover:scale-115"
       />
     </a>
 
@@ -133,16 +131,17 @@ useEffect(() => {
       href="https://maruthiceramics.com/"
       target="_blank"
       rel="noopener noreferrer"
-      className="order-3"
     >
       <img
         src="/sponsors/maruti-ceramics-logo.png"
         alt="Maruti Ceramics"
-        className="h-16 md:h-20 object-contain transition-transform hover:scale-105"
+        className="h-12 sm:h-16 md:h-20 object-contain transition-transform hover:scale-105"
       />
     </a>
   </div>
-  <h3 className="text-lg md:text-xl font-bold text-yellow-700 mb-6">Presents</h3>
+
+  {/* Presents text below logos */}
+  <h3 className="text-lg md:text-xl font-bold text-yellow-700 mt-6">Presents</h3>
 </div>
 
         {/* Hero Text */}
