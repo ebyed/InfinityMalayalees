@@ -133,7 +133,7 @@ useEffect(() => {
       rel="noopener noreferrer"
     >
       <img
-        src="/sponsors/maruti-ceramics-logo.png"
+        src="/sponsors/maruti-ceramics-logo-1.png"
         alt="Maruti Ceramics"
         className="h-12 sm:h-16 md:h-20 object-contain transition-transform hover:scale-105"
       />
