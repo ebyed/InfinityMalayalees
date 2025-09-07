@@ -36,8 +36,17 @@ const SadyaInformation: React.FC = () => {
               Sadya Coupon Information
             </h3>
             <p className="text-xl text-yellow-700 font-bold mb-4">
-              Watch this space for how to get your Sadya coupons
+              Get Your Sadya Coupons Now!
             </p>
+            <div className="mt-6 bg-green-50 rounded-xl p-6 border-2 border-green-300">
+              <h4 className="font-bold text-green-800 mb-3 text-lg">📍 Coupon Collection Details</h4>
+              <div className="text-green-700 font-medium space-y-2">
+                <p><strong>Location:</strong> Club house reception</p>
+                <p><strong>Available till:</strong> 10th September 2025</p>
+                <p><strong>Timings:</strong> 9:30 AM to 6:00 PM</p>
+                <p><strong>Contact:</strong> Humera / Suraj</p>
+              </div>
+            </div>
             <div className="mt-6 bg-white rounded-xl p-4 border border-yellow-300">
               <h4 className="font-bold text-yellow-800 mb-2">Pricing</h4>
               <div className="text-yellow-700 font-medium space-y-1">
@@ -45,9 +54,9 @@ const SadyaInformation: React.FC = () => {
                 <p><strong>Children (below 10):</strong> INR 300/person </p>
               </div>
             </div>
-            <div className="mt-4 bg-yellow-100 rounded-xl p-4 border border-yellow-300">
-              <p className="text-yellow-800 font-medium text-sm">
-                <strong>Limited seats available - First come, first served!</strong>
+            <div className="mt-4 bg-red-100 rounded-xl p-4 border-2 border-red-400 flash-animation">
+              <p className="text-red-800 font-bold text-lg text-center">
+                <strong>⚠️ LIMITED COUPONS ONLY - FIRST COME, FIRST SERVED! ⚠️</strong>
               </p>
             </div>
           </div>
