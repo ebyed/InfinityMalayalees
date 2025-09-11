@@ -196,7 +196,7 @@ useEffect(() => {
             {/* Day 1 */}
             <div className="bg-white rounded-2xl p-8 border-2 border-yellow-300 shadow-lg mb-8">
               <h3 className="text-2xl font-bold text-yellow-700 mb-4">🌅 Day 1 - September 13, 2025</h3>
-              <h4 className="font-bold text-lg mb-4">Evening (6:00 PM - 9:00 PM)</h4>
+              <h4 className="font-bold text-lg mb-4">Evening (5:00 PM - 9:00 PM)</h4>
               <ul className="space-y-2 text-stone-700 font-medium list-disc list-inside">
                 <li>🎭 Cultural events and performances</li>
                 <li>🍛 Traditional food stalls</li>
